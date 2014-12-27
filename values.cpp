@@ -6,14 +6,14 @@ using namespace std;
 
 //Does health even need to be here? We could probably just encorporate it in player/monster class
 
-void values::statprogression()
+void values::statprogression() //Adding stats
 {
-    int remainingStats = 0;
+    int remainingStats = 0; //Figure out how to add more points here. Maybe make a parameter?
     int points;
     
     string stat;
     
-    stats.resize(5);
+    stats.resize(5); //5 Stats
     
     while(remainingStats > 0)
     {
@@ -27,7 +27,7 @@ void values::statprogression()
         cin >> stat;
         cout << "Points: ";
         cin >> points;
-        if (stat == "Str" || "Strength" || "str" || "strength")
+        if (stat == "Str" || "Strength" || "str" || "strength") //Add points to appropriate stat
         {
             stats.at(0) += points;
         }
@@ -49,8 +49,6 @@ void values::statprogression()
         }
     }
 }
-
-
 
 /*
 Looking at each cell in order:
