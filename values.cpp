@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "values.h"
 
 using namespace std;
@@ -9,44 +10,57 @@ using namespace std;
 void values::statprogression() //Adding stats
 {
     int remainingStats = 0; //Figure out how to add more points here. Maybe make a parameter?
-    int points;
+    int points = 0;
     
     string stat;
     
-    stats.resize(5); //5 Stats
+    playerstats.resize(5); //5 Stats
     
     while(remainingStats > 0)
     {
-        cout << "Strength:  " << stats.at(0) << endl;
-        cout << "Agility:   " << stats.at(1) << endl;
-        cout << "Vitality:  " << stats.at(2) << endl;
-        cout << "Dexterity: " << stats.at(3) << endl;
-        cout << "Luck:      " << stats.at(4) << endl;
-        cout << "You have " << remainingStats << "stat points remaining." << endl;
+        cout << "Strength:  " << playerstats.at(0) << endl;
+        cout << "Agility:   " << playerstats.at(1) << endl;
+        cout << "Vitality:  " << playerstats.at(2) << endl;
+        cout << "Dexterity: " << playerstats.at(3) << endl;
+        cout << "Luck:      " << playerstats.at(4) << endl;
+        cout << "You have " << remainingStats << " stat points remaining." << endl;
         cout << "Stat: ";
         cin >> stat;
-        cout << "Points: ";
-        cin >> points;
-        if (stat == "Str" || "Strength" || "str" || "strength") //Add points to appropriate stat
+        if (stat == "Str" || stat == "Strength" || stat == "str" || stat == "strength") //Add points to appropriate stat
         {
-            stats.at(0) += points;
+            cout << "Points: ";
+            cin >> points;
+            playerstats.at(0) += points;
         }
-        else if (stat == "Agi" || "Agility" || "agi" || "agility")
+        else if (stat == "Agi" || stat == "Agility" || stat == "agi" || stat == "agility")
         {
-            stats.at(1) += points;
+            cout << "Points: ";
+            cin >> points;
+            playerstats.at(1) += points;
         }
-        else if (stat == "Vit" || "Vitality" || "vit" || "vitality")
+        else if (stat == "Vit" || stat == "Vitality" || stat == "vit" || stat == "vitality")
         {
-            stats.at(2) += points;
+            cout << "Points: ";
+            cin >> points;            
+            playerstats.at(2) += points;
         }
-        else if (stat == "Dex" || "Dexterity" || "dex" || "dexterity")
+        else if (stat == "Dex" || stat == "Dexterity" || stat == "dex" || stat == "dexterity")
         {
-            stats.at(3) += points;
+            cout << "Points: ";
+            cin >> points;            
+            playerstats.at(3) += points;
         }
-        else if (stat == "Luk" || "Luck" || "luk" || "luck")
+        else if (stat == "Luk" || stat == "Luck" || stat == "luk" || stat == "luck")
         {
-            stats.at(4) += points;
+            cout << "Points: ";
+            cin >> points;            
+            playerstats.at(4) += points;
         }
+        else
+        {
+            cout << "Invalid stat type." << endl;
+        }
+        remainingStats -= points;
     }
 }
 

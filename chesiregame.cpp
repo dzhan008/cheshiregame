@@ -4,15 +4,49 @@
 
 using namespace std;
 
+void menu();
+
 int main()
 {
     values health;
-    values health1;
+
     
-    health.hp = 0;
-    health1.hp = 5;
+    cout << "Chesire's Game" << endl;
+    cout << "Prototype Version 1.0" << endl;
+    cout << "Welcome to the demo!" << endl;     
+    menu();
     
+}
+
+void menu()
+{
+    int choice = 0;
+
+    while (choice != 4)
+    {
+        cout << "Please select one of the options below: " << endl;
+        cout << "1. Combat Simulation" << endl;
+        cout << "2. Shop Simulation" << endl;
+        cout << "3. Stats Simulation" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Input the number for your selection: ";
+        cin >> choice;
+        if (choice == 1)
+        {
+            
+        }
+        else if (choice == 2)
+        {
+            
+        }
+        else if (choice == 3)
+        {
+            
+        }
+        else if (choice == 4)
+        {
+            cout << "Thanks for playing! See you next time!";
+        }
+    }
     
-    cout << health.hp << endl << health1.hp << endl;
-    cout << health.stats.at(0);
 }
