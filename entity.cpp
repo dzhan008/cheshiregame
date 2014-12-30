@@ -5,38 +5,36 @@
 
 using namespace std;
 
-/*Health*/
-void entity::setHealth(int health)
-{
-    maxHP = health;
-}
-
-int entity::getHealth()
-{
-    return maxHP;
-}
-
-
-/*Name*/
-void entity::setName(string entityName)
+/*Create Entity*/
+void entity::createEntity(string entityName, int health, int lvl, int amount)
 {
     name = entityName;
+    maxHP = health;
+    level  = lvl;
+    numEXP = amount;
 }
 
+
+//Gets the information of each individually. just in case we need to 
+/*Name*/
 string entity::getName()
 {
     return name;
 }
-
-/*Level*/
-void entity::setLevel(int lvl)
+/*Health*/
+int entity::getHealth()
 {
-    level = lvl;
+    return maxHP;
 }
-
+/*Level*/
 int entity::getLevel()
 {
     return level;
+}
+/*Experience*/
+int entity::getEXP()
+{
+    return numEXP;
 }
 
 /*Stats*/
@@ -61,15 +59,6 @@ void entity::DisplayStats()
     cout << "Luck:      " << entityStats.at(4) << endl;
 }
 
-/*Experience*/
-void entity::setEXP(int amount)
-{
-    numEXP = amount;
-}
-int entity::getEXP()
-{
-    return numEXP;
-}
 
 /*Print*/
 //Prints all information about entity
