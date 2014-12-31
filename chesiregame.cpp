@@ -1,21 +1,23 @@
 #include <iostream>
 #include <vector>
-#include "values.h"
+#include "player.h"
+#include "demo.h"
 
 using namespace std;
 
 void menu();
 
+
+
 int main()
 {
-    values health;
 
-    
     cout << "Chesire's Game" << endl;
     cout << "Prototype Version 1.0" << endl;
-    cout << "Welcome to the demo!" << endl;     
+    cout << "Welcome to the demo!" << endl;
     menu();
-    
+
+    return 0;
 }
 
 void menu()
@@ -24,6 +26,7 @@ void menu()
 
     while (choice != 4)
     {
+        demo player;
         cout << "Please select one of the options below: " << endl;
         cout << "1. Combat Simulation" << endl;
         cout << "2. Shop Simulation" << endl;
@@ -33,20 +36,21 @@ void menu()
         cin >> choice;
         if (choice == 1)
         {
-            
+
         }
         else if (choice == 2)
         {
-            
+
         }
         else if (choice == 3)
         {
-            
+            player.statprogression();
+            choice = 4;
         }
         else if (choice == 4)
         {
             cout << "Thanks for playing! See you next time!";
         }
     }
-    
+
 }
