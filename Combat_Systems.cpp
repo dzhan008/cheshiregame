@@ -107,12 +107,13 @@ int calculateTurn(){
 
 void runBattle(vector<Monster> enemy){
     int optionChoice;
-    int attack
+    int attack;
     int battleSize = enemy.size();
     enemies = enemy;
     turn = calculateTurn();
     while(player.getHP() > 0 && enemy.size() > 0){
-        if(turn = 0){
+        if(turn == 0){
+            //Player Turn
             optionChoice = promptChoices();
             if(battleSize > 1){
                 promptEnemyChoice();
@@ -121,8 +122,10 @@ void runBattle(vector<Monster> enemy){
             else{
                 
             }
+            turn = 1
         }
         else{
-            
+            //Enemy Turn
+            turn = 0;
         }
 }
