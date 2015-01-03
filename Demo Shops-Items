@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//Prototype of Items and Shop classes
+//Will call upon other classes and include more items later
+
+
+class Shop
+{
+    public:
+        int GoldRemaining(int& goldAmt);
+        void PlayerInventorySize(vector<int>)
+        //FIX. not type int. function will remove/add items as needed
+    private:
+        int userGold;
+}
+
+//Items for now simply hold an arbitrary value for each trait
+class EquipItem
+{
+    public:
+        bool weaponOrArmor;
+    private:
+        int attack;
+        int defense;
+        int value;
+};
+
+class UseOnceItem
+{
+    public:
+        int
+}
+int main()
+{
+    Item sword;
+    sword.attack = 5;
+    sword.defense = 0;
+    sword.value = 10;
+    
+    Item armor;
+    armor.attack = 0;
+    armor.defense = 5;
+    armor.value = 10;
+    
+    int playerGold = 50;
+    
+    cout << "You have " << playerGold << " Gold.";
+    
+
+    return 0;
+}
