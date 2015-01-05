@@ -1,4 +1,4 @@
-//WIP, tell me if any adjustments need to be made
+//Single battles done, need to finish multiple battle. Not sure about small things, need to meet up before that's finished.
 
 #include <iostream>
 #include <stdlib.h>
@@ -10,13 +10,15 @@ using namespace std;
 Combat_System::Combat_System(){
     turn = 0;
     vector<entity> enemies;
-    Player player;
+    entity enemy;
+    player play;
 }
 
 //Main constructor, saves the player object
 Combat_System::Combat_System(Player p){
     turn = 0;
     vector<entity> enemies;
+    entity enemy;
     player = p;
 }
 
@@ -24,22 +26,22 @@ int randNumber(){
     return rand % 100 + 1;
 }
 
-//0 to attack, 1 to defend
-int calculateEnemyChoice(){
-    if(enemies.getHP() > 10){
+//True if defending
+bool calculateEnemyChoice(entity enemy){
+    if(enemy.getHP() > 10){
         if(randNumber() > 80){
-            return 0;
+            return false;
         }
         else{
-            return 1;
+            return true;
         }
     }
     else{
         if(randNumber() > 60){
-            return 0;
+            return false;
         }
         else{
-            return 1;
+            return true;
         }
     }
 }
@@ -105,27 +107,72 @@ int calculateTurn(){
     return 0;
 }
 
-void runBattle(vector<Monster> enemy){
+void runBatte(entity enemy){
     int optionChoice;
+    bool eChoice;
+    turn = calculateTurn();
+    while(player.getHP() > 0 && enemy.getHealth() > 0){
+        eChoice = calculateEnemyChoice(enemy);
+        optionChoice = promptChoices();
+        if(turn == 0){
+            if(optionChoice == 0){
+                enemy.loseHP(calculateDamage(eChoice));
+            }
+            if(optionChoice == 2){
+                //Access inventory
+            }
+            if(optionChoice == 3){
+                //Prompt run away
+            }
+            turn = 1;
+        }
+        else{
+            if(!eChoice){
+                if(optionChoice == 0){
+                    player.loseHP(calculateDamage(false));
+                }
+                else{
+                    player.loseHP(calculateDamage(true));
+                }
+            }
+            turn = 0;
+        }
+    }
+    if(player.getHP() > 0){
+        player.setexp(player.getexp() + enemy.getexp());
+    }
+    else{
+        cout << "Game Over.";
+    }
+}
+
+/*void runBattle(vector<Monster> enemy){
+    int optionChoice;
+    int eChoice;
     int attack;
     int battleSize = enemy.size();
-    enemies = enemy;
     turn = calculateTurn();
     while(player.getHP() > 0 && enemy.size() > 0){
-        if(turn == 0){
-            //Player Turn
+        if(turn = 0){
             optionChoice = promptChoices();
             if(battleSize > 1){
                 promptEnemyChoice();
                 //Implement Multi Battle
             }
             else{
-                
+                if(optionChoice == 0){
+                    
+                }
             }
-            turn = 1
         }
         else{
-            //Enemy Turn
-            turn = 0;
+            if(battleSize > 1){
+                for(int i = 0; i < battleSize; i++){
+                    
+                }
+            }
+            else{
+                
+            }
         }
-}
+}*/
