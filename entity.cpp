@@ -23,7 +23,7 @@ string entity::getName()
 /*Health*/
 int entity::getHealth()
 {
-    return maxHP;
+    return currHP;
 }
 /*Level*/
 int entity::getLevel()
@@ -34,6 +34,11 @@ int entity::getLevel()
 int entity::getEXP()
 {
     return numEXP;
+}
+
+int entity:setHP(int& health)
+{
+    currHP = health;
 }
 
 /*Stats*/
