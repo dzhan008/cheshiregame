@@ -1,5 +1,5 @@
-#ifndef shop_H
-#define shop_H
+#ifndef Shop_H
+#define Shop_H
 #include <iostream>
 #include <string>
 #include <vector>
@@ -36,7 +36,7 @@ class Shop
         int GoldRemaining(int &goldAmt); //calculates and returns remaining player gold
         void PlayerInventorySize(vector<int> playerInventory) //FIXME function will remove/add items within player inventory
     private:
-        int playerGold;
+        int pmoney;
 };
 
 #endif
