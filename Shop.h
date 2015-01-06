@@ -14,18 +14,19 @@ struct Item
 };
 
 //This function handles the actual printing of each item's name and gold value
-void StoreItem(Item object)
-{
-    cout << int i << object.name << ", Value: " << object.value << endl;
-    //ISSUE: does redeclaring i cause a problem?
-}
+//New note: fixed issue. function not necessary
+// void StoreItem(Item object)
+// {
+//     cout << int i << object.name << ", Value: " << object.value << endl;
+// }
 
 //This function iterates through vector shopItems to print each item of type Item
 void PrintStore(vector<Item> &shopItems)
 {
     for(int i = 0; i < shopItems.size(); i++)
     {
-        StoreItem(shopItems.at(i));
+        cout << i << shopItems.at(i).name << ", Value: " << shopItems.at(i).value << endl;
+        //StoreItem(shopItems.at(i));
     }
 }
 
