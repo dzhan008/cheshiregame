@@ -1,8 +1,7 @@
-#ifndef items_H
-#define items_H
+#ifndef Items_H
+#define Items_H
 
 using namespace std;
-
 
 class Item
 {
@@ -14,12 +13,12 @@ class Item
         int value;
 };
 
-// **Will not utilized within Prototype 1.0
-    // class Potion
-    // {
-    //     public:
-    //     private:
-    // };
+//Will not utilized within Prototype 1.0
+    class Potion
+    {
+        public:
+        private:
+    };
     
     
 #endif
