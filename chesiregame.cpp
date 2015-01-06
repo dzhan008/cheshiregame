@@ -36,11 +36,11 @@ void menu()
         cin >> choice;
         if (choice == 1)
         {
-
+            choice = 4;
         }
         else if (choice == 2)
         {
-
+            choice = 4;
         }
         else if (choice == 3)
         {

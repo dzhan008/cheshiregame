@@ -9,7 +9,7 @@ class player
 {
     public:
 
-    /*Get Functions: Returns the respective value. We might need these later.*/
+    /*Get Functions: Returns the respective value.*/
     int getHP();
     int getlevel();
     int getmoney();

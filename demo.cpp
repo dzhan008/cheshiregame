@@ -95,6 +95,20 @@ void demo::addPoints(int& points, int rstat)
     }
 }
 
+/*void demo::expgain()
+{
+    cout << "You gained 100 exp points!" << endl; //Implement to combat systems later
+    if(pexp > maxexp)
+    {
+        cout << "Level Up!" << endl;
+        -set exp to 0
+        -change maxexp
+        -level up player
+        -add stat points to player (5)?
+    }
+
+}*/
+
 /*
 Looking at each cell in order:
 0 = Strength

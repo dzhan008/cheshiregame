@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include "entity.h"
-
 using namespace std;
 
 /*Create Entity*/
@@ -15,7 +14,7 @@ void entity::createEntity(string entityName, int health, int lvl, int amount)
 }
 
 
-//Gets the information of each individually. just in case we need to 
+//Gets the information of each individually. just in case we need to
 /*Name*/
 string entity::getName()
 {
@@ -68,11 +67,11 @@ void entity::Print()
     cout << "Level: " << level << endl;
     cout << "HP: " << maxHP << endl;
     cout << "Stats" << endl;
-    
+
     cout << "Strength:  " << entityStats.at(0) << endl;
     cout << "Agility:   " << entityStats.at(1) << endl;
     cout << "Vitality:  " << entityStats.at(2) << endl;
     cout << "Dexterity: " << entityStats.at(3) << endl;
     cout << "Luck:      " << entityStats.at(4) << endl;
-    
+
 }
