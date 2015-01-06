@@ -1,5 +1,5 @@
-#ifndef inventory_H
-#define inventory_H
+#ifndef Inventory_H
+#define Inventory_H
 
 using namespace std;
 
@@ -9,6 +9,7 @@ class Inventory
     public:
         void PrintInventory(vector<string> &items)
     private:
+        vector<string> items;
 };
 
 #endif
