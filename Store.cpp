@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
 #include "Shop.h"
-#include "Inventory.h"
-#include "Items.h"
+//#include "Inventory.h"
+//#include "Items.h"
 
 using namespace std;
-
-//Will call upon other classes and include more items later
 
 int main()
 {
@@ -21,6 +19,8 @@ int main()
     shopItems.at(0).value = 10;
     shopItems.at(1).name = "Frayed Leather Armor";
     shopItems.at(1).value = 20;
+    shopItems.at(2).name = "Legendary Ghostblade";
+    shopItems.at(2).value = 1000;
     
     cout << "Welcome to Chesire's Store, feel free to browse our wares." << endl;
     cout << "You have " << pmoney << " gold remaining." << endl;
@@ -30,30 +30,31 @@ int main()
     cout << "Press q to leave the store." << endl;
     cin >> choice;
     
-    while(choice != 'q')
+    if(choice == 'v')
     {
-        if(choice == 'v')
+        PrintStore(vector<Item> &shopItems);
+    }
+    if (choice == 'p')
+    {
+        cout << "Enter the number of the item you would like to purchase." << endl;
+        cin >> usernum;
+        if(usernum == 0)
         {
-            PrintStore(vector<Item> &shopItems);
+            shopItems.erase(0); // .erase is inefficient if store inventory is large. Change after prototype.
+            spentGold += shopItems.at(0).value;
+            pmoney -= shopItems.at(0).value;
+            cout << "You bought one Rusty Shiv!" << endl;
         }
-        else if (choice == 'p')
+        if(usernum == 1)
         {
-            cout << "Enter the number of the item you would like to purchase." << endl;
-            cin >> usernum;
-            if(usernum == 0)
-            {
-                shopItems.erase(0); // .erase is inefficient if store inventory is large. Change after prototype.
-                spentGold += shopItems.at(0).value;
-                pmoney -= shopItems.at(0).value;
-                cout << "You bought one Rusty Shiv!" << endl;
-            }
-            if(usernum == 1)
-            {
-                shopItems.erase(1);
-                spentGold += shopItems.at(1).value;
-                pmoney -= shopItems.at(1).value;
-                cout << "You bought one Frayed Leather Armor!" << endl;
-            }
+            shopItems.erase(1);
+            spentGold += shopItems.at(1).value;
+            pmoney -= shopItems.at(1).value;
+            cout << "You bought one Frayed Leather Armor!" << endl;
+        }
+        if(usernum == 2)
+        {
+            cout << "Not enough gold, ya poor bastard." << endl;
         }
     }
     else if(choice == 'q')
