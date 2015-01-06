@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "shop.h"
-#include "inventory.h"
-#include "items.h"
+#include "Shop.h"
+#include "Inventory.h"
+#include "Items.h"
 
 using namespace std;
 
@@ -10,8 +10,8 @@ using namespace std;
 
 int main()
 {
-    vector<string> userInventory(5); //Temp inventory space
-    int playerGold = 50; //Temp specified amount 
+    // vector<string> userInventory; // Not needed for prototype 
+    int pmoney = 50; //Temp specified amount 
     int spentGold = 0;
     int choice = 0;
     int usernum;
@@ -23,14 +23,13 @@ int main()
     shopItems.at(1).value = 20;
     
     cout << "Welcome to Chesire's Store, feel free to browse our wares." << endl;
-    cout << "You have " << playerGold << " gold remaining." << endl;
+    cout << "You have " << pmoney << " gold remaining." << endl;
     
     cout << "Press v to view the store inventory." << endl;
     cout << "Press p to purchase an item." << endl;
     cout << "Press q to leave the store." << endl;
     cin >> choice;
     
-    //Later will develop simpler way of removing and adding items to and from inventory
     while(choice != 'q')
     {
         if(choice == 'v')
@@ -43,15 +42,17 @@ int main()
             cin >> usernum;
             if(usernum == 0)
             {
-                shopItems.erase(0);
+                shopItems.erase(0); // .erase is inefficient if store inventory is large. Change after prototype.
                 spentGold += shopItems.at(0).value;
-                playerGold -= shopItems.at(0).value;
+                pmoney -= shopItems.at(0).value;
+                cout << "You bought one Rusty Shiv!" << endl;
             }
-            else if(usernum == 1)
+            if(usernum == 1)
             {
                 shopItems.erase(1);
                 spentGold += shopItems.at(1).value;
-                playerGold -= shopItems.at(1).value;
+                pmoney -= shopItems.at(1).value;
+                cout << "You bought one Frayed Leather Armor!" << endl;
             }
         }
     }
@@ -59,7 +60,7 @@ int main()
     {
         cout << "Thanks for visiting!" << endl; 
         cout << "You spent " << spentGold << " gold." << endl;
-        cout << "You have " << playerGold << " gold remaining." << endl;
+        cout << "You have " << pmoney << " gold remaining." << endl;
     }
    
     
