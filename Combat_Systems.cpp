@@ -1,35 +1,37 @@
-//Single battles done, need to finish multiple battle. Not sure about small things, need to meet up before that's finished.
-
 #include <iostream>
 #include <stdlib.h>
+#include <vector>
 
 using namespace std;
 #include "Combat_System.h"
+#include "player.h"
+#include "entity.h"
 
 //Default constructor, probably will never have to use
 Combat_System::Combat_System(){
     turn = 0;
-    vector<entity> enemies;
+    //vector<entity> enemies;
     entity enemy;
     player play;
 }
 
 //Main constructor, saves the player object
-Combat_System::Combat_System(Player p){
+Combat_System::Combat_System(player* p){
     turn = 0;
-    vector<entity> enemies;
+    //vector<entity> enemies;
     entity enemy;
-    player = p;
+    play = p;
 }
 
-int randNumber(){
-    return rand % 100 + 1;
+int Combat_System::randNumber(){
+    return rand() % 100 + 1;
 }
 
 //True if defending
-bool calculateEnemyChoice(entity enemy){
-    if(enemy.getHP() > 10){
-        if(randNumber() > 80){
+bool Combat_System::calculateEnemyChoice(){
+    int x = randNumber();
+    if(enemy->getHealth() > 10){
+        if(x < 90){
             return false;
         }
         else{
@@ -37,7 +39,7 @@ bool calculateEnemyChoice(entity enemy){
         }
     }
     else{
-        if(randNumber() > 60){
+        if(x < 75){
             return false;
         }
         else{
@@ -53,10 +55,10 @@ int Combat_System::promptChoices(){
     int prompt;
     while(i = -1){
         cout << "Enter the number of the move you want to make: "<< endl;
-        cout << "1: Attack";
-        cout << "2: Defend";
-        cout << "3: Use an item";
-        cout << "4: Run";
+        cout << "1: Attack" << endl;
+        cout << "2: Defend" << endl;
+        cout << "3: Use an item" << endl;
+        cout << "4: Run" << endl;
         cin >> prompt;
         if(prompt == 1){
             return 0;
@@ -74,7 +76,7 @@ int Combat_System::promptChoices(){
     }
 }
 
-int promptEnemyChoice(){
+/*int promptEnemyChoice(){
     int choice;
     cout << "Which enemy number would you like to attack?: " << endl;
     for(int i = 0; i < enemies.size(); i++){
@@ -89,6 +91,7 @@ int promptEnemyChoice(){
         promptEnemyChoice();
     }
 }
+*/
 
 double Combat_System::calculateAccuracy(){
     return 0;
@@ -96,50 +99,76 @@ double Combat_System::calculateAccuracy(){
 
 int Combat_System::calculateDamage(bool defend){
     if(defend){
-        return randNumber() / 40;
+        return randNumber() / 30;
     }
     else{
         return randNumber() / 10;
     }
 }
 
-int calculateTurn(){
+int Combat_System::calculateTurn(){
     return 0;
 }
 
-void runBatte(entity enemy){
+void Combat_System::runBattle(entity* enem){
+    enemy = enem;
     int optionChoice;
     bool eChoice;
     turn = calculateTurn();
-    while(player.getHP() > 0 && enemy.getHealth() > 0){
-        eChoice = calculateEnemyChoice(enemy);
-        optionChoice = promptChoices();
+    while(play->getHP() > 0 && enemy->getHealth() > 0){
+        eChoice = calculateEnemyChoice();
         if(turn == 0){
+            optionChoice = promptChoices();
             if(optionChoice == 0){
-                enemy.loseHP(calculateDamage(eChoice));
+                int x = calculateDamage(eChoice);
+                cout << "You've hit the enemy for " << x << " damage!" << endl;
+                enemy->setHealth(enemy->getHealth() - x);
+            }
+            if(optionChoice == 1){
+                cout << "You are now defending." << endl;
             }
             if(optionChoice == 2){
                 //Access inventory
+                cout << "This option is not available in the prototype." << endl;
             }
             if(optionChoice == 3){
                 //Prompt run away
+                cout << "This option is not available in the prototype." << endl;
             }
-            turn = 1;
+            if(optionChoice == 2 || optionChoice == 3){
+                turn = 0;
+                cout << "It is still your turn." << endl;
+            }
+            else{
+                turn = 1;
+            }
         }
         else{
+            cout << "It is now the enemy's turn!" << endl;
             if(!eChoice){
-                if(optionChoice == 0){
-                    player.loseHP(calculateDamage(false));
+                int x;
+                if(optionChoice == 1){
+                    x = calculateDamage(true);
+                    play->setHP(play->getHP() - x);
+                    cout << "The enemy has hit you for " << x << " damage!" << endl;
+                    cout << "You reduced the amount of damage you have taken by defending..." << endl;
                 }
                 else{
-                    player.loseHP(calculateDamage(true));
+                    x = calculateDamage(false);
+                    play->setHP(play->getHP() - x);
+                    cout << "The enemy has hit you for " << x << " damage!" << endl;
                 }
+            }
+            else{
+                cout << "The enemy is defending..." << endl;
             }
             turn = 0;
         }
     }
-    if(player.getHP() > 0){
-        player.setexp(player.getexp() + enemy.getexp());
+    if(play->getHP() > 0){
+        play->setexp(play->getexp() + enemy->getEXP());
+        cout << "You've won the battle!" << endl;
+        cout << "You've gained " << enemy->getEXP() << " EXP!";
     }
     else{
         cout << "Game Over.";
