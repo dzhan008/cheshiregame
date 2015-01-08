@@ -1,14 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "entity.h"
+
 using namespace std;
 
+#include "entity.h"
+
 /*Create Entity*/
-void entity::createEntity(string entityName, int health, int lvl, int amount)
+
+entity::entity(){
+    name = "Enemy";
+    maxHP = 1;
+    currHP = 1;
+    level = 1;
+    numEXP = 1;
+}
+entity::entity(string entityName, int health, int lvl, int amount)
 {
     name = entityName;
     maxHP = health;
+    currHP = health;
     level  = lvl;
     numEXP = amount;
 }
@@ -25,6 +36,9 @@ int entity::getHealth()
 {
     return currHP;
 }
+int entity::getMaxHealth(){
+    return maxHP;
+}
 /*Level*/
 int entity::getLevel()
 {
@@ -36,7 +50,7 @@ int entity::getEXP()
     return numEXP;
 }
 
-int entity:setHP(int& health)
+void entity::setHealth(int health)
 {
     currHP = health;
 }
