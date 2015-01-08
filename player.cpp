@@ -1,10 +1,31 @@
 #include <iostream>
 #include <vector>
-#include "player.h"
 
 using namespace std;
 
+#include "player.h"
+
 /*Get Functions*/
+
+player::player(){
+    playername = "Player";
+    maxHP = 1;
+    currHP = 1;
+    plevel = 1;
+    pexp = 0;
+}
+player::player(string pName, int health, int lvl, int amount)
+{
+    playername = pName;
+    maxHP = health;
+    currHP = health;
+    plevel  = lvl;
+    pexp = amount;
+}
+
+int player::getMaxHP(){
+    return maxHP;
+}
 int player::getHP()
 {
     return currHP;
@@ -31,7 +52,7 @@ string player::getname()
 }
 
 /*Set Functions*/
-void player::setHP(int& health)
+void player::setHP(int health)
 {
     currHP = health;
 }
@@ -46,9 +67,9 @@ void player::setmoney(int& money)
     pmoney = money;
 }
 
-void player::setexp(int& exp)
+void player::setexp(int expx)
 {
-    pexp = exp;
+    pexp = expx;
 }
 
 void player::setstats(vector<int>& stats)
