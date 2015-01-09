@@ -17,15 +17,10 @@ struct Item
 class Shop
 {
     public:
-<<<<<<< HEAD
         void Store(); //displays store and options
         void PrintStore(vector<Item> &v); //prints items in shop
         void PrintShopMenu(); //prints the menu for the shop
-=======
-        void PrintStore(vector<Item> &v); //prints items in shop
->>>>>>> origin/master
-        int GoldRemaining(int &goldAmt); //calculates and returns remaining player gold
-        void PlayerInventorySize(vector<int> playerInventory); //FIXME function will remove/add items within player inventory
+
     private:
         int pmoney = 50;
         int spentGold = 0;

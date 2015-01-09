@@ -10,23 +10,13 @@ using namespace std;
 void PrintShopMenu();
 void PrintStore(vector<Item> &v);
 
-<<<<<<< HEAD
-int choice;
 int pmoney = 50; //Temp specified amount
 int spentGold = 0;
+int choice;
 
 void Shop::Store()
 {
     // vector<string> userInventory; // Not needed for prototype
-=======
-int pmoney = 50; //Temp specified amount 
-int spentGold = 0;
-int choice;
-
-int main()
-{
-    // vector<string> userInventory; // Not needed for prototype 
->>>>>>> origin/master
 
     vector<Item> shopItems(3); // Temp items
     shopItems.at(0).name = "Rusty Shiv";
@@ -39,13 +29,8 @@ int main()
     cout << "Welcome to Chesire's Store, come and browse our wares... if you dare." << endl << endl;
     PrintShopMenu();
     //Generalize this function so it works for any shop. AFTER PROTOTYPE.
-<<<<<<< HEAD
 
 
-=======
-    
-    
->>>>>>> origin/master
     while(choice != 7)
     {
         if(choice == 5)
@@ -72,17 +57,10 @@ int main()
             }
             else
             {
-<<<<<<< HEAD
                 cout << "Not enough gold, ya poor bastard." << endl;
                 PrintShopMenu();
             }
 
-=======
-                cout << "Not enough gold, ya poor bastard." << endl; 
-                PrintShopMenu();
-            }
-            
->>>>>>> origin/master
         }
         else
         {
@@ -90,7 +68,6 @@ int main()
             cin >> choice;
         }
     }
-<<<<<<< HEAD
 
     cout << "Thanks for visiting!" << endl;
     cout << "You spent " << spentGold << " gold." << endl;
@@ -109,35 +86,6 @@ void Shop::PrintShopMenu()
 }
 
 void Shop::PrintStore(vector<Item> &v)
-{
-    cout << "All Items:" << endl << "----------------------" << endl;
-    for(int i = 0; i < v.size(); i++)
-    {
-        cout << "Item " << i + 1 << ": " << v.at(i).name << ", Value: " << v.at(i).value << endl;
-    }
-    cout << endl;
-    return;
-=======
-    
-    cout << "Thanks for visiting!" << endl; 
-    cout << "You spent " << spentGold << " gold." << endl;
-    cout << "You have " << pmoney << " gold remaining." << endl;
-    return 0;
->>>>>>> origin/master
-}
-
-void PrintShopMenu()
-{
-    cout << "You have " << pmoney << " gold remaining." << endl;
-
-    cout << "Press 5 to view the store inventory." << endl;
-    cout << "Press 6 to purchase an item." << endl;
-    cout << "Press 7 to leave the store." << endl << endl;
-    cin >> choice;
-    cout << endl;
-}
-
-void PrintStore(vector<Item> &v)
 {
     cout << "All Items:" << endl << "----------------------" << endl;
     for(int i = 0; i < v.size(); i++)
