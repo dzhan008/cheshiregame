@@ -11,7 +11,7 @@ vector<int> stats(5); //5 Stats
 
 //Note to self: Put this in another class
 
-void demo::statprogression() //Adding stats
+void demo::statProgression() //Adding stats
 {
     int remainingStats = 0; //Figure out how to add more points here. Maybe make a parameter?
 
@@ -36,6 +36,13 @@ void demo::statprogression() //Adding stats
     }
 
     p.setstats(stats);
+
+    cout << "Here are your final stats:" << endl;
+    cout << "Strength:  " << stats.at(0) << endl;
+    cout << "Agility:   " << stats.at(1) << endl;
+    cout << "Vitality:  " << stats.at(2) << endl;
+    cout << "Dexterity: " << stats.at(3) << endl;
+    cout << "Luck:      " << stats.at(4) << endl;
 
 }
 
