@@ -30,7 +30,7 @@ int Combat_System::randNumber(){
 //True if defending
 bool Combat_System::calculateEnemyChoice(){
     int x = randNumber();
-    if(enemy->getHealth() > 10){
+    if(enemy->getHealth() > 5){
         if(x < 90){
             return false;
         }
@@ -51,10 +51,10 @@ bool Combat_System::calculateEnemyChoice(){
 //Private helper function, asks player what they want to do
 //Returns 0, 1, 2 or 3 depending on if they attack, defend, use an item, or run
 int Combat_System::promptChoices(){
-
+    int i = -1;
     int prompt;
-    while(true){
-        cout << "Enter the number of the move you want to make: "<< endl;
+    while(i = -1){
+        cout << endl << "Enter the number of the move you want to make: "<< endl;
         cout << "1: Attack" << endl;
         cout << "2: Defend" << endl;
         cout << "3: Use an item" << endl;
@@ -118,6 +118,8 @@ void Combat_System::runBattle(entity* enem){
     while(play->getHP() > 0 && enemy->getHealth() > 0){
         eChoice = calculateEnemyChoice();
         if(turn == 0){
+            cout << endl << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP." << endl;
+            cout << "Your enemy has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
             optionChoice = promptChoices();
             if(optionChoice == 0){
                 int x = calculateDamage(eChoice);
@@ -168,10 +170,10 @@ void Combat_System::runBattle(entity* enem){
     if(play->getHP() > 0){
         play->setexp(play->getexp() + enemy->getEXP());
         cout << "You've won the battle!" << endl;
-        cout << "You've gained " << enemy->getEXP() << " EXP!";
+        cout << "You've gained " << enemy->getEXP() << " EXP!" << endl;
     }
     else{
-        cout << "Game Over.";
+        cout << "Game Over." << endl;
     }
 }
 
@@ -190,18 +192,18 @@ void Combat_System::runBattle(entity* enem){
             }
             else{
                 if(optionChoice == 0){
-
+                    
                 }
             }
         }
         else{
             if(battleSize > 1){
                 for(int i = 0; i < battleSize; i++){
-
+                    
                 }
             }
             else{
-
+                
             }
         }
 }*/
