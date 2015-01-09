@@ -51,9 +51,9 @@ bool Combat_System::calculateEnemyChoice(){
 //Private helper function, asks player what they want to do
 //Returns 0, 1, 2 or 3 depending on if they attack, defend, use an item, or run
 int Combat_System::promptChoices(){
-    int i = -1;
+
     int prompt;
-    while(i = -1){
+    while(true){
         cout << "Enter the number of the move you want to make: "<< endl;
         cout << "1: Attack" << endl;
         cout << "2: Defend" << endl;
@@ -190,18 +190,18 @@ void Combat_System::runBattle(entity* enem){
             }
             else{
                 if(optionChoice == 0){
-                    
+
                 }
             }
         }
         else{
             if(battleSize > 1){
                 for(int i = 0; i < battleSize; i++){
-                    
+
                 }
             }
             else{
-                
+
             }
         }
 }*/

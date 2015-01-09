@@ -11,33 +11,20 @@ struct Item
 {
     string name;
     int value;
+    //bool soldOut;
 };
-
-//This function handles the actual printing of each item's name and gold value
-//New note: fixed issue. function not necessary
-// void StoreItem(Item object)
-// {
-//     cout << int i << object.name << ", Value: " << object.value << endl;
-// }
-
-//This function iterates through vector shopItems to print each item of type Item
-void PrintStore(vector<Item> &shopItems)
-{
-    for(int i = 0; i < shopItems.size(); i++)
-    {
-        cout << i << shopItems.at(i).name << ", Value: " << shopItems.at(i).value << endl;
-        //StoreItem(shopItems.at(i));
-    }
-}
 
 class Shop
 {
     public:
-        void PrintStore(vector<Item> &shopItems) //prints items in shop
+        void Store(); //displays store and options
+        void PrintStore(vector<Item> &v); //prints items in shop
+        void PrintShopMenu(); //prints the menu for the shop
         int GoldRemaining(int &goldAmt); //calculates and returns remaining player gold
-        void PlayerInventorySize(vector<int> playerInventory) //FIXME function will remove/add items within player inventory
+        void PlayerInventorySize(vector<int> playerInventory); //FIXME function will remove/add items within player inventory
     private:
-        int pmoney;
+        int pmoney = 50;
+        int spentGold = 0;
 };
 
 #endif

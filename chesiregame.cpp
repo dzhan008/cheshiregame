@@ -1,16 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
+
 #include "player.h"
 #include "demo.h"
+#include "entity.h"
+#include "Combat_System.h"
+#include "Shop.h"
 
 using namespace std;
 
-void menu();
-
-
+int menu();
 
 int main()
 {
+    srand(time(0));
 
     cout << "Chesire's Game" << endl;
     cout << "Prototype Version 1.0" << endl;
@@ -20,13 +25,23 @@ int main()
     return 0;
 }
 
-void menu()
+int menu()
 {
     int choice = 0;
 
     while (choice != 4)
     {
-        demo player;
+
+        demo stat_demo;
+        Shop demo_shop;
+        string x = "Player 1";
+        string y = "Enemy 1";
+        string line = "--------------------------------------------------------------------------------";
+        player* play = new player(x, 10, 1, 0);
+        entity* enemy = new entity(y, 10, 1, 0);
+        Combat_System battle_demo = Combat_System(play);
+
+
         cout << "Please select one of the options below: " << endl;
         cout << "1. Combat Simulation" << endl;
         cout << "2. Shop Simulation" << endl;
@@ -34,23 +49,31 @@ void menu()
         cout << "4. Exit" << endl;
         cout << "Input the number for your selection: ";
         cin >> choice;
+
         if (choice == 1)
         {
-            choice = 4;
+            cout << line << endl;
+            battle_demo.runBattle(enemy);
         }
         else if (choice == 2)
         {
-            choice = 4;
+            cout << line << endl;
+            demo_shop.Store();
         }
         else if (choice == 3)
         {
-            player.statprogression();
-            choice = 4;
+            cout << line << endl;
+            stat_demo.statProgression();
         }
         else if (choice == 4)
         {
-            cout << "Thanks for playing! See you next time!";
+            cout << "Thanks for playing!" << endl;
+            return 0;
         }
+        cout << "The simulation has ended. Returning to main menu..." << endl;
+        cout << line << endl;
+        menu();
     }
+
 
 }
