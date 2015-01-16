@@ -43,7 +43,6 @@ void demo::statProgression() //Adding stats
     cout << "Vitality:  " << stats.at(2) << endl;
     cout << "Dexterity: " << stats.at(3) << endl;
     cout << "Luck:      " << stats.at(4) << endl;
-
 }
 
 void demo::inputStats(int& remainingStats)

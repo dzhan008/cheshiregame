@@ -27,9 +27,9 @@ int main()
 
 int menu()
 {
-    int choice = 0;
+    int decision = 0;
 
-    while (choice != 4)
+    while (decision != 4)
     {
 
         demo stat_demo;
@@ -48,24 +48,24 @@ int menu()
         cout << "3. Stats Simulation" << endl;
         cout << "4. Exit" << endl;
         cout << "Input the number for your selection: ";
-        cin >> choice;
+        cin >> decision;
 
-        if (choice == 1)
+        if (decision == 1)
         {
             cout << line << endl;
             battle_demo.runBattle(enemy);
         }
-        else if (choice == 2)
+        else if (decision == 2)
         {
             cout << line << endl;
             demo_shop.Store();
         }
-        else if (choice == 3)
+        else if (decision == 3)
         {
             cout << line << endl;
             stat_demo.statProgression();
         }
-        else if (choice == 4)
+        else if (decision == 4)
         {
             cout << "Thanks for playing!" << endl;
             return 0;
