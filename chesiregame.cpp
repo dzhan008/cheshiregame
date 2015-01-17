@@ -2,6 +2,9 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
+#include <string>
+#include <cstring>
 
 #include "player.h"
 #include "demo.h"
@@ -12,15 +15,64 @@
 using namespace std;
 
 int menu();
+string getFileContents (std::ifstream& File)
+{
+    string Lines = "";        //All lines
 
+    if (File)                      //Check if everything is good
+    {
+	while (File.good ())
+	{
+	    string TempLine;                  //Temp line
+	    getline (File , TempLine);        //Get temp line
+	    TempLine += "\n";                      //Add newline character
+
+	    Lines += TempLine;                     //Add newline
+	}
+	return Lines;
+    }
+    else                           //Return error
+    {
+	return "ERROR File does not exist.";
+    }
+}
 int main()
 {
     srand(time(0));
+    string inputName = "title2.txt";
+    cout << endl;
+    ifstream file;
+    file.open(inputName.c_str());
+    if (!file.is_open())
+    {
+        cout << "Error opening " << inputName << endl;
+        return 1;
+    }
+    string Art = getFileContents(file);
+    cout << Art << endl;
 
-    cout << "Chesire's Game" << endl;
-    cout << "Prototype Version 1.0" << endl;
-    cout << "Welcome to the demo!" << endl;
-    menu();
+    cout << "                                1. New Game \n";
+    cout << "                                2. Load Game \n";
+    cout << "                                3. Options \n";
+    cout << "                                4. Credits \n";
+    int input = 0;
+    cin >> input;
+    if (input == 1)
+    {
+        for (int i = 1; i <= 18; i ++)
+        {
+            cout << endl;
+        }
+
+        menu();
+    }
+
+
+
+    //cout << "Chesire's Game" << endl;
+    //cout << "Prototype Version 1.0" << endl;
+    //cout << "Welcome to the demo!" << endl;
+
 
     return 0;
 }
