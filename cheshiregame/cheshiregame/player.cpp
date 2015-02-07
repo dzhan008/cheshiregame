@@ -1,9 +1,10 @@
+#include "stdafx.h"
+
 #include <iostream>
 #include <vector>
 
-using namespace std;
 
-#include "player.h"
+using namespace std;
 
 /*Get Functions*/
 
