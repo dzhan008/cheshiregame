@@ -7,10 +7,11 @@
 
 #include "targetver.h"
 #include "player.h"
-#include "demo.h"
 #include "entity.h"
+#include "stats.h"
 #include "Combat_System.h"
 #include "Shop.h"
+#include "Game.h"
 
 #include <stdio.h>
 #include <tchar.h>

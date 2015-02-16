@@ -14,17 +14,22 @@ player::player(){
     currHP = 1;
     plevel = 1;
     pexp = 0;
+	statpoints = 0;
+	playerstats.resize(5);
 }
-player::player(string pName, int health, int lvl, int amount)
+player::player(string pName, int health, int lvl, int amount, int statpts)
 {
     playername = pName;
     maxHP = health;
     currHP = health;
     plevel  = lvl;
     pexp = amount;
+	statpoints = statpts;
+	playerstats.resize(5);
 }
 
-int player::getMaxHP(){
+int player::getMaxHP()
+{
     return maxHP;
 }
 int player::getHP()
@@ -75,13 +80,11 @@ void player::setexp(int expx)
 
 void player::setstats(vector<int>& stats)
 {
-    playerstats.resize(5);
-
-    playerstats.at(0) = stats.at(0);
-    playerstats.at(1) = stats.at(1);
-    playerstats.at(2) = stats.at(2);
-    playerstats.at(3) = stats.at(3);
-    playerstats.at(4) = stats.at(4);
+    playerstats.at(0) += stats.at(0);
+    playerstats.at(1) += stats.at(1);
+    playerstats.at(2) += stats.at(2);
+    playerstats.at(3) += stats.at(3);
+    playerstats.at(4) += stats.at(4);
 }
 
 /*Misc*/

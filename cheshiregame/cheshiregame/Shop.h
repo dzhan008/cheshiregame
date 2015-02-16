@@ -2,6 +2,7 @@
 #define Shop_H
 
 #include "stdafx.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
