@@ -1,98 +1,87 @@
 #include "stdafx.h"
-
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
+
 
 using namespace std;
 
-#include "entity.h"
-
 /*Create Entity*/
 
-entity::entity(){
-    name = "Enemy";
-    maxHP = 1;
-    currHP = 1;
-    level = 1;
-    numEXP = 1;
-}
-entity::entity(string entityName, int health, int lvl, int amount)
-{
-    name = entityName;
-    maxHP = health;
-    currHP = health;
-    level  = lvl;
-    numEXP = amount;
-}
+Entity::Entity()
+	: name("Enemy"), maxHP(1), currHP(1), level(1), numEXP(1)
+{ }
+Entity::Entity(string entityName, int health, int lvl, int amount)
+	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount)
+{ }
 
 
 //Gets the information of each individually. just in case we need to
 /*Name*/
-string entity::getName()
+string Entity::getName()
 {
-    return name;
+	return name;
 }
 /*Health*/
-int entity::getHealth()
+int Entity::getHealth()
 {
-    return currHP;
+	return currHP;
 }
-int entity::getMaxHealth(){
-    return maxHP;
+int Entity::getMaxHealth(){
+	return maxHP;
 }
 /*Level*/
-int entity::getLevel()
+int Entity::getLevel()
 {
-    return level;
+	return level;
 }
 /*Experience*/
-int entity::getEXP()
+int Entity::getEXP()
 {
-    return numEXP;
+	return numEXP;
 }
 
-void entity::setHealth(int health)
+void Entity::setHealth(int health)
 {
-    currHP = health;
+	currHP = health;
 }
 
 /*Stats*/
 //Sets the stats of the entity
-void entity::setEntityStats(int str, int agi, int vit, int dex, int luk)
+void Entity::setEntityStats(int str, int agi, int vit, int dex, int luk)
 {
-    entityStats.resize(5);
-    entityStats.at(0) = str;
-    entityStats.at(1) = agi;
-    entityStats.at(2) = vit;
-    entityStats.at(3) = dex;
-    entityStats.at(4) = luk;
+	entityStats.resize(5);
+	entityStats.at(0) = str;
+	entityStats.at(1) = agi;
+	entityStats.at(2) = vit;
+	entityStats.at(3) = dex;
+	entityStats.at(4) = luk;
 }
 
 //Just displays the stats
-void entity::DisplayStats()
+void Entity::DisplayStats()
 {
-    cout << "Strength:  " << entityStats.at(0) << endl;
-    cout << "Agility:   " << entityStats.at(1) << endl;
-    cout << "Vitality:  " << entityStats.at(2) << endl;
-    cout << "Dexterity: " << entityStats.at(3) << endl;
-    cout << "Luck:      " << entityStats.at(4) << endl;
+	cout << "Strength:  " << entityStats.at(0) << endl;
+	cout << "Agility:   " << entityStats.at(1) << endl;
+	cout << "Vitality:  " << entityStats.at(2) << endl;
+	cout << "Dexterity: " << entityStats.at(3) << endl;
+	cout << "Luck:      " << entityStats.at(4) << endl;
 }
 
 
 /*Print*/
 //Prints all information about entity
-void entity::Print()
+void Entity::Print()
 {
-    cout << "Name: " << name << endl;
-    cout << "Level: " << level << endl;
-    cout << "HP: " << maxHP << endl;
-    cout << "Stats" << endl;
+	cout << "Name: " << name << endl;
+	cout << "Level: " << level << endl;
+	cout << "HP: " << maxHP << endl;
+	cout << "Stats" << endl;
 
-    cout << "Strength:  " << entityStats.at(0) << endl;
-    cout << "Agility:   " << entityStats.at(1) << endl;
-    cout << "Vitality:  " << entityStats.at(2) << endl;
-    cout << "Dexterity: " << entityStats.at(3) << endl;
-    cout << "Luck:      " << entityStats.at(4) << endl;
+	cout << "Strength:  " << entityStats.at(0) << endl;
+	cout << "Agility:   " << entityStats.at(1) << endl;
+	cout << "Vitality:  " << entityStats.at(2) << endl;
+	cout << "Dexterity: " << entityStats.at(3) << endl;
+	cout << "Luck:      " << entityStats.at(4) << endl;
 
 }
