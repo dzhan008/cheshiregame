@@ -2,98 +2,86 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
-
-//#include "Inventory.h"
-//#include "Items.h"
+#include "Store.h"
+#include "Items.h"
+#include <fstream>
 
 using namespace std;
 
-void PrintShopMenu();
-void PrintStore(vector<Item> &v);
-
-int pmoney = 50; //Temp specified amount
-int spentGold = 0;
-int choice;
-
-void Shop::Store()
+Store::Store()
 {
-    // vector<string> userInventory; // Not needed for prototype
-
-    vector<Item> shopItems(3); // Temp items
-    shopItems.at(0).name = "Rusty Shiv";
-    shopItems.at(0).value = 10;
-    shopItems.at(1).name = "Frayed Leather Armor";
-    shopItems.at(1).value = 20;
-    shopItems.at(2).name = "Legendary Ghostblade";
-    shopItems.at(2).value = 1000;
-
-    cout << "Welcome to Chesire's Store, come and browse our wares... if you dare." << endl << endl;
-    PrintShopMenu();
-    //Generalize this function so it works for any shop. AFTER PROTOTYPE.
-
-
-    while(choice != 7)
+    vector<Item> list;
+}
+void Store::run()
+{
+    int spentGold = 0;
+    char choice;
+    int usernum;
+    cout << "Welcome to Chesire's Store." << endl;
+    cout << "Gold remaining: " << player.gold << endl;
+    menu();
+    cin >> choice;
+    if(choice == 'v')
     {
-        if(choice == 5)
+        printStore();
+        menu();
+        cin >> choice;
+    }
+    if(choice == 'p')
+    {
+        cout << "Enter the number of the item to purchase." << endl;
+        cin >> usernum;
+        if(usernum - 1 > list.size())
         {
-            PrintStore(shopItems);
-            PrintShopMenu();
-        }
-        if (choice == 6)
-        {
-            cout << "Enter the number of the item you would like to purchase." << endl;
+            cout << "Item cannot be accessed." << endl;
+            menu();
             cin >> choice;
-            if(choice > shopItems.size())
-            {
-                cout << "Invalid choice." << endl;
-                PrintShopMenu();
-            }
-            else if(pmoney >= shopItems.at(choice - 1).value)
-            {
-                cout << "You bought one " << shopItems.at(choice - 1).name << "!" << endl;
-                spentGold += shopItems.at(choice - 1).value;
-                pmoney -= shopItems.at(choice - 1).value;
-                shopItems.erase(shopItems.begin()+(choice - 1));
-                PrintShopMenu();
-            }
-            else
-            {
-                cout << "Not enough gold, ya poor bastard." << endl;
-                PrintShopMenu();
-            }
-
+        }
+        if(player.gold < list.at(i).value)
+        {
+            cout << "You are too poor." << endl;
+            menu();
+            cin >> choice;
         }
         else
         {
-            cout << "Invalid selection." << endl;
+            list.erase(i);
+            spentGold += list.at(i).value;
+            player.gold -= list.at(i).value;
+            cout << "You bought one " << list.at(i).name << endl;
+            menu();
             cin >> choice;
         }
     }
-
-    cout << "Thanks for visiting!" << endl;
-    cout << "You spent " << spentGold << " gold." << endl;
-    cout << "You have " << pmoney << " gold remaining." << endl;
-}
-
-void Shop::PrintShopMenu()
-{
-    cout << "You have " << pmoney << " gold remaining." << endl;
-
-    cout << "Press 5 to view the store inventory." << endl;
-    cout << "Press 6 to purchase an item." << endl;
-    cout << "Press 7 to leave the store." << endl << endl;
-    cin >> choice;
-    cout << endl;
-}
-
-void Shop::PrintStore(vector<Item> &v)
-{
-    cout << "All Items:" << endl << "----------------------" << endl;
-    for(int i = 0; i < v.size(); i++)
+    else if(choice == 'q')
     {
-        cout << "Item " << i + 1 << ": " << v.at(i).name << ", Value: " << v.at(i).value << endl;
+        cout << "Gold spent: " << spentGold << endl;
+        cout << "Gold remaining: " << player.gold << endl;
     }
-    cout << endl;
-    return;
+}
+void Store::menu() const
+{
+    cout << "Press v to view the store inventory." << endl;
+    cout << "Press p to purchase an item." << endl;
+    cout << "Press q to leave the store." << endl;
+}
+void Store::printStore()
+{
+    for(int i = 0; i < list.size(); i++)
+    {
+        cout << i << ". " << list.at(i).name << ' ' << lists.at(i).value 
+        << " gold" << endl;
+    }
+}
+void Store::fillStore(const string &input_file)
+{
+    ifstream fin;               
+    string itemName;
+    int val;
+    fin.open(input_file.c_str());
+    while(fin >> item && fin >> val)
+    {
+        list.push_back(Item(itemName, val));
+    }
+    fin.close();
 }
