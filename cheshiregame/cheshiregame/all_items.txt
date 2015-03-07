@@ -1,0 +1,18 @@
+Rusty Shiv
+5
+Steel Longsword
+30
+Legendary Ghostblade
+1000
+Frayed Leather Armor
+15
+Worn Fur Boots
+10
+Rough Leather Gloves
+5
+Steel Helmet
+15
+Health Potion
+5
+Mana Potion
+5
