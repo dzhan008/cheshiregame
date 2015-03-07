@@ -76,7 +76,7 @@ int Combat_System::promptChoices(){
     }
 }
 
-/*int promptEnemyChoice(){
+int promptEnemyChoice(){
     int choice;
     cout << "Which enemy number would you like to attack?: " << endl;
     for(int i = 0; i < enemies.size(); i++){
@@ -91,7 +91,6 @@ int Combat_System::promptChoices(){
         promptEnemyChoice();
     }
 }
-*/
 
 double Combat_System::calculateAccuracy(){
     return 0;
@@ -177,33 +176,64 @@ void Combat_System::runBattle(entity* enem){
     }
 }
 
-/*void runBattle(vector<Monster> enemy){
+void Combat_System::runBattle(vector<entity*> enemy){
     int optionChoice;
-    int eChoice;
+    int enemyOptionChoice;
+    bool eChoice;
     int attack;
     int battleSize = enemy.size();
     turn = calculateTurn();
-    while(player.getHP() > 0 && enemy.size() > 0){
+    while(play->getHP() > 0 && enemy.size() > 0){
         if(turn = 0){
             optionChoice = promptChoices();
-            if(battleSize > 1){
-                promptEnemyChoice();
-                //Implement Multi Battle
-            }
-            else{
-                if(optionChoice == 0){
-                    
+            if(optionChoice == 0){
+                enemyOptionChoice = promptEnemyChoice(enemy);
+                eChoice = calculateEnemyChoice(enemy.at(enemyOptionChoice));
+                int x = calculateDamage(eChoice);
+                cout << "You've hit enemy " << eChoice << " for " << x << " damage!" << endl;
+                if(x > enemy.at(enemyOptionChoice)->getHealth()){
+                    enemy.erase(enemy.begin() + enemyOptionChoice);
+                    cout << "You've killed enemy " << eChoice << "!" << endl;
+                }
+                else{
+                    enemy.at(enemyOptionChoice)->setHealth(enemy.at(enemyOptionChoice)->getHealth() - x);
                 }
             }
-        }
+            if(optionChoice == 1){
+                cout << "You are now defending." << endl;
+            }
+        }    
         else{
-            if(battleSize > 1){
-                for(int i = 0; i < battleSize; i++){
-                    
+            for(int i = 0; i < battleSize; i++){
+                if(i != enemyOptionChoice){
+                    eChoice = calculateEnemyChoice(enemy.at(enemyOptionChoice));
+                    if(!eChoice){
+                        int x;
+                        if(optionChoice == 1){
+                            x = calculateDamage(true);
+                            play->setHP(play->getHP() - x);
+                            cout << "The enemy has hit you for " << x << " damage!" << endl;
+                            cout << "You reduced the amount of damage you have taken by defending..." << endl;
+                        }
+                        else{
+                            x = calculateDamage(false);
+                            play->setHP(play->getHP() - x);
+                            cout << "The enemy has hit you for " << x << " damage!" << endl;
+                        }
+                    }
+                    else{
+                        cout << "The enemy is defending..." << endl;
+                    }
                 }
             }
-            else{
-                
-            }
         }
-}*/
+    }
+    if(play->getHP() > 0){
+        play->setexp(play->getexp() + enemy->getEXP());
+        cout << "You've won the battle!" << endl;
+        cout << "You've gained " << enemy->getEXP() << " EXP!" << endl;
+    }
+    else{
+        cout << "Game Over." << endl;
+    }
+}
