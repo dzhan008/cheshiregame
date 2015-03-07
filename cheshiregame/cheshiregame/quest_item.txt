@@ -1,0 +1,5 @@
+Sample of text that would appear after a quest item has been triggered:
+Mysterious key removed.
+The small, golden key's style fits the lock's appearance.
+It fits and opens the chest in front of you to reveal:
+100 Gold
