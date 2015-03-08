@@ -1,6 +1,7 @@
 #ifndef STORE_H
 #define STORE_H
-#include "Items.h"
+
+#include "stdafx.h"
 #include <string>
 #include <vector>
 

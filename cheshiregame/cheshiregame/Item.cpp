@@ -1,5 +1,7 @@
-#include "Item.h"
+#include "stdafx.h"
+
 #include <string>
+#include <iostream>
 #include <fstream>
 
 using namespace std;
@@ -8,17 +10,27 @@ Item::Item()
     :value(0)
 {}
 Item::Item(const string name)
-    :this->name(name), value(0)
+    :name(name), value(0)
 {}
 Item::Item(const string name, const int val)
-    :this->name(name), value(val)
+    :name(name), value(val)
 {}
-void Item::printItem()
+void Item::printItem() const
 {
     cout << "Name: " << name << std::endl;
     cout << "Value: " << value << std::endl;
 }
-bool Equip::equipPlayer(string item)
+
+string Item::get_name() const
+{
+	return name;
+}
+
+void Item::set_name(string n)
+{
+	name = n;
+}
+/*bool Equip::equipPlayer(string item)
 {
     for(int i = 0; i < playerInventory.size(); i++)
     {
@@ -30,29 +42,27 @@ bool Equip::equipPlayer(string item)
     }
     cout << "Item not found." << endl;
     return false;
-}
-bool Potion::usePotion()
+}*/
+bool Potion::usePotion(player p)
 {
-    for(int i = 0; i < playerInventory.size(); i++)
+    for(int i = 0; i < p.getInvSize(); i++)
     {
-        if(playerInventory.at(i).name == "Health")
+        if(p.inventory_search("Health"))
         {
-            playerEquipped.push_back(playerInventory.at(i));
-            playerInventory.erase(i);
-            if(player.health + 20 > 100) //100 assumed to be max health for now
+			p.remove_inventory("Health");
+            if(p.getHP() + 20 > 100) //100 assumed to be max health for now
             {
-                player.health = 100;
+                p.setHP(100);
             }
             else
             {
-                player.health += 20; 
+                p.setHP(p.getHP() + 20); 
             }
             return true;
         }
-        if(playerInventory.at(i).name == "Mana")
+        if(p.inventory_search("Mana"))
         {
-            playerEquipped.push_back(playerInventory.at(i));
-            playerInventory.erase(i);
+			p.remove_inventory("Mana");
             return true;   
         }
     }
@@ -62,7 +72,7 @@ bool Potion::usePotion()
 //Each quest item is unique. Meaning it will trigger different things to occur.
 //Implementation right now is with just one quest item. 
 //Add more to quest_item file as storyline progresses.
-void Quest::triggerItem()
+/*void Quest::triggerItem()
 {
     ifstream fin;
     string line;
@@ -72,4 +82,4 @@ void Quest::triggerItem()
         cout << line << endl;
     }
     player.gold += 500;
-}
+}*/

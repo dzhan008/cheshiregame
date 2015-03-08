@@ -1,8 +1,12 @@
-#ifndef Item_H
-#define Item_H
+#ifndef _Item_H_
+#define _Item_H_
+
+#include "stdafx.h"
 #include <string>
 
 using namespace std;
+
+class Player;
 
 class Item
 {
@@ -11,6 +15,8 @@ class Item
         Item(const string);
         Item(const string, const int val);
         void printItem() const;
+		void set_name(string);
+		string get_name() const;
     private:
         string name;
         int value;
@@ -23,7 +29,7 @@ class Equip:public Item
 class Potion:public Item
 {
     public:
-        bool usePotion();
+        bool usePotion(player p);
 };
 class Quest:public Item
 {
