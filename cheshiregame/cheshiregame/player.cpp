@@ -15,6 +15,8 @@ player::player(){
     plevel = 1;
     pexp = 0;
 	statpoints = 0;
+	min_dmg = 1;
+	max_dmg = 10;
 	playerstats.resize(5);
 	equipment.resize(6);
 	inventory.resize(20);
@@ -27,6 +29,8 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
     plevel  = lvl;
     pexp = amount;
 	statpoints = statpts;
+	min_dmg = 1 * lvl; //Change later
+	max_dmg = 10 * lvl;
 	playerstats.resize(5);
 	equipment.resize(6);
 	inventory.resize(inv_size);
@@ -106,6 +110,21 @@ void player::setjob(string job)
 	playerjob = job;
 }
 
+void player::set_min_dmg(int dmg)
+{
+	min_dmg = dmg;
+}
+
+void player::set_max_dmg(int dmg)
+{
+	max_dmg = dmg;
+}
+
+void player::set_def(int idef)
+{
+	def = idef;
+}
+
 /*Misc*/
 
 void player::displayInfo()
@@ -131,6 +150,9 @@ void player::characterCreation()
 	std::cin >> input;
 	setname(input);
 	std::cout << "Please select the number that corresponds to your job." << std::endl;
+	std::cout << "1. Swordsman" << std::endl;
+	std::cout << "2. Thief" << std::endl;
+	std::cout << "3. Magician" << std::endl;
 	//OUTPUT JOBS HERE
 
 	while (playerjob == "")

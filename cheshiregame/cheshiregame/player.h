@@ -20,6 +20,10 @@ class player
 		int pexp; //The amount of exp the player has.
 		int statpoints; //The amount of stats points a player has. It will be added as the player levels up.
 		int inv_size; //The maximum inventory size.
+		int min_dmg; //The minimum damage the player can do to an enemy.
+		int max_dmg; //The maximum damage the player can do to an enemy.
+		int def; //The defense of the player. 
+
 		//int maxexp; //The maximum amount of exp the player has. May be put into another class.
 		string playername; //The player's name.
 		string playerjob; //The player's job.
@@ -49,6 +53,9 @@ class player
         void setmoney(int& money);
         void setexp(int expx1);
         void setstats(vector<int>& stats);
+		void set_min_dmg(int dmg);
+		void set_max_dmg(int dmg);
+		void set_def(int idef);
 		
 		void setname(string name);
 		void setjob(string job);
