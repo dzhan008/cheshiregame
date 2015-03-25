@@ -1,0 +1,7 @@
+SAMPLETOWN
+teststore
+2
+A-aron
+"Hi I'm A-aron."
+No
+"I went to the tavern, but it didn't work."
