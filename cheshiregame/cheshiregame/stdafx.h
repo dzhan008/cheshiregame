@@ -6,12 +6,15 @@
 #pragma once
 
 #include "targetver.h"
-#include "player.h"
-#include "entity.h"
-#include "stats.h"
+#include "Player.h"
+#include "Entity.h"
+#include "Stats.h"
 #include "Combat_System.h"
-#include "Shop.h"
+#include "Store.h"
 #include "Game.h"
+#include "Item.h"
+#include "Scene.h"
+#include "Town.h"
 
 #include <stdio.h>
 #include <tchar.h>
