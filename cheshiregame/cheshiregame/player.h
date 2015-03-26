@@ -5,9 +5,10 @@
 #include <vector>
 #include <string>
 
-using namespace std;
 
+//Forward declarations for circular dependencies
 class Item;
+class entity;
 
 class player
 {
@@ -19,23 +20,25 @@ class player
 		int pmoney; //The amount of money the player has.
 		int pexp; //The amount of exp the player has.
 		int statpoints; //The amount of stats points a player has. It will be added as the player levels up.
-		int inv_size; //The maximum inventory size.
+		int inv_size = 20; //The maximum inventory size.
 		int min_dmg; //The minimum damage the player can do to an enemy.
 		int max_dmg; //The maximum damage the player can do to an enemy.
 		int def; //The defense of the player. 
 
 		//int maxexp; //The maximum amount of exp the player has. May be put into another class.
-		string playername; //The player's name.
-		string playerjob; //The player's job.
-		vector<int> playerstats; //Current stats for the player.
-		vector<Item> equipment; //0 = Head 1 = Torso 2 = Leggings 3 = Shoes 4 = Gloves 5 = LeftH 6 = RightH
-		vector<Item> inventory; //CHANGE TO ITEMS LATER
+		std::string playername; //The player's name.
+		std::string playerjob; //The player's job.
+		std::vector<int> playerstats; //Current stats for the player.
+		std::vector<entity> party; //The player's party.
+		//vector<Quest> quest_list; //We might need this to display quests
+		std::vector<Item> equipment; //0 = Head 1 = Torso 2 = Leggings 3 = Shoes 4 = Gloves 5 = LeftH 6 = RightH
+		std::vector<Item> inventory; //CHANGE TO ITEMS LATER
 
     public:
     
         //Constructor
         player();
-        player(string pName, string pJob, int health, int lvl, int amount, int statpts);
+        player(std::string pName, std::string pJob, int health, int lvl, int amount, int statpts);
 
         /*Get Functions: Returns the respective value.*/
         int getMaxHP();
@@ -45,35 +48,44 @@ class player
         int getexp();
 		int getInvSize();
 
-        string getname();
+        std::string getname();
     
         /*Set Functions: Sets every value into a certain number.*/
         void setHP(int health); //Changes currHP to the updated hp value after a certain instance.
         void setlevel(int&level);
         void setmoney(int& money);
         void setexp(int expx1);
-        void setstats(vector<int>& stats);
+        void setstats(std::vector<int>& stats);
 		void set_min_dmg(int dmg);
 		void set_max_dmg(int dmg);
 		void set_def(int idef);
-		
-		void setname(string name);
-		void setjob(string job);
-        /*Misc*/
-        void displayInfo();
-		void characterCreation();
-		void declare_job(string input);
+		void setname(std::string name);
+		void setjob(std::string job);
 
-		/*Inventory Functions that need to be put into a new class*/
+        /*Stat Functions*/
+        void displayInfo();
+		void display_stats();
+		void mod_stats();
+		void stat_progression();
+		bool input_stats();
+		void add_points(int& points);
+
+		/*Character Creation*/
+		void characterCreation();
+		void declare_job(std::string input);
+
+		/*Inventory Functions*/
 		void add_inventory(Item i);
-		void remove_inventory(string item);
+		void remove_inventory(std::string item);
 		void equip_slot(int i, Item x); //CHANGE x TO ITEM LATER
 		void remove_slot(int i);
-		
-		bool inventory_search(string itemName);
-
 		void display_inventory();
 		void display_equipment();
+
+		bool inventory_search(std::string itemName);
+
+		/*Party Functions*/
+
 };
 
 #endif

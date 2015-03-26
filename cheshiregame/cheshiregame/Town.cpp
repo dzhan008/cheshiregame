@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include <vector>
 #include <iostream>
 #include <fstream>

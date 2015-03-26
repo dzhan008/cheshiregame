@@ -14,7 +14,9 @@ private:
 public:
     void output_options();
     void set_options(Town &);
-    int user_input();
+	void basic_menu(player* p);
+
+	int user_input();
 };
 
 #endif
