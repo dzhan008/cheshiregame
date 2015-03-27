@@ -1,22 +1,40 @@
-﻿Build started 2/16/2015 2:27:08 AM.
+﻿Build started 3/26/2015 2:34:12 AM.
      1>Project "C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\cheshiregame\cheshiregame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Chesire_Game.cpp
-         Chesire_Game.cpp
-     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\chesire_game.cpp(51): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\chesire_game.cpp(133): warning C4715: 'menu' : not all control paths return a value
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Cheshire_Game.cpp Combat_System.cpp Entity.cpp Game.cpp Item.cpp Player.cpp Scene.cpp Stats.cpp Store.cpp Town.cpp
+         Player.cpp
+     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\player.cpp(279): warning C4101: 'jobnum' : unreferenced local variable
+         Game.cpp
+         Combat_System.cpp
+         Cheshire_Game.cpp
+     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\cheshire_game.cpp(52): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         Generating Code...
+     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\cheshire_game.cpp(165): warning C4715: 'menu' : not all control paths return a value
+     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\combat_system.cpp(77): warning C4715: 'Combat_System::promptChoices' : not all control paths return a value
+         Skipping... (no relevant changes detected)
+         Town.cpp
+         Store.cpp
+         Stats.cpp
+         Scene.cpp
+         Item.cpp
+         Entity.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.lib" /MACHINE:X86 Debug\Chesire_Game.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.lib" /MACHINE:X86 Debug\Cheshire_Game.obj
          Debug\Combat_System.obj
          Debug\Entity.obj
          Debug\Game.obj
+         Debug\Item.obj
          Debug\Player.obj
+         Debug\Scene.obj
          Debug\Stats.obj
          Debug\stdafx.obj
          Debug\Store.obj
+         Debug\Town.obj
          cheshiregame.vcxproj -> C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.exe
      1>Done Building Project "C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\cheshiregame\cheshiregame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.41
+Time Elapsed 00:00:00.94
