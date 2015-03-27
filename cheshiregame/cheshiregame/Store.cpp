@@ -1,26 +1,28 @@
 #include "stdafx.h"
+#include "Player.h"
+#include "Store.h"
+#include "Item.h"
 
 #include <iostream>
 #include <string>
-#include "Store.h"
-#include "Items.h"
 #include <fstream>
 
 using namespace std;
 
 Store::Store()
-{
-    vector<Item> list;
-}
-void Store::run()
+{}
+
+void Store::run(player p)
 {
     int spentGold = 0;
     char choice;
     int usernum;
+
     cout << "Welcome to Chesire's Store." << endl;
-    cout << "Gold remaining: " << player.gold << endl;
+    cout << "Gold remaining: " << p.getmoney() << endl;
     menu();
     cin >> choice;
+
     if(choice == 'v')
     {
         printStore();
@@ -31,13 +33,13 @@ void Store::run()
     {
         cout << "Enter the number of the item to purchase." << endl;
         cin >> usernum;
-        if(usernum - 1 > list.size())
+        if(usernum - 1 > storeInventory.size())
         {
             cout << "Item cannot be accessed." << endl;
             menu();
             cin >> choice;
         }
-        if(player.gold < list.at(i).value)
+        if(p.getmoney() < storeInventory.at(usernum).getValue())
         {
             cout << "You are too poor." << endl;
             menu();
@@ -45,10 +47,11 @@ void Store::run()
         }
         else
         {
-            list.erase(i);
-            spentGold += list.at(i).value;
-            player.gold -= list.at(i).value;
-            cout << "You bought one " << list.at(i).name << endl;
+            storeInventory.erase(usernum);
+            spentGold += storeInventory.at(usernum).getValue();
+            int playerMoney = p.getmoney() - storeInventory.at(usernum).getValue();
+			p.setmoney(playerMoney);
+            cout << "You bought one " << storeInventory.at(usernum).getName() << endl;
             menu();
             cin >> choice;
         }
@@ -56,7 +59,7 @@ void Store::run()
     else if(choice == 'q')
     {
         cout << "Gold spent: " << spentGold << endl;
-        cout << "Gold remaining: " << player.gold << endl;
+        cout << "Gold remaining: " << p.getmoney() << endl;
     }
 }
 void Store::menu() const
@@ -67,9 +70,9 @@ void Store::menu() const
 }
 void Store::printStore()
 {
-    for(int i = 0; i < list.size(); i++)
+    for(int i = 0; i < storeInventory.size(); i++)
     {
-        cout << i << ". " << list.at(i).name << ' ' << lists.at(i).value 
+		cout << i << ". " << storeInventory.at(i).getName() << ' ' << storeInventory.at(i).getValue()
         << " gold" << endl;
     }
 }
@@ -79,9 +82,9 @@ void Store::fillStore(const string &input_file)
     string itemName;
     int val;
     fin.open(input_file.c_str());
-    while(fin >> item && fin >> val)
+    while(fin >> itemName && fin >> val)
     {
-        list.push_back(Item(itemName, val));
+        storeInventory.push_back(Item(itemName, val));
     }
     fin.close();
 }
