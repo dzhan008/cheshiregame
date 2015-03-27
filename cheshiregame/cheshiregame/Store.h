@@ -2,6 +2,8 @@
 #define STORE_H
 
 #include "stdafx.h"
+#include "Player.h"
+
 #include <string>
 #include <vector>
 
@@ -9,12 +11,12 @@ class Store
 {
     public:
         Store();
-        void run();
+        void run(player p);
         void menu() const;
-        void printStore(); //prints items in shop
-        void fillStore(const string &); 
+        void printStore(); 
+        void fillStore(const string &);
     private:
-        vector<Item> list;
+        vector<Item> storeInventory;
 };
 
 #endif
