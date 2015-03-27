@@ -2,39 +2,26 @@
 #define _Item_H_
 
 #include "stdafx.h"
+
 #include <string>
 
 using namespace std;
 
-class Player;
-
 class Item
 {
+	private:
+		string name;
+		int value;
+
     public:
         Item();
         Item(const string);
-        Item(const string, const int val);
-        void printItem() const;
-		void set_name(string);
-		string get_name() const;
-    private:
-        string name;
-        int value;
-};
-class Equip:public Item
-{
-    public:
-        bool equipPlayer(string item);
-};
-class Potion:public Item
-{
-    public:
-        bool usePotion(player p);
-};
-class Quest:public Item
-{
-    public:
-        void triggerItem();
+        Item(const string, const int);
+        void printItem() const; //Make virtual
+		Item findItem(string itemName);
+
+		string getName() const;
+		int getValue() const;
 };
 
 #endif
