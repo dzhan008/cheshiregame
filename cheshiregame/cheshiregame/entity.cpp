@@ -85,3 +85,25 @@ void Entity::Print()
 	cout << "Luck:      " << entityStats.at(4) << endl;
 
 }
+
+void Entity::add_loot(Item i)
+{
+	loot.push_back(i);
+}
+
+void Entity::give_loot(player p)
+{
+	for (int i = 0; i < loot.size(); i++)
+	{
+		p.add_inventory(loot.at(i));
+	}
+}
+
+void Entity::print_loot()
+{
+	cout << name << "'s Loot: " << endl;
+	for (int i = 0; i < loot.size(); i++)
+	{
+		cout << loot.at(i).printItem();
+	}
+}

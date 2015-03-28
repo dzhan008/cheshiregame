@@ -10,18 +10,39 @@
 
 using namespace std;
 
-
-void Dungeon::fill_dungeon(const string &text_file)
+/*----------Private Helper Functions----------*/
+const Item Dungeon::rand_loot()
 {
-	string dun_name; //dungeon name
-	string diff; //difficulty
-
-	string entity_name;
-	int hp, level, experience;
-	int s, a, v, d, l; //str, agil, vit, dex, luck
-
+	int index = rand() % dungeon_loot.size();
+	return dungeon_loot.at(index);
+}
+void Dungeon::fill_dungeon(const string &text_file, const string &dun_loot)
+{
 	ifstream inFS;
 
+	//Fill up the vector of dungoen loot first
+	inFS.open(dun_loot.c_str());
+	if (!inFS.is_open())
+	{
+		cout << "Error: cannot open dungeon loot txt file." << endl;
+		return;
+	}
+
+	string item_name;
+	int item_val;
+	while (inFS.good())
+	{
+		getline(inFS, item_name);
+		inFS >> item_val;
+		inFS.ignore();
+		Item temp_item(item_name, item_val);
+		dungeon_loot.push_back(temp_item);
+	}
+	//close dungeon loot file
+	inFS.close();
+
+
+	//open entity file
 	inFS.open(text_file.c_str());
 
 	if (!inFS.is_open())
@@ -29,6 +50,13 @@ void Dungeon::fill_dungeon(const string &text_file)
 		cout << "Error: cannot open entity txt file" << endl;
 		return;
 	}
+
+	string dun_name; //dungeon name
+	string diff; //difficulty
+
+	string entity_name;
+	int hp, level, experience;
+	int s, a, v, d, l; //str, agil, vit, dex, luck
 
 	//Stores dungeon name
 	getline(inFS, dun_name);
@@ -52,6 +80,7 @@ void Dungeon::fill_dungeon(const string &text_file)
 			inFS >> s >> a >> v >> d >> l;
 			Entity temp_entity(entity_name, hp, level, experience);
 			temp_entity.setEntityStats(s, a, v, d, l);
+			temp_entity.add_loot(rand_loot());
 			entity_group.push_back(temp_entity);
 		}
 	}

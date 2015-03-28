@@ -47,10 +47,13 @@ public:
 	void setEntityStats(int str, int agi, int vit, int dex, int luk);
 	void DisplayStats(); //displays the stats of the entity to be used in main
 
-
+	/*Loot*/
+	void add_loot(Item i); //adds one item to vector of loot
+	void give_loot(player p); //adds loot to player inventory
 
 	/*Print*/
 	void Print(); //prints all information about entity
+	void print_loot(); //prints all the loot 
 
 private:
 	string name;
@@ -60,6 +63,8 @@ private:
 	vector<int> entityStats;
 	int numEXP;
 	//int components;
+
+	vector<Item> loot;
 };
 
 #endif
