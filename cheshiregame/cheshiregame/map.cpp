@@ -19,7 +19,7 @@ map::map()
 	//mapitems.at(1).at(0) = 1;
 	//keeps track of player position
 }
-map::map(int, string& file)
+map::map(int sz, string& file)
 {
 	ifstream mapfile;
 	mapfile.open(file.c_str());
@@ -34,9 +34,33 @@ map::map(int, string& file)
 	//to push back a vector of vectors I cant push back one element but rather one vector.
 	while (mapfile >> blocks)
 	{
+		cout << "Pushing " << blocks << endl;
 		row.push_back(blocks);
+		if (row.size() == sz)
+		{
+			mapitems.push_back(row);
+			row.resize(0);
+		}
+		
 	}
-	mapitems.push_back(row);
+	for (int i = 0; i < mapitems.size(); i++)
+	{
+		for (int j = 0; j < mapitems.size(); j++)
+		{
+			if (mapitems.at(i).at(j) == 2)
+			{
+				playerposition.first = i;
+				playerposition.second = j;
+				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
+				mapitems.at(playerposition.first).at(playerposition.second) = 2;
+				return;
+			}
+		}
+
+	}
+	
+	//cout << endl;
+	
 	//for (int i = 0; i < mapitems.at(0).size()-1)
 }
 void map::updateplayer()
@@ -66,15 +90,15 @@ void map::moveLeft()
 		return;
 	}
 	if (wallcheck(playerposition.first, playerposition.second - 1) == false)
-		{
-			if (playerposition.second == 0)
-			{
-				return;
-			}
-			playerposition.second--;
-			updateplayer();
-		}
-		return;
+	{
+		playerposition.second--;
+		updateplayer();
+	}
+	else
+	{
+		cout << "There is wall " << endl;
+	}
+	return;
 	
 }
 void map::moveRight()
@@ -88,16 +112,13 @@ void map::moveRight()
 		//cout << "There is no wall. " << endl;
 		//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
 		//cout << "Edge: " << mapitems.at(0).size() - 1 << endl;
-		if (playerposition.second == mapitems.at(0).size() - 1)
-		{
-			return;
-		}
-		else
-		{
-			playerposition.second++;
-			updateplayer();
+		playerposition.second++;
+		updateplayer();
 
-		}
+	}
+	else
+	{
+		cout << "There is wall " << endl;
 	}
 	return;
 }
@@ -109,12 +130,12 @@ void map::moveUp()
 	}
 	if (wallcheck(playerposition.first - 1, playerposition.second) == false)
 	{
-		if (playerposition.first == 0)
-		{
-			return;
-		}
 		playerposition.first--;
 		updateplayer();
+	}
+	else
+	{
+		cout << "There is wall " << endl;
 	}
 	return;
 }
@@ -127,13 +148,14 @@ void map::moveDown()
 	if (wallcheck(playerposition.first+1, playerposition.second) == false)
 	{
 		//cout << "Moving down:" << endl;
-		if (playerposition.first == mapitems.at(mapitems.size()-1).size() -1)
-		{
-			return;
-		}
 		playerposition.first++;
 		updateplayer();
 	}
+	else
+	{
+		cout << "There is wall " << endl;
+	}
+	
 	return;
 }
 
@@ -159,5 +181,38 @@ void map::display()
 			cout << mapitems.at(i).at(j) << " ";
 		}
 		cout << endl;
+	}
+}
+void map::run()
+{
+	string input;
+	while (true)
+	{
+		cout << "Enter direction (up down left right) q to quit " << endl;
+		cin >> input; 
+		if (input == "up")
+		{
+			moveUp();
+			display();
+		}
+		else if (input == "down")
+		{
+			moveDown();
+			display();
+		}
+		else if (input == "left")
+		{
+			moveLeft();
+			display();
+		}
+		else if (input == "right")
+		{
+			moveRight();
+			display();
+		}
+		else if (input == "q")
+		{
+			return;
+		}
 	}
 }

@@ -14,6 +14,7 @@ public:
 	void moveDown();
 	bool wallcheck(int i, int j);
 	void display();
+	void run();
 	//void updateplayer(playerposition.first, playerposition.second);
 	private:
 	//player player1;
