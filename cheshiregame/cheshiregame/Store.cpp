@@ -47,7 +47,7 @@ void Store::run(player p)
         }
         else
         {
-            storeInventory.erase(usernum);
+            storeInventory.erase(storeInventory.begin()+usernum - 2);
             spentGold += storeInventory.at(usernum).getValue();
             int playerMoney = p.getmoney() - storeInventory.at(usernum).getValue();
 			p.setmoney(playerMoney);
