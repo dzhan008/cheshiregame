@@ -17,6 +17,7 @@ class Item
         Item();
         Item(const string);
         Item(const string, const int);
+        Item(const Item &);
         void printItem() const; //Make virtual
 		Item findItem(string itemName);
 
