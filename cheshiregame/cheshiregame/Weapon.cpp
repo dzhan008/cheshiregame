@@ -17,3 +17,8 @@ bool Weapon::equipWeapon(string item, player p)
 	cout << "Item not found." << endl;
 	return false;
 }
+Weapon::Weapon(const Weapon& origWeapon)
+{
+	Item::Item(origWeapon);
+	this->damageBoost = damageBoost;
+}
