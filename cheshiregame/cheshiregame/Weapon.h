@@ -10,6 +10,7 @@ class Weapon : public Item
 		int damageBoost;
 	public:
 		bool equipWeapon(string itemName, player p);
+		Weapon(const Weapon&);
 };
 
 #endif
