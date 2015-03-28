@@ -104,6 +104,6 @@ void Entity::print_loot()
 	cout << name << "'s Loot: " << endl;
 	for (int i = 0; i < loot.size(); i++)
 	{
-		cout << loot.at(i).printItem();
+		loot.at(i).printItem();
 	}
 }
