@@ -10,6 +10,7 @@ private:
 	int statBoost;
 public:
 	bool equipGear(string itemName, unsigned bodyPart, player p);
+	Gear(const Gear&);
 };
 
 #endif
