@@ -13,12 +13,17 @@ map::map()
 		mapitems.push_back(vector<int>(10));
 	}
 	//creates 10 * 10 map
-	playerposition.first = 5; // row
-	playerposition.second = 5;// column
+	playerposition.first = 0; // row
+	playerposition.second = 0;// column
+	goal.first = 9;
+	goal.second = 9;
 	mapitems.at(playerposition.first).at(playerposition.second) = 2;
+	mapitems.at(goal.first).at(goal.second) = 3;
+	goalmap = mapitems;
 	//mapitems.at(1).at(0) = 1;
 	//keeps track of player position
 }
+//constructs map based on premade txt file
 map::map(int sz, string& file)
 {
 	ifstream mapfile;
@@ -34,14 +39,13 @@ map::map(int sz, string& file)
 	//to push back a vector of vectors I cant push back one element but rather one vector.
 	while (mapfile >> blocks)
 	{
-		cout << "Pushing " << blocks << endl;
+		//cout << "Pushing " << blocks << endl;
 		row.push_back(blocks);
 		if (row.size() == sz)
 		{
 			mapitems.push_back(row);
 			row.resize(0);
 		}
-		
 	}
 	for (int i = 0; i < mapitems.size(); i++)
 	{
@@ -53,16 +57,34 @@ map::map(int sz, string& file)
 				playerposition.second = j;
 				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
 				mapitems.at(playerposition.first).at(playerposition.second) = 2;
+				goalmap = mapitems;
 				return;
 			}
 		}
-
 	}
-	
-	//cout << endl;
-	
-	//for (int i = 0; i < mapitems.at(0).size()-1)
 }
+map::map(int size)
+{
+	for (int i = 0; i < size; ++i) {
+		mapitems.push_back(vector<int>(size));
+	}
+	for (int i = 1; i < mapitems.size(); i++)
+	{
+		for (int j = 1; j < mapitems.at(i).size(); j++)
+		{
+			mapitems.at(i).at(j) = rand() % 2;
+		}
+	}
+	playerposition.first = 0; 
+	playerposition.second = 0;
+	goal.first = rand() % 10;
+	goal.second = rand()% 10;
+	mapitems.at(playerposition.first).at(playerposition.second) = 2;
+	mapitems.at(goal.first).at(goal.second) = 3;
+	goalmap = mapitems;
+
+}
+//updates player position after moving
 void map::updateplayer()
 {
 	for (int i = 0; i < mapitems.size(); i++)
@@ -74,6 +96,7 @@ void map::updateplayer()
 				int x = i;
 				int y = j;
 				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
+				
 				mapitems.at(playerposition.first).at(playerposition.second) = 2;
 				mapitems.at(x).at(y) = 0;
 				return;
@@ -84,7 +107,6 @@ void map::updateplayer()
 }
 void map::moveLeft()
 {
-	//Redundancy check so that wallcheck function doesnt go out of bounds.
 	if (playerposition.second == 0)
 	{
 		return;
@@ -97,6 +119,7 @@ void map::moveLeft()
 	else
 	{
 		cout << "There is wall " << endl;
+		wallBreak();
 	}
 	return;
 	
@@ -119,6 +142,7 @@ void map::moveRight()
 	else
 	{
 		cout << "There is wall " << endl;
+		wallBreak();
 	}
 	return;
 }
@@ -136,6 +160,7 @@ void map::moveUp()
 	else
 	{
 		cout << "There is wall " << endl;
+		wallBreak();
 	}
 	return;
 }
@@ -154,6 +179,7 @@ void map::moveDown()
 	else
 	{
 		cout << "There is wall " << endl;
+		wallBreak();
 	}
 	
 	return;
@@ -165,6 +191,7 @@ bool map::wallcheck(int i, int j)
 	//1 = walls
 	//0= emptyspace
 	//2= player position
+	//3= Goal
 	if (mapitems.at(i).at(j) == 1)
 	{
 		return true;
@@ -215,4 +242,38 @@ void map::run()
 			return;
 		}
 	}
+}
+void map::wallBreak()
+{
+	//changes all spaces next to the player into 0
+	//do not use next to the goal
+	//only use on randomly generated maps when walls block off the goal
+	string input;
+	cout << "Would you like to destroy this wall?" << endl;
+	cin >> input;
+	if (input == "yes")
+	{
+		if (playerposition.second != 0)
+		{
+		
+			mapitems.at(playerposition.first).at(playerposition.second-1) = 0;
+		}
+		if (playerposition.second != mapitems.at(0).size() - 1)
+		{
+			mapitems.at(playerposition.first).at(playerposition.second+1) = 0;
+		}
+		if (playerposition.first != 0)
+		{
+			mapitems.at(playerposition.first-1).at(playerposition.second) = 0;
+		}
+		if (playerposition.first != mapitems.at(mapitems.size() - 1).size() - 1)
+		{
+			mapitems.at(playerposition.first + 1).at(playerposition.second) = 0;
+		}
+	}
+	else if (input == "no")
+	{
+		return;
+	}
+
 }
