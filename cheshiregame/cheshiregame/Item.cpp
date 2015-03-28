@@ -16,6 +16,11 @@ Item::Item(const string name)
 Item::Item(const string name, const int val)
     :name(name), value(val)
 {}
+Item::Item(const Item& origItem)
+{
+	this->name = origItem.name;
+	this->value = origItem.value;
+}
 void Item::printItem() const
 {
     cout << "Name: " << name << endl;
