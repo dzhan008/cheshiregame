@@ -19,10 +19,9 @@ class Item
         Item(const string, const int);
         Item(const Item &);
         void printItem() const; //Make virtual
-		Item findItem(string itemName);
-
-		string getName() const;
-		int getValue() const;
+	
+	string getName() const;
+	int getValue() const;
 };
 
 #endif
