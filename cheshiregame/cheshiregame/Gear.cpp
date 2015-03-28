@@ -23,3 +23,8 @@ bool Gear::equipGear(string item, unsigned bodyPart, player p)
 	cout << "Item not found." << endl;
 	return false;
 }
+Gear::Gear(const Gear& origGear)
+{
+	Item::Item(origGear);
+	this->statBoost = statBoost;
+}
