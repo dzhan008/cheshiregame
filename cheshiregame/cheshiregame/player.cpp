@@ -14,12 +14,19 @@ player::player(){
     currHP = 1;
     plevel = 1;
     pexp = 0;
+	maxexp = 100;
 	statpoints = 0;
+	inv_size = 0;
 	min_dmg = 1;
 	max_dmg = 10;
 	playerstats.resize(5);
 	equipment.resize(7);
-	inventory.resize(inv_size);
+
+	none = new Item("None", -1);
+	for (unsigned i = 0; i < equipment.size(); ++i)
+	{
+		equipment.at(i) = none;
+	}
 }
 player::player(string pName, string pJob, int health, int lvl, int amount, int statpts)
 {
@@ -28,12 +35,19 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
     currHP = health;
     plevel  = lvl;
     pexp = amount;
+	maxexp = amount;
 	statpoints = statpts;
+	inv_size = 20;
 	min_dmg = 1 * lvl; //Change later
 	max_dmg = 10 * lvl;
 	playerstats.resize(5);
 	equipment.resize(7);
-	inventory.resize(inv_size);
+
+	none = new Item("None", -1);
+	for (unsigned i = 0; i < equipment.size(); ++i)
+	{
+		equipment.at(i) = none;
+	}
 }
 
 int player::getMaxHP()
@@ -125,7 +139,7 @@ void player::set_def(int idef)
 	def = idef;
 }
 
-/*Misc*/
+/*Stat Functions*/
 
 void player::displayInfo()
 {
@@ -257,6 +271,13 @@ void player::add_points(int& points)
 	}
 }
 
+void player::level_up() //TO DO: Change exp scaling per 10 levels
+{
+	plevel += 1;
+	pexp = 0;
+	maxexp += 100;
+}
+
 /*Scenario to replace instead of this:
 You wake up dazed, seeing only blurriness around you.
 Your head is throbbing, and your mind is fogged.
@@ -273,7 +294,7 @@ around to look at your surroundings. Beside you lies:
 -You pick up the item and realize you're in the middle of the forest. You then
 try to find your way to town.*/
 
-void player::characterCreation()
+void player::characterCreation() //TO DO: Move the text part into scene.
 {
 	string input;
 	int jobnum;
@@ -319,65 +340,86 @@ void player::declare_job(string input)
 	}
 }
 
-void player::add_inventory(Item i) //Fix: What if the player's inventory is full? Ans: Make an int sz for inventory
+/*Inventory Functions*/
+bool player::add_inventory(Item* i) 
 {
-	inventory.push_back(i);
+	if (inv_size > inventory.size())
+	{
+		inventory.push_back(i);
+		return true;
+	}
+	return false;
 }
 
 void player::remove_inventory(string item)
 {
 	for (unsigned i = 0; i < inventory.size(); ++i)
 	{
-		if (inventory.at(i).get_name() == item)
-		inventory.erase(inventory.begin() + i);
+		if (inventory.at(i)->getName() == item)
+		{
+			delete inventory.at(i); //ISSUE: We need to cater to two instances: When we only want to delete an item OR replace an item
+			inventory.erase(inventory.begin() + i);
+		}
 	}
 
 }
 
-void player::equip_slot(int i, Item x) //Fix so that you can replace the item if there is something in the slot
+void player::equip_slot(int i, Item* x) //Fix so that you can replace the item if there is something in the slot
 {
+	Item* temp = equipment.at(i); //Test plox
 	equipment.at(i) = x;
-	remove_inventory(x.get_name());
+	inventory.at(inventory_search(x->getName())) = NULL;
+	remove_inventory(x->getName());
+	if (temp->getName() != "None")
+	add_inventory(temp);
 }
 
 void player::remove_slot(int i)
 {
-	Item Nothing("Empty", 0);
-	add_inventory(equipment.at(i));
-	equipment.at(i) = Nothing; //Must fix so that the whole index is cleared
+	Item empty;
+
+	if (!add_inventory(equipment.at(i)))
+	{
+		std::cout << "Your inventory is too full." << std::endl;
+		return;
+	}
+	equipment.at(i) = none; //Must fix so that the whole index is cleared
 }
 
-bool player::inventory_search(string itemName)
+int player::inventory_search(string itemName)
 {
 	for (unsigned i = 0; i < inventory.size(); ++i)
 	{
-		if (inventory.at(i).get_name() == itemName)
+		if (inventory.at(i)->getName() == itemName)
 		{
-			return true;
+			return i; //Or true.
 		}
 	}
-	return false;
+	return -1; //Or false.
 }
 
 void player::display_inventory()
 {
+	std::string line = "-----------------------------------------------------";
+	std::cout << line << std::endl;
 	for (unsigned i = 0; i < inventory.size(); ++i)
 	{
-		std::cout << inventory.at(i).get_name() << "  ";
+		std::cout << inventory.at(i)->getName() << "  ";
 		if (i % 3 == 0 && i != 0)
 		{
 			std::cout << std::endl;
 		}
 	}
+	std::cout << std::endl << line << std::endl;
 }
 
 void player::display_equipment()
 {
-	std::cout << "Head: " << equipment.at(0).get_name() << std::endl;
-	std::cout << "Torso: " << equipment.at(1).get_name() << std::endl;
-	std::cout << "Leggings: " << equipment.at(2).get_name() << std::endl;
-	std::cout << "Shoes: " << equipment.at(3).get_name() << std::endl;
-	std::cout << "Gloves: " << equipment.at(4).get_name() << std::endl;
-	std::cout << "Left Handed Weapon: " << equipment.at(5).get_name() << std::endl;
-	std::cout << "Right Handed Weapon: " << equipment.at(6).get_name() << std::endl;
+	std::cout << "Head: " << equipment.at(0)->getName() << std::endl;
+	std::cout << "Torso: " << equipment.at(1)->getName() << std::endl;
+	std::cout << "Leggings: " << equipment.at(2)->getName() << std::endl;
+	std::cout << "Shoes: " << equipment.at(3)->getName() << std::endl;
+	std::cout << "Gloves: " << equipment.at(4)->getName() << std::endl;
+	std::cout << "Main Hand: " << equipment.at(5)->getName() << std::endl;
+	std::cout << "Off Hand: " << equipment.at(6)->getName() << std::endl;
 }
