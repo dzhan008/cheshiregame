@@ -18,6 +18,7 @@ class Item
         Item(const string);
         Item(const string, const int);
         Item(const Item &);
+		Item(const Item* &);
         void printItem() const; //Make virtual
 	
 	string getName() const;
