@@ -101,6 +101,10 @@ string player::getname()
     return playername;
 }
 
+int player::getDef(){
+	return def;
+}
+
 /*Set Functions*/
 void player::setHP(int health)
 {
@@ -355,6 +359,19 @@ void player::declare_job(string input)
 	{
 		playerjob = "Thief";
 	}
+}
+
+int player::randNumber(){
+	return rand() % (max_dmg - min_dmg) + min_dmg;
+}
+
+int player::calculateDamage(Entity enemy, bool defend){
+	int baseDamage = randNumber();
+	int trueDamage = baseDamage - enemy.getDef();
+	if (defend){
+		trueDamage /= 5;
+	}
+	return trueDamage;
 }
 
 /*Inventory Functions*/
