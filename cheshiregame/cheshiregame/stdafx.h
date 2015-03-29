@@ -15,6 +15,7 @@
 #include "Item.h"
 #include "Scene.h"
 #include "Town.h"
+#include "Ally.h"
 
 #include <stdio.h>
 #include <tchar.h>
