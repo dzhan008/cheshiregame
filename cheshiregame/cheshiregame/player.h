@@ -35,6 +35,7 @@ class player
 		std::vector<Item*> inventory; //CHANGE TO ITEMS LATER
 
 		Item* none;
+		int randNumber();
 
     public:
     
@@ -49,7 +50,8 @@ class player
         int getlevel();
         int getmoney();
         int getexp();
-		int getInvSize();
+	int getInvSize();
+	int getDef();
 
         std::string getname();
     
@@ -90,7 +92,7 @@ class player
 		int inventory_search(std::string itemName);
 
 		/*Party Functions*/
-
+	int calculateDamage(Entity enemy, bool defend);
 };
 
 #endif
