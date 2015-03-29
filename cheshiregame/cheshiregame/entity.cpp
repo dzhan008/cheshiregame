@@ -46,6 +46,31 @@ void Entity::setHealth(int health)
 	currHP = health;
 }
 
+int Entity::getDef(){
+	return def;
+}
+
+int Entity::randNumber(){
+	return rand() % (max_dmg - min_dmg) + min_dmg;
+}
+
+int Entity::calculateDamage(player play, bool defend){
+	int baseDamage = randNumber();
+	int trueDamage = baseDamage - play.getDef();
+	if (defend){
+		trueDamage /= 5;
+	}
+	return trueDamage;
+}
+
+int Entity::calculateDamage(Ally ally, bool defend){
+	int baseDamage = randNumber();
+	int trueDamage = baseDamage - ally.getDef();
+	if (defend){
+		trueDamage /= 5;
+	}
+	return trueDamage;
+}
 
 /*Stats*/
 //Sets the stats of the entity
