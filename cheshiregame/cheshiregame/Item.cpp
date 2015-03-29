@@ -41,3 +41,8 @@ int Item::getValue() const
 {
 	return value;
 }
+
+int Item::getSlot() const
+{
+	return slot_type;
+}

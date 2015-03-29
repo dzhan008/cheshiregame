@@ -17,6 +17,11 @@ public:
 	void basic_menu(player* p);
 
 	int user_input();
+
+	/*Story Scenes (Should this be moved somewhere else?)*/
+
+	void scene_play(); //Experimental; It only works for making one input at a time.
+	void scene_001();
 };
 
 #endif
