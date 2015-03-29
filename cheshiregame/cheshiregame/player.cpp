@@ -43,11 +43,28 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
 	playerstats.resize(5);
 	equipment.resize(7);
 
-	none = new Item("None", -1);
+	none = new Item("None", -1); //Default Item named none
+
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = none;
 	}
+}
+
+player::~player()
+{
+	for (unsigned i = 0; i < inventory.size(); ++i)
+	{
+		inventory.at(i) = NULL;
+	}
+
+	for (unsigned i = 0; i < equipment.size(); ++i)
+	{
+		equipment.at(i) = NULL;
+	}
+
+	delete none;
+
 }
 
 int player::getMaxHP()
@@ -364,12 +381,13 @@ void player::remove_inventory(string item)
 
 }
 
-void player::equip_slot(int i, Item* x) //Fix so that you can replace the item if there is something in the slot
+void player::equip_slot(int i, const Item* x) //Fix so that you can replace the item if there is something in the slot
 {
 	Item* temp = equipment.at(i); //Test plox
-	equipment.at(i) = x;
-	inventory.at(inventory_search(x->getName())) = NULL;
-	remove_inventory(x->getName());
+	Item* slot = new Item(x);
+	
+	remove_inventory(x->getName()); //Need to actually get a name for null or none or whatever
+	equipment.at(i) = slot;
 	if (temp->getName() != "None")
 	add_inventory(temp);
 }

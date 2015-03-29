@@ -41,6 +41,7 @@ class player
         //Constructor
         player();
         player(std::string pName, std::string pJob, int health, int lvl, int amount, int statpts);
+		~player();
 
         /*Get Functions: Returns the respective value.*/
         int getMaxHP();
@@ -81,7 +82,7 @@ class player
 		/*Inventory Functions*/
 		bool add_inventory(Item* i);
 		void remove_inventory(std::string item);
-		void equip_slot(int i, Item* x); //CHANGE x TO ITEM LATER
+		void equip_slot(int i, const Item* x); //CHANGE x TO ITEM LATER
 		void remove_slot(int i);
 		void display_inventory();
 		void display_equipment();
