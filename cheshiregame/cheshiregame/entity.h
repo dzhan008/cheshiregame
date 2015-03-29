@@ -32,16 +32,17 @@ public:
 
 	/*Create Entity*/
 	Entity();
-	Entity(string entityName, int health, int lvl, int amount);
+	Entity(string entityName, int health, int lvl, int amount, int d);
+	
 	/*Health*/
 	int getMaxHealth(); //gets max HP to be used in main
-
 	void setHealth(int health); // updates HP of entity when attacked
 	int getHealth(); // gets the updated HP to be used in main
 
 	string getName(); //gets name to be used in main
 	int getLevel(); //gets the level to be used in main
 	int getEXP(); //gets the amount of EXP to be used in main
+	int getDef();
 
 	/*Stats*/
 	void setEntityStats(int str, int agi, int vit, int dex, int luk);
@@ -54,17 +55,24 @@ public:
 	/*Print*/
 	void Print(); //prints all information about entity
 	void print_loot(); //prints all the loot 
-
+	
+	int calculateDamage(player play, bool defend);
+	int calculateDamage(Ally ally, bool defend);
 private:
 	string name;
 	int maxHP;
 	int currHP;
 	int level;
+	int min_dmg;
+	int max_dmg;
+	int def;
 	vector<int> entityStats;
 	int numEXP;
 	//int components;
 
 	vector<Item> loot;
+	
+	int randNumber();
 };
 
 #endif
