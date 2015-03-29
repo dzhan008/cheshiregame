@@ -12,6 +12,7 @@ class Item
 	private:
 		string name;
 		int value;
+		float rarity; //How rare the drop is; Used for when player receives loot from entity.
 
     public:
         Item();
