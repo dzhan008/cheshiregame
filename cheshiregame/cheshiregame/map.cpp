@@ -20,8 +20,7 @@ map::map()
 	mapitems.at(playerposition.first).at(playerposition.second) = 2;
 	mapitems.at(goal.first).at(goal.second) = 3;
 	goalmap = mapitems;
-	//mapitems.at(1).at(0) = 1;
-	//keeps track of player position
+	
 }
 //constructs map based on premade txt file
 map::map(int sz, string& file)
@@ -51,7 +50,13 @@ map::map(int sz, string& file)
 	{
 		for (int j = 0; j < mapitems.size(); j++)
 		{
-			if (mapitems.at(i).at(j) == 2)
+			if (mapitems.at(i).at(j) == 3)
+			{
+				goal.first = i;
+				goal.second = j;
+				mapitems.at(goal.first).at(goal.second) = 3;
+			}
+			else if (mapitems.at(i).at(j) == 2)
 			{
 				playerposition.first = i;
 				playerposition.second = j;
@@ -187,7 +192,6 @@ void map::moveDown()
 
 bool map::wallcheck(int i, int j)
 {
-	//mapitems.resize(100);
 	//1 = walls
 	//0= emptyspace
 	//2= player position
@@ -210,7 +214,7 @@ void map::display()
 		cout << endl;
 	}
 }
-void map::run()
+bool map::run()
 {
 	string input;
 	while (true)
@@ -239,9 +243,15 @@ void map::run()
 		}
 		else if (input == "q")
 		{
-			return;
+			return false;
+		}
+		if ((playerposition.first == goal.first) && (playerposition.second == goal.second))
+		{
+			cout << "Map Cleared. " << endl;
+			return true;
 		}
 	}
+	return false;
 }
 void map::wallBreak()
 {
@@ -275,5 +285,18 @@ void map::wallBreak()
 	{
 		return;
 	}
-
+}
+//recursive function
+//currently incomplete
+//may not be used at all idk
+void map::runStage()
+{
+	if (run() == false)
+	{
+		return;
+	}
+	else if (run() == true)
+	{
+		runStage();
+	}
 }

@@ -19,17 +19,25 @@ public:
 	void moveDown();
 	bool wallcheck(int i, int j);
 	void display();
-	void run();
+	bool run();
 	//removes a wall due to impossible completion
 	void wallBreak();
 	//void updateplayer(playerposition.first, playerposition.second);
+	void runStage();
+	map *next;
+
 	private:
 	//player player1;
+	//coordinates x,y of a players position
 	pair <int, int> playerposition;
+	//x * x vector of a map
 	vector <vector<int> > mapitems;
+	//updates player position on mapitems
 	void updateplayer();
+	// xy of the goal location
 	pair <int, int> goal;
 	vector <vector<int> > goalmap;
+
 	
 };
 
