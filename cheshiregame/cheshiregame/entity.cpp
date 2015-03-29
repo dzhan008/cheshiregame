@@ -9,10 +9,10 @@ using namespace std;
 /*Create Entity*/
 
 Entity::Entity()
-	: name("Enemy"), maxHP(1), currHP(1), level(1), numEXP(1)
+: name("Enemy"), maxHP(10), currHP(10), level(1), numEXP(1), min_dmg(1), max_dmg(10), def(0)
 { }
-Entity::Entity(string entityName, int health, int lvl, int amount)
-	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount)
+Entity::Entity(string entityName, int health, int lvl, int amount, int d)
+: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d)
 { }
 
 
@@ -45,6 +45,7 @@ void Entity::setHealth(int health)
 {
 	currHP = health;
 }
+
 
 /*Stats*/
 //Sets the stats of the entity
