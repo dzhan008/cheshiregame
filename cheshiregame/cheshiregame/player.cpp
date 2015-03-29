@@ -362,8 +362,11 @@ bool player::add_inventory(Item* i)
 {
 	if (inv_size > inventory.size())
 	{
-		inventory.push_back(i);
-		return true;
+		if (i->getName() != "None")
+		{
+			inventory.push_back(i);
+			return true;
+		}
 	}
 	return false;
 }
@@ -374,19 +377,19 @@ void player::remove_inventory(string item)
 	{
 		if (inventory.at(i)->getName() == item)
 		{
-			delete inventory.at(i); //ISSUE: We need to cater to two instances: When we only want to delete an item OR replace an item
+			delete inventory.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
 			inventory.erase(inventory.begin() + i);
 		}
 	}
 
 }
 
-void player::equip_slot(int i, const Item* x) //Fix so that you can replace the item if there is something in the slot
+void player::equip_slot(int i, const Item* x) 
 {
-	Item* temp = equipment.at(i); //Test plox
+	Item* temp = equipment.at(i); 
 	Item* slot = new Item(x);
 	
-	remove_inventory(x->getName()); //Need to actually get a name for null or none or whatever
+	remove_inventory(x->getName());
 	equipment.at(i) = slot;
 	if (temp->getName() != "None")
 	add_inventory(temp);
@@ -394,14 +397,13 @@ void player::equip_slot(int i, const Item* x) //Fix so that you can replace the 
 
 void player::remove_slot(int i)
 {
-	Item empty;
 
 	if (!add_inventory(equipment.at(i)))
 	{
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
 	}
-	equipment.at(i) = none; //Must fix so that the whole index is cleared
+	equipment.at(i) = none; 
 }
 
 int player::inventory_search(string itemName)
