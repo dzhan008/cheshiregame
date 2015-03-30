@@ -48,6 +48,10 @@ bool Combat_System::calculateEnemyChoice(){
     }
 }
 
+int Combat_System::attackChoice(int size){
+	return rand() % (size + 1);
+}
+
 //Private helper function, asks player what they want to do
 //Returns 0, 1, 2 or 3 depending on if they attack, defend, use an item, or run
 int Combat_System::promptChoices(){
@@ -176,7 +180,7 @@ void Combat_System::runBattle(Entity* enemy){
 					}
 				}
 				else{
-					int eAttack = attackChoice();
+					int eAttack = attackChoice(allies.size());
 					if (eAttack == allies.size() + 1){
 						x = enemy->calculateDamage(*play, play->isDefending());
 						play->setHP(play->getHP() - x);
@@ -270,9 +274,10 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				cout << "It is now " << allies.at(i)->getname() << "'s turn." << endl;
 				bool decision = calculateAllyChoice(allies.at(i));
 				if (!decision){
-					int damage = allies.at(i)->calculateDamage(*enemy, eChoice);
-					enemy->setHealth(enemy->getHealth() - damage);
-					cout << allies.at(i)->getname() << " has hit the enemy for " << damage << " damage." << endl;
+					int attacked = attackChoice(enemies.size());
+					int damage = allies.at(i)->calculateDamage(enemy.at(attacked), enemy.at(attacked)->isDefending);
+					enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
+					cout << allies.at(i)->getname() << " has hit enemy " << attacked << " for " << damage << " damage." << endl;
 				}
 				else{
 					cout << allies.at(i)->getname() << " is defending..." << endl;
@@ -282,26 +287,23 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			turn = 2;
 		}
 		else if(turn == 2){
-			for (int i = 0; i < battleSize; i++){
-				if (i != enemyOptionChoice){
-					eChoice = calculateEnemyChoice(enemy.at(enemyOptionChoice));
-					if (!eChoice){
-						int x;
-						if (optionChoice == 1){
-							x = calculateDamage(true);
-							play->setHP(play->getHP() - x);
-							cout << "The enemy has hit you for " << x << " damage!" << endl;
-							cout << "You reduced the amount of damage you have taken by defending..." << endl;
-						}
-						else{
-							x = calculateDamage(false);
-							play->setHP(play->getHP() - x);
-							cout << "The enemy has hit you for " << x << " damage!" << endl;
-						}
+			for(int i = 0; i < enemy.size(); i++){
+				enemy.at(i)->setDefending(false);
+				cout << "It is now " << enemy.at(i)->getName() << "'s turn." << endl;
+				bool decision = calculateEnemyChoice(enemy.at(i));
+				if (!decision){
+					int attacked = attackChoice(allies.size());
+					int damage = allies.at(i)->calculateDamage(enemy.at(attacked), enemy.at(attacked)->isDefending);
+					enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
+					if(attacked == allies.size() + 1){
+						cout << enemy.at(i)->getName() << " has hit you for " << damage << " damage." << endl;
 					}
 					else{
-						cout << "The enemy is defending..." << endl;
+						cout << enemy.at(i)->getName() << " has hit " << allies.at(attacked) << " for " << damage << " damage." << endl;
 					}
+				else{
+					cout << enemy.at(i)->getName() << " is defending..." << endl;
+					enemy.at(i)->setDefending(true);
 				}
 			}
 		}
