@@ -19,6 +19,7 @@ player::player(){
 	inv_size = 0;
 	min_dmg = 1;
 	max_dmg = 10;
+	defending = false;
 	playerstats.resize(5);
 	equipment.resize(7);
 
@@ -40,6 +41,7 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
 	inv_size = 20;
 	min_dmg = 1 * lvl; //Change later
 	max_dmg = 10 * lvl;
+	defending = false;
 	playerstats.resize(5);
 	equipment.resize(7);
 
@@ -374,6 +376,9 @@ int player::calculateDamage(Entity enemy, bool defend){
 	return trueDamage;
 }
 
+bool player::isDefending(){
+	return defending;
+}
 /*Inventory Functions*/
 bool player::add_inventory(Item* i) 
 {
