@@ -18,6 +18,7 @@ class Ally{
 		int min_dmg; //The minimum damage the ally can do to an enemy.
 		int max_dmg; //The maximum damage the ally can do to an enemy.
 		int def; //The defense of the ally. 
+		bool defending;
 
 		string allyname; //The ally's name.
 		string allyjob; //The ally's job.
@@ -36,6 +37,7 @@ class Ally{
 		int getexp();
 		int getDef();
 		int calculateDamage(Entity enemy, bool defend);
+		bool isDefending();
 
 		string getname();
 
