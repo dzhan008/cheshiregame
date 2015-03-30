@@ -128,7 +128,7 @@ void player::setexp(int expx)
     pexp = expx;
 }
 
-bool player::setDefending(bool b){
+void player::setDefending(bool b){
     defending = b;
 }
 void player::setstats(vector<int>& stats)
