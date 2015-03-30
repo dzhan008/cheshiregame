@@ -63,7 +63,7 @@ int Entity::calculateDamage(player play, bool defend){
 	return trueDamage;
 }
 
-int Entity::calculateDamage(Ally ally, bool defend){
+int Entity::calculateDamage(Ally* ally, bool defend){
 	int baseDamage = randNumber();
 	int trueDamage = baseDamage - ally.getDef();
 	if (defend){
