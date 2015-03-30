@@ -112,6 +112,10 @@ void Ally::set_def(int idef){
 	def = idef;
 }
 
+void Ally::setDefending(bool b){
+	defending = b;
+}
+
 void Ally::setname(string name){
 	allyname = name;
 }
