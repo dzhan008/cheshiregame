@@ -49,7 +49,7 @@ class Ally{
 		void set_min_dmg(int dmg);
 		void set_max_dmg(int dmg);
 		void set_def(int idef);
-		bool setDefending(bool b);
+		void setDefending(bool b);
 		
 		void setname(string name);
 		void setjob(string job);
