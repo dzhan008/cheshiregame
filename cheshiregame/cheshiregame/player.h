@@ -62,6 +62,7 @@ class player
         void setlevel(int&level);
         void setmoney(int& money);
         void setexp(int expx1);
+        void setDefending(bool b);
         void setstats(std::vector<int>& stats);
 		void set_min_dmg(int dmg);
 		void set_max_dmg(int dmg);
