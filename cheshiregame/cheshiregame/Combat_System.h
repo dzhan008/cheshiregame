@@ -18,6 +18,7 @@ class Combat_System{
         void runBattle(vector<entity*> enemy);
         void runBattle(entity* enemy);
         void updatePlayer(player* p);
+        void updateAllies(vector<Ally*> ally);
     private:
         int randNumber();
         int promptChoices();
@@ -25,6 +26,7 @@ class Combat_System{
         double calculateAccuracy();
         int calculateDamage(bool defend);
         int calculateTurn();
+        int attackChoice(int size);
         bool calculateEnemyChoice(entity* enemy);
 };
 
