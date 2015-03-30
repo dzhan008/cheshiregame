@@ -8,9 +8,12 @@ class Weapon : public Item
 {
 	private:
 		int damageBoost;
+		string type;
 	public:
 		bool equipWeapon(string itemName, player p);
+		string getType() const;
 		Weapon(const Weapon&);
+		void printItem() const;
 };
 
 #endif

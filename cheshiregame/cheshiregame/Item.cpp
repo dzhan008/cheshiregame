@@ -8,13 +8,19 @@
 using namespace std;
 
 Item::Item()
-	:value(0)
+	:value(0), rarity(0.0)
 {}
 Item::Item(const string name)
-    :name(name), value(0)
+	: name(name), value(0), rarity(0.0)
 {}
 Item::Item(const string name, const int val)
-    :name(name), value(val)
+	: name(name), value(val), rarity(0.0)
+{}
+Item::Item(const string name, const int val, const string type)
+	: name(name), value(val), type(type), rarity(0.0)
+{}
+Item::Item(const string name, const int val, const string type, const float rare)
+	: name(name), value(val), type(type), rarity(rare)
 {}
 Item::Item(const Item& origItem)
 {
@@ -42,7 +48,7 @@ int Item::getValue() const
 	return value;
 }
 
-int Item::getSlot() const
+string Item::getType() const
 {
-	return slot_type;
+	return type;
 }

@@ -7,10 +7,13 @@
 class Gear : public Item
 {
 private:
+	string type;
 	int statBoost;
 public:
-	bool equipGear(string itemName, unsigned bodyPart, player p);
 	Gear(const Gear&);
+	bool equipGear(string itemName, unsigned bodyPart, player p);
+	string getType() const;
+	void printItem() const;
 };
 
 #endif
