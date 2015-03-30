@@ -23,7 +23,7 @@ class player
 		int inv_size; //The maximum inventory size.
 		int min_dmg; //The minimum damage the player can do to an enemy.
 		int max_dmg; //The maximum damage the player can do to an enemy.
-		int def; //The defense of the player. 
+		int def; //The defense of the player.
 		bool defending;
 
 		int maxexp; //The maximum amount of exp the player has. May be put into another class.
@@ -42,6 +42,7 @@ class player
     
         //Constructor
         player();
+		player(std::string pName, std::string pJob);
         player(std::string pName, std::string pJob, int health, int lvl, int amount, int statpts);
 		~player();
 
@@ -51,9 +52,10 @@ class player
         int getlevel();
         int getmoney();
         int getexp();
-	int getInvSize();
-	int getDef();
-	bool isDefending();
+		int getInvSize();
+		int getDef();
+
+		bool isDefending();
 
         std::string getname();
     
@@ -62,11 +64,11 @@ class player
         void setlevel(int&level);
         void setmoney(int& money);
         void setexp(int expx1);
-        void setDefending(bool b);
         void setstats(std::vector<int>& stats);
 		void set_min_dmg(int dmg);
 		void set_max_dmg(int dmg);
 		void set_def(int idef);
+		void setDefending(bool b);
 		void setname(std::string name);
 		void setjob(std::string job);
 
@@ -86,16 +88,21 @@ class player
 
 		/*Inventory Functions*/
 		bool add_inventory(Item* i);
+
 		void remove_inventory(std::string item);
-		void equip_slot(int i, const Item* x); //CHANGE x TO ITEM LATER
-		void remove_slot(int i);
 		void display_inventory();
+
+		Item* inventory_search(std::string itemName);
+
+		/*Equipment Functions*/
+		void equip_slot(int i, const Item* x);
+		void remove_slot(int i);
 		void display_equipment();
 
-		int inventory_search(std::string itemName);
+		int find_slot(std::string gear);
 
 		/*Party Functions*/
-	int calculateDamage(Entity enemy, bool defend);
+		int calculateDamage(Entity enemy, bool defend);
 };
 
 #endif

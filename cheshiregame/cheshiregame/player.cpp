@@ -10,13 +10,13 @@ using namespace std;
 
 player::player(){
     playername = "Player";
-    maxHP = 1;
-    currHP = 1;
+    maxHP = 20;
+    currHP = 20;
     plevel = 1;
     pexp = 0;
-	maxexp = 100;
+	maxexp = 50;
 	statpoints = 0;
-	inv_size = 0;
+	inv_size = 20;
 	min_dmg = 1;
 	max_dmg = 10;
 	defending = false;
@@ -29,6 +29,31 @@ player::player(){
 		equipment.at(i) = none;
 	}
 }
+
+player::player(std::string pName, std::string pJob)
+	:playername(pName), playerjob(pJob)
+{
+	maxHP = 20;
+	currHP = 20;
+	plevel = 1;
+	pexp = 0;
+	maxexp = 50;
+	statpoints = 0;
+	inv_size = 20;
+	min_dmg = 1;
+	max_dmg = 10;
+	defending = false;
+	playerstats.resize(5);
+	equipment.resize(7);
+
+	none = new Item("None", -1); //Default Item named none
+
+	for (unsigned i = 0; i < equipment.size(); ++i)
+	{
+		equipment.at(i) = none;
+	}
+}
+
 player::player(string pName, string pJob, int health, int lvl, int amount, int statpts)
 {
     playername = pName;
@@ -128,9 +153,6 @@ void player::setexp(int expx)
     pexp = expx;
 }
 
-void player::setDefending(bool b){
-    defending = b;
-}
 void player::setstats(vector<int>& stats)
 {
     playerstats.at(0) += stats.at(0);
@@ -163,6 +185,10 @@ void player::set_max_dmg(int dmg)
 void player::set_def(int idef)
 {
 	def = idef;
+}
+
+void player::setDefending(bool b){
+	defending = b;
 }
 
 /*Stat Functions*/
@@ -366,6 +392,8 @@ void player::declare_job(string input)
 	}
 }
 
+/*Combat Functions*/
+
 int player::randNumber(){
 	return rand() % (max_dmg - min_dmg) + min_dmg;
 }
@@ -382,6 +410,7 @@ int player::calculateDamage(Entity enemy, bool defend){
 bool player::isDefending(){
 	return defending;
 }
+
 /*Inventory Functions*/
 bool player::add_inventory(Item* i) 
 {
@@ -409,38 +438,17 @@ void player::remove_inventory(string item)
 
 }
 
-void player::equip_slot(int i, const Item* x) 
-{
-	Item* temp = equipment.at(i); 
-	Item* slot = new Item(x);
-	
-	remove_inventory(x->getName());
-	equipment.at(i) = slot;
-	if (temp->getName() != "None")
-	add_inventory(temp);
-}
 
-void player::remove_slot(int i)
-{
-
-	if (!add_inventory(equipment.at(i)))
-	{
-		std::cout << "Your inventory is too full." << std::endl;
-		return;
-	}
-	equipment.at(i) = none; 
-}
-
-int player::inventory_search(string itemName)
+Item* player::inventory_search(string itemName)
 {
 	for (unsigned i = 0; i < inventory.size(); ++i)
 	{
 		if (inventory.at(i)->getName() == itemName)
 		{
-			return i; //Or true.
+			return inventory.at(i); //Or true.
 		}
 	}
-	return -1; //Or false.
+	return NULL; //Or false.
 }
 
 void player::display_inventory()
@@ -456,6 +464,66 @@ void player::display_inventory()
 		}
 	}
 	std::cout << std::endl << line << std::endl;
+}
+
+/*Equipment Functions*/
+
+void player::equip_slot(int i, const Item* x)
+{
+	Item* temp = equipment.at(i);
+	Item* slot = new Item(x);
+
+	remove_inventory(x->getName());
+	equipment.at(i) = slot;
+	if (temp->getName() != "None")
+		add_inventory(temp);
+}
+
+void player::remove_slot(int i)
+{
+
+	if (!add_inventory(equipment.at(i)))
+	{
+		std::cout << "Your inventory is too full." << std::endl;
+		return;
+	}
+	equipment.at(i) = none;
+}
+
+int player::find_slot(std::string gear)
+{
+	if (gear == "head" || gear == "Head")
+	{
+		return 0;
+	}
+	else if (gear == "torso" || gear == "Torso")
+	{
+		return 1;
+	}
+	else if (gear == "leggings" || gear == "Leggings")
+	{
+		return 2;
+	}
+	else if (gear == "shoes" || gear == "Shoes")
+	{
+		return 3;
+	}
+	else if (gear == "gloves" || gear == "Gloves")
+	{
+		return 4;
+	}
+	else if (gear == "Main Hand" || gear == "main hand" || gear == "main")
+	{
+		return 5;
+	}
+	else if (gear == "Off hand" || gear == "off hand" || gear == "off")
+	{
+		return 6;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 void player::display_equipment()
