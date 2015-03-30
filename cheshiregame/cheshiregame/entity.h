@@ -59,6 +59,7 @@ public:
 	int calculateDamage(player play, bool defend);
 	int calculateDamage(Ally ally, bool defend);
 	bool isDefending();
+	void setDefending(bool b);
 private:
 	string name;
 	int maxHP;
