@@ -4,30 +4,30 @@
 
 using namespace std;
 
-class entity;
-class player;
-
 class Combat_System{
     private:
         //0 For player turn, 1 for enemy turn
         int turn;
         player* play;
+		vector<Ally*> allies;
     public:
         Combat_System();
         Combat_System(player* p);
-        void runBattle(vector<entity*> enemy);
-        void runBattle(entity* enemy);
+		Combat_System(player* p, vector<Ally*> allies);
+        void runBattle(vector<Entity*> enemy);
+        void runBattle(Entity* enemy);
         void updatePlayer(player* p);
         void updateAllies(vector<Ally*> ally);
     private:
         int randNumber();
         int promptChoices();
-        int promptEnemyChoice(vector<entity*> enemy);
+        int promptEnemyChoice(vector<Entity*> enemy);
         double calculateAccuracy();
         int calculateDamage(bool defend);
         int calculateTurn();
         int attackChoice(int size);
-        bool calculateEnemyChoice(entity* enemy);
+        bool calculateEnemyChoice(Entity* enemy);
+		bool calculateAllyChoice(Ally* ally);
 };
 
 #endif
