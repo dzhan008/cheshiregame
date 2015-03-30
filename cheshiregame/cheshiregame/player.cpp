@@ -128,6 +128,9 @@ void player::setexp(int expx)
     pexp = expx;
 }
 
+bool player::setDefending(bool b){
+    defending = b;
+}
 void player::setstats(vector<int>& stats)
 {
     playerstats.at(0) += stats.at(0);
