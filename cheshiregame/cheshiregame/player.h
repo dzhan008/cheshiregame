@@ -24,6 +24,7 @@ class player
 		int min_dmg; //The minimum damage the player can do to an enemy.
 		int max_dmg; //The maximum damage the player can do to an enemy.
 		int def; //The defense of the player. 
+		bool defending;
 
 		int maxexp; //The maximum amount of exp the player has. May be put into another class.
 		std::string playername; //The player's name.
@@ -52,6 +53,7 @@ class player
         int getexp();
 	int getInvSize();
 	int getDef();
+	bool isDefending();
 
         std::string getname();
     
