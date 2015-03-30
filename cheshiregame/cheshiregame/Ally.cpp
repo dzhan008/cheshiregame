@@ -17,6 +17,7 @@ Ally::Ally(){
 	min_dmg = 1;
 	max_dmg = 10;
 	def = 0;
+	defending = false;
 
 	allystats.resize(5);
 	equipment.resize(6);
@@ -33,6 +34,7 @@ Ally::Ally(string aName, string aJob, int health, int lvl, int xp){
 	min_dmg = 1;
 	max_dmg = 10;
 	def = 0;
+	defending = false;
 	
 	allystats.resize(5);
 	equipment.resize(6);
@@ -58,6 +60,9 @@ int Ally::getDef(){
 	return def;
 }
 
+bool Ally::isDefending(){
+	return defending;
+}
 int Ally::randNumber(){
 	return rand() % (max_dmg-min_dmg) + min_dmg;
 }
