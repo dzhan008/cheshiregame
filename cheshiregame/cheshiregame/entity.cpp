@@ -75,6 +75,10 @@ int Entity::calculateDamage(Ally ally, bool defend){
 bool Entity::isDefending(){
 	return defending;
 }
+
+void Entity::setDefending(bool b){
+	defending = b;
+}
 /*Stats*/
 //Sets the stats of the entity
 void Entity::setEntityStats(int str, int agi, int vit, int dex, int luk)
