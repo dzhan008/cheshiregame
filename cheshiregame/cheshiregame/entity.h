@@ -58,6 +58,10 @@ public:
 	
 	int calculateDamage(player play, bool defend);
 	int calculateDamage(Ally* ally, bool defend);
+
+	bool isDefending();
+	void setDefending(bool b);
+
 private:
 	string name;
 	int maxHP;
@@ -66,6 +70,7 @@ private:
 	int min_dmg;
 	int max_dmg;
 	int def;
+	bool defending;
 	vector<int> entityStats;
 	int numEXP;
 	//int components;
