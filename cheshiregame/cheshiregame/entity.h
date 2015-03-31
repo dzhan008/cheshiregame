@@ -57,9 +57,7 @@ public:
 	void print_loot(); //prints all the loot 
 	
 	int calculateDamage(player play, bool defend);
-	int calculateDamage(Ally ally, bool defend);
-	bool isDefending();
-	void setDefending(bool b);
+	int calculateDamage(Ally* ally, bool defend);
 private:
 	string name;
 	int maxHP;
@@ -68,12 +66,11 @@ private:
 	int min_dmg;
 	int max_dmg;
 	int def;
-	bool defending;
 	vector<int> entityStats;
 	int numEXP;
 	//int components;
 
-	vector<Item> loot;
+	vector<Item*> loot;
 	
 	int randNumber();
 };

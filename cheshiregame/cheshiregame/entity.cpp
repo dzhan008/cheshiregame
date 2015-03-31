@@ -9,10 +9,10 @@ using namespace std;
 /*Create Entity*/
 
 Entity::Entity()
-: name("Enemy"), maxHP(10), currHP(10), level(1), numEXP(1), min_dmg(1), max_dmg(10), def(0), defending(false)
+: name("Enemy"), maxHP(10), currHP(10), level(1), numEXP(1), min_dmg(1), max_dmg(10), def(0)
 { }
 Entity::Entity(string entityName, int health, int lvl, int amount, int d)
-: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), defending(false)
+: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d)
 { }
 
 
@@ -65,20 +65,13 @@ int Entity::calculateDamage(player play, bool defend){
 
 int Entity::calculateDamage(Ally* ally, bool defend){
 	int baseDamage = randNumber();
-	int trueDamage = baseDamage - ally.getDef();
+	int trueDamage = baseDamage - ally->getDef();
 	if (defend){
 		trueDamage /= 5;
 	}
 	return trueDamage;
 }
 
-bool Entity::isDefending(){
-	return defending;
-}
-
-void Entity::setDefending(bool b){
-	defending = b;
-}
 /*Stats*/
 //Sets the stats of the entity
 void Entity::setEntityStats(int str, int agi, int vit, int dex, int luk)
@@ -137,6 +130,6 @@ void Entity::print_loot()
 	cout << name << "'s Loot: " << endl;
 	for (int i = 0; i < loot.size(); i++)
 	{
-		loot.at(i).printItem();
+		loot.at(i)->printItem();
 	}
 }
