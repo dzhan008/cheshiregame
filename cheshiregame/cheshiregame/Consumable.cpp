@@ -31,3 +31,8 @@ bool Consumable::usePotion(player p)
 	cout << "Potion not found." << endl;
 	return false;
 }
+
+string Consumable::getType() const
+{
+	return "Consumable";
+}

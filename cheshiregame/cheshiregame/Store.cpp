@@ -39,7 +39,7 @@ void Store::run(player p)
             menu();
             cin >> choice;
         }
-        if(p.getmoney() < storeInventory.at(usernum).getValue())
+        if(p.getmoney() < storeInventory.at(usernum)->getValue())
         {
             cout << "You are too poor." << endl;
             menu();
@@ -48,10 +48,10 @@ void Store::run(player p)
         else
         {
             storeInventory.erase(storeInventory.begin()+usernum - 2);
-            spentGold += storeInventory.at(usernum).getValue();
-            int playerMoney = p.getmoney() - storeInventory.at(usernum).getValue();
+            spentGold += storeInventory.at(usernum)->getValue();
+            int playerMoney = p.getmoney() - storeInventory.at(usernum)->getValue();
 			p.setmoney(playerMoney);
-            cout << "You bought one " << storeInventory.at(usernum).getName() << endl;
+            cout << "You bought one " << storeInventory.at(usernum)->getName() << endl;
             menu();
             cin >> choice;
         }
@@ -72,7 +72,7 @@ void Store::printStore()
 {
     for(int i = 0; i < storeInventory.size(); i++)
     {
-		cout << i << ". " << storeInventory.at(i).getName() << ' ' << storeInventory.at(i).getValue()
+		cout << i << ". " << storeInventory.at(i)->getName() << ' ' << storeInventory.at(i)->getValue()
         << " gold" << endl;
     }
 }
@@ -84,7 +84,8 @@ void Store::fillStore(const string &input_file)
     fin.open(input_file.c_str());
     while(fin >> itemName && fin >> val)
     {
-        storeInventory.push_back(Item(itemName, val));
+		Item * temp = new Item(itemName, val);
+        storeInventory.push_back(temp);
     }
     fin.close();
 }

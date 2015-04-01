@@ -16,7 +16,7 @@ class Store
         void printStore(); 
         void fillStore(const string &);
     private:
-        vector<Item> storeInventory;
+        vector<Item*> storeInventory;
 };
 
 #endif

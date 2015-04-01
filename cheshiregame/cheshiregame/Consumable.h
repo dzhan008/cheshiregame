@@ -9,6 +9,7 @@ class Consumable : public Item
 		int boost;
 	public:
 		bool usePotion(player p);
+		string getType() const;
 };
 
 #endif
