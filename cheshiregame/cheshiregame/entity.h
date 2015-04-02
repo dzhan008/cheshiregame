@@ -6,6 +6,10 @@
 #include <vector>
 
 
+/*Dependencies*/
+
+class Ally;
+
 using namespace std;
 
 /*

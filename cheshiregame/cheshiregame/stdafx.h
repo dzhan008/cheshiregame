@@ -13,9 +13,13 @@
 #include "Store.h"
 #include "Game.h"
 #include "Item.h"
+#include "Consumable.h"
+#include "Gear.h"
+#include "Weapon.h"
 #include "Scene.h"
 #include "Town.h"
 #include "Ally.h"
+
 
 #include <stdio.h>
 #include <tchar.h>
