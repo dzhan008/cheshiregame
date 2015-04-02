@@ -79,7 +79,7 @@ class player
         /*Set Functions: Sets every value into a certain number.*/
         void setHP(int health); //Changes currHP to the updated hp value after a certain instance.
         void setlevel(int&level);
-        void setmoney(int& money);
+        void setmoney(int money);
         void setexp(int expx1);
         void setstats(std::vector<int>& stats);
 		void set_min_dmg(int dmg);
