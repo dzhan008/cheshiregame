@@ -9,16 +9,16 @@ using namespace std;
 
 //Default constructor, probably will never have to use
 Combat_System::Combat_System(){
-    turn = 0;
+    	turn = 0;
 	vector<Ally*> allies;
-    player play;
+    	player* play;
 }
 
 //Main constructor, saves the player object
 Combat_System::Combat_System(player* p){
-    turn = 0;
+    	turn = 0;
 	vector<Ally*> allies;
-    play = p;
+    	play = p;
 }
 
 Combat_System::Combat_System(player* p, vector<Ally*> ally){
@@ -28,28 +28,28 @@ Combat_System::Combat_System(player* p, vector<Ally*> ally){
 }
 
 int Combat_System::randNumber(){
-    return rand() % 100 + 1;
+    	return rand() % 100 + 1;
 }
 
 //True if defending
 bool Combat_System::calculateEnemyChoice(Entity* enemy){
-    int x = randNumber();
-    if(enemy->getHealth() > 5){
-        if(x < 90){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-    else{
-        if(x < 75){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
+    	int x = randNumber();
+    	if(enemy->getHealth() > 5){
+        	if(x < 90){
+            		return false;
+        	}
+	        else{
+	            return true;
+	        }
+	}
+	else{
+	        if(x < 75){
+	            return false;
+	        }
+	        else{
+	            return true;
+	        }
+	}
 }
 
 int Combat_System::attackChoice(int size){
@@ -59,62 +59,62 @@ int Combat_System::attackChoice(int size){
 //Private helper function, asks player what they want to do
 //Returns 0, 1, 2 or 3 depending on if they attack, defend, use an item, or run
 int Combat_System::promptChoices(){
-    int i = -1;
-    int prompt;
-    while(i = -1){
-        cout << endl << "Enter the number of the move you want to make: "<< endl;
-        cout << "1: Attack" << endl;
-        cout << "2: Defend" << endl;
-        cout << "3: Use an item" << endl;
-        cout << "4: Run" << endl;
-        cin >> prompt;
-        if(prompt == 1){
-            return 0;
-        }
-        if(prompt == 2){
-            return 1;
-        }
-        if(prompt == 3){
-            return 2;
-        }
-        if(prompt == 4){
-            return 3;
-        }
-        cout << "You have not selected one of the four options." << endl;
-    }
+	int i = -1;
+	int prompt;
+	while(i = -1){
+		cout << endl << "Enter the number of the move you want to make: "<< endl;
+		cout << "1: Attack" << endl;
+		cout << "2: Defend" << endl;
+		cout << "3: Use an item" << endl;
+		cout << "4: Run" << endl;
+		cin >> prompt;
+		if(prompt == 1){
+		return 0;
+		}
+		if(prompt == 2){
+		return 1;
+		}
+		if(prompt == 3){
+		return 2;
+		}
+		if(prompt == 4){
+		return 3;
+		}
+		cout << "You have not selected one of the four options." << endl;
+	}
 }
 
 int promptEnemyChoice(vector<Entity*> enemies){
-    int choice;
-    cout << "Which enemy number would you like to attack?: " << endl;
-    for(int i = 0; i < enemies.size(); i++){
-        cout << "Enemy " << i+1 << ": " << enemies.at(i)->getName();
-    }
-    cin >> choice;
-    if(choice >= 1 || choice <= enemies.size()){
-        return choice - 1;
-    }
-    else{
-        cout << "Invalid choice, please try again.";
-        promptEnemyChoice(enemies);
-    }
+	unsigned choice;
+	cout << "Which enemy number would you like to attack?: " << endl;
+	for(unsigned i = 0; i < enemies.size(); i++){
+	cout << "Enemy " << i+1 << ": " << enemies.at(i)->getName();
+	}
+	cin >> choice;
+	if(choice >= 1 || choice <= enemies.size()){
+	return choice - 1;
+	}
+	else{
+	cout << "Invalid choice, please try again.";
+	promptEnemyChoice(enemies);
+	}
 }
 
 double Combat_System::calculateAccuracy(){
-    return 0;
+	return 0;
 }
 
 int Combat_System::calculateDamage(bool defend){
-    if(defend){
-        return randNumber() / 30;
-    }
-    else{
-        return randNumber() / 10;
-    }
+	if(defend){
+		return randNumber() / 30;
+	}
+	else{
+		return randNumber() / 10;
+	}
 }
 
 int Combat_System::calculateTurn(){
-    return 0;
+	return 0;
 }
 
 void Combat_System::runBattle(Entity* enemy){
@@ -154,7 +154,7 @@ void Combat_System::runBattle(Entity* enemy){
 			}
 		}
 		else if (turn == 1){
-			for (int i = 0; i < allies.size(); i++){
+			for (unsigned i = 0; i < allies.size(); i++){
 			    allies.at(i)->setDefending(false);
 				cout << "It is now " << allies.at(i)->getname() << "'s turn." << endl;
 				bool decision = calculateAllyChoice(allies.at(i));
@@ -171,8 +171,8 @@ void Combat_System::runBattle(Entity* enemy){
 			turn = 2;
 		}
 		else if (turn == 2){
-		    enemy->setDefending(false);
-		    eChoice = calculateEnemyChoice(enemy);
+			enemy->setDefending(false);
+			eChoice = calculateEnemyChoice(enemy);
 			cout << "It is now the enemy's turn!" << endl;
 			if (!eChoice){
 				int x;
@@ -193,7 +193,7 @@ void Combat_System::runBattle(Entity* enemy){
 						}
 					}
 					else{
-			                        x = enemy->calculateDamage(*allies.at(eAttack), allies.at(eAttack)->isDefending());
+			                        x = enemy->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
 			                        allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - x);
 			                        if(allies.at(eAttack)->isDefending()){
 			                            cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
@@ -223,7 +223,6 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 	int damage;
 	int enemyOptionChoice;
 	bool eChoice;
-	int attack;
 	int battleSize = enemy.size();
 	turn = calculateTurn();
 	while (play->getHP() > 0 && enemy.size() > 0){
@@ -231,7 +230,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			play->setDefending(false);
 			cout << endl << "It is currently your turn." << endl;
 			cout << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP." << endl;
-			for (int i = 0; i < enemy.size(); i++){
+			for (unsigned i = 0; i < enemy.size(); i++){
 				cout << "Enemy" << i << " has " << enemy.at(i)->getHealth() << " / " << enemy.at(i)->getMaxHealth() << " HP." << endl;
 			}
 			optionChoice = promptChoices();
@@ -240,7 +239,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				eChoice = enemy.at(enemyOptionChoice)->isDefending();
 				damage = play->calculateDamage(*enemy.at(enemyOptionChoice), eChoice);
 				cout << "You've hit enemy " << enemyOptionChoice + 1 << " for " << damage << " damage!" << endl;
-				if (x > enemy.at(enemyOptionChoice)->getHealth()){
+				if (damage > enemy.at(enemyOptionChoice)->getHealth()){
 					enemy.erase(enemy.begin() + enemyOptionChoice);
 					cout << "You've killed enemy " << eChoice << "!" << endl;
 				}
@@ -275,13 +274,13 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			}
 		}
 		else if(turn == 1){
-			for (int i = 0; i < allies.size(); i++){
-			    allies.at(i)->setDefending(false);
+			for (unsigned i = 0; i < allies.size(); i++){
+				allies.at(i)->setDefending(false);
 				cout << "It is now " << allies.at(i)->getname() << "'s turn." << endl;
 				bool decision = calculateAllyChoice(allies.at(i));
 				if (!decision){
 					int attacked = attackChoice(enemy.size());
-					int damage = allies.at(i)->calculateDamage(*enemy.at(attacked), enemy.at(attacked)->isDefending);
+					int damage = allies.at(i)->calculateDamage(*enemy.at(attacked), enemy.at(attacked)->isDefending());
 					enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
 					cout << allies.at(i)->getname() << " has hit enemy " << attacked << " for " << damage << " damage." << endl;
 				}
@@ -293,24 +292,21 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			turn = 2;
 		}
 		else if(turn == 2){
-			for(int i = 0; i < enemy.size(); i++){
-				enemy.at(i)->setDefending(false);
-				cout << "It is now " << enemy.at(i)->getName() << "'s turn." << endl;
-				bool decision = calculateEnemyChoice(enemy.at(i));
-				if (!decision){
-					int attacked = attackChoice(allies.size());
-					int damage = allies.at(i)->calculateDamage(*enemy.at(attacked), enemy.at(attacked)->isDefending);
-					enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
-					if (attacked == allies.size() + 1){
-						cout << enemy.at(i)->getName() << " has hit you for " << damage << " damage." << endl;
+			for(unsigned i = 0; i < enemy.size(); i++){
+				int eAttack = attackChoice(allies.size());
+					if (eAttack == allies.size() + 1){
+						int damage = enemy.at(i)->calculateDamage(*play, play->isDefending());
+						play->setHP(play->getHP() - damage);
+						if (play->isDefending()){
+							cout << "You reduced the amount of damage you have taken by defending..." << endl;
+						}
 					}
 					else{
-						cout << enemy.at(i)->getName() << " has hit " << allies.at(attacked) << " for " << damage << " damage." << endl;
+						int damage = enemy.at(i)->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
+						allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - damage);
+						if(allies.at(eAttack)->isDefending()){
+						cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
 					}
-				}
-				else{
-					cout << enemy.at(i)->getName() << " is defending..." << endl;
-					enemy.at(i)->setDefending(true);
 				}
 			}
 		}
