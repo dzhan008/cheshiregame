@@ -52,6 +52,26 @@ bool Combat_System::calculateEnemyChoice(Entity* enemy){
 	}
 }
 
+bool Combat_System::calculateAllyChoice(Ally* ally){
+    	int x = randNumber();
+    	if(ally->getHP() > 5){
+        	if(x < 90){
+            		return false;
+        	}
+	        else{
+	            return true;
+	        }
+	}
+	else{
+	        if(x < 75){
+	            return false;
+	        }
+	        else{
+	            return true;
+	        }
+	}
+}
+
 int Combat_System::attackChoice(int size){
 	return rand() % (size + 1);
 }
