@@ -9,13 +9,7 @@
 
 
 using namespace std;
-
 /*----------Private Helper Functions----------*/
-const Item Dungeon::rand_loot()
-{
-	int index = rand() % dungeon_loot.size();
-	return dungeon_loot.at(index);
-}
 void Dungeon::fill_dungeon(const string &text_file)
 {
 	ifstream inFS;
@@ -35,7 +29,7 @@ void Dungeon::fill_dungeon(const string &text_file)
 	string diff; //difficulty
 
 	string entity_name;
-	int hp, level, experience;
+	int hp, level, experience, defend;
 	int s, a, v, d, l; //str, agil, vit, dex, luck
 
 	string input;
@@ -50,6 +44,7 @@ void Dungeon::fill_dungeon(const string &text_file)
 	dungeon_difficulty = diff;
 
 	//Push backs entity into vector until reaches end of file
+
 	while (inFS.good())
 	{
 		inFS >> entity_name;
@@ -59,26 +54,29 @@ void Dungeon::fill_dungeon(const string &text_file)
 		}
 		else
 		{
-			inFS >> hp >> level >> experience;
+			inFS >> hp >> level >> experience >> defend;
 			inFS >> s >> a >> v >> d >> l;
-			Entity temp_entity(entity_name, hp, level, experience);
+			Entity temp_entity(entity_name, hp, level, experience, defend);
 			temp_entity.setEntityStats(s, a, v, d, l);
-			inFS >> input;
+			inFS >> input; //reads in if its :loot: or <end>
 			if (input == ":loot:")
 			{
+				inFS.ignore();
 				getline(inFS, item_name);
 				while (item_name != "<end>")
 				{
 					inFS >> item_val;
 					Item temp_item(item_name, item_val);
 					temp_entity.add_loot(temp_item);
+					inFS.ignore();
 					getline(inFS, item_name);
 				}
 			}
+
 			entity_group.push_back(temp_entity);
+
 		}
 	}
-
 }
 
 Dungeon::Dungeon(const string &text_file)
@@ -100,6 +98,7 @@ const void Dungeon::display_dungeon()
 	for (int i = 0; i < entity_group.size(); i++)
 	{
 		entity_group.at(i).Print();
+		entity_group.at(i).print_loot();
 		cout << endl;
 	}
 }

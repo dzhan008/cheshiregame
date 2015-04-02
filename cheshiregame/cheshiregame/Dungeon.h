@@ -17,7 +17,6 @@ private:
 	vector<Entity> entity_group;
 	string dungeon_name;
 	string dungeon_difficulty;
-	vector<Item> dungeon_loot; //loot specific for that dungeon
 
 public:
 	Dungeon(const string &text_file); //constructor for first dungeon
@@ -29,7 +28,6 @@ public:
 	//helper functions
 private:
 	void fill_dungeon(const string &text_file); //helper func for constructor
-	const Item rand_loot(); //returns a random loot from the vector to add to speicifc entity
 };
 
 #endif
