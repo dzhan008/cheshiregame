@@ -627,6 +627,11 @@ void player::equip_gear(int i, const Gear* x)
 	equipment.at(i) = slot;
 	if (temp->getName() != "None")
 		add_inventory(temp);
+	else
+	{
+		gear_size -= 1;
+		inv_size -= 1;
+	}
 }
 
 void player::remove_gear(int i)
@@ -638,6 +643,8 @@ void player::remove_gear(int i)
 		return;
 	}
 	equipment.at(i) = none;
+	gear_size += 1;
+	inv_size += 1;
 }
 
 void player::equip_wep(int i, const Weapon* x)
@@ -649,17 +656,24 @@ void player::equip_wep(int i, const Weapon* x)
 	weapon.at(i) = slot;
 	if (temp->getName() != "None")
 		add_inventory(temp);
+	else
+	{
+		wep_size -= 1;
+		inv_size -= 1;
+	}
 }
 
 void player::remove_wep(int i)
 {
 
-	if (!add_gear(equipment.at(i)))
+	if (!add_wep(weapon.at(i)))
 	{
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
 	}
 	equipment.at(i) = none;
+	wep_size += 1;
+	inv_size += 1;
 }
 
 int player::find_slot(std::string gear)
