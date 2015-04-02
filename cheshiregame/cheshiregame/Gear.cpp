@@ -1,44 +1,44 @@
-#include "Gear.h"
+#include "stdafx.h"
 
 #include <iostream>
-
+	
 using namespace std;
 
 //Types shall be as follows:
-//Helmet, Chest, Legs, Arms
-bool Gear::equipGear(string item, unsigned bodyPart, player p)
+//Helmet, Chest, Legs, Arms, Shoes
+bool Gear::equipGear(string item, unsigned bodyPart, player* p)
 {
-	if (bodyPart > 6)
+	if (bodyPart > 4)
 	{
 		cout << "Invalid location." << endl;
 		return false;
 	}
-	for (int i = 0; i < p.getInvSize; i++)
+	for (int i = 0; i < p->getGearSize(); i++)
 	{
-		if (p.inventory_search(item))
+		if (p->gear_search(item) != NULL)
 		{
-			if (p.returnItem(i)->getType() == "Helmet")
+			if (p->gear_search(item)->getType() == "Helmet")
 			{
-				p.equip_slot(0, p.returnItem(i));
+				p->equip_gear(0, p->gear_search(item));
 				return true;
 			}
-			else if (p.returnItem(i)->getType() == "Chest")
+			else if (p->gear_search(item)->getType() == "Chest")
 			{
-				p.equip_slot(1, p.returnItem(i));
+				p->equip_gear(1, p->gear_search(item));
 				return true;
 			}
-			else if (p.returnItem(i)->getType() == "Legs")
+			else if (p->gear_search(item)->getType() == "Legs")
 			{
-				p.equip_slot(2, p.returnItem(i));
+				p->equip_gear(2, p->gear_search(item));
 				return true;
 			}
-			else if (p.returnItem(i)->getType() == "Arms")
+			else if (p->gear_search(item)->getType() == "Arms")
 			{
-				p.equip_slot(3, p.returnItem(i));
+				p->equip_gear(3, p->gear_search(item));
 				return true;
 			}
 			//Check bodyPart is a valid num, where each gear should go
-			p.equip_slot(bodyPart, p.returnItem(i));
+			//p.equip_slot(bodyPart, p.returnItem(i));
 			return true;
 		}
 	}
@@ -49,9 +49,18 @@ string Gear::getType() const
 {
 	return type;
 }
-Gear::Gear(const Gear& origGear)
+
+Gear::Gear(std::string nam,std::string type, int val)
 {
-	Item::Item(origGear);
+	name = nam;
+	value = val;
+	this->type = type;
+}
+
+Gear::Gear(const Gear*& origGear)
+{
+	this->name = origGear->name;
+	this->value = origGear->value;
 	this->statBoost = statBoost;
 }
 void Gear::printItem() const

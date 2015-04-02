@@ -8,7 +8,10 @@
 
 //Forward declarations for circular dependencies
 class Item;
-class entity;
+class Gear;
+class Weapon;
+class Entity;
+
 
 class player
 {
@@ -20,22 +23,31 @@ class player
 		int pmoney; //The amount of money the player has.
 		int pexp; //The amount of exp the player has.
 		int statpoints; //The amount of stats points a player has. It will be added as the player levels up.
-		int inv_size; //The maximum inventory size.
+		int inv_size; //The current inventory size.
+		int inv_max_size; //The maximum inventory size.
 		int min_dmg; //The minimum damage the player can do to an enemy.
 		int max_dmg; //The maximum damage the player can do to an enemy.
 		int def; //The defense of the player.
 		bool defending;
 
+		/*For the three different inventories*/
+		int item_size;
+		int gear_size;
+		int wep_size;
+
 		int maxexp; //The maximum amount of exp the player has. May be put into another class.
 		std::string playername; //The player's name.
 		std::string playerjob; //The player's job.
 		std::vector<int> playerstats; //Current stats for the player.
-		std::vector<entity> party; //The player's party.
+		std::vector<Entity> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
-		std::vector<Item*> equipment; //0 = Head 1 = Torso 2 = Leggings 3 = Shoes 4 = Gloves 5 = Main Hand 6 = Off Hand
+		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Leggings 3 = Shoes 4 = Gloves
+		std::vector<Weapon*> weapon; //0 = Main Hand 1 = Off Hand
 		std::vector<Item*> inventory; //CHANGE TO ITEMS LATER
+		std::vector<Gear*> gear_inv;
+		std::vector<Weapon*> wep_inv;
 
-		Item* none;
+		Gear* none;
 		int randNumber();
 
     public:
@@ -54,6 +66,11 @@ class player
         int getexp();
 		int getInvSize();
 		int getDef();
+
+		/*For Inventories*/
+		int getItemSize();
+		int getGearSize();
+		int getWepSize();
 
 		bool isDefending();
 
@@ -86,17 +103,28 @@ class player
 		void characterCreation();
 		void declare_job(std::string input);
 
-		/*Inventory Functions*/
+		/*Inventory Functions*/ //TO DO: Templatize the inventory into a new class.
 		bool add_inventory(Item* i);
-
 		void remove_inventory(std::string item);
-		void display_inventory();
-
 		Item* inventory_search(std::string itemName);
 
+		bool add_gear(Gear* i);
+		void remove_gear(std::string item);
+		Gear* gear_search(std::string itemName);
+
+		bool add_wep(Weapon* i);
+		void remove_wep(std::string item);
+		Weapon* wep_search(std::string itemName);
+
+		void display_inventory();
+
 		/*Equipment Functions*/
-		void equip_slot(int i, const Item* x);
-		void remove_slot(int i);
+		void equip_gear(int i, const Gear* x);
+		void remove_gear(int i);
+
+		void equip_wep(int i, const Weapon* x);
+		void remove_wep(int i);
+
 		void display_equipment();
 
 		int find_slot(std::string gear);

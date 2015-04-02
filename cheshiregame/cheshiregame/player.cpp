@@ -6,7 +6,7 @@
 
 using namespace std;
 
-/*Get Functions*/
+/*Constructors*/
 
 player::player(){
     playername = "Player";
@@ -16,14 +16,21 @@ player::player(){
     pexp = 0;
 	maxexp = 50;
 	statpoints = 0;
-	inv_size = 20;
 	min_dmg = 1;
 	max_dmg = 10;
 	defending = false;
+
+	inv_size = 0;
+	inv_max_size = 20;
+	item_size = 0;
+	gear_size = 0;
+	wep_size = 0;
+
 	playerstats.resize(5);
 	equipment.resize(7);
+	weapon.resize(2);
 
-	none = new Item("None", -1);
+	none = new Gear("None", "None", -1);
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = none;
@@ -39,14 +46,21 @@ player::player(std::string pName, std::string pJob)
 	pexp = 0;
 	maxexp = 50;
 	statpoints = 0;
-	inv_size = 20;
 	min_dmg = 1;
 	max_dmg = 10;
 	defending = false;
+
 	playerstats.resize(5);
 	equipment.resize(7);
+	weapon.resize(2);
 
-	none = new Item("None", -1); //Default Item named none
+	inv_size = 0;
+	inv_max_size = 20;
+	item_size = 0;
+	gear_size = 0;
+	wep_size = 0;
+
+	none = new Gear("None", "None", -1); //Default Item named none
 
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
@@ -63,14 +77,21 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
     pexp = amount;
 	maxexp = amount;
 	statpoints = statpts;
-	inv_size = 20;
 	min_dmg = 1 * lvl; //Change later
 	max_dmg = 10 * lvl;
 	defending = false;
+
 	playerstats.resize(5);
 	equipment.resize(7);
+	weapon.resize(2);
 
-	none = new Item("None", -1); //Default Item named none
+	inv_size = 0;
+	inv_max_size = 20;
+	item_size = 0;
+	gear_size = 0;
+	wep_size = 0;
+
+	none = new Gear("None", "None", -1); //Default Item named none
 
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
@@ -85,6 +106,16 @@ player::~player()
 		inventory.at(i) = NULL;
 	}
 
+	for (unsigned i = 0; i < gear_inv.size(); ++i)
+	{
+		gear_inv.at(i) = NULL;
+	}
+
+	for (unsigned i = 0; i < wep_inv.size(); ++i)
+	{
+		wep_inv.at(i) = NULL;
+	}
+
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = NULL;
@@ -93,6 +124,8 @@ player::~player()
 	delete none;
 
 }
+
+/*Get Functions*/
 
 int player::getMaxHP()
 {
@@ -118,9 +151,24 @@ int player::getexp()
     return pexp;
 }
 
+int player::getItemSize()
+{
+	return item_size;
+}
+
 int player::getInvSize()
 {
 	return inv_size;
+}
+
+int player::getGearSize()
+{
+	return gear_size;
+}
+
+int player::getWepSize()
+{
+	return wep_size;
 }
 
 string player::getname()
@@ -414,11 +462,12 @@ bool player::isDefending(){
 /*Inventory Functions*/
 bool player::add_inventory(Item* i) 
 {
-	if (inv_size > inventory.size())
+	if (inv_max_size > inv_size)
 	{
 		if (i->getName() != "None")
 		{
 			inventory.push_back(i);
+			inv_size++;
 			return true;
 		}
 	}
@@ -451,6 +500,91 @@ Item* player::inventory_search(string itemName)
 	return NULL; //Or false.
 }
 
+/*Gear Functions*/
+
+bool player::add_gear(Gear* i)
+{
+	if (inv_max_size > inv_size)
+	{
+		if (i->getName() != "None")
+		{
+			gear_inv.push_back(i);
+			inv_size++;
+			return true;
+		}
+	}
+	return false;
+}
+
+void player::remove_gear(string item)
+{
+	for (unsigned i = 0; i < gear_inv.size(); ++i)
+	{
+		if (gear_inv.at(i)->getName() == item)
+		{
+			delete gear_inv.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
+			gear_inv.erase(gear_inv.begin() + i);
+		}
+	}
+
+}
+
+Gear* player::gear_search(string itemName)
+{
+	for (unsigned i = 0; i < gear_inv.size(); ++i)
+	{
+		if (gear_inv.at(i)->getName() == itemName)
+		{
+			return gear_inv.at(i); //Or true.
+		}
+	}
+	return NULL; //Or false.
+}
+
+/*Weapon Functions*/
+
+bool player::add_wep(Weapon* i)
+{
+	if (inv_max_size > inv_size)
+	{
+		if (i->getName() != "None")
+		{
+			wep_inv.push_back(i);
+			inv_size++;
+			return true;
+		}
+	}
+	return false;
+}
+
+void player::remove_wep(string item)
+{
+	for (unsigned i = 0; i < wep_inv.size(); ++i)
+	{
+		if (wep_inv.at(i)->getName() == item)
+		{
+			delete wep_inv.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
+			wep_inv.erase(wep_inv.begin() + i);
+		}
+	}
+
+}
+
+Weapon* player::wep_search(string itemName)
+{
+	for (unsigned i = 0; i < wep_inv.size(); ++i)
+	{
+		if (wep_inv.at(i)->getName() == itemName)
+		{
+			return wep_inv.at(i); //Or true.
+		}
+	}
+	return NULL; //Or false.
+}
+
+
+//void player::inventory_display_type(std::string type, 
+
 void player::display_inventory()
 {
 	std::string line = "-----------------------------------------------------";
@@ -463,15 +597,31 @@ void player::display_inventory()
 			std::cout << std::endl;
 		}
 	}
+	for (unsigned i = 0; i < gear_inv.size(); ++i)
+	{
+		std::cout << gear_inv.at(i)->getName() << "  ";
+		if (i % 3 == 0 && i != 0)
+		{
+			std::cout << std::endl;
+		}
+	}
+	for (unsigned i = 0; i < wep_inv.size(); ++i)
+	{
+		std::cout << wep_inv.at(i)->getName() << "  ";
+		if (i % 3 == 0 && i != 0)
+		{
+			std::cout << std::endl;
+		}
+	}
 	std::cout << std::endl << line << std::endl;
 }
 
 /*Equipment Functions*/
 
-void player::equip_slot(int i, const Item* x)
+void player::equip_gear(int i, const Gear* x)
 {
-	Item* temp = equipment.at(i);
-	Item* slot = new Item(x);
+	Gear* temp = equipment.at(i);
+	Gear* slot = new Gear(x);
 
 	remove_inventory(x->getName());
 	equipment.at(i) = slot;
@@ -479,10 +629,32 @@ void player::equip_slot(int i, const Item* x)
 		add_inventory(temp);
 }
 
-void player::remove_slot(int i)
+void player::remove_gear(int i)
 {
 
-	if (!add_inventory(equipment.at(i)))
+	if (!add_gear(equipment.at(i)))
+	{
+		std::cout << "Your inventory is too full." << std::endl;
+		return;
+	}
+	equipment.at(i) = none;
+}
+
+void player::equip_wep(int i, const Weapon* x)
+{
+	Weapon* temp = weapon.at(i);
+	Weapon* slot = new Weapon(x);
+
+	remove_inventory(x->getName());
+	weapon.at(i) = slot;
+	if (temp->getName() != "None")
+		add_inventory(temp);
+}
+
+void player::remove_wep(int i)
+{
+
+	if (!add_gear(equipment.at(i)))
 	{
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
@@ -526,13 +698,13 @@ int player::find_slot(std::string gear)
 	}
 }
 
-void player::display_equipment()
+void player::display_equipment() //TO DO: What if an equipment points to null?
 {
 	std::cout << "Head: " << equipment.at(0)->getName() << std::endl;
 	std::cout << "Torso: " << equipment.at(1)->getName() << std::endl;
 	std::cout << "Leggings: " << equipment.at(2)->getName() << std::endl;
 	std::cout << "Shoes: " << equipment.at(3)->getName() << std::endl;
 	std::cout << "Gloves: " << equipment.at(4)->getName() << std::endl;
-	std::cout << "Main Hand: " << equipment.at(5)->getName() << std::endl;
-	std::cout << "Off Hand: " << equipment.at(6)->getName() << std::endl;
+	std::cout << "Main Hand: " << weapon.at(0)->getName() << std::endl;
+	std::cout << "Off Hand: " << weapon.at(1)->getName() << std::endl;
 }
