@@ -72,7 +72,7 @@ void Store::printStore()
 {
     for(int i = 0; i < storeInventory.size(); i++)
     {
-		cout << i << ". " << storeInventory.at(i)->getName() << ' ' << storeInventory.at(i)->getValue()
+	cout << i << ". " << storeInventory.at(i)->getName() << ' ' << storeInventory.at(i)->getValue()
         << " gold" << endl;
     }
 }
@@ -81,10 +81,11 @@ void Store::fillStore(const string &input_file)
     ifstream fin;               
     string itemName;
     int val;
+    string type;
     fin.open(input_file.c_str());
-    while(fin >> itemName && fin >> val)
+    while(fin >> itemName && fin >> val && fin >> type)
     {
-		Item * temp = new Item(itemName, val);
+	Item * temp = new Item(itemName, val, type);
         storeInventory.push_back(temp);
     }
     fin.close();
