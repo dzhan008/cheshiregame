@@ -191,7 +191,7 @@ void player::setlevel(int& level)
     plevel = level;
 }
 
-void player::setmoney(int& money)
+void player::setmoney(int money)
 {
     pmoney = money;
 }
