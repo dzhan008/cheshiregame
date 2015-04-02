@@ -209,7 +209,15 @@ void Combat_System::runBattle(Entity* enemy){
 		}
 	}
 	if (play->getHP() > 0){
-		play->setexp(play->getexp() + enemy->getEXP());
+		int EXP = enemy->getEXP();
+		if(allies.size() > 0){
+			EXP /= allies.size() + 1;
+		}
+		for(unsigned i = 0; i < allies.size(); i++){
+			allies.at(i)->setexp(allies.at(i)->getexp() + EXP);
+		}
+		play->setexp(play->getexp() + EXP);
+		play->setmoney(play->getmoney() + enemy->getVal());
 		cout << "You've won the battle!" << endl;
 		cout << "You've gained " << enemy->getEXP() << " EXP!" << endl;
 	}
@@ -224,6 +232,8 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 	int enemyOptionChoice;
 	bool eChoice;
 	int battleSize = enemy.size();
+	int totalXP = 0;
+	int totalGold = 0;
 	turn = calculateTurn();
 	while (play->getHP() > 0 && enemy.size() > 0){
 		if (turn = 0){
@@ -240,6 +250,8 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				damage = play->calculateDamage(*enemy.at(enemyOptionChoice), eChoice);
 				cout << "You've hit enemy " << enemyOptionChoice + 1 << " for " << damage << " damage!" << endl;
 				if (damage > enemy.at(enemyOptionChoice)->getHealth()){
+					totalXP += enemy.at(enemyOptionChoice)->getEXP();
+					totalGold += enemy.at(enemyOptionChoice)->getVal();
 					enemy.erase(enemy.begin() + enemyOptionChoice);
 					cout << "You've killed enemy " << eChoice << "!" << endl;
 				}
@@ -282,7 +294,16 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 					int attacked = attackChoice(enemy.size());
 					int damage = allies.at(i)->calculateDamage(*enemy.at(attacked), enemy.at(attacked)->isDefending());
 					enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
-					cout << allies.at(i)->getname() << " has hit enemy " << attacked << " for " << damage << " damage." << endl;
+					if (damage > enemy.at(attacked)->getHealth()){
+						totalXP += enemy.at(attacked)->getEXP();
+						totalGold += enemy.at(attacked)->getVal();
+						enemy.erase(enemy.begin() + attacked);
+						cout << "Your ally has killed the " << enemy.at(attacked)->getName() << "!" << endl;
+					}
+					else{
+						enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
+						cout << allies.at(i)->getname() << " has hit enemy " << attacked << " for " << damage << " damage." << endl;
+					}
 				}
 				else{
 					cout << allies.at(i)->getname() << " is defending..." << endl;
@@ -310,5 +331,20 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				}
 			}
 		}
+	}
+	if (play->getHP() > 0){
+		if(allies.size() > 0){
+			totalXP /= allies.size() + 1;
+		}
+		for(unsigned i = 0; i < allies.size(); i++){
+			allies.at(i)->setexp(allies.at(i)->getexp() + totalXP);
+		}
+		play->setexp(play->getexp() + totalXP);
+		play->setmoney(play->getmoney() + totalGold);
+		cout << "You've won the battle!" << endl;
+		cout << "You've gained " << totalXP << " EXP!" << endl;
+	}
+	else{
+		cout << "Game Over." << endl;
 	}
 }
