@@ -104,19 +104,19 @@ int Combat_System::promptChoices(){
 	}
 }
 
-int promptEnemyChoice(vector<Entity*> enemies){
+int Combat_System::promptEnemyChoice(vector<Entity*> enemies){
 	unsigned choice;
 	cout << "Which enemy number would you like to attack?: " << endl;
 	for(unsigned i = 0; i < enemies.size(); i++){
-	cout << "Enemy " << i+1 << ": " << enemies.at(i)->getName();
+		cout << "Enemy " << i+1 << ": " << enemies.at(i)->getName();
 	}
 	cin >> choice;
 	if(choice >= 1 || choice <= enemies.size()){
-	return choice - 1;
+		return choice - 1;
 	}
 	else{
-	cout << "Invalid choice, please try again.";
-	promptEnemyChoice(enemies);
+		cout << "Invalid choice, please try again.";
+		promptEnemyChoice(enemies);
 	}
 }
 
