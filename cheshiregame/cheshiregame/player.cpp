@@ -31,9 +31,14 @@ player::player(){
 	weapon.resize(2);
 
 	none = new Gear("None", "None", -1);
+	none_wep = new Weapon("None", "None", 0, 0);
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = none;
+	}
+	for (unsigned i = 0; i < weapon.size(); ++i)
+	{
+		weapon.at(i) = none_wep;
 	}
 }
 
@@ -61,10 +66,15 @@ player::player(std::string pName, std::string pJob)
 	wep_size = 0;
 
 	none = new Gear("None", "None", -1); //Default Item named none
+	none_wep = new Weapon("None", "None", 0, 0);
 
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = none;
+	}
+	for (unsigned i = 0; i < weapon.size(); ++i)
+	{
+		weapon.at(i) = none_wep;
 	}
 }
 
@@ -92,10 +102,15 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
 	wep_size = 0;
 
 	none = new Gear("None", "None", -1); //Default Item named none
+	none_wep = new Weapon("None", "None", 0, 0);
 
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = none;
+	}
+	for (unsigned i = 0; i < weapon.size(); ++i)
+	{
+		weapon.at(i) = none_wep;
 	}
 }
 
@@ -119,6 +134,10 @@ player::~player()
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = NULL;
+	}
+	for (unsigned i = 0; i < weapon.size(); ++i)
+	{
+		weapon.at(i) = NULL;
 	}
 
 	delete none;
@@ -623,10 +642,10 @@ void player::equip_gear(int i, const Gear* x)
 	Gear* temp = equipment.at(i);
 	Gear* slot = new Gear(x);
 
-	remove_inventory(x->getName());
+	remove_gear(x->getName());
 	equipment.at(i) = slot;
 	if (temp->getName() != "None")
-		add_inventory(temp);
+		add_gear(temp);
 	else
 	{
 		gear_size -= 1;
@@ -652,10 +671,12 @@ void player::equip_wep(int i, const Weapon* x)
 	Weapon* temp = weapon.at(i);
 	Weapon* slot = new Weapon(x);
 
-	remove_inventory(x->getName());
+	remove_wep(x->getName());
 	weapon.at(i) = slot;
 	if (temp->getName() != "None")
-		add_inventory(temp);
+	{
+		add_wep(temp);
+	}
 	else
 	{
 		wep_size -= 1;
@@ -671,7 +692,7 @@ void player::remove_wep(int i)
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
 	}
-	equipment.at(i) = none;
+	weapon.at(i) = none_wep;
 	wep_size += 1;
 	inv_size += 1;
 }

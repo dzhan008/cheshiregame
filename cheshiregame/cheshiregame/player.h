@@ -48,6 +48,7 @@ class player
 		std::vector<Weapon*> wep_inv;
 
 		Gear* none;
+		Weapon* none_wep;
 		int randNumber();
 
     public:
