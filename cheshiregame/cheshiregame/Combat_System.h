@@ -12,8 +12,8 @@ class Combat_System{
 		vector<Ally*> allies;
 	public:
 		Combat_System();
-		Combat_System(player& p);
-		Combat_System(player& p, vector<Ally> allies);
+		Combat_System(player* p);
+		Combat_System(player* p, vector<Ally*> allies);
 		void runBattle(vector<Entity*> enemy);
 		void runBattle(Entity* enemy);
 		void updatePlayer(player* p);
