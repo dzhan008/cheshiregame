@@ -36,7 +36,7 @@ public:
 
 	/*Create Entity*/
 	Entity();
-	Entity(string entityName, int health, int lvl, int amount, int d);
+	Entity(string entityName, int health, int lvl, int amount, int d, int val);
 	~Entity();
 	/*Health*/
 	int getMaxHealth(); //gets max HP to be used in main
@@ -47,7 +47,7 @@ public:
 	int getLevel(); //gets the level to be used in main
 	int getEXP(); //gets the amount of EXP to be used in main
 	int getDef();
-
+	int getVal();
 	/*Stats*/
 	void setEntityStats(int str, int agi, int vit, int dex, int luk);
 	void DisplayStats(); //displays the stats of the entity to be used in main
@@ -71,6 +71,7 @@ private:
 	int maxHP;
 	int currHP;
 	int level;
+	int value;
 	int min_dmg;
 	int max_dmg;
 	int def;

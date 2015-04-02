@@ -9,10 +9,10 @@ using namespace std;
 /*Create Entity*/
 
 Entity::Entity()
-	: name("Enemy"), maxHP(10), currHP(10), level(1), numEXP(1), min_dmg(1), max_dmg(10), def(0), defending(false)
+	: name("Enemy"), maxHP(10), currHP(10), level(1), numEXP(1), min_dmg(1), max_dmg(10), def(0), value(0), defending(false)
 { }
-Entity::Entity(string entityName, int health, int lvl, int amount, int d)
-	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), defending(false)
+Entity::Entity(string entityName, int health, int lvl, int amount, int d, int val)
+	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), value(val), defending(false)
 { }
 
 Entity::~Entity()
@@ -55,6 +55,11 @@ void Entity::setHealth(int health)
 
 int Entity::getDef(){
 	return def;
+}
+
+int Entity::getVal() //For gold
+{
+	return value;
 }
 
 int Entity::randNumber(){
