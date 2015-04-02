@@ -11,8 +11,8 @@ using namespace std;
 /*
 struct Spells
 {
-	string spell_name;
-	int spell_dmg;
+string spell_name;
+int spell_dmg;
 };
 */
 
@@ -33,7 +33,7 @@ public:
 	/*Create Entity*/
 	Entity();
 	Entity(string entityName, int health, int lvl, int amount, int d);
-	
+	~Entity();
 	/*Health*/
 	int getMaxHealth(); //gets max HP to be used in main
 	void setHealth(int health); // updates HP of entity when attacked
@@ -55,7 +55,7 @@ public:
 	/*Print*/
 	void Print(); //prints all information about entity
 	void print_loot(); //prints all the loot 
-	
+
 	int calculateDamage(player play, bool defend);
 	int calculateDamage(Ally* ally, bool defend);
 
@@ -76,7 +76,7 @@ private:
 	//int components;
 
 	vector<Item*> loot;
-	
+
 	int randNumber();
 };
 

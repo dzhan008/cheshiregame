@@ -7,7 +7,6 @@
 #include <string>
 #include <fstream>
 
-#include "Entity.h"
 
 using namespace std;
 
@@ -21,8 +20,8 @@ private:
 	vector<Item> dungeon_loot; //loot specific for that dungeon
 
 public:
-	Dungeon(const string &text_file, const string &dun_loot); //constructor for first dungeon
-	void change_dungeon(const string &text_file, const string &dun_loot); //changes dungeon
+	Dungeon(const string &text_file); //constructor for first dungeon
+	void change_dungeon(const string &text_file); //changes dungeon
 	const void display_dungeon(); //displays monsters in dungeon
 	int size(); //returns number of monsters in dungeon
 	const Entity rand_monster(); //returns a random entity in the dungeon
