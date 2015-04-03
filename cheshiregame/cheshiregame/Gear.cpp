@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Gear.h"
 
 #include <iostream>
 	
@@ -6,6 +7,10 @@ using namespace std;
 
 //Types shall be as follows:
 //Helmet, Chest, Legs, Arms, Shoes
+Gear::~Gear()
+{
+	delete this;
+}
 bool Gear::equipGear(string item, unsigned bodyPart, player* p)
 {
 	if (bodyPart > 4)
@@ -50,10 +55,10 @@ string Gear::getType() const
 	return type;
 }
 
-Gear::Gear(std::string nam,std::string type, int val)
+Gear::Gear(std::string name, int val, string type, int stat)
 {
-	name = nam;
-	value = val;
+	this->name = name;
+	this->value = val;
 	this->type = type;
 }
 
@@ -61,10 +66,11 @@ Gear::Gear(const Gear*& origGear)
 {
 	this->name = origGear->name;
 	this->value = origGear->value;
-	this->statBoost = statBoost;
+	this->statBoost = origGear->statBoost;
 }
 void Gear::printItem() const
 {
 	Item::printItem();
 	cout << "Type: " << type << endl;
+	cout << "Defense Boost: +" << statBoost << endl;
 }

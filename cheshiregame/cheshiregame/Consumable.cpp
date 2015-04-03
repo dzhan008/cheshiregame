@@ -5,6 +5,14 @@
 
 using namespace std;
 
+Consumable::Consumable(std::string name, int val, std:: string type, float rare, unsigned boost)
+{
+	this->name = name;
+	this->value = val;
+	this->type = type;
+	this->rarity = rare;
+	this->boost = boost;
+}
 bool Consumable::usePotion(player p)
 {
 	for (int i = 0; i < p.getInvSize(); i++)
@@ -31,7 +39,10 @@ bool Consumable::usePotion(player p)
 	cout << "Potion not found." << endl;
 	return false;
 }
-
+Consumable::~Consumable()
+{
+	delete this;
+}
 string Consumable::getType() const
 {
 	return "Consumable";
