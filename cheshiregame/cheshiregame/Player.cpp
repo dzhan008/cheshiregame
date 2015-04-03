@@ -27,7 +27,7 @@ player::player(){
 	wep_size = 0;
 
 	playerstats.resize(5);
-	equipment.resize(7);
+	equipment.resize(4);
 	weapon.resize(2);
 
 	none = new Gear("None", "None", -1);
@@ -56,7 +56,7 @@ player::player(std::string pName, std::string pJob)
 	defending = false;
 
 	playerstats.resize(5);
-	equipment.resize(7);
+	equipment.resize(4);
 	weapon.resize(2);
 
 	inv_size = 0;
@@ -92,7 +92,7 @@ player::player(string pName, string pJob, int health, int lvl, int amount, int s
 	defending = false;
 
 	playerstats.resize(5);
-	equipment.resize(7);
+	equipment.resize(4);
 	weapon.resize(2);
 
 	inv_size = 0;
@@ -737,9 +737,8 @@ void player::display_equipment() //TO DO: What if an equipment points to null?
 {
 	std::cout << "Head: " << equipment.at(0)->getName() << std::endl;
 	std::cout << "Torso: " << equipment.at(1)->getName() << std::endl;
-	std::cout << "Leggings: " << equipment.at(2)->getName() << std::endl;
-	std::cout << "Shoes: " << equipment.at(3)->getName() << std::endl;
-	std::cout << "Gloves: " << equipment.at(4)->getName() << std::endl;
+	std::cout << "Gloves: " << equipment.at(2)->getName() << std::endl;
+	std::cout << "Pants: " << equipment.at(3)->getName() << std::endl;
 	std::cout << "Main Hand: " << weapon.at(0)->getName() << std::endl;
 	std::cout << "Off Hand: " << weapon.at(1)->getName() << std::endl;
 }

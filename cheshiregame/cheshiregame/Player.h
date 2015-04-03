@@ -41,7 +41,7 @@ class player
 		std::vector<int> playerstats; //Current stats for the player.
 		std::vector<Entity> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
-		std::vector<Gear*> equipment; //0 = Helmet 1 = Chest 2 = Legs 3 = Arms
+		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Arms 3 = Legs
 		std::vector<Weapon*> weapon; //0 = Main Hand 1 = Off Hand
 		std::vector<Item*> inventory; //CHANGE TO ITEMS LATER
 		std::vector<Gear*> gear_inv;
@@ -129,6 +129,8 @@ class player
 		void display_equipment();
 
 		int find_slot(std::string gear);
+
+		void update_player();
 
 		/*Party Functions*/
 		int calculateDamage(Entity enemy, bool defend);
