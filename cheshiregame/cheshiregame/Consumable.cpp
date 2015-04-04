@@ -5,12 +5,12 @@
 
 using namespace std;
 
-Consumable::Consumable(std::string name, int val, std:: string type, float rare, unsigned boost)
+Consumable::Consumable(std::string name, int val, std:: string type, unsigned boost)
 {
 	this->name = name;
 	this->value = val;
 	this->type = type;
-	this->rarity = rare;
+	this->rarity = 0;
 	this->boost = boost;
 }
 bool Consumable::usePotion(player p)

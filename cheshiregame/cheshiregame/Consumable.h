@@ -8,7 +8,7 @@ class Consumable : public Item
 	private:
 		unsigned boost;
 	public:
-		Consumable(std::string, int, std::string, float, unsigned);
+		Consumable(std::string, int, std::string, unsigned);
 		~Consumable();
 		bool usePotion(player p);
 		string getType() const;

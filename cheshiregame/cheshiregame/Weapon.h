@@ -8,7 +8,7 @@
 class Weapon : public Item
 {
 	private:
-		int damageBoost;
+		unsigned damageBoost;
 		string type;
 	public:
 		Weapon(std::string name, int val, std::string type, int dmg);

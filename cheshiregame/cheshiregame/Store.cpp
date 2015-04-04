@@ -78,15 +78,63 @@ void Store::printStore()
 }
 void Store::fillStore(const string &input_file)
 {
-    ifstream fin;               
+    ifstream fin; 
+
     string itemName;
     int val;
     string type;
+	unsigned boost;
+
     fin.open(input_file.c_str());
-    while(fin >> itemName && fin >> val && fin >> type)
+	if (!fin)
+	{
+		cout << "Error opening file." << endl;
+		return;
+	}
+
+    while(fin >> type)
     {
-	Item * temp = new Item(itemName, val, type);
-        storeInventory.push_back(temp);
+		if (type == "Weapon")
+		{
+			fin >> itemName; fin >> val; fin >> boost;
+			Weapon* temp = new Weapon(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+			delete temp;
+		}
+		else if (type == "Chest")
+		{
+			fin >> itemName; fin >> val; fin >> boost;
+			Gear* temp = new Gear(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+			delete temp;
+		}
+		else if (type == "Helmet")
+		{
+			fin >> itemName; fin >> val; fin >> boost;
+			Gear* temp = new Gear(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+			delete temp;
+		}
+		else if (type == "Legs")
+		{
+			fin >> itemName; fin >> val; fin >> boost;
+			Gear* temp = new Gear(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+			delete temp;
+		}
+		else if (type == "Arms")
+		{
+			fin >> itemName; fin >> val; fin >> boost;
+			Gear* temp = new Gear(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+			delete temp;
+		}
+		else if (type == "Consumable")
+		{
+			fin >> itemName; fin >> val; fin >> boost;
+			Consumable * temp = new Consumable(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+		}
     }
     fin.close();
 }
