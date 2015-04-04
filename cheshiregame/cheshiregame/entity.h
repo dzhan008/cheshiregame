@@ -54,7 +54,8 @@ public:
 
 	/*Loot*/
 	void add_loot(Item* i); //adds one item to vector of loot
-	void give_loot(player& p); //adds loot to player inventory
+	void give_loot(player*& p); //adds loot to player inventory
+	void give_gold(player*& p); //adds gold to player
 
 	/*Print*/
 	void Print(); //prints all information about entity

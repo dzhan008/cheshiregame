@@ -25,7 +25,9 @@ public:
 	void change_dungeon(const string &text_file); //changes dungeon
 	const void display_dungeon(); //displays monsters in dungeon
 	int size(); //returns number of monsters in dungeon
+	const string get_dun_name(); //returns dungeon name
 	Entity* rand_monster(); //returns a random entity in the dungeon
+
 
 	//helper functions
 private:

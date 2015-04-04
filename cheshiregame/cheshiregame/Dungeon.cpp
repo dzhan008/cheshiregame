@@ -126,6 +126,10 @@ int Dungeon::size()
 	return entity_group.size();
 }
 
+const string Dungeon::get_dun_name()
+{
+	return dungeon_name;
+}
 Entity* Dungeon::rand_monster()
 {
 	int index = rand() % entity_group.size();
