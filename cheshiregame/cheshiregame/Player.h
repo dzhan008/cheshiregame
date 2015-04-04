@@ -11,6 +11,7 @@ class Item;
 class Gear;
 class Weapon;
 class Entity;
+class Consumable;
 
 
 class player
@@ -34,6 +35,7 @@ class player
 		int item_size;
 		int gear_size;
 		int wep_size;
+		int con_size;
 
 		int maxexp; //The maximum amount of exp the player has. May be put into another class.
 		std::string playername; //The player's name.
@@ -44,6 +46,7 @@ class player
 		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Arms 3 = Legs
 		std::vector<Weapon*> weapon; //0 = Main Hand 1 = Off Hand
 		std::vector<Item*> inventory; //CHANGE TO ITEMS LATER
+		std::vector<Consumable*> con_inv;
 		std::vector<Gear*> gear_inv;
 		std::vector<Weapon*> wep_inv;
 
@@ -108,6 +111,10 @@ class player
 		bool add_inventory(Item* i);
 		void remove_inventory(std::string item);
 		Item* inventory_search(std::string itemName);
+
+		bool add_con(Consumable* i);
+		void remove_con(std::string item);
+		Consumable* con_search(std::string itemName);
 
 		bool add_gear(Gear* i);
 		void remove_gear(std::string item);

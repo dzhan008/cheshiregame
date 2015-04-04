@@ -519,6 +519,49 @@ Item* player::inventory_search(string itemName)
 	return NULL; //Or false.
 }
 
+/*Consumable Functions*/
+
+bool player::add_con(Consumable* i)
+{
+	if (inv_max_size > inv_size)
+	{
+		if (i->getName() != "None")
+		{
+			con_inv.push_back(i);
+			inv_size++;
+			return true;
+		}
+	}
+	return false;
+}
+
+void player::remove_con(string item)
+{
+	for (unsigned i = 0; i < con_inv.size(); ++i)
+	{
+		if (con_inv.at(i)->getName() == item)
+		{
+			delete con_inv.at(i); 
+			con_inv.erase(con_inv.begin() + i);
+			inv_size--;
+		}
+	}
+
+}
+
+Consumable* player::con_search(string itemName)
+{
+	for (unsigned i = 0; i < gear_inv.size(); ++i)
+	{
+		if (gear_inv.at(i)->getName() == itemName)
+		{
+			return con_inv.at(i); //Or true.
+		}
+	}
+	return NULL; //Or false.
+}
+
+
 /*Gear Functions*/
 
 bool player::add_gear(Gear* i)
@@ -543,6 +586,7 @@ void player::remove_gear(string item)
 		{
 			delete gear_inv.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
 			gear_inv.erase(gear_inv.begin() + i);
+			inv_size--;
 		}
 	}
 
@@ -584,6 +628,7 @@ void player::remove_wep(string item)
 		{
 			delete wep_inv.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
 			wep_inv.erase(wep_inv.begin() + i);
+			inv_size--;
 		}
 	}
 
