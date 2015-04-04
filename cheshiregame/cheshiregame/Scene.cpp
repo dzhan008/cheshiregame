@@ -322,7 +322,7 @@ void Scene::scene_003(player* p)
 		}
 		else if (input == 2)
 		{
-			scene_003_2();
+			scene_003_2(p);
 			return;
 		}
 		else if (input == 3)
@@ -341,24 +341,24 @@ void Scene::scene_003_1(player* p)
 	std::cout << "As you loot the house, a voice beckons to you." << std::endl;
 	std::cout << "\"Hello!\"" << std::endl;
 
-	scene_003_4();
+	scene_003_4(p);
 	
 }
 
-void Scene::scene_003_2()
+void Scene::scene_003_2(player* p)
 {
 	std::cout << "You yell into the house, but there is no response. You decide to holler once more, in hopes that a person may come out. \"Try again, maybe you might find someone in there.\"\n\n";
-	scene_003_4();
+	scene_003_4(p);
 }
 
 void Scene::scene_003_3(player* p)
 {
 	std::cout << "You decide the house was not worth checking out, and head out to the town square. The middle of the city was just as empty as the house you visited earlier. The only difference between the two was the fountain that flowed water onto its base. Before you walk up to the fountain, a voice beckons you." << std::endl;
 	std::cout << "\"Hello!\"" << std::endl;
-	scene_003_4();
+	scene_003_4(p);
 }
 
-void Scene::scene_003_4()
+void Scene::scene_003_4(player* p)
 {
 	int input = 0;
 
@@ -374,7 +374,7 @@ void Scene::scene_003_4()
 		std::cin >> input;
 		if (input == 1)
 		{
-			scene_003_4_1();
+			scene_003_4_1(p);
 			return;
 		}
 		else if (input == 2)
@@ -390,9 +390,11 @@ void Scene::scene_003_4()
 	}
 }
 
-void Scene::scene_003_4_1()
+void Scene::scene_003_4_1(player* p)
 {
 	std::cout << "You take your weapon and hit him with sheer force. The man is shocked, but was not able to recover from your flurry of hits. After your tenth strike, the man is dead. You take his mask because why not?\n\n";
+	Gear* mask = new Gear("Jester Mask", 50, "Helmet", 20);
+	p->add_gear(mask);
 	scene_004(true);
 }
 

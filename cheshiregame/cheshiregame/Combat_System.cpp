@@ -375,10 +375,13 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 		for(unsigned i = 0; i < allies.size(); i++){
 			allies.at(i)->setexp(allies.at(i)->getexp() + totalXP);
 		}
-		play->setexp(play->getexp() + totalXP);
 		play->setmoney(play->getmoney() + totalGold);
 		cout << "You've won the battle!" << endl;
 		cout << "You've gained " << totalXP << " EXP!" << endl;
+		if (play->add_exp(totalXP))
+		{
+			std::cout << "You have leveled up! You are now level" << play->getlevel() << "." << std::endl;
+		}
 	}
 	else{
 		cout << "Game Over." << endl;

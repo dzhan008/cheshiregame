@@ -691,6 +691,14 @@ void player::display_inventory()
 			std::cout << std::endl;
 		}
 	}
+	for (unsigned i = 0; i < con_inv.size(); ++i)
+	{
+		std::cout << con_inv.at(i)->getName() << "  ";
+		if (i % 3 == 0 && i != 0)
+		{
+			std::cout << std::endl;
+		}
+	}
 	std::cout << std::endl << line << std::endl;
 }
 

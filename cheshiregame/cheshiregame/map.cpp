@@ -217,11 +217,12 @@ void map::display()
 bool map::run(player*& p, Dungeon* d, Combat_System c)
 {
 	string input;
+	bool menu = false;
 	while (true)
 	{
 		cout << endl;
 		display();
-		cout << "Enter direction (up down left right) q to quit " << endl;
+		cout << "Enter direction (up, down, left, right). " << endl;
 		cin >> input; 
 		if (input == "up")
 		{
@@ -243,18 +244,21 @@ bool map::run(player*& p, Dungeon* d, Combat_System c)
 			moveRight();
 			display();
 		}
-		else if (input == "q")
+		else if (input == "menu")
 		{
-			return false;
+			Scene s;
+			s.basic_menu(p);
 		}
 		if ((playerposition.first == goal.first) && (playerposition.second == goal.second))
 		{
-			cout << "Map Cleared. " << endl;
 			return true;
 		}
 		if ((rand() % 4 + 1) == 1)
 		{
-			c.runBattle(d->rand_monster());
+			if (!menu)
+			{
+				c.runBattle(d->rand_monster());
+			}
 		}
 		if (p->getHP() <= 0)
 		{

@@ -62,7 +62,7 @@ void Town::fill_town(const std::string &text_file) {
 Town::Town() {
 	//dungeon1 = new Dungeon("demo_dun_1.txt");
 	//dungeon2 = new Dungeon("demo_dun_2.txt");
-    fill_town("sample_town.txt");
+   // fill_town("sample_town.txt");
 }
 
 Town::Town(std::string filename) {
@@ -169,29 +169,33 @@ void Town::inn(player* p) {
         }
         cin.clear();
         cin.ignore(INT_MAX, '\n');
-        cout << "bad input, try again" << endl;
+        cout << "Bad input, try again." << endl;
 	}
     return;
 }
 
 void Town::blacksmith() {
     // TODO: Impelment blacksmith
-    std::cout << "unimplemented blacksmith" << std::endl;
+    std::cout << "Unimplemented." << std::endl;
     return;
 }
 
 void Town::tavern() {
     // TODO: Implement tavern
-    std::cout << "unimplemented tavern" << std::endl;
+    std::cout << "Unimplemented." << std::endl;
     return;
 }
 
 void Town::store(player* p) {
+	std::cout << "Unimplemented." << std::endl;
+	return;
     s.run(*p);
     return;
 }
 
 void Town::talk() {
+	std::cout << "Unimplemented." << std::endl;
+	return;
     srand(time(NULL));
     int random = rand() % this->people.size();
     std::cout << people.at(random).first << " says: " <<

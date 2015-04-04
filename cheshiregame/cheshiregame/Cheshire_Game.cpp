@@ -74,8 +74,11 @@ int main()
     cin >> input;
     if (input == 1)
     {
-		play->set_min_dmg(200);
-		play->set_max_dmg(500);
+		std::cout << "\n\n\n";
+		Consumable* potion = new Consumable("Potion", "Potion", 20, 10);
+		play->add_con(potion);
+		play->set_min_dmg(20);
+		play->set_max_dmg(90);
 		scene.scene_001(play);
 		battle_demo.runBattle(enemy2);
 		scene.scene_002(play);
@@ -96,6 +99,7 @@ int menu()
 
     while (decision != 4)
     {
+
 
         cout << "Please select one of the options below: " << endl;
         cout << "1. Combat Simulation" << endl;

@@ -31,10 +31,10 @@ public:
 	void scene_003_1(player* p);
 	void scene_003_1_1(player* p);
 	void scene_003_1_2();
-	void scene_003_2();
+	void scene_003_2(player* p);
 	void scene_003_3(player* p);
-	void scene_003_4();
-	void scene_003_4_1();
+	void scene_003_4(player* p);
+	void scene_003_4_1(player* p);
 	void scene_003_4_2();
 	void scene_003_4_3();
 	void scene_004(bool dead);
