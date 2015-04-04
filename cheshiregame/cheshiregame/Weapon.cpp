@@ -4,37 +4,13 @@
 
 using namespace std;
 
-//Types shall be as follows after the demo:
+//Types shall be as follows:
 //Staff, Dagger, Bow, Single, Double
-
-Weapon::Weapon(std::string name, int val, std::string type, int dmg)
-{
-	this->name = name;
-	Item::type = "Weapon";
-	this->type = type;
-	value = val;
-	damageBoost = dmg;
-}
-Weapon::Weapon(const Weapon& origWeapon)
-{
-	Item::Item(origWeapon);
-	this->damageBoost = damageBoost;
-}
-Weapon::Weapon(const Weapon*& origWeapon)
-{
-	this->name = origWeapon->name;
-	this->value = origWeapon->value;
-	this->damageBoost = damageBoost;
-}
-Weapon::~Weapon()
-{
-	delete this;
-}
 bool Weapon::equipWeapon(Weapon* wep, player* p)
 {
 	if (wep != NULL)
 	{
-		if (wep->getType() == "Sword")
+		if(wep->getType() == "Sword")
 		{
 			p->equip_wep(0, wep); //TO DO: Make this work for Off-Hand and other weapons
 			return true;
@@ -51,6 +27,31 @@ bool Weapon::equipWeapon(Weapon* wep, player* p)
 string Weapon::getType() const
 {
 	return "Weapon";
+}
+
+int Weapon::getValue(){
+	return damageBoost;
+}
+
+Weapon::Weapon(std::string nam, std::string type, int val, int dmg)
+{
+	name = nam;
+	Item::type = "Weapon";
+	this->type = type;
+	value = val;
+	damageBoost = dmg;
+}
+
+Weapon::Weapon(const Weapon& origWeapon)
+{
+	Item::Item(origWeapon);
+	this->damageBoost = damageBoost;
+}
+Weapon::Weapon(const Weapon*& origWeapon)
+{
+	this->name = origWeapon->name;
+	this->value = origWeapon->value;
+	this->damageBoost = damageBoost;
 }
 void Weapon::printItem() const
 {

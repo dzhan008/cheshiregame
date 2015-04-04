@@ -8,14 +8,17 @@
 class Weapon : public Item
 {
 	private:
-		unsigned damageBoost;
+		int damageBoost;
 		string type;
 	public:
-		Weapon(std::string name, int val, std::string type, int dmg);
-		~Weapon();
+		Weapon(std::string nam, std::string type, int val, int dmg);
 		Weapon(const Weapon&);
 		Weapon(const Weapon*&);
-		bool Weapon::equipWeapon(Weapon* wep, player* p);
+
+		int getValue(){
+			return damageBoost;
+		}
+		bool equipWeapon(Weapon* wep, player* p);
 		string getType() const;
 		void printItem() const;
 };
