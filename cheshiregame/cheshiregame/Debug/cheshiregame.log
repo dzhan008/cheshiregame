@@ -1,12 +1,13 @@
-﻿Build started 4/4/2015 3:19:58 AM.
-     1>Project "C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\cheshiregame\cheshiregame.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/4/2015 12:54:58 PM.
+     1>Project "C:\Users\Michaella\Documents\cheshiregame\cheshiregame\cheshiregame\cheshiregame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Cheshire_Game.cpp
-         Cheshire_Game.cpp
-     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\cheshire_game.cpp(56): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\david\documents\visual studio 2013\projects\cheshiregame\cheshiregame\cheshire_game.cpp(181): warning C4715: 'menu' : not all control paths return a value
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Store.cpp
+         Store.cpp
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(17): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(41): warning C4018: '>' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(76): warning C4018: '<' : signed/unsigned mismatch
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.lib" /MACHINE:X86 Debug\Ally.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.lib" /MACHINE:X86 Debug\Ally.obj
          Debug\Cheshire_Game.obj
          Debug\Combat_System.obj
          Debug\Consumable.obj
@@ -23,9 +24,9 @@
          Debug\Store.obj
          Debug\Town.obj
          Debug\Weapon.obj
-         cheshiregame.vcxproj -> C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\Debug\cheshiregame.exe
-     1>Done Building Project "C:\Users\David\Documents\Visual Studio 2013\Projects\cheshiregame\cheshiregame\cheshiregame.vcxproj" (Build target(s)).
+         cheshiregame.vcxproj -> C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.exe
+     1>Done Building Project "C:\Users\Michaella\Documents\cheshiregame\cheshiregame\cheshiregame\cheshiregame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.31
+Time Elapsed 00:00:04.87

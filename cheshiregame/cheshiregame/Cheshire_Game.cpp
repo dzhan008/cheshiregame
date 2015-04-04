@@ -79,6 +79,7 @@ int main()
 		play->add_con(potion);
 		play->set_min_dmg(20);
 		play->set_max_dmg(90);
+		play->setmoney(500);
 		scene.scene_001(play);
 		battle_demo.runBattle(enemy2);
 		scene.scene_002(play);
@@ -89,6 +90,10 @@ int main()
 	else if (input == 2)
 	{
 		//map1->run(play,);
+		Store s;
+		string file = "all_items.txt";
+		s.fillStore(file);
+		//s.run(play);
 	}
     return 0;
 }
