@@ -137,16 +137,18 @@ int Combat_System::calculateTurn(){
 	return 0;
 }
 
-void Combat_System::runBattle(Entity* enemy){
+void Combat_System::runBattle(Entity* e){
+	Entity* enemy = new Entity(e);
 	int optionChoice;
 	bool eChoice = enemy->isDefending();
 	turn = calculateTurn();
+	cout << endl << "You encounter a wild " << enemy->getName() << "!" << endl;
 	while (play->getHP() > 0 && enemy->getHealth() > 0){
 		if (turn == 0){
 		    play->setDefending(false);
-			cout << endl << "It is currently your turn." << endl;
+			cout << "It is currently your turn." << endl;
 			cout << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP." << endl;
-			cout << "Your enemy has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
+			cout << enemy->getName() << " has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
 			optionChoice = promptChoices();
 			if (optionChoice == 0){
 				int x = play->calculateDamage(*enemy, eChoice);
@@ -242,8 +244,17 @@ void Combat_System::runBattle(Entity* enemy){
 		}
 		play->setexp(play->getexp() + EXP);
 		play->setmoney(play->getmoney() + enemy->getVal());
+		e->give_loot(play);
+
 		cout << "You've won the battle!" << endl;
-		cout << "You've gained " << enemy->getEXP() << " EXP!" << endl;
+		cout << "You've gained " << enemy->getEXP() << " EXP and ";
+		cout << enemy->getVal() << " gold!" << endl;
+
+		if (!e->empty_loot())
+		{
+			cout << "Drops: " << endl;
+			e->print_loot();
+		}
 	}
 	else{
 		cout << "Game Over." << endl;

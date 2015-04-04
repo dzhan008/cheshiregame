@@ -15,12 +15,34 @@ Entity::Entity(string entityName, int health, int lvl, int amount, int d, int va
 	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), value(val), defending(false)
 { }
 
+Entity::Entity(Entity*& x)
+{
+	name = x->getName();
+	maxHP = x->getMaxHealth();
+	currHP = x->getMaxHealth();
+	numEXP = x->getEXP();
+	level = x->getLevel();
+	value = x->getVal();
+	min_dmg = 1;
+	max_dmg = 10;
+	def = x->getDef();
+	defending = false;
+	entityStats.resize(5);
+	entityStats = x->getStats();
+	
+
+}
 Entity::~Entity()
 {
 	for (int i = 0; i < loot.size(); i++)
 	{
 		loot.at(i) = 0;
 	}
+}
+
+vector<int> Entity::getStats()
+{
+	return entityStats;
 }
 //Gets the information of each individually. just in case we need to
 /*Name*/

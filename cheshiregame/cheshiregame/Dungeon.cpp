@@ -132,6 +132,11 @@ const string Dungeon::get_dun_name()
 }
 Entity* Dungeon::rand_monster()
 {
-	int index = rand() % entity_group.size();
+	int index = rand() % (entity_group.size() - 1); // -1 because boss is in last index
 	return entity_group.at(index);
+}
+
+Entity* Dungeon::get_boss()
+{
+	return entity_group.at(entity_group.size() - 1);
 }

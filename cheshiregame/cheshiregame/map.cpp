@@ -214,11 +214,12 @@ void map::display()
 		cout << endl;
 	}
 }
-bool map::run(player* p, Dungeon* d, Combat_System c)
+bool map::run(player*& p, Dungeon* d, Combat_System c)
 {
 	string input;
 	while (true)
 	{
+		cout << endl;
 		display();
 		cout << "Enter direction (up down left right) q to quit " << endl;
 		cin >> input; 
@@ -254,6 +255,10 @@ bool map::run(player* p, Dungeon* d, Combat_System c)
 		if ((rand() % 4 + 1) == 1)
 		{
 			c.runBattle(d->rand_monster());
+		}
+		if (p->getHP() <= 0)
+		{
+			return false;
 		}
 	}
 	return false;

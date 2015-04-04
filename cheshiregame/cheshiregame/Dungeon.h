@@ -27,6 +27,7 @@ public:
 	int size(); //returns number of monsters in dungeon
 	const string get_dun_name(); //returns dungeon name
 	Entity* rand_monster(); //returns a random entity in the dungeon
+	Entity* get_boss(); //returns the boss
 
 
 	//helper functions

@@ -1,0 +1,52 @@
+Twisted Treeline
+Normal
+Spider 100 2 100 20 5 6 7 8 9
+:loot:
+Cobweb
+20
+<end>
+Cerberus 150 1 10 3 40 2 3 2 4 1
+:loot:
+Hades' Gauntlet
+666
+<end>
+Miller 100 3 150 13 230 3 4 5 6 7
+<end>
+Payne 170 4 300 15 600 7 6 5 6 3
+<end>
+Goblin 100 2 100 12 300 2 3 4 5 6
+:loot:
+Talisman of Ascension
+400
+<end>
+Ghost 120 2 70 6 10 5 4 6 7 3
+:loot:
+Pandora's box
+20
+<end>
+Vampire 60 2 50 7 40 1 4 2 3 5
+:loot:
+Invisible Cape
+60
+<end>
+Banshee 50 3 200 4 20 4 3 2 0 1
+:loot:
+Banshee's Veil
+30
+<end>
+Vilemaw 200 5 400 11 700 10 10 10 10 10
+:loot:
+Trinity Force
+73
+<end>
+Ghast 90 1 5 1 90 1 1 2 2 3
+:loot:
+Heart of Gold
+44
+<end>
+Apollo 200 5 1000 2 17 16 15 14 13
+:loot:
+Luminous Jewels
+700
+<end>
+end
