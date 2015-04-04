@@ -1,15 +1,19 @@
 #ifndef TOWN_H_
 #define TOWN_H_
-
+#include "stdafx.h"
 #include <string>
 #include <vector>
 #include <utility>
+
+class Dungeon;
 
 class Town {
 private:
     std::string townname;
     /* Store goes here */
     Store s;
+	Dungeon* dungeon1;
+	Dungeon* dungeon2;
     /* Blacksmith goes here */
     // BlackSmith bs;
     /* Tavern goes here */
@@ -24,12 +28,13 @@ private:
 public:
     Town();
     Town(std::string filename);
-    void run();
-    void inn();
+    void run(player* p);
+	void inn(player* p);
     void tavern();
     void blacksmith();
     void store();
     void talk();
+	void dungeon_select();
 
 };
 
