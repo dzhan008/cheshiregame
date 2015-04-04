@@ -11,6 +11,7 @@ class Store
 {
     public:
         Store();
+        ~Store();
         void run(player p);
         void menu() const;
         void printStore(); 

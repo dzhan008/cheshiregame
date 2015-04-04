@@ -32,9 +32,9 @@ public:
 	void inn(player* p);
     void tavern();
     void blacksmith();
-    void store();
+    void store(player* p);
     void talk();
-	void dungeon_select();
+	void dungeon_select(player* p);
 
 };
 

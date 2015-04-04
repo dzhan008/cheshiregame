@@ -19,6 +19,8 @@
 #include "Scene.h"
 #include "Town.h"
 #include "Ally.h"
+#include "Dungeon.h"
+#include "Map.h"
 
 
 #include <stdio.h>

@@ -554,9 +554,9 @@ void player::remove_con(string item)
 
 Consumable* player::con_search(string itemName)
 {
-	for (unsigned i = 0; i < gear_inv.size(); ++i)
+	for (unsigned i = 0; i < con_inv.size(); ++i)
 	{
-		if (gear_inv.at(i)->getName() == itemName)
+		if (con_inv.at(i)->getName() == itemName)
 		{
 			return con_inv.at(i); //Or true.
 		}

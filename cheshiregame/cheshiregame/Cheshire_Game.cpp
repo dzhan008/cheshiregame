@@ -13,12 +13,14 @@
 //Gotta move these later or fix up menu
 //Shop demo_shop;
 string x = "Player 1";
-string y = "Enemy 1";
+string y = "Rica";
 string line = "--------------------------------------------------------------------------------";
-player* play = new player(x, "Game Master", 10, 1, 0, 0);
+player* play = new player(x, "Game Master", 300, 1, 0, 0);
 player* invtest = new player(x, "Game Master", 10, 1, 0, 0);
 map* map1 = new map(10);
+Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 1, 0, 5, 20);
+Entity* enemy2 = new Entity("Fox", 10, 1, 0, 2, 10);
 Combat_System battle_demo = Combat_System(play);
 Scene scene;
 
@@ -72,12 +74,18 @@ int main()
     cin >> input;
     if (input == 1)
     {
-		//scene.scene_003(play);
-		menu();
+		play->set_min_dmg(200);
+		play->set_max_dmg(500);
+		scene.scene_001(play);
+		battle_demo.runBattle(enemy2);
+		scene.scene_002(play);
+		scene.scene_003(play);
+		town1.run(play);
+		//menu();
     }
 	else if (input == 2)
 	{
-		map1->run();
+		//map1->run(play,);
 	}
     return 0;
 }
@@ -127,6 +135,7 @@ int menu()
 			Weapon* d = new Weapon("Dagger of Shadows", "Dagger", 776, 3);
 			Gear* e = new Gear("Clothes", "Chest", 500);
 			Gear* f = new Gear("Helmet", "Helmet", 500);
+			Consumable* g = new Consumable("Potion", "Potion", 20, 10);		
 
 			std::cout << "Testing add_inventory..." << std::endl;
 			
@@ -135,6 +144,7 @@ int menu()
 			invtest->add_wep(d);
 			invtest->add_gear(e);
 			invtest->add_gear(f);
+			invtest->add_con(g);
 
 			invtest->display_inventory();
 
@@ -146,6 +156,7 @@ int menu()
 			invtest->display_equipment();
 
 			scene.basic_menu(invtest);
+			invtest->displayInfo();
 
 			std::cout << "Testing equipment replacement..." << std::endl;
 
@@ -157,7 +168,6 @@ int menu()
 			invtest->remove_wep(0);
 			invtest->display_inventory();
 			invtest->display_equipment();
-
 
 		}
         cout << "The simulation has ended. Returning to main menu..." << endl;

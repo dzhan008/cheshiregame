@@ -21,7 +21,6 @@ class Item
         Item(const string, const int);
 		Item(const string, const int, const string);
 		Item(const string, const int, const string, const float);
-		~Item();
         Item(const Item &);
 		Item(const Item* &);
         virtual void printItem() const;

@@ -1,81 +1,18 @@
-Weapon
 Rusty Shiv
 5
-5
-Weapon
 Steel Longsword
 30
-10
-Weapon
 Legendary Ghostblade
-250
-25
-Chest
-Frayed Leather Coat
+1000
+Frayed Leather Armor
 15
-10
-Chest
-Heavy Iron Chestplate
-80
-25
-Legs
 Worn Fur Boots
 10
-5
-Legs
-Enchanted Greaves
-100
-20
-Arms
 Rough Leather Gloves
 5
-5
-Arms
-Light Mithril Gloves
-50
-15
-Helmet
 Steel Helmet
 15
-10
-Consumable
 Health Potion
 5
-10
-Consumable
-Health Potion
-5
-10
-Consumable
-Health Potion
-5
-10
-Consumable
-Health Potion
-5
-10
-Consumable
-Health Potion
-5
-10
-Consumable
 Mana Potion
 5
-10
-Consumable
-Mana Potion
-5
-10
-Consumable
-Mana Potion
-5
-10
-Consumable
-Mana Potion
-5
-10
-Consumable
-Mana Potion
-5
-10
-

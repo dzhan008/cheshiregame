@@ -35,7 +35,7 @@ void stats::statProgression(player* p) //Adding stats
         inputStats(remainingStats);
     }
 
-    p->setstats(curr_stats); //How would I push this to the actual player object?
+    p->setstats(curr_stats); 
 
     cout << "Here are your final stats:" << endl;
 	

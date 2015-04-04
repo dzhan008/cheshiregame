@@ -2,19 +2,22 @@
 #define GEAR_H
 
 #include "stdafx.h"
+#include "Item.h"
 
 class Gear : public Item
 {
 private:
 	string type;
-	int statBoost;
+	unsigned statBoost;
 public:
-	Gear(std::string nam, std::string type, int val);
-	Gear(const Gear*&);	
+	Gear(std::string name, std::string type, int val);
+	Gear(std::string name, int val, std::string type, int stat);
+	Gear(const Gear*&);
+	//~Gear();
 	bool equipGear(Gear* gear, player* p);
-	int getStats();
 	string getType() const;
 	void printItem() const;
+	int getStats();
 };
 
 #endif

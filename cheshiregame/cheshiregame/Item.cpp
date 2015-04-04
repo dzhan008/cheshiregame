@@ -22,10 +22,6 @@ Item::Item(const string name, const int val, const string type)
 Item::Item(const string name, const int val, const string type, const float rare)
 	: name(name), value(val), type(type), rarity(rare)
 {}
-Item::Item()
-{
-	delete this;
-}
 Item::Item(const Item& origItem)
 {
 	this->name = origItem.name;

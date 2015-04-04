@@ -53,12 +53,25 @@ Gear::Gear(std::string nam,std::string type, int val)
 	this->type = type;
 }
 
+Gear::Gear(std::string name, int val, std::string type, int stat)
+{
+	this->name = name;
+	value = val;
+	this->type = type;
+	statBoost = stat;
+}
+
 Gear::Gear(const Gear*& origGear)
 {
 	this->name = origGear->name;
 	this->value = origGear->value;
 	this->statBoost = statBoost;
 }
+
+/*Gear::~Gear()
+{
+	delete this;
+}*/
 void Gear::printItem() const
 {
 	Item::printItem();

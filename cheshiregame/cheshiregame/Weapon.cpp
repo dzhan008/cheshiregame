@@ -33,9 +33,9 @@ int Weapon::getValue(){
 	return damageBoost;
 }
 
-Weapon::Weapon(std::string nam, std::string type, int val, int dmg)
+Weapon::Weapon(std::string name, std::string type, int dmg, int val)
 {
-	name = nam;
+	this->name = name;
 	Item::type = "Weapon";
 	this->type = type;
 	value = val;

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Consumable.h"
 #include "Player.h"
 
@@ -5,7 +6,7 @@
 
 using namespace std;
 
-Consumable::Consumable(std::string name, int val, std:: string type, unsigned boost)
+Consumable::Consumable(std::string name, std:: string type, unsigned boost, int val)
 {
 	this->name = name;
 	this->value = val;
@@ -13,36 +14,21 @@ Consumable::Consumable(std::string name, int val, std:: string type, unsigned bo
 	this->rarity = 0;
 	this->boost = boost;
 }
-bool Consumable::usePotion(player p)
+void Consumable::usePotion(player* p) //I don't think we need a bool function
 {
-	for (int i = 0; i < p.getInvSize(); i++)
+	if (p->getHP() + boost > p->getMaxHP()) //100 assumed to be max health for now
 	{
-		if (p.inventory_search("Health"))
-		{
-			p.remove_inventory("Health");
-			if (p.getHP() + 20 > 100) //100 assumed to be max health for now
-			{
-				p.setHP(100);
-			}
-			else
-			{
-				p.setHP(p.getHP() + 20);
-			}
-			return true;
-		}
-		if (p.inventory_search("Mana"))
-		{
-			p.remove_inventory("Mana");
-			return true;
-		}
+		p->setHP(p->getMaxHP());
 	}
-	cout << "Potion not found." << endl;
-	return false;
+	else
+	{
+		p->setHP(p->getHP() + boost);
+	}
 }
-Consumable::~Consumable()
+/*Consumable::~Consumable()
 {
 	delete this;
-}
+}*/
 string Consumable::getType() const
 {
 	return "Consumable";

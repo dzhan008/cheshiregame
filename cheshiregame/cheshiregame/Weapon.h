@@ -11,13 +11,11 @@ class Weapon : public Item
 		int damageBoost;
 		string type;
 	public:
-		Weapon(std::string nam, std::string type, int val, int dmg);
+		Weapon(std::string name, std::string type, int dmg, int val);
 		Weapon(const Weapon&);
 		Weapon(const Weapon*&);
 
-		int getValue(){
-			return damageBoost;
-		}
+		int getValue();
 		bool equipWeapon(Weapon* wep, player* p);
 		string getType() const;
 		void printItem() const;

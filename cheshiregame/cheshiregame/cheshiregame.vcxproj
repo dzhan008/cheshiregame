@@ -76,7 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="all_items.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

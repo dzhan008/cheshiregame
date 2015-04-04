@@ -6,61 +6,60 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
 Store::Store()
 {}
 
+Store::~Store() {
+    for (int i = 0; i < storeInventory.size(); ++i) {
+        delete storeInventory.at(i);
+    }
+}
+
 void Store::run(player p)
 {
     int spentGold = 0;
-    char choice;
+    string choice = "a";
     int usernum;
 
-    cout << "Welcome to Chesire's Store." << endl;
+    cout << "Welcome to Cheshire's Store." << endl;
     cout << "Gold remaining: " << p.getmoney() << endl;
-    menu();
-    cin >> choice;
-
-    if(choice == 'v')
-    {
-        printStore();
+    while (choice != "q") {
         menu();
         cin >> choice;
-    }
-    if(choice == 'p')
-    {
-        cout << "Enter the number of the item to purchase." << endl;
-        cin >> usernum;
-        if(usernum - 1 > storeInventory.size())
+        if (choice == "v")
         {
-            cout << "Item cannot be accessed." << endl;
-            menu();
-            cin >> choice;
+            printStore();
         }
-        if(p.getmoney() < storeInventory.at(usernum)->getValue())
+        else if (choice == "p")
         {
-            cout << "You are too poor." << endl;
-            menu();
-            cin >> choice;
+            cout << "Enter the number of the item to purchase." << endl;
+            cin >> usernum;
+            if (usernum - 1 > storeInventory.size())
+            {
+                cout << "Item cannot be accessed." << endl;
+            }
+            if (p.getmoney() < storeInventory.at(usernum)->getValue())
+            {
+                cout << "You are too poor." << endl;
+            }
+            else
+            {
+                storeInventory.erase(storeInventory.begin() + usernum - 2);
+                spentGold += storeInventory.at(usernum)->getValue();
+                int playerMoney = p.getmoney() - storeInventory.at(usernum)->getValue();
+                p.setmoney(playerMoney);
+                cout << "You bought one " << storeInventory.at(usernum)->getName() << endl;
+            }
         }
-        else
-        {
-            storeInventory.erase(storeInventory.begin()+usernum - 2);
-            spentGold += storeInventory.at(usernum)->getValue();
-            int playerMoney = p.getmoney() - storeInventory.at(usernum)->getValue();
-			p.setmoney(playerMoney);
-            cout << "You bought one " << storeInventory.at(usernum)->getName() << endl;
-            menu();
-            cin >> choice;
-        }
+
     }
-    else if(choice == 'q')
-    {
-        cout << "Gold spent: " << spentGold << endl;
-        cout << "Gold remaining: " << p.getmoney() << endl;
-    }
+    cout << "Gold spent: " << spentGold << endl;
+    cout << "Gold remaining: " << p.getmoney() << endl;
+    return;
 }
 void Store::menu() const
 {
@@ -70,6 +69,10 @@ void Store::menu() const
 }
 void Store::printStore()
 {
+    //std::cout << storeInventory.size() << std::endl;
+    cout << storeInventory.at(0)->getName() << endl;
+
+    std::cout << "PRINTING STORE" << storeInventory.size() << std::endl;
     for(int i = 0; i < storeInventory.size(); i++)
     {
 	cout << i << ". " << storeInventory.at(i)->getName() << ' ' << storeInventory.at(i)->getValue()
@@ -78,6 +81,7 @@ void Store::printStore()
 }
 void Store::fillStore(const string &input_file)
 {
+    //std::cout << "Filling store" << std::endl;
     ifstream fin; 
 
     string itemName;
@@ -92,49 +96,64 @@ void Store::fillStore(const string &input_file)
 		return;
 	}
 
-    while(fin >> type)
+    while(getline(fin, type))
     {
+        //std::cout << type << std::endl;
+        string v, b;
+        getline(fin, itemName);
+        getline(fin, v);
+        stringstream ss(v);
+        ss >> val;
+        getline(fin, b);
+        stringstream ss2(b);
+        ss2 >> boost;
+
+        //std::cout << type << " " << itemName << " " << val << " " << boost << " " << endl;
 		if (type == "Weapon")
 		{
-			fin >> itemName; fin >> val; fin >> boost;
-			Weapon* temp = new Weapon(itemName, val, type, boost);
+		//	fin >> itemName; fin >> val; fin >> boost;
+			Weapon* temp = new Weapon(itemName, type, boost, val);
 			storeInventory.push_back(temp);
-			delete temp;
+			//delete temp;
 		}
 		else if (type == "Chest")
 		{
-			fin >> itemName; fin >> val; fin >> boost;
+		//	fin >> itemName; fin >> val; fin >> boost;
 			Gear* temp = new Gear(itemName, val, type, boost);
 			storeInventory.push_back(temp);
-			delete temp;
+			//delete temp;
 		}
 		else if (type == "Helmet")
 		{
-			fin >> itemName; fin >> val; fin >> boost;
+		//	fin >> itemName; fin >> val; fin >> boost;
 			Gear* temp = new Gear(itemName, val, type, boost);
 			storeInventory.push_back(temp);
-			delete temp;
+			//delete temp;
 		}
 		else if (type == "Legs")
 		{
-			fin >> itemName; fin >> val; fin >> boost;
+		//	fin >> itemName; fin >> val; fin >> boost;
 			Gear* temp = new Gear(itemName, val, type, boost);
 			storeInventory.push_back(temp);
-			delete temp;
+			//delete temp;
 		}
 		else if (type == "Arms")
 		{
-			fin >> itemName; fin >> val; fin >> boost;
+		//	fin >> itemName; fin >> val; fin >> boost;
 			Gear* temp = new Gear(itemName, val, type, boost);
 			storeInventory.push_back(temp);
-			delete temp;
+			//delete temp;
 		}
 		else if (type == "Consumable")
 		{
-			fin >> itemName; fin >> val; fin >> boost;
-			Consumable * temp = new Consumable(itemName, val, type, boost);
+		//	fin >> itemName; fin >> val; fin >> boost;
+			Consumable * temp = new Consumable(itemName, type, boost, val);
 			storeInventory.push_back(temp);
 		}
+        // Test item existence here, but doesn't work in print store?
+        //std::cout << "TYPE: " << storeInventory.at(storeInventory.size() - 1)->getType() << std::endl
+        //    << "NAME: " << storeInventory.at(storeInventory.size() - 1)->getName() << std::endl
+        //    << "VALUE: " << storeInventory.at(storeInventory.size() - 1)->getValue() << std::endl;
     }
     fin.close();
 }

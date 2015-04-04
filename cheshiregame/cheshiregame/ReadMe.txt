@@ -1,4 +1,6 @@
-Chesire's Game Build 1.0
+========================================================================
+    CONSOLE APPLICATION : cheshiregame Project Overview
+========================================================================
 
 Steps to Build:
 

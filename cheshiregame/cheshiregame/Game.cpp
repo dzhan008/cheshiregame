@@ -1,5 +1,6 @@
-#include <iostream>
 #include "stdafx.h"
+
+#include <iostream>
 
 Game::Game()
 	:current_player(player()) //Initialize all objects here.
