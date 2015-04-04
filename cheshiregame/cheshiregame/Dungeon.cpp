@@ -29,7 +29,7 @@ void Dungeon::fill_dungeon(const string &text_file)
 	string diff; //difficulty
 
 	string entity_name;
-	int hp, level, experience, defend;
+	int hp, level, experience, defend, gold;
 	int s, a, v, d, l; //str, agil, vit, dex, luck
 
 	string input;
@@ -54,9 +54,9 @@ void Dungeon::fill_dungeon(const string &text_file)
 		}
 		else
 		{
-			inFS >> hp >> level >> experience >> defend;
+			inFS >> hp >> level >> experience >> defend >> gold;
 			inFS >> s >> a >> v >> d >> l;
-			Entity temp_entity(entity_name, hp, level, experience, defend);
+			Entity temp_entity(entity_name, hp, level, experience, defend, gold);
 			temp_entity.setEntityStats(s, a, v, d, l);
 			inFS >> input; //reads in if its :loot: or <end>
 			if (input == ":loot:")
