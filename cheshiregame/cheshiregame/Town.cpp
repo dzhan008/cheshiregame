@@ -214,7 +214,7 @@ void Town::dungeon_select(player* p)
 	if (input == 1)
 	{
 		std::string map_name = "demo_map.txt";
-		map test_map(10, map_name);
+		map test_map(10);
 		Dungeon* d = new Dungeon("demo_dun_1.txt");
 		Combat_System cs(p);
 		test_map.run(p, d, cs);
