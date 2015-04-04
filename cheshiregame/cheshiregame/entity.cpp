@@ -19,6 +19,7 @@ Entity::~Entity()
 {
 	for (int i = 0; i < loot.size(); i++)
 	{
+		delete loot.at(i);
 		loot.at(i) = 0;
 	}
 }
@@ -62,6 +63,9 @@ int Entity::getVal() //For gold
 }
 
 int Entity::randNumber(){
+	if (max_dmg == min_dmg){
+		return max_dmg;
+	}
 	return rand() % (max_dmg - min_dmg) + min_dmg;
 }
 
@@ -71,6 +75,9 @@ int Entity::calculateDamage(player play, bool defend){
 	if (defend){
 		trueDamage /= 5;
 	}
+	if (trueDamage <= 0){
+		trueDamage = 1;
+	}
 	return trueDamage;
 }
 
@@ -79,6 +86,9 @@ int Entity::calculateDamage(Ally* ally, bool defend){
 	int trueDamage = baseDamage - ally->getDef();
 	if (defend){
 		trueDamage /= 5;
+	}
+	if (trueDamage <= 0){
+		trueDamage = 1;
 	}
 	return trueDamage;
 }
@@ -131,12 +141,13 @@ void Entity::Print()
 
 }
 
-void Entity::add_loot(Item* i)
+void Entity::add_loot(Item i)
 {
-	loot.push_back(i);
+	Item* pointer = new Item(i);
+	loot.push_back(pointer);
 }
 
-void Entity::give_loot(player& p)
+void Entity::give_loot(player p)
 {
 	for (int i = 0; i < loot.size(); i++)
 	{

@@ -140,7 +140,7 @@ player::~player()
 		weapon.at(i) = NULL;
 	}
 
-	delete none;
+	//	delete none;
 
 }
 
@@ -462,7 +462,7 @@ void player::declare_job(string input)
 /*Combat Functions*/
 
 int player::randNumber(){
-	return rand() % (max_dmg - min_dmg) + min_dmg;
+	return (rand() % (max_dmg - min_dmg)) + min_dmg;
 }
 
 int player::calculateDamage(Entity enemy, bool defend){
@@ -470,6 +470,9 @@ int player::calculateDamage(Entity enemy, bool defend){
 	int trueDamage = baseDamage - enemy.getDef();
 	if (defend){
 		trueDamage /= 5;
+	}
+	if (trueDamage <= 0){
+		trueDamage = 1;
 	}
 	return trueDamage;
 }

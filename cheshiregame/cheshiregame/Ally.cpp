@@ -73,6 +73,9 @@ int Ally::calculateDamage(Entity enemy, bool defend){
 	if (defend){
 		trueDamage /= 5;
 	}
+	if (trueDamage <= 0){
+		trueDamage = 1;
+	}
 	return trueDamage;
 }
 
@@ -138,6 +141,6 @@ void Ally::displayInfo(){
 void Ally::display_equipment(){
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
-		std::cout << equipment.at(i).get_name() << std::endl;
+		std::cout << equipment.at(i).getName() << std::endl;
 	}
 }

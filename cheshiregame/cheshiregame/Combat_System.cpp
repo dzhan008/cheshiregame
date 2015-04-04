@@ -143,7 +143,7 @@ void Combat_System::runBattle(Entity* enemy){
 	turn = calculateTurn();
 	while (play->getHP() > 0 && enemy->getHealth() > 0){
 		if (turn == 0){
-		    	play->setDefending(false);
+		    play->setDefending(false);
 			cout << endl << "It is currently your turn." << endl;
 			cout << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP." << endl;
 			cout << "Your enemy has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
@@ -201,7 +201,9 @@ void Combat_System::runBattle(Entity* enemy){
 					play->setHP(play->getHP() - x);
 					if (optionChoice == 1){
 						cout << "You reduced the amount of damage you have taken by defending..." << endl;
+						cout << "You've taken " << x << " damage.";
 					}
+					cout << "You've taken " << x << " damage.";
 				}
 				else{
 					int eAttack = attackChoice(allies.size());
@@ -210,7 +212,9 @@ void Combat_System::runBattle(Entity* enemy){
 						play->setHP(play->getHP() - x);
 						if (play->isDefending()){
 							cout << "You reduced the amount of damage you have taken by defending..." << endl;
+							cout << "You've taken " << x << " damage.";
 						}
+						cout << "You've taken " << x << " damage.";
 					}
 					else{
 			                        x = enemy->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
@@ -243,6 +247,7 @@ void Combat_System::runBattle(Entity* enemy){
 	}
 	else{
 		cout << "Game Over." << endl;
+		return;
 	}
 }
 
