@@ -263,7 +263,9 @@ void player::setDefending(bool b){
 void player::displayInfo()
 {
     cout << playername << endl;
-    cout << "Health: " << currHP << "/" << maxHP << endl;
+	cout << "Level: " << plevel;
+	cout << "Health: " << currHP << "/" << maxHP << endl;
+	cout << "Exp: " << pexp << "/" << maxexp << endl;
 
 }
 
