@@ -10,14 +10,17 @@
 
 
 
-//Gotta move these later or fix up menu ugh
-Shop demo_shop;
+//Gotta move these later or fix up menu
+//Shop demo_shop;
 string x = "Player 1";
 string y = "Enemy 1";
 string line = "--------------------------------------------------------------------------------";
-player* play = new player(x, 10, 1, 0, 0);
-entity* enemy = new entity(y, 10, 1, 0);
+player* play = new player(x, "Game Master", 10, 1, 0, 0);
+player* invtest = new player(x, "Game Master", 10, 1, 0, 0);
+map* map1 = new map(10);
+Entity* enemy = new Entity(y, 10, 1, 0, 5, 20);
 Combat_System battle_demo = Combat_System(play);
+Scene scene;
 
 
 using namespace std;
@@ -69,21 +72,13 @@ int main()
     cin >> input;
     if (input == 1)
     {
-        for (int i = 1; i <= 18; i ++)
-        {
-            cout << endl;
-        }
-
-        menu();
+		//scene.scene_003(play);
+		menu();
     }
-
-
-
-    //cout << "Chesire's Game" << endl;
-    //cout << "Prototype Version 1.0" << endl;
-    //cout << "Welcome to the demo!" << endl;
-
-
+	else if (input == 2)
+	{
+		map1->run();
+	}
     return 0;
 }
 
@@ -110,7 +105,7 @@ int menu()
         else if (decision == 2)
         {
             cout << line << endl;
-            demo_shop.Store();
+			scene.basic_menu(play);
         }
         else if (decision == 3)
         {
@@ -124,10 +119,49 @@ int menu()
             cout << "Thanks for playing!" << endl;
 			exit(0);
         }
+		else if (decision == 5) //FIX FUNCTIONS FOR PLAYER POINTERS
+		{
+			Item* a = new Item("Potion", 10);
+			Weapon* b = new Weapon("Sword of Gods", "Sword", 999, 1);
+			Item* c = new Item("Mana Potion", 20);
+			Weapon* d = new Weapon("Dagger of Shadows", "Dagger", 776, 3);
+			Gear* e = new Gear("Clothes", "Chest", 500);
+			Gear* f = new Gear("Helmet", "Helmet", 500);
+
+			std::cout << "Testing add_inventory..." << std::endl;
+			
+			invtest->add_inventory(c);
+			invtest->add_wep(b);
+			invtest->add_wep(d);
+			invtest->add_gear(e);
+			invtest->add_gear(f);
+
+			invtest->display_inventory();
+
+			std::cout << "Testing adding equipments..." << std::endl;
+
+			invtest->equip_wep(0, b);
+			invtest->equip_gear(1, e);
+			invtest->display_inventory();
+			invtest->display_equipment();
+
+			scene.basic_menu(invtest);
+
+			std::cout << "Testing equipment replacement..." << std::endl;
+
+			invtest->equip_wep(0, d);
+			invtest->display_inventory();
+			invtest->display_equipment();
+
+			std::cout << "Testing equipment removal..." << std::endl;
+			invtest->remove_wep(0);
+			invtest->display_inventory();
+			invtest->display_equipment();
+
+
+		}
         cout << "The simulation has ended. Returning to main menu..." << endl;
         cout << line << endl;
         menu();
     }
-
-
 }
