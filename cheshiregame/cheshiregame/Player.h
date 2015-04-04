@@ -49,7 +49,8 @@ class player
 		std::vector<Consumable*> con_inv;
 		std::vector<Gear*> gear_inv;
 		std::vector<Weapon*> wep_inv;
-
+		void updateStats();
+		
 		Gear* none;
 		Weapon* none_wep;
 		int randNumber();
