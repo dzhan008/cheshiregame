@@ -189,7 +189,7 @@ void Town::tavern() {
 void Town::store(player* p) {
 	std::cout << "Unimplemented." << std::endl;
 	return;
-    s.run(*p);
+    s.run(p);
     return;
 }
 
