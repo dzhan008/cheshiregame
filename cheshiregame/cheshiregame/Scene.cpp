@@ -251,7 +251,7 @@ void Scene::scene_001(player* p)
 	std::cout << "Your head is throbbing, and your mind is fogged." << std::endl;
 	std::cout << "You sit up slowly, trying to recollect yourself." << std::endl;
 	std::cout << "You can't seem to remember much. It is as if your mind" << std::endl;
-	std::cout << "become a blank slate. You try to remember your name: ";
+	std::cout << "became a blank slate. You try to remember your name: ";
 	std::cin >> name;
 	p->setname(name);
 	std::cout << "Well at least you did not forget who you were. You turn" << std::endl;
