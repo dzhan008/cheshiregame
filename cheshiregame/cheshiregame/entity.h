@@ -53,8 +53,8 @@ public:
 	void DisplayStats(); //displays the stats of the entity to be used in main
 
 	/*Loot*/
-	void add_loot(Item i); //adds one item to vector of loot
-	void give_loot(player p); //adds loot to player inventory
+	void add_loot(Item* i); //adds one item to vector of loot
+	void give_loot(player& p); //adds loot to player inventory
 
 	/*Print*/
 	void Print(); //prints all information about entity

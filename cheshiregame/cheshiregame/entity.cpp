@@ -19,7 +19,6 @@ Entity::~Entity()
 {
 	for (int i = 0; i < loot.size(); i++)
 	{
-		delete loot.at(i);
 		loot.at(i) = 0;
 	}
 }
@@ -132,13 +131,12 @@ void Entity::Print()
 
 }
 
-void Entity::add_loot(Item i)
+void Entity::add_loot(Item* i)
 {
-	Item* pointer = new Item(i);
-	loot.push_back(pointer);
+	loot.push_back(i);
 }
 
-void Entity::give_loot(player p)
+void Entity::give_loot(player& p)
 {
 	for (int i = 0; i < loot.size(); i++)
 	{

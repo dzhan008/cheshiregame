@@ -66,8 +66,9 @@ void Dungeon::fill_dungeon(const string &text_file)
 				while (item_name != "<end>")
 				{
 					inFS >> item_val;
-					Item temp_item(item_name, item_val);
+					Item* temp_item = new Item(item_name, item_val);
 					temp_entity->add_loot(temp_item);
+					dungeon_loot.push_back(temp_item);
 					inFS.ignore();
 					getline(inFS, item_name);
 				}
@@ -79,14 +80,31 @@ void Dungeon::fill_dungeon(const string &text_file)
 	}
 }
 
+void Dungeon::clear_dun()
+{
+	for (int i = 0; i < dungeon_loot.size(); i++)
+	{
+		delete dungeon_loot.at(i);
+		dungeon_loot.at(i) = 0;
+	}
+}
 Dungeon::Dungeon(const string &text_file)
 {
 	fill_dungeon(text_file);
 }
 
+Dungeon::~Dungeon()
+{
+	for (int i = 0; i < dungeon_loot.size(); i++)
+	{
+		delete dungeon_loot.at(i);
+		dungeon_loot.at(i) = 0;
+	}
+}
 void Dungeon::change_dungeon(const string &text_file)
 {
 	entity_group.clear();
+	clear_dun();
 	fill_dungeon(text_file);
 }
 
