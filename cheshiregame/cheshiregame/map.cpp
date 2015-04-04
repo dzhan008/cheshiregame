@@ -123,7 +123,7 @@ void map::moveLeft()
 	}
 	else
 	{
-		cout << "There is wall " << endl;
+		cout << "There is  a wall. " << endl;
 		wallBreak();
 	}
 	return;
@@ -146,7 +146,7 @@ void map::moveRight()
 	}
 	else
 	{
-		cout << "There is wall " << endl;
+		cout << "There is a wall. " << endl;
 		wallBreak();
 	}
 	return;
@@ -164,7 +164,7 @@ void map::moveUp()
 	}
 	else
 	{
-		cout << "There is wall " << endl;
+		cout << "There is a wall. " << endl;
 		wallBreak();
 	}
 	return;
@@ -183,7 +183,7 @@ void map::moveDown()
 	}
 	else
 	{
-		cout << "There is wall " << endl;
+		cout << "There is a wall. " << endl;
 		wallBreak();
 	}
 	
@@ -214,11 +214,12 @@ void map::display()
 		cout << endl;
 	}
 }
-bool map::run()
+bool map::run(player* p, Dungeon* d, Combat_System c)
 {
 	string input;
 	while (true)
 	{
+		display();
 		cout << "Enter direction (up down left right) q to quit " << endl;
 		cin >> input; 
 		if (input == "up")
@@ -249,6 +250,10 @@ bool map::run()
 		{
 			cout << "Map Cleared. " << endl;
 			return true;
+		}
+		if ((rand() % 4 + 1) == 1)
+		{
+			c.runBattle(d->rand_monster());
 		}
 	}
 	return false;
@@ -289,7 +294,7 @@ void map::wallBreak()
 //recursive function
 //currently incomplete
 //may not be used at all idk
-void map::runStage()
+/*void map::runStage()
 {
 	if (run() == false)
 	{
@@ -299,4 +304,4 @@ void map::runStage()
 	{
 		runStage();
 	}
-}
+}*/

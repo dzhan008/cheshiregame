@@ -19,7 +19,7 @@ public:
 	void moveDown();
 	bool wallcheck(int i, int j);
 	void display();
-	bool run();
+	bool run(player* p, Dungeon* d, Combat_System c);
 	//removes a wall due to impossible completion
 	void wallBreak();
 	//void updateplayer(playerposition.first, playerposition.second);

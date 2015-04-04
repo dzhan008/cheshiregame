@@ -56,8 +56,8 @@ void Dungeon::fill_dungeon(const string &text_file)
 		{
 			inFS >> hp >> level >> experience >> defend >> gold;
 			inFS >> s >> a >> v >> d >> l;
-			Entity temp_entity(entity_name, hp, level, experience, defend, gold);
-			temp_entity.setEntityStats(s, a, v, d, l);
+			Entity* temp_entity = new Entity(entity_name, hp, level, experience, defend, gold);
+			temp_entity->setEntityStats(s, a, v, d, l);
 			inFS >> input; //reads in if its :loot: or <end>
 			if (input == ":loot:")
 			{
@@ -67,7 +67,7 @@ void Dungeon::fill_dungeon(const string &text_file)
 				{
 					inFS >> item_val;
 					Item temp_item(item_name, item_val);
-					temp_entity.add_loot(temp_item);
+					temp_entity->add_loot(temp_item);
 					inFS.ignore();
 					getline(inFS, item_name);
 				}
@@ -97,8 +97,8 @@ const void Dungeon::display_dungeon()
 	cout << "Monsters: " << endl;
 	for (int i = 0; i < entity_group.size(); i++)
 	{
-		entity_group.at(i).Print();
-		entity_group.at(i).print_loot();
+		entity_group.at(i)->Print();
+		entity_group.at(i)->print_loot();
 		cout << endl;
 	}
 }
@@ -108,7 +108,7 @@ int Dungeon::size()
 	return entity_group.size();
 }
 
-const Entity Dungeon::rand_monster()
+Entity* Dungeon::rand_monster()
 {
 	int index = rand() % entity_group.size();
 	return entity_group.at(index);

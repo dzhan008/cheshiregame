@@ -15,15 +15,14 @@ Entity::Entity(string entityName, int health, int lvl, int amount, int d, int va
 	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), value(val), defending(false)
 { }
 
-
 Entity::~Entity()
 {
 	for (int i = 0; i < loot.size(); i++)
 	{
+		delete loot.at(i);
 		loot.at(i) = 0;
 	}
 }
-
 //Gets the information of each individually. just in case we need to
 /*Name*/
 string Entity::getName()
@@ -123,7 +122,6 @@ void Entity::Print()
 	cout << "Name: " << name << endl;
 	cout << "Level: " << level << endl;
 	cout << "HP: " << maxHP << endl;
-	cout << "Defense: " << def << endl;
 	cout << "Stats" << endl;
 
 	cout << "Strength:  " << entityStats.at(0) << endl;
