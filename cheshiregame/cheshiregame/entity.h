@@ -67,6 +67,8 @@ public:
 	bool isDefending();
 	void setDefending(bool b);
 
+	bool empty_loot(); //returns true if loot is empty
+
 private:
 	string name;
 	int maxHP;
