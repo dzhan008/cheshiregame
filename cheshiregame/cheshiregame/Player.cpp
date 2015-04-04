@@ -392,11 +392,20 @@ void player::add_points(int& points)
 	}
 }
 
-void player::level_up() //TO DO: Change exp scaling per 10 levels
+bool player::add_exp(int x) //TO DO: Change exp scaling per 10 levels
 {
-	plevel += 1;
-	pexp = 0;
-	maxexp += 100;
+	bool level_up = false;
+	pexp += x;
+
+	while (pexp >= maxexp)
+	{
+		plevel += 1;
+		pexp = pexp - maxexp;
+		maxexp += 100;
+		level_up = true;
+	}
+
+	return level_up;
 }
 
 /*Scenario to replace instead of this:

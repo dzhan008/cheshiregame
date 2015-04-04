@@ -49,7 +49,6 @@ class player
 		std::vector<Consumable*> con_inv;
 		std::vector<Gear*> gear_inv;
 		std::vector<Weapon*> wep_inv;
-		void updateStats();
 
 		Gear* none;
 		Weapon* none_wep;
@@ -102,7 +101,7 @@ class player
 		void add_points(int& points);
 		bool input_stats();
 
-		void level_up();
+		bool add_exp(int x); //returns true if leveled up
 
 		/*Character Creation*/
 		void characterCreation();
