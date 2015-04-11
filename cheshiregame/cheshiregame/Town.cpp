@@ -208,13 +208,14 @@ void Town::dungeon_select(player* p)
 	int input;
 
 	std::cout << "Which dungeon would you like to go to?" << std::endl;
-	std::cout << "1. Demo Dungeon" << std::endl;
+	std::cout << "1. Twisted Treeline" << std::endl;
+	std::cout << "2. Summoner's Rift" << std::endl;
 	//Output dungeons
 	std::cin >> input;
-	if (input == 1)
+	if (input == 1 || input == 2)
 	{
 		std::string map_name = "demo_map.txt";
-		map test_map(10);
+		map test_map(8);
 		Dungeon* d = new Dungeon("demo_dun_1.txt");
 		Combat_System cs(p);
 		test_map.run(p, d, cs);

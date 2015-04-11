@@ -1,11 +1,9 @@
-﻿Build started 4/4/2015 12:54:58 PM.
+﻿Build started 4/4/2015 4:10:03 PM.
      1>Project "C:\Users\Michaella\Documents\cheshiregame\cheshiregame\cheshiregame\cheshiregame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Store.cpp
-         Store.cpp
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(17): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(41): warning C4018: '>' : signed/unsigned mismatch
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(76): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Town.cpp
+         Town.cpp
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\town.cpp(199): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.lib" /MACHINE:X86 Debug\Ally.obj
          Debug\Cheshire_Game.obj
@@ -29,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.87
+Time Elapsed 00:00:01.07
