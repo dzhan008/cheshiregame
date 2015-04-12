@@ -74,7 +74,7 @@ void Town::run(player* p) {
     //std::cout << "Welcome to " << townname << std::endl;
 	int choice = -1;
 
-    while (choice != 0)
+    while (choice != 0) //Fix for exit
     {
         std::cout << "What would you like to do?" << std::endl;
         std::cout << "1. Visit Inn" << std::endl
@@ -189,7 +189,7 @@ void Town::tavern() {
 void Town::store(player* p) {
 	std::cout << "Unimplemented." << std::endl;
 	return;
-    s.run(p);
+    s.run(*p);
     return;
 }
 
@@ -208,14 +208,15 @@ void Town::dungeon_select(player* p)
 	int input;
 
 	std::cout << "Which dungeon would you like to go to?" << std::endl;
-	std::cout << "1. Twisted Treeline" << std::endl;
-	std::cout << "2. Summoner's Rift" << std::endl;
-	//Output dungeons
+	std::cout << "1. Ben's Dungeon" << std::endl;
+	std::cout << "2. Devil's Lair" << std::endl;
+	std::cout << "3. The Lonely Dungeon :'(" << std::endl;
+	//Output dungeons														// Tony's super cool lazy fix!
 	std::cin >> input;
-	if (input == 1 || input == 2)
-	{
+	//if (input == 1)
+	//{
 		std::string map_name = "demo_map.txt";
-		map test_map(8);
+		map test_map(5, map_name);
 		Dungeon* d = new Dungeon("demo_dun_1.txt");
 		Combat_System cs(p);
 		test_map.run(p, d, cs);
@@ -223,7 +224,7 @@ void Town::dungeon_select(player* p)
 		s.scene_005();
 		cs.runBattle(d->get_boss());
 		s.scene_006();
-	}
+	//}
 	/*FOR DEMO ONLY*/
 
 }
