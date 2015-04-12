@@ -284,6 +284,8 @@ void Scene::scene_001(player* p)
 			std::cout << "seems to be at best good for defending, but you can sense a magical" << std::endl;
 			std::cout << "presence within it." << std::endl;
 		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 
 	std::cout << "As you stand up, you hear a rustling in a bush just nearby you. You look to your right and realize that a fox is pouncing at you!" << std::endl;
@@ -330,6 +332,8 @@ void Scene::scene_003(player* p)
 			scene_003_3(p);
 			return;
 		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 }
 
@@ -387,6 +391,8 @@ void Scene::scene_003_4(player* p)
 			scene_003_4_3();
 			return;
 		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 }
 
@@ -451,6 +457,8 @@ void Scene::scene_004(bool dead)
 				scene_004_2();
 				return;
 			}
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
 		}
 	}
 }
@@ -481,6 +489,8 @@ void Scene::scene_004_1()
 			scene_004_3();
 			return;
 		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 }
 void Scene::scene_004_2()
@@ -508,6 +518,8 @@ void Scene::scene_004_2()
 			scene_004_3();
 			return;
 		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 }
 
