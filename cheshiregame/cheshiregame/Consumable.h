@@ -3,6 +3,8 @@
 
 #include "Item.h"
 
+class Player;
+
 class Consumable : public Item
 {
 	private:

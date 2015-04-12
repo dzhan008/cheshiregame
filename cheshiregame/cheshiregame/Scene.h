@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 #include "Town.h"
 
 class Scene {
@@ -16,13 +17,16 @@ public:
     void set_options(Town &);
 	void basic_menu(player* p);
 
+	bool check_val(std::string);
+	bool check_val(int);
+
 	int user_input();
 
 	/*Story Scenes (Should this be moved somewhere else?)*/
 
 	void scene_play(); //Experimental; It only works for making one input at a time.
 	void scene_001(player* p);
-	void scene_002(player* p);
+	//void scene_002(player* p); Need to rename scenes....
 
 	/*Scene 3*/
 	bool astuce_alive = true;

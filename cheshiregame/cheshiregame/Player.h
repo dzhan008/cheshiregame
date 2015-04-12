@@ -1,12 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "stdafx.h"
 #include <vector>
 #include <string>
 
-
 //Forward declarations for circular dependencies
+class Entity;
 class Item;
 class Gear;
 class Weapon;

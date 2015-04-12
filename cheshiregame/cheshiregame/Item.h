@@ -1,8 +1,6 @@
 #ifndef _Item_H_
 #define _Item_H_
 
-#include "stdafx.h"
-
 #include <string>
 
 using namespace std;

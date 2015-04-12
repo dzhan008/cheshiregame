@@ -67,9 +67,6 @@ int main()
     string Art = getFileContents(file);
     cout << Art << endl;
 
-
-
-
 	while(1)
 	{
 		cout << "                                1. New Game \n";
@@ -89,7 +86,6 @@ int main()
 			play->setmoney(500);
 			scene.scene_001(play);
 			battle_demo.runBattle(enemy2);
-			scene.scene_002(play);
 			scene.scene_003(play);
 			town1.run(play);
 			return 0;

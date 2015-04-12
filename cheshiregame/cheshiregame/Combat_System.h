@@ -1,6 +1,9 @@
 #ifndef _COMBAT_SYSTEM_H_
 #define _COMBAT_SYSTEM_H_
-#include "stdafx.h"
+
+#include "Player.h"
+#include "Entity.h"
+#include "Ally.h"
 
 using namespace std;
 

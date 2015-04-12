@@ -1,13 +1,14 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "stdafx.h"
 #include <string>
 #include <vector>
 
+#include "Player.h"
+#include "Ally.h"
+#include "Item.h"
 
 /*Dependencies*/
-
 class Ally;
 
 using namespace std;

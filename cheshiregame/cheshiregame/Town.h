@@ -1,9 +1,12 @@
 #ifndef TOWN_H_
 #define TOWN_H_
-#include "stdafx.h"
+
 #include <string>
 #include <vector>
 #include <utility>
+
+#include "Player.h"
+#include "Dungeon.h"
 
 class Dungeon;
 

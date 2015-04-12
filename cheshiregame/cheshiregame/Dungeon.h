@@ -1,11 +1,13 @@
 #ifndef DUNGEON_H
 #define DUNGEON_H
 
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <string>
 #include <fstream>
+
+#include "Entity.h"
+#include "Item.h"
 
 
 using namespace std;

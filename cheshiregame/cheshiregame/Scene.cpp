@@ -253,6 +253,7 @@ void Scene::scene_001(player* p)
 	std::cout << "You can't seem to remember much. It is as if your mind" << std::endl;
 	std::cout << "became a blank slate. You try to remember your name: ";
 	std::cin >> name;
+	std::cout << std::endl;
 	p->setname(name);
 	std::cout << "Well at least you did not forget who you were. You turn" << std::endl;
 	std::cout << "around to look at your surroundings. Aside from some trees" << std::endl;
@@ -292,17 +293,11 @@ void Scene::scene_001(player* p)
 	//Initiate battle with fox
 }
 
-void Scene::scene_002(player* p)
-{
-	//int input;
-
-	std::cout << "You slay the fox whether by sheer luck or skill. There seems to be nothing else around the area, so you decide to leave the forest and look for a nearby town. " << std::endl;
-	//std::cin >> input;
-}
-
 void Scene::scene_003(player* p)
 {
 	int input = 0;
+
+	std::cout << "You slay the fox whether by sheer luck or skill. There seems to be nothing else around the area, so you decide to leave the forest and look for a nearby town. " << std::endl;
 
 	std::cout << "You exit the forest and see an open trail. Since the road is the only lead to what may be civilization, you follow the trail all the way to the end. There stood a city that was like your typical first-level RPG town." << std::endl << std::endl;
 	std::cout << "There was a problem though. The town was quiet. Too quiet. You walk through the entrance, but there was no one within your view. The town seemed to be devoid of life itself.\n\n";
@@ -552,7 +547,12 @@ void Scene::scene_006()
 		std::cout << "He turns to you and stares at the gem. \"So you return safely! Congratulations!\" You hand the jester the gem, and he pockets it into his pouch.\n\n";
 		std::cout << "\"You've done a good job my friend. You might be wondering what will happen next. Can you guess?\"\n\n";
 		std::cout << "1. What?" << std::endl;
-		std::cin >> choice;
+		while (choice != -1)
+		{
+			std::cin >> choice;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
 		std::cout << "\"Well...\" Astuce begins to say some words, but you cannot hear him at all. You try to say something, but you can't hear your own words at all. Then, everything turns black. \n\n"
 			<< "Something pops up on your screen. It reads:" << std::endl
 			<< "'Your time has run out. Thank you for playing the demo!' \n\n"

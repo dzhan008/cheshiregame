@@ -1,7 +1,7 @@
 #ifndef GEAR_H
 #define GEAR_H
 
-#include "stdafx.h"
+#include "Player.h"
 #include "Item.h"
 
 class Gear : public Item

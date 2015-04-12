@@ -55,14 +55,22 @@ map::map(int sz, string& file)
 				goal.first = i;
 				goal.second = j;
 				mapitems.at(goal.first).at(goal.second) = 3;
+				break;
 			}
-			else if (mapitems.at(i).at(j) == 2)
+			
+		}
+	}
+	for (int i = 0; i < mapitems.size(); i++)
+	{
+		for (int j = 0; j < mapitems.size(); j++)
+		{
+			if (mapitems.at(i).at(j) == 2)
 			{
 				playerposition.first = i;
 				playerposition.second = j;
 				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
 				mapitems.at(playerposition.first).at(playerposition.second) = 2;
-				goalmap = mapitems;
+
 				return;
 			}
 		}
@@ -217,43 +225,47 @@ void map::display()
 bool map::run(player*& p, Dungeon* d, Combat_System c)
 {
 	string input;
-	bool menu = false;
+
 	while (true)
 	{
+		bool menu = false;
 		cout << endl;
 		display();
 		cout << "Enter direction (up, down, left, right). " << endl;
+		cout << "Type 'menu' to access the player menu." << endl;
 		cin >> input; 
-		if (input == "up")
+		 if (input == "up" || input == "u")
 		{
 			moveUp();
 			display();
 		}
-		else if (input == "down")
+		else if (input == "down" || input == "d")
 		{
 			moveDown();
 			display();
 		}
-		else if (input == "left")
+		else if (input == "left" || input == "l")
 		{
 			moveLeft();
 			display();
 		}
-		else if (input == "right")
+		else if (input == "right" || input == "r")
 		{
 			moveRight();
 			display();
 		}
 		else if (input == "menu")
 		{
-			Scene s;
-			s.basic_menu(p);
+			//Scene s;
+			//s.basic_menu(p);
+			menu = true;
+			std::cout << "There be no menu here!";
 		}
 		if ((playerposition.first == goal.first) && (playerposition.second == goal.second))
 		{
 			return true;
 		}
-		if ((rand() % 4 + 1) == 1)
+		if ((rand() % 4 + 1) == 1) //Fix instance where the player encounters an enemy even when standing still.
 		{
 			if (!menu)
 			{

@@ -80,7 +80,7 @@ int Combat_System::attackChoice(int size){
 //Returns 0, 1, 2 or 3 depending on if they attack, defend, use an item, or run
 int Combat_System::promptChoices(){
 	int i = -1;
-	int prompt;
+	std::string prompt;
 	while(i = -1){
 		cout << endl << "Enter the number of the move you want to make: "<< endl;
 		cout << "1: Attack" << endl;
@@ -88,16 +88,16 @@ int Combat_System::promptChoices(){
 		cout << "3: Use an item" << endl;
 		cout << "4: Run" << endl;
 		cin >> prompt;
-		if(prompt == 1){
+		if(prompt == "1"){
 		return 0;
 		}
-		if(prompt == 2){
+		if(prompt == "2"){
 		return 1;
 		}
-		if(prompt == 3){
+		if(prompt == "3"){
 		return 2;
 		}
-		if(prompt == 4){
+		if(prompt == "4"){
 		return 3;
 		}
 		cout << "You have not selected one of the four options." << endl;
@@ -242,17 +242,21 @@ void Combat_System::runBattle(Entity* e){
 		for(unsigned i = 0; i < allies.size(); i++){
 			allies.at(i)->setexp(allies.at(i)->getexp() + EXP);
 		}
-		play->setexp(play->getexp() + EXP);
 		play->setmoney(play->getmoney() + enemy->getVal());
 		e->give_loot(play);
 
 		cout << "You've won the battle!" << endl;
 		cout << "You've gained " << enemy->getEXP() << " EXP and ";
-		cout << enemy->getVal() << " gold!" << endl;
+		cout << enemy->getVal() << " gold!\n\n";
+
+		if (play->add_exp(EXP))
+		{
+			std::cout << "You have leveled up! You are now level " << play->getlevel() << ".\n\n";
+		}
 
 		if (!e->empty_loot())
 		{
-			cout << "Drops: " << endl;
+			cout << "Drops: " << endl << endl;
 			e->print_loot();
 		}
 	}
@@ -380,7 +384,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 		cout << "You've gained " << totalXP << " EXP!" << endl;
 		if (play->add_exp(totalXP))
 		{
-			std::cout << "You have leveled up! You are now level" << play->getlevel() << "." << std::endl;
+			std::cout << "You have leveled up! You are now level " << play->getlevel() << ".\n\n";
 		}
 	}
 	else{

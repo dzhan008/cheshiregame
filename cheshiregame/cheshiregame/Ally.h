@@ -1,13 +1,13 @@
 #ifndef ALLY_H_
 #define ALLY_H_
 
-#include "stdafx.h"
 #include <string>
 #include <vector>
 
 using namespace std;
 
 class Item;
+class Entity;
 
 class Ally{
 	private:
