@@ -10,15 +10,15 @@ using namespace std;
 map::map()
 {
 	for (int i = 0; i < 10; ++i) {
-		mapitems.push_back(vector<int>(10));
+		mapitems.push_back(vector<char>('_'));
 	}
 	//creates 10 * 10 map
 	playerposition.first = 0; // row
 	playerposition.second = 0;// column
 	goal.first = 9;
 	goal.second = 9;
-	mapitems.at(playerposition.first).at(playerposition.second) = 2;
-	mapitems.at(goal.first).at(goal.second) = 3;
+	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
+	mapitems.at(goal.first).at(goal.second) = 'G';
 	goalmap = mapitems;
 	
 }
@@ -32,9 +32,9 @@ map::map(int sz, string& file)
 	{
 		std::cout << "Error mapfile not open. " << std::endl;
 	}
-	int blocks;
+	char blocks;
 	//blocks are the spaces that make up the map
-	vector<int> row;
+	vector<char> row;
 	//to push back a vector of vectors I cant push back one element but rather one vector.
 	while (mapfile >> blocks)
 	{
@@ -50,11 +50,11 @@ map::map(int sz, string& file)
 	{
 		for (int j = 0; j < mapitems.size(); j++)
 		{
-			if (mapitems.at(i).at(j) == 3)
+			if (mapitems.at(i).at(j) == 'G')
 			{
 				goal.first = i;
 				goal.second = j;
-				mapitems.at(goal.first).at(goal.second) = 3;
+				mapitems.at(goal.first).at(goal.second) = 'G';
 				break;
 			}
 			
@@ -64,12 +64,12 @@ map::map(int sz, string& file)
 	{
 		for (int j = 0; j < mapitems.size(); j++)
 		{
-			if (mapitems.at(i).at(j) == 2)
+			if (mapitems.at(i).at(j) == 'P')
 			{
 				playerposition.first = i;
 				playerposition.second = j;
 				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
-				mapitems.at(playerposition.first).at(playerposition.second) = 2;
+				mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 
 				return;
 			}
@@ -78,25 +78,64 @@ map::map(int sz, string& file)
 }
 map::map(int size)
 {
+	vector<char> ran{ '1', ' ' };
 	for (int i = 0; i < size; ++i) {
-		mapitems.push_back(vector<int>(size));
+		mapitems.push_back(vector<char>(size));
 	}
 	for (int i = 1; i < mapitems.size(); i++)
 	{
 		for (int j = 1; j < mapitems.at(i).size(); j++)
 		{
-			mapitems.at(i).at(j) = rand() % 2;
+			mapitems.at(i).at(j) = ran.at(rand() % 2);
 		}
 	}
-	playerposition.first = 0; 
+	playerposition.first = 0;
 	playerposition.second = 0;
-	goal.first = rand() % 10;
-	goal.second = rand()% 10;
-	mapitems.at(playerposition.first).at(playerposition.second) = 2;
-	mapitems.at(goal.first).at(goal.second) = 3;
+	goal.first = rand() % size;
+	goal.second = rand() % size;
+	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
+	mapitems.at(goal.first).at(goal.second) = 'G';
+	if (playerposition.second != 0)
+	{
+		mapitems.at(playerposition.first).at(playerposition.second - 1) = ' ';
+	}
+	if (playerposition.second != mapitems.at(0).size() - 1)
+	{
+		mapitems.at(playerposition.first).at(playerposition.second + 1) = ' ';
+	}
+	if (playerposition.first != 0)
+	{
+		mapitems.at(playerposition.first - 1).at(playerposition.second) = ' ';
+	}
+	if (playerposition.first != mapitems.at(mapitems.size() - 1).size() - 1)
+	{
+		mapitems.at(playerposition.first + 1).at(playerposition.second) = ' ';
+	}
+	if (goal.second != 0)
+	{
+		mapitems.at(goal.first).at(goal.second - 1) = ' ';
+	}
+	if (goal.second != mapitems.at(0).size() - 1)
+	{
+		mapitems.at(goal.first).at(goal.second + 1) = ' ';
+	}
+	if (goal.first != 0)
+	{
+		mapitems.at(goal.first - 1).at(goal.second) = ' ';
+	}
+	if (goal.first != mapitems.at(mapitems.size() - 1).size() - 1)
+	{
+		mapitems.at(goal.first + 1).at(goal.second) = ' ';
+	}
+	goalmap = mapitems;
+
+
+
+
 	goalmap = mapitems;
 
 }
+
 //updates player position after moving
 void map::updateplayer()
 {
@@ -104,14 +143,14 @@ void map::updateplayer()
 	{
 		for (int j = 0; j < mapitems.size(); j++)
 		{
-			if (mapitems.at(i).at(j) == 2)
+			if (mapitems.at(i).at(j) == 'P')
 			{
 				int x = i;
 				int y = j;
 				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
 				
-				mapitems.at(playerposition.first).at(playerposition.second) = 2;
-				mapitems.at(x).at(y) = 0;
+				mapitems.at(playerposition.first).at(playerposition.second) = 'P';
+				mapitems.at(x).at(y) = ' ';
 				return;
 			}
 		}
@@ -204,7 +243,7 @@ bool map::wallcheck(int i, int j)
 	//0= emptyspace
 	//2= player position
 	//3= Goal
-	if (mapitems.at(i).at(j) == 1)
+	if (mapitems.at(i).at(j) == '1')
 	{
 		return true;
 	}
@@ -222,7 +261,7 @@ void map::display()
 		cout << endl;
 	}
 }
-bool map::run(player*& p, Dungeon* d, Combat_System c)
+bool map::run()
 {
 	string input;
 
@@ -254,28 +293,28 @@ bool map::run(player*& p, Dungeon* d, Combat_System c)
 			moveRight();
 			display();
 		}
-		else if (input == "menu")
-		{
+		//else if (input == "menu")
+		//{
 			//Scene s;
 			//s.basic_menu(p);
-			menu = true;
-			std::cout << "There be no menu here!";
-		}
-		if ((playerposition.first == goal.first) && (playerposition.second == goal.second))
-		{
-			return true;
-		}
-		if ((rand() % 4 + 1) == 1) //Fix instance where the player encounters an enemy even when standing still.
-		{
-			if (!menu)
-			{
-				c.runBattle(d->rand_monster());
-			}
-		}
-		if (p->getHP() <= 0)
-		{
-			return false;
-		}
+			//menu = true;
+			//std::cout << "There be no menu here!";
+		//}
+		//if ((playerposition.first == goal.first) && (playerposition.second == goal.second))
+		//{
+			//return true;
+		//}
+		//if ((rand() % 4 + 1) == 1) //Fix instance where the player encounters an enemy even when standing still.
+		//{
+			//if (!menu)
+			//{
+				//c.runBattle(d->rand_monster());
+			//}
+		//}
+		//if (p->getHP() <= 0)
+		//{
+			//return false;
+		//}
 	}
 	return false;
 }
@@ -289,22 +328,22 @@ void map::wallBreak()
 	cin >> input;
 	if (input == "yes")
 	{
-		if (playerposition.second != 0)
+		if (playerposition.second != ' ')
 		{
 		
-			mapitems.at(playerposition.first).at(playerposition.second-1) = 0;
+			mapitems.at(playerposition.first).at(playerposition.second-1) = ' ';
 		}
 		if (playerposition.second != mapitems.at(0).size() - 1)
 		{
-			mapitems.at(playerposition.first).at(playerposition.second+1) = 0;
+			mapitems.at(playerposition.first).at(playerposition.second + 1) = ' ';
 		}
 		if (playerposition.first != 0)
 		{
-			mapitems.at(playerposition.first-1).at(playerposition.second) = 0;
+			mapitems.at(playerposition.first - 1).at(playerposition.second) = ' ';
 		}
 		if (playerposition.first != mapitems.at(mapitems.size() - 1).size() - 1)
 		{
-			mapitems.at(playerposition.first + 1).at(playerposition.second) = 0;
+			mapitems.at(playerposition.first + 1).at(playerposition.second) = ' ';
 		}
 	}
 	else if (input == "no")
@@ -312,17 +351,3 @@ void map::wallBreak()
 		return;
 	}
 }
-//recursive function
-//currently incomplete
-//may not be used at all idk
-/*void map::runStage()
-{
-	if (run() == false)
-	{
-		return;
-	}
-	else if (run() == true)
-	{
-		runStage();
-	}
-}*/

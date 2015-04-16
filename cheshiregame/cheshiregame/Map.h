@@ -22,7 +22,8 @@ public:
 	void moveDown();
 	bool wallcheck(int i, int j);
 	void display();
-	bool run(player*& p, Dungeon* d, Combat_System c);
+	//bool run(player*& p, Dungeon* d, Combat_System c);
+	bool run();
 	//removes a wall due to impossible completion
 	void wallBreak();
 	//void updateplayer(playerposition.first, playerposition.second);
@@ -34,12 +35,12 @@ public:
 	//coordinates x,y of a players position
 	pair <int, int> playerposition;
 	//x * x vector of a map
-	vector <vector<int> > mapitems;
+	vector <vector<char> > mapitems;
 	//updates player position on mapitems
 	void updateplayer();
 	// xy of the goal location
 	pair <int, int> goal;
-	vector <vector<int> > goalmap;
+	vector <vector<char> > goalmap;
 
 	
 };
