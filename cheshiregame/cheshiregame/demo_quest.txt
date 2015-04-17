@@ -1,0 +1,6 @@
+1
+My First Quest
+SLAY
+Wolf
+3
+Slay 3 "Wolf"
