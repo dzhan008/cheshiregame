@@ -29,6 +29,10 @@ public:
 	//void updateplayer(playerposition.first, playerposition.second);
 	void runStage();
 	map *next;
+	void moveLeft(int i);
+	void moveRight(int i);
+	void moveUp(int i);
+	void moveDown(int i);
 
 	private:
 	//player player1;

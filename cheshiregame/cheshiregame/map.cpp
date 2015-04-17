@@ -275,21 +275,33 @@ bool map::run()
 		cin >> input; 
 		 if (input == "up" || input == "u")
 		{
-			moveUp();
+			 cout << "Enter spaces: ";
+			 int space = 0;
+			 cin >> space;
+			moveUp(space);
 			display();
 		}
 		else if (input == "down" || input == "d")
 		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
 			moveDown();
 			display();
 		}
 		else if (input == "left" || input == "l")
 		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
 			moveLeft();
 			display();
 		}
 		else if (input == "right" || input == "r")
 		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
 			moveRight();
 			display();
 		}
@@ -350,4 +362,91 @@ void map::wallBreak()
 	{
 		return;
 	}
+}
+//////////////////////////////////////////NEW MULTI MOVE FUNCTIONS
+// to move multiple spaces enter direction *space* numspaces
+// ex: right 5
+// do not do right5
+void map::moveLeft(int i)
+{
+	if (playerposition.second - i <= 0)
+	{
+		cout << "Too far out of bounds\n ";
+		return;
+	}
+	if (wallcheck(playerposition.first, playerposition.second - 1) == false)
+	{
+		playerposition.second - i;
+		updateplayer();
+	}
+	else
+	{
+		cout << "There is  a wall. " << endl;
+		wallBreak();
+	}
+	return;
+
+}
+void map::moveRight(int i)
+{
+	if (playerposition.second + i >= mapitems.at(0).size() - 1)
+	{
+		cout << "Too far out of bounds\n ";
+		return;
+	}
+	if (wallcheck(playerposition.first, playerposition.second + 1) == false)
+	{
+		//cout << "There is no wall. " << endl;
+		//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
+		//cout << "Edge: " << mapitems.at(0).size() - 1 << endl;
+		playerposition.second + i;
+		updateplayer();
+
+	}
+	else
+	{
+		cout << "There is a wall. " << endl;
+		wallBreak();
+	}
+	return;
+}
+void map::moveUp(int i)
+{
+	if (playerposition.first - i <= 0)
+	{
+		cout << "Too far out of bounds\n ";
+		return;
+	}
+	if (wallcheck(playerposition.first - 1, playerposition.second) == false)
+	{
+		playerposition.first - i;
+		updateplayer();
+	}
+	else
+	{
+		cout << "There is a wall. " << endl;
+		wallBreak();
+	}
+	return;
+}
+void map::moveDown(int i)
+{
+	if (playerposition.first + i >= mapitems.at(mapitems.size() - 1).size() - 1)
+	{
+		cout << "Too far out of bounds\n ";
+		return;
+	}
+	if (wallcheck(playerposition.first + 1, playerposition.second) == false)
+	{
+		//cout << "Moving down:" << endl;
+		playerposition.first + i;
+		updateplayer();
+	}
+	else
+	{
+		cout << "There is a wall. " << endl;
+		wallBreak();
+	}
+
+	return;
 }
