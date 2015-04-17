@@ -50,6 +50,7 @@ public:
 	int getEXP(); //gets the amount of EXP to be used in main
 	int getDef();
 	int getVal();
+	int tRand();
 	vector<int> getStats();
 
 	/*Stats*/

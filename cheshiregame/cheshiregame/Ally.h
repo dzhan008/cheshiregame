@@ -36,6 +36,7 @@ class Ally{
 		int getlevel();
 		int getexp();
 		int getDef();
+		int tRand();
 		vector<int> getStats();
 		bool calculateAccuracy(Entity* e);
 		bool calculateCrit();

@@ -76,13 +76,17 @@ vector<int> Ally::getStats(){
 	return allystats;
 }
 
+int Ally::tRand(){
+	return rand() % 100 + 1;
+}
+
 bool Ally::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
 	double temp = allystats.at(1) / eStats.at(3) * 100;
 	if (temp < 10){
 		temp = 10;
 	}
-	int x = randNumber();
+	int x = tRand();
 	if (x < temp){
 		return true;
 	}
@@ -93,7 +97,7 @@ bool Ally::calculateAccuracy(Entity* e){
 
 bool Ally::calculateCrit(){
 	double temp = 2 + (allystats.at(4) * .13);
-	int x = randNumber();
+	int x = tRand();
 	if (x < temp){
 		return true;
 	}

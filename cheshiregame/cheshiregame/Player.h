@@ -30,6 +30,7 @@ class player
 		int min_dmg; //The minimum damage the player can do to an enemy.
 		int max_dmg; //The maximum damage the player can do to an enemy.
 		int def; //The defense of the player.
+		int tRand();
 		bool defending;
 
 		/*For the three different inventories*/

@@ -126,9 +126,13 @@ int Entity::calculateDamage(Ally* ally, bool defend){
 	return trueDamage;
 }
 
+int Entity::tRand(){
+	return rand() % 100 + 1;
+}
+
 bool Entity::calculateCrit(){
 	double temp = 2 + (entityStats.at(4) * .13);
-	int x = randNumber();
+	int x = tRand();
 	if (x < temp){
 		return true;
 	}
@@ -141,7 +145,7 @@ bool Entity::calculateAccuracy(player* p){
 	if (temp < 10){
 		temp = 10;
 	}
-	int x = randNumber();
+	int x = tRand();
 	if (x < temp){
 		return true;
 	}

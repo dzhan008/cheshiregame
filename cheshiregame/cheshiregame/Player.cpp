@@ -226,7 +226,7 @@ vector<int> player::getStats(){
 
 bool player::calculateCrit(){
 	double temp = 2 + (playerstats.at(4) * .13);
-	int x = randNumber();
+	int x = tRand();
 	if (x < temp){
 		return true;
 	}
@@ -236,7 +236,7 @@ bool player::calculateCrit(){
 bool player::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
 	double temp = playerstats.at(1) / eStats.at(3) * 100;
-	int x = randNumber();
+	int x = tRand();
 	if (temp < 10){
 		temp = 10;
 	}
@@ -520,7 +520,9 @@ void player::declare_job(string input)
 }
 
 /*Combat Functions*/
-
+int player::tRand(){
+	return rand() % 100 + 1;
+}
 int player::randNumber(){
 	return (rand() % (max_dmg - min_dmg)) + min_dmg;
 }
