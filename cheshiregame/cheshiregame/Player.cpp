@@ -218,7 +218,7 @@ bool player::calculateCrit(){
 
 bool player::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
-	double temp = playerstats.at(1) / eStats.at(3);
+	double temp = playerstats.at(1) / eStats.at(3) * 100;
 	int x = randNumber();
 	if (temp < 10){
 		temp = 10;
