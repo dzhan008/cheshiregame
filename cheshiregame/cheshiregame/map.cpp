@@ -171,7 +171,7 @@ void map::moveLeft()
 	else
 	{
 		cout << "There is  a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 	return;
 
@@ -194,7 +194,7 @@ void map::moveRight()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 	return;
 }
@@ -212,7 +212,7 @@ void map::moveUp()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 	return;
 }
@@ -231,7 +231,7 @@ void map::moveDown()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 
 	return;
