@@ -86,7 +86,7 @@ void Store::run(player* p)
 						}
 					}
 					std::cout << "You bought one " << storeInventory.at(usernum - 1)->getName() << "." << std::endl;
-					spentGold += storeInventory.at(usernum)->getValue();
+					spentGold += storeInventory.at(usernum - 1)->getValue();
 					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 					p->setmoney(playerMoney);
 					storeInventory.erase(storeInventory.begin() + usernum - 1);
