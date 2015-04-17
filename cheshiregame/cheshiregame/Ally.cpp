@@ -66,7 +66,10 @@ vector<int> Ally::getStats(){
 
 bool Ally::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
-	double temp = allystats.at(1) / eStats.at(3);
+	double temp = allystats.at(1) / eStats.at(3) * 100;
+	if (temp < 10){
+		temp = 10;
+	}
 	int x = randNumber();
 	if (x < temp){
 		return true;

@@ -126,6 +126,9 @@ bool Entity::calculateCrit(){
 bool Entity::calculateAccuracy(player* p){
 	vector<int> pStats = p->getStats();
 	double temp = entityStats.at(1) / pStats.at(3);
+	if (temp < 10){
+		temp = 10;
+	}
 	int x = randNumber();
 	if (x < temp){
 		return true;
@@ -139,6 +142,9 @@ bool Entity::calculateAccuracy(Ally* a){
 	vector<int> aStats = a->getStats();
 	double temp = entityStats.at(1) / aStats.at(3);
 	int x = randNumber();
+	if (temp < 10){
+		temp = 10;
+	}
 	if (x < temp){
 		return true;
 	}
