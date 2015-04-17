@@ -20,10 +20,10 @@ map::map()
 	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 	mapitems.at(goal.first).at(goal.second) = 'G';
 	goalmap = mapitems;
-	
+
 }
 //constructs map based on premade txt file
-map::map(int sz, string& file)
+map::map(int sz, const string& file)
 {
 	ifstream mapfile;
 	mapfile.open(file.c_str());
@@ -57,7 +57,7 @@ map::map(int sz, string& file)
 				mapitems.at(goal.first).at(goal.second) = 'G';
 				break;
 			}
-			
+
 		}
 	}
 	for (int i = 0; i < mapitems.size(); i++)
@@ -148,13 +148,13 @@ void map::updateplayer()
 				int x = i;
 				int y = j;
 				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
-				
+
 				mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 				mapitems.at(x).at(y) = ' ';
 				return;
 			}
 		}
-		
+
 	}
 }
 void map::moveLeft()
@@ -174,7 +174,7 @@ void map::moveLeft()
 		wallBreak();
 	}
 	return;
-	
+
 }
 void map::moveRight()
 {
@@ -222,7 +222,7 @@ void map::moveDown()
 	{
 		return;
 	}
-	if (wallcheck(playerposition.first+1, playerposition.second) == false)
+	if (wallcheck(playerposition.first + 1, playerposition.second) == false)
 	{
 		//cout << "Moving down:" << endl;
 		playerposition.first++;
@@ -233,7 +233,7 @@ void map::moveDown()
 		cout << "There is a wall. " << endl;
 		wallBreak();
 	}
-	
+
 	return;
 }
 
@@ -247,7 +247,7 @@ bool map::wallcheck(int i, int j)
 	{
 		return true;
 	}
-	
+
 	return false;
 }
 void map::display()
@@ -272,12 +272,12 @@ bool map::run()
 		display();
 		cout << "Enter direction (up, down, left, right). " << endl;
 		cout << "Type 'menu' to access the player menu." << endl;
-		cin >> input; 
-		 if (input == "up" || input == "u")
+		cin >> input;
+		if (input == "up" || input == "u")
 		{
-			 cout << "Enter spaces: ";
-			 int space = 0;
-			 cin >> space;
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
 			moveUp(space);
 			display();
 		}
@@ -307,25 +307,25 @@ bool map::run()
 		}
 		//else if (input == "menu")
 		//{
-			//Scene s;
-			//s.basic_menu(p);
-			//menu = true;
-			//std::cout << "There be no menu here!";
+		//Scene s;
+		//s.basic_menu(p);
+		//menu = true;
+		//std::cout << "There be no menu here!";
 		//}
 		//if ((playerposition.first == goal.first) && (playerposition.second == goal.second))
 		//{
-			//return true;
+		//return true;
 		//}
 		//if ((rand() % 4 + 1) == 1) //Fix instance where the player encounters an enemy even when standing still.
 		//{
-			//if (!menu)
-			//{
-				//c.runBattle(d->rand_monster());
-			//}
+		//if (!menu)
+		//{
+		//c.runBattle(d->rand_monster());
+		//}
 		//}
 		//if (p->getHP() <= 0)
 		//{
-			//return false;
+		//return false;
 		//}
 	}
 	return false;
@@ -342,8 +342,8 @@ void map::wallBreak()
 	{
 		if (playerposition.second != ' ')
 		{
-		
-			mapitems.at(playerposition.first).at(playerposition.second-1) = ' ';
+
+			mapitems.at(playerposition.first).at(playerposition.second - 1) = ' ';
 		}
 		if (playerposition.second != mapitems.at(0).size() - 1)
 		{
@@ -482,3 +482,9 @@ void map::moveDown(int i)
 
 	return;
 }
+int map::pf() { return playerposition.first; }
+int map::ps() { return playerposition.second; }
+int map::gf() { return goal.first; }
+int map::gs() { return goal.first; }
+
+

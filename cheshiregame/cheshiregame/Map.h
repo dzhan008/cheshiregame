@@ -12,7 +12,7 @@ public:
 	//default constructor
 	map();
 	//file input constructor
-	map(int mapsize, string& file);
+	map(int mapsize, const string& file);
 	//random constructor
 	//area = size *size ex: size 10 = 10 * 10 map 
 	map(int size);
@@ -34,7 +34,12 @@ public:
 	void moveUp(int i);
 	void moveDown(int i);
 
-	private:
+	//Get functions so it can be used in Dungeon
+	int pf(); //returns player's first position (x)
+	int ps(); //returns player's second position
+	int gf(); //returns goal's first position
+	int gs(); //returns goal's second position
+private:
 	//player player1;
 	//coordinates x,y of a players position
 	pair <int, int> playerposition;
@@ -46,7 +51,6 @@ public:
 	pair <int, int> goal;
 	vector <vector<char> > goalmap;
 
-	
 };
 
 #endif

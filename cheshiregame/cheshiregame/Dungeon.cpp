@@ -10,7 +10,7 @@
 
 using namespace std;
 /*----------Private Helper Functions----------*/
-void Dungeon::fill_dungeon(const string &text_file)
+void Dungeon::fill_dungeon(const string &text_file, const string &map_file)
 {
 	ifstream inFS;
 
@@ -75,9 +75,9 @@ void Dungeon::fill_dungeon(const string &text_file)
 			}
 
 			entity_group.push_back(temp_entity);
-
 		}
 	}
+	dun_map = new map(10, map_file);
 }
 
 void Dungeon::clear_dun()
@@ -87,10 +87,12 @@ void Dungeon::clear_dun()
 		delete dungeon_loot.at(i);
 		dungeon_loot.at(i) = 0;
 	}
+	delete dun_map;
+	dun_map = 0;
 }
-Dungeon::Dungeon(const string &text_file)
+Dungeon::Dungeon(const string &text_file, const string &map_file)
 {
-	fill_dungeon(text_file);
+	fill_dungeon(text_file, map_file);
 }
 
 Dungeon::~Dungeon()
@@ -100,12 +102,14 @@ Dungeon::~Dungeon()
 		delete dungeon_loot.at(i);
 		dungeon_loot.at(i) = 0;
 	}
+	delete dun_map;
+	dun_map = 0;
 }
-void Dungeon::change_dungeon(const string &text_file)
+void Dungeon::change_dungeon(const string &text_file, const string &map_file)
 {
 	entity_group.clear();
 	clear_dun();
-	fill_dungeon(text_file);
+	fill_dungeon(text_file, map_file);
 }
 
 const void Dungeon::display_dungeon()
@@ -139,4 +143,70 @@ Entity* Dungeon::rand_monster()
 Entity* Dungeon::get_boss()
 {
 	return entity_group.at(entity_group.size() - 1);
+}
+
+bool Dungeon::run_dungeon(player*& p, Combat_System c)
+{
+	string input;
+
+	while (true)
+	{
+		bool menu = false;
+		cout << endl;
+		dun_map->display();
+		cout << "Enter direction (up, down, left, right). " << endl;
+		cout << "Type 'menu' to access the player menu." << endl;
+		cin >> input;
+		if (input == "menu")
+		{
+			Scene s;
+			s.basic_menu(p);
+		}
+		if (input == "up" || input == "u")
+		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
+			dun_map->moveUp(space);
+			dun_map->display();
+		}
+		else if (input == "down" || input == "d")
+		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
+			dun_map->moveDown(space);
+			dun_map->display();
+		}
+		else if (input == "left" || input == "l")
+		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
+			dun_map->moveLeft(space);
+			dun_map->display();
+		}
+		else if (input == "right" || input == "r")
+		{
+			cout << "Enter spaces: ";
+			int space = 0;
+			cin >> space;
+			dun_map->moveRight(space);
+			dun_map->display();
+		}
+		if ((dun_map->pf() == dun_map->gf()) && (dun_map->ps() == dun_map->gs()))
+		{
+			return true;
+		}
+		else if (input != "menu" && ((rand() % 4 + 1) == 1)) //Fix instance where the player encounters an enemy even when standing still.
+		{
+			c.runBattle(rand_monster());
+		}
+		if (p->getHP() <= 0)
+		{
+			return false;
+		}
+	}
+
+	return false;
 }
