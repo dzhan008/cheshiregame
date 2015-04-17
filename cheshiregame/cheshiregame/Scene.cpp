@@ -316,7 +316,8 @@ void Scene::scene_001(player* p)
 		cin.ignore(INT_MAX, '\n');
 	}
 
-	std::cout << "As you stand up, you hear a rustling in a bush just nearby you. You look to your right and realize that a fox is pouncing at you!" << std::endl;
+	std::cout << "As you stand up, you hear a rustling in a bush just nearby you. " << std::endl;
+	std::cout << " You look to your right and realize that a fox is pouncing at you!" << std::endl;
 	//Initiate battle with fox
 }
 
@@ -324,10 +325,14 @@ void Scene::scene_003(player* p)
 {
 	int input = 0;
 
-	std::cout << "You slay the fox whether by sheer luck or skill. There seems to be nothing else around the area, so you decide to leave the forest and look for a nearby town. " << std::endl;
+	std::cout << "You slay the fox whether by sheer luck or skill. There seems to be nothing " << std::endl;
+	std::cout << "else around the area, so you decide to leave the forest and look for a nearby town. " << std::endl;
 
-	std::cout << "You exit the forest and see an open trail. Since the road is the only lead to what may be civilization, you follow the trail all the way to the end. There stood a city that was like your typical first-level RPG town." << std::endl << std::endl;
-	std::cout << "There was a problem though. The town was quiet. Too quiet. You walk through the entrance, but there was no one within your view. The town seemed to be devoid of life itself.\n\n";
+	std::cout << "You exit the forest and see an open trail. Since the road is the only lead " << std::endl;
+	std::cout << "to what may be civilization, you follow the trail all the way to the end." << std::endl;
+	std::cout << " stood a city that was like your typical first - level RPG town." << std::endl << std::endl;
+	std::cout << "There was a problem though. The town was quiet. Too quiet. You walk through the entrance," << std::endl;
+	std::cout << " there was no one within your view.The town seemed to be devoid of life itself.\n\n";
 	std::cout << "You approach a house and find that its door is open. What do you do?\n\n";
 	
 	std::cout << "1.Go inside and loot the house." << std::endl;
@@ -362,7 +367,9 @@ void Scene::scene_003(player* p)
 void Scene::scene_003_1(player* p)
 {
 
-	std::cout << "Having no moral bounds, you walk into the house. You search every nook and cranny of the place, but to your dismay did not find anything of interest. You did find some gold though.\n\n";
+	std::cout << "Having no moral bounds, you walk into the house. You" << std::endl;
+	std::cout << " search every nook and cranny of the place, but to your dismay" << std::endl;
+	std::cout << " did not find anything of interest.You did find some gold though.\n\n";
 	p->setmoney(p->getmoney() + 100);
 	std::cout << "As you loot the house, a voice beckons to you." << std::endl;
 	std::cout << "\"Hello!\"" << std::endl;
@@ -373,13 +380,17 @@ void Scene::scene_003_1(player* p)
 
 void Scene::scene_003_2(player* p)
 {
-	std::cout << "You yell into the house, but there is no response. You decide to holler once more, in hopes that a person may come out. \"Try again, maybe you might find someone in there.\"\n\n";
+	std::cout << "You yell into the house, but there is no response. You decide to" << std::endl;
+	std::cout << " holler once more, in hopes that a person may come out. \"Try again, maybe you might find someone in there.\"\n\n";
 	scene_003_4(p);
 }
 
 void Scene::scene_003_3(player* p)
 {
-	std::cout << "You decide the house was not worth checking out, and head out to the town square. The middle of the city was just as empty as the house you visited earlier. The only difference between the two was the fountain that flowed water onto its base. Before you walk up to the fountain, a voice beckons you." << std::endl;
+	std::cout << "You decide the house was not worth checking out, and head" << std::endl;
+	std::cout << " to the town square.The middle of the city was just as empty as the place" << std::endl;
+	std::cout << " you visited earlier.The only difference between the two was the fountain that" << std::endl;
+	std::cout << " flowed water onto its base.Before you walk up to the fountain, a voice beckons you." << std::endl;
 	std::cout << "\"Hello!\"" << std::endl;
 	scene_003_4(p);
 }
@@ -388,7 +399,9 @@ void Scene::scene_003_4(player* p)
 {
 	int input = 0;
 
-	std::cout << "You turn around to find a man standing right behind you. He doesn’t seem harmless, but is strangely close to you. The man sports a jester mask that covers his face. The smiling engraving on the mask complements his cheerful tone. Startled, you:\n\n";
+	std::cout << "You turn around to find a man standing right behind you. He doesn’t seem" << std::endl;
+	std::cout << " dangerous, but is strangely close to you.The man sports a jester mask that " << std::endl;
+	std::cout << " covers his face.The smiling engraving on the mask complements his cheerful tone. Startled, you:\n\n";
 
 	std::cout << "1. Attack the man with your weapon!" << std::endl;
 	std::cout << "2. Ask, \"Who are you?\"" << std::endl;
@@ -420,7 +433,9 @@ void Scene::scene_003_4(player* p)
 
 void Scene::scene_003_4_1(player* p)
 {
-	std::cout << "You take your weapon and hit him with sheer force. The man is shocked, but was not able to recover from your flurry of hits. After your tenth strike, the man is dead. You take his mask because why not?\n\n";
+	std::cout << "You take your weapon and hit him with sheer force. The man " << std::endl;
+	std::cout << " shocked, but was not able to recover from your flurry of hits." << std::endl;
+	std::cout << "Ater your tenth strike, the man is dead.You take his mask off because why not ? \n\n";
 	Gear* mask = new Gear("Jester Mask", 50, "Helmet", 20);
 	p->add_gear(mask);
 	scene_004(true);
@@ -428,13 +443,15 @@ void Scene::scene_003_4_1(player* p)
 
 void Scene::scene_003_4_2()
 {
-	std::cout << "\"The town guide!\" the man says cheerfully. \"The name's Astuce.\" He holds out his hand. \"Nice to meet you.\"\n\n";
+	std::cout << "\"The town guide!\" the man says cheerfully. \"The name's Astuce.\" " << std::endl;
+	std::cout << " holds out his hand. \"Nice to meet you.\"\n\n";
 	scene_004(false);
 }
 
 void Scene::scene_003_4_3()
 {
-	std::cout << "\"I may be able to give you one if you do me a favor.\" He holds out his hand. \"I'm Astuce. Nice to meet you.\"\n\n";
+	std::cout << "\"I may be able to give you one if you do me a favor.\" " << std::endl;
+	std::cout << "He holds out his hand. \"I'm Astuce. Nice to meet you.\"\n\n";
 	scene_004(false);
 }
 
@@ -448,10 +465,19 @@ void Scene::scene_004(bool dead)
 
 		std::cout << "Upon taking the man's mask, you search for his belongings. You come across a note. It reads:" << std::endl;
 
-		std::cout << "\" Okay, I'm going to level with you. I did not expect you to actually KILL Astuce, the town guide, this fast. I mean, he's probably have some significant role in the game, but now you'll never know because he’s dead.\n\n";
-		std::cout << "Did you know how much time I spent to actually create this character? 3 hours. All the time that was spent in making one person that was supposed to make you feel like you're not alone was wasted upon his death. Thanks. Really.\n\n";
-		std::cout << "So now that he's dead, you have to read through all the crap I have to tell you right now. You're in a town (bet you figured that out when you walked in right?), and there's going to be some menu that pops up where you can interact with certain things here. \n\n";
-		std::cout << "You can go through a dungeon, visit the shop, go to some inn, I don't know. Just do what you want, because there's not much you could do without a damn guide to tell you what you can or can't do. \n\n" << std::endl;
+		std::cout << "\" Okay, I'm going to level with you. I did not expect you to actually" << std::endl;
+		std::cout << "KILL Astuce, the town guide, this fast. I mean, he probably has" << std::endl;
+		std::cout << "some significant role in the game, but now you'll never know because he’s dead.\n\n" << std::endl;
+		std::cout << "Did you know how much time I spent to actually create this character? " << std::endl;
+		std::cout << "3 hours.All the time that was spent in making one person that was " << std::endl;
+		std::cout << "supposed to make you feel like you're not alone was wasted upon his death. Thanks. Really.\n\n";
+		std::cout << "So now that he's dead, you have to read through all the crap I have to " << std::endl;
+		std::cout << "tell you right now.You're in a town (bet you figured that out when you " << std::endl;
+		std::cout << "walked in right ? ), and there's going to be some menu that pops up where" << std::endl;
+		std::cout << "you can interact with certain things here. \n\n";
+		std::cout << "You can go through a dungeon, visit the shop, go to some inn, I don't know. " << std::endl;
+		std::cout << " do what you want, because there's not much you could do without a damn" << std::endl;
+		std::cout << "guide to tell you what you can or can't do. \n\n" << std::endl;
 		std::cout << "-Game Creator\"\n\n";
 
 		std::cout << "Game Creator? You ponder as you wonder whether or not some god or an angry programmer sent you this. What's a programmer anyway? You shrug off this thought, and decide to see what you could do in town.\n\n";
