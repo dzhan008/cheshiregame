@@ -1,0 +1,28 @@
+Howling Abyss
+Easy
+Chimera 50 5 50 1 200 2 3 4 1 2
+:loot:
+Chimera's Gem
+100
+<end>
+Cyclops 60 5 50 1 250 1 1 1 1 1
+<end>
+Naga 30 2 50 1 150 1 1 1 1 1
+:loot:
+Aqua Shell
+50
+<end>
+Imp 20 2 50 1 100 1 1 1 1 1
+<end>
+Sphinx 20 3 130 1 20 1 1 1 1 1
+<end>
+Witch 50 3 200 1 20 1 1 1 1 1
+<end>
+Cerberus 100 3 200 1 300 1 1 1 1 1
+:loot:
+Hades' Flame
+200
+Bejweled Scepter
+100
+<end>
+end
