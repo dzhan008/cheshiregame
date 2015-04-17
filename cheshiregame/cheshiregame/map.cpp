@@ -286,7 +286,7 @@ bool map::run()
 			cout << "Enter spaces: ";
 			int space = 0;
 			cin >> space;
-			moveDown();
+			moveDown(space);
 			display();
 		}
 		else if (input == "left" || input == "l")
@@ -294,7 +294,7 @@ bool map::run()
 			cout << "Enter spaces: ";
 			int space = 0;
 			cin >> space;
-			moveLeft();
+			moveLeft(space);
 			display();
 		}
 		else if (input == "right" || input == "r")
@@ -302,7 +302,7 @@ bool map::run()
 			cout << "Enter spaces: ";
 			int space = 0;
 			cin >> space;
-			moveRight();
+			moveRight(space);
 			display();
 		}
 		//else if (input == "menu")
