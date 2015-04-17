@@ -59,7 +59,7 @@ class player
         //Constructor
         player();
 		player(std::string pName, std::string pJob);
-        player(std::string pName, std::string pJob, int health, int lvl, int amount, int statpts);
+        player(std::string pName, std::string pJob, int health, int lvl, int exp, int statpts, int money);
 		~player();
 
         /*Get Functions: Returns the respective value.*/

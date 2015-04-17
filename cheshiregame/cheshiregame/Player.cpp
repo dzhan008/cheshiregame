@@ -55,6 +55,8 @@ player::player(std::string pName, std::string pJob)
 	max_dmg = 10;
 	defending = false;
 
+	pmoney = 0;
+
 	playerstats.resize(5);
 	equipment.resize(4);
 	weapon.resize(2);
@@ -78,18 +80,20 @@ player::player(std::string pName, std::string pJob)
 	}
 }
 
-player::player(string pName, string pJob, int health, int lvl, int amount, int statpts)
+player::player(string pName, string pJob, int health, int lvl, int exp, int statpts, int money)
 {
     playername = pName;
     maxHP = health;
     currHP = health;
     plevel  = lvl;
-    pexp = amount;
-	maxexp = amount;
+    pexp = exp;
+	maxexp = exp;
 	statpoints = statpts;
 	min_dmg = 1 * lvl; //Change later
 	max_dmg = 10 * lvl;
 	defending = false;
+
+	pmoney = money;
 
 	playerstats.resize(5);
 	equipment.resize(4);
@@ -263,7 +267,7 @@ void player::setDefending(bool b){
 void player::displayInfo()
 {
     cout << playername << endl;
-	cout << "Level: " << plevel;
+	cout << "Level: " << plevel << endl;
 	cout << "Health: " << currHP << "/" << maxHP << endl;
 	cout << "Exp: " << pexp << "/" << maxexp << endl;
 
