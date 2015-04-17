@@ -19,6 +19,7 @@ class Weapon : public Item
 		bool equipWeapon(Weapon* wep, player* p);
 		string getType() const;
 		void printItem() const;
+		void add_dmg(int dmg);
 };
 
 #endif

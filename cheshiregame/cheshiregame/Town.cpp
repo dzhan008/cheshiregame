@@ -95,7 +95,7 @@ void Town::run(player* p) {
                 store(p);
             }
             else if (choice == 3) {
-                blacksmith();
+                blacksmith(p);
             }
             else if (choice == 4) {
                 tavern();
@@ -135,6 +135,7 @@ void Town::inn(player* p) {
         if (cin.good()) {
             if (choice == 1) {
                 std::cout << "It will cost you 50 gold. Are you sure?" << std::endl;
+				std::cout << "You have " << p->getmoney() << " gold." << std::endl;
                 std::cout << "1. Yes" << std::endl;
                 std::cout << "2. No" << std::endl;
                 std::cin >> choice;
@@ -174,9 +175,72 @@ void Town::inn(player* p) {
     return;
 }
 
-void Town::blacksmith() {
-    // TODO: Impelment blacksmith
-    std::cout << "Unimplemented." << std::endl;
+void Town::blacksmith(player* p) {
+    
+	int choice = -1;
+
+	std::cout << "Welcome to the blacksmith." << std::endl;
+	std::cout << "1. Upgrade Weapon." << std::endl;
+	std::cout << "2. Exit." << std::endl;
+	while (choice != 2)
+	{
+		std::cin >> choice; 
+		if (cin.good())
+		{
+			if (choice == 1)
+			{
+				std::string wep;
+
+				std::cout << "I can refine your weapon for a price. However, I may fail." << std::endl;
+				std::cout << "The price to refine your weapon is 100 gold." << std::endl;
+				if (p->getmoney() < 100)
+				{
+					std::cout << "Sorry pal, you don't have enough gold." << std::endl;
+					return;
+				}
+				std::cout << "Which weapon would you like me to refine? (Type q to quit)" << std::endl;
+				std::cin.ignore();
+				getline(std::cin, wep);
+				if (wep == "q")
+				{
+					return;
+				}
+				while (p->wep_search(wep) == NULL)
+				{
+					std::cout << "You do not have this weapon. Please enter it again." << std::endl;
+					getline(std::cin, wep);
+					if (wep == "q")
+					{
+						return;
+					}
+				}
+				std::cout << "Alright, here goes!" << std::endl;
+				if ((rand() % 3 + 1) == 1)
+				{
+					std::cout << "The blacksmiths hammers down your weapon, tempering it with fine skill." << std::endl;
+					std::cout << "\"Here you go.\" The blacksmith hands you your weapon, looking better than ever." << std::endl;
+					p->wep_search(wep)->add_dmg((rand() % 10 + 1));
+					return;
+				}
+				else
+				{
+					std::cout << "The blacksmith clanks your weapon with his hammer, but breaks with his next strike." << std::endl;
+					std::cout << "\"Curses! My hand slipped.\" He frowns, and apologetically hands you your broken weapon." << std::endl;
+					p->remove_wep(wep);
+					return;
+				}
+
+			}
+			if (choice == 2)
+			{
+				return;
+			}
+		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "Bad input, try again." << endl;
+	}
+
     return;
 }
 
@@ -189,7 +253,7 @@ void Town::tavern() {
 void Town::store(player* p) {
 	std::cout << "Unimplemented." << std::endl;
 	return;
-    s.run(*p);
+    //s.run(p);
     return;
 }
 
@@ -219,12 +283,12 @@ void Town::dungeon_select(player* p)
 		map test_map(5, map_name);
 		Dungeon* d = new Dungeon("demo_dun_1.txt");
 		Combat_System cs(p);
-		test_map.run(p, d, cs);
+		//test_map.run(p, d, cs);
 		Scene s;
 		s.scene_005();
 		cs.runBattle(d->get_boss());
 		s.scene_006();
 	//}
 	/*FOR DEMO ONLY*/
-
+		
 }

@@ -34,7 +34,7 @@ public:
     void run(player* p);
 	void inn(player* p);
     void tavern();
-    void blacksmith();
+    void blacksmith(player* p);
     void store(player* p);
     void talk();
 	void dungeon_select(player* p);

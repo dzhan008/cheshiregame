@@ -33,6 +33,11 @@ int Weapon::getValue(){
 	return damageBoost;
 }
 
+void Weapon::add_dmg(int dmg)
+{
+	damageBoost += dmg;
+}
+
 Weapon::Weapon(std::string name, std::string type, int dmg, int val)
 {
 	this->name = name;
