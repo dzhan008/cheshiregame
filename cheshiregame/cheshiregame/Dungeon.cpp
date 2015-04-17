@@ -151,8 +151,6 @@ bool Dungeon::run_dungeon(player*& p, Combat_System c)
 
 	while (true)
 	{
-		//cout << dun_map->gf() << " " << dun_map->gs() << endl;
-		//cout << dun_map->pf() << " " << dun_map->ps() << endl;
 		bool menu = false;
 		cout << endl;
 		dun_map->display();
@@ -186,13 +184,12 @@ bool Dungeon::run_dungeon(player*& p, Combat_System c)
 		}
 		if ((dun_map->pf() == dun_map->gf()) && (dun_map->ps() == dun_map->gs()))
 		{
-			//cout << "GOOOOOAAAAAAAALLLLLLLLLLL!" << endl;
 			return false;
 		}
-		//else if (input != "menu" && ((rand() % 4 + 1) == 1)) //Fix instance where the player encounters an enemy even when standing still.
-		//{
-		//	c.runBattle(rand_monster());
-		//}
+		else if (input != "menu" && ((rand() % 4 + 1) == 1)) //Fix instance where the player encounters an enemy even when standing still.
+		{
+			c.runBattle(rand_monster());
+		}
 		if (p->getHP() <= 0)
 		{
 			return false;
