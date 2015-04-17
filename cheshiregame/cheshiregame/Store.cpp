@@ -139,6 +139,8 @@ void Store::run(player* p)
 					}
 				}
             }
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
         }
     }
     std::cout << "Gold spent: " << spentGold << std::endl;
