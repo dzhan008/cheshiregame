@@ -4,36 +4,47 @@ Rusty Shiv
 5
 Weapon
 Steel Longsword
-30
+15
 10
 Weapon
-Legendary Ghostblade
-250
+Silver Longsword
 25
+20
+Weapon
+Diamond Dagger
+50
+25
+Gear
 Chest
-Frayed Leather Coat
+Leather Coat
 15
 10
+Gear
 Chest
 Heavy Iron Chestplate
-80
+40
 25
+Gear
 Legs
-Worn Fur Boots
+Fur Boots
 10
 5
+Gear
 Legs
 Enchanted Greaves
-100
-20
-Arms
-Rough Leather Gloves
-5
-5
-Arms
-Light Mithril Gloves
 50
+20
+Gear
+Arms
+Leather Gloves
+10
+5
+Gear
+Arms
+Mithril Gloves
+25
 15
+Gear
 Helmet
 Steel Helmet
 15
@@ -42,39 +53,9 @@ Consumable
 Health Potion
 5
 10
-Consumable
-Health Potion
 5
-10
-Consumable
-Health Potion
-5
-10
-Consumable
-Health Potion
-5
-10
-Consumable
-Health Potion
-5
-10
 Consumable
 Mana Potion
 5
 10
-Consumable
-Mana Potion
 5
-10
-Consumable
-Mana Potion
-5
-10
-Consumable
-Mana Potion
-5
-10
-Consumable
-Mana Potion
-5
-10
