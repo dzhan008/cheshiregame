@@ -34,6 +34,10 @@ public:
 	int ps(); //returns player's second position
 	int gf(); //returns goal's first position
 	int gs(); //returns goal's second position
+	void moveLeft(int k);
+	void moveRight(int k);
+	void moveUp(int k);
+	void moveDown(int k);
 private:
 	//player player1;
 	//coordinates x,y of a players position

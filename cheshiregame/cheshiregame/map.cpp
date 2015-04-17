@@ -128,12 +128,6 @@ map::map(int size)
 		mapitems.at(goal.first + 1).at(goal.second) = ' ';
 	}
 	goalmap = mapitems;
-
-
-
-
-	goalmap = mapitems;
-
 }
 
 //updates player position after moving
@@ -264,7 +258,7 @@ void map::display()
 bool map::run()
 {
 	string input;
-
+	int numSpace;
 	while (true)
 	{
 		bool menu = false;
@@ -275,22 +269,26 @@ bool map::run()
 		cin >> input;
 		if (input == "up" || input == "u")
 		{
-			moveUp();
+			cin >> numSpace;
+			moveUp(numSpace);
 			display();
 		}
 		else if (input == "down" || input == "d")
 		{
-			moveDown();
+			cin >> numSpace;
+			moveDown(numSpace);
 			display();
 		}
 		else if (input == "left" || input == "l")
 		{
-			moveLeft();
+			cin >> numSpace;
+			moveLeft(numSpace);
 			display();
 		}
 		else if (input == "right" || input == "r")
 		{
-			moveRight();
+			cin >> numSpace;
+			moveRight(numSpace);
 			display();
 		}
 		//else if (input == "menu")
@@ -349,6 +347,34 @@ void map::wallBreak()
 	else if (input == "no")
 	{
 		return;
+	}
+}
+void map::moveLeft(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveLeft();
+	}
+}
+void map::moveRight(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveRight();
+	}
+}
+void map::moveUp(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveUp();
+	}
+}
+void map::moveDown(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveDown();
 	}
 }
 int map::pf() { return playerposition.first; }
