@@ -151,6 +151,8 @@ bool Dungeon::run_dungeon(player*& p, Combat_System c)
 
 	while (true)
 	{
+		//cout << dun_map->gf() << " " << dun_map->gs() << endl;
+		//cout << dun_map->pf() << " " << dun_map->ps() << endl;
 		bool menu = false;
 		cout << endl;
 		dun_map->display();
@@ -164,44 +166,33 @@ bool Dungeon::run_dungeon(player*& p, Combat_System c)
 		}
 		if (input == "up" || input == "u")
 		{
-			cout << "Enter spaces: ";
-			int space = 0;
-			cin >> space;
-			dun_map->moveUp(space);
-			dun_map->display();
+			dun_map->moveUp();
+			//dun_map->display();
 		}
 		else if (input == "down" || input == "d")
 		{
-			cout << "Enter spaces: ";
-			int space = 0;
-			cin >> space;
-			dun_map->moveDown(space);
-			dun_map->display();
+			dun_map->moveDown();
+			//dun_map->display();
 		}
 		else if (input == "left" || input == "l")
 		{
-			cout << "Enter spaces: ";
-			int space = 0;
-			cin >> space;
-			dun_map->moveLeft(space);
-			dun_map->display();
+			dun_map->moveLeft();
+			//dun_map->display();
 		}
 		else if (input == "right" || input == "r")
 		{
-			cout << "Enter spaces: ";
-			int space = 0;
-			cin >> space;
-			dun_map->moveRight(space);
-			dun_map->display();
+			dun_map->moveRight();
+			//dun_map->display();
 		}
 		if ((dun_map->pf() == dun_map->gf()) && (dun_map->ps() == dun_map->gs()))
 		{
-			return true;
+			//cout << "GOOOOOAAAAAAAALLLLLLLLLLL!" << endl;
+			return false;
 		}
-		else if (input != "menu" && ((rand() % 4 + 1) == 1)) //Fix instance where the player encounters an enemy even when standing still.
-		{
-			c.runBattle(rand_monster());
-		}
+		//else if (input != "menu" && ((rand() % 4 + 1) == 1)) //Fix instance where the player encounters an enemy even when standing still.
+		//{
+		//	c.runBattle(rand_monster());
+		//}
 		if (p->getHP() <= 0)
 		{
 			return false;
