@@ -115,6 +115,7 @@ int main()
 			string file = "all_items.txt";
 			s.fillStore(file);
 			s.run(play);
+			scene.basic_menu(play);
 			return 0;
 		}
 		else if (input == 3)

@@ -50,16 +50,17 @@ Weapon::Weapon(std::string name, std::string type, int dmg, int val)
 Weapon::Weapon(const Weapon& origWeapon)
 {
 	Item::Item(origWeapon);
-	this->damageBoost = damageBoost;
+	this->damageBoost = origWeapon.damageBoost;
 }
 Weapon::Weapon(const Weapon*& origWeapon)
 {
 	this->name = origWeapon->name;
 	this->value = origWeapon->value;
-	this->damageBoost = damageBoost;
+	this->damageBoost = origWeapon->damageBoost;
 }
 void Weapon::printItem() const
 {
 	Item::printItem();
-	cout << "Type: " << type << endl;
+	std::cout << "Type: " << type << std::endl;
+	std::cout << "Damage: " << damageBoost << std::endl;
 }

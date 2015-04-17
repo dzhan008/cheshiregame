@@ -46,7 +46,7 @@ int Gear::getStats(){
 	return statBoost;
 }
 
-Gear::Gear(std::string nam,std::string type, int val)
+Gear::Gear(std::string nam, std::string type, int val)
 {
 	name = nam;
 	value = val;
@@ -65,7 +65,7 @@ Gear::Gear(const Gear*& origGear)
 {
 	this->name = origGear->name;
 	this->value = origGear->value;
-	this->statBoost = statBoost;
+	this->statBoost = origGear->statBoost;
 }
 
 /*Gear::~Gear()
