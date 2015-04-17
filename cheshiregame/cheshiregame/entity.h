@@ -57,6 +57,8 @@ public:
 	void setEntityStats(int str, int agi, int vit, int dex, int luk);
 	void DisplayStats(); //displays the stats of the entity to be used in main
 
+	void updateStats(); //Particularly updates how much damage the enemy can do based on STR (for now).
+
 	/*Loot*/
 	void add_loot(Item* i); //adds one item to vector of loot
 	void give_loot(player*& p); //adds loot to player inventory

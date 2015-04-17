@@ -27,6 +27,7 @@ Entity::Entity(string entityName, int health, int lvl, int amount, int d, int va
 	entityStats.at(2) = 1;
 	entityStats.at(3) = 1;
 	entityStats.at(4) = 1;
+	updateStats();
 }
 
 Entity::Entity(Entity*& x)
@@ -210,6 +211,11 @@ void Entity::DisplayStats()
 	cout << "Luck:      " << entityStats.at(4) << endl;
 }
 
+void Entity::updateStats()
+{
+	min_dmg += entityStats.at(0)/2;
+	max_dmg += entityStats.at(0)/2;
+}
 
 /*Print*/
 //Prints all information about entity

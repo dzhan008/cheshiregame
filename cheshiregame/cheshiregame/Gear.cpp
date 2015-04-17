@@ -46,7 +46,7 @@ int Gear::getStats(){
 	return statBoost;
 }
 
-Gear::Gear(std::string nam, std::string type, int val)
+Gear::Gear(std::string nam,std::string type, int val)
 {
 	name = nam;
 	value = val;
@@ -55,6 +55,7 @@ Gear::Gear(std::string nam, std::string type, int val)
 
 Gear::Gear(std::string name, int val, std::string type, int stat)
 {
+	Item::type = "Gear";
 	this->name = name;
 	value = val;
 	this->type = type;
@@ -65,7 +66,7 @@ Gear::Gear(const Gear*& origGear)
 {
 	this->name = origGear->name;
 	this->value = origGear->value;
-	this->statBoost = origGear->statBoost;
+	this->statBoost = statBoost;
 }
 
 /*Gear::~Gear()

@@ -61,6 +61,5 @@ Weapon::Weapon(const Weapon*& origWeapon)
 void Weapon::printItem() const
 {
 	Item::printItem();
-	std::cout << "Type: " << type << std::endl;
-	std::cout << "Damage: " << damageBoost << std::endl;
+	cout << "Type: " << type << endl;
 }

@@ -468,22 +468,6 @@ bool player::add_exp(int x) //TO DO: Change exp scaling per 10 levels
 	return level_up;
 }
 
-/*Scenario to replace instead of this:
-You wake up dazed, seeing only blurriness around you.
-Your head is throbbing, and your mind is fogged.
-You sit up slowly, trying to recollect yourself.
-You can't seem to remember much. It is as if your mind
-become a blank slate. You try to remember your name:
-(after player enters name)
-Well at least you did not forget who you were. You turn
-around to look at your surroundings. Beside you lies:
-1. A rusted sword.
-2. A dull dagger.
-3. A wooden staff.
-(depending on the choice, there will be something said about the player's job)
--You pick up the item and realize you're in the middle of the forest. You then
-try to find your way to town.*/
-
 void player::characterCreation() //TO DO: Move the text part into scene.
 {
 	string input;
@@ -780,6 +764,7 @@ void player::equip_gear(int i, const Gear* x)
 		gear_size -= 1;
 		inv_size -= 1;
 	}
+	update_player();
 }
 
 void player::remove_gear(int i)
@@ -793,6 +778,7 @@ void player::remove_gear(int i)
 	equipment.at(i) = none;
 	gear_size += 1;
 	inv_size += 1;
+	update_player();
 }
 
 void player::equip_wep(int i, const Weapon* x)
@@ -811,6 +797,7 @@ void player::equip_wep(int i, const Weapon* x)
 		wep_size -= 1;
 		inv_size -= 1;
 	}
+	update_player();
 }
 
 void player::remove_wep(int i)
@@ -824,6 +811,7 @@ void player::remove_wep(int i)
 	weapon.at(i) = none_wep;
 	wep_size += 1;
 	inv_size += 1;
+	update_player();
 }
 
 int player::find_slot(std::string gear)
@@ -880,16 +868,17 @@ void player::updateStats(){
 		}
 	}
 	def = currentDefense;
-	int min = 1;
-	int max = 10;
+	int min = 0;
+	int max = 0;
 	for (int i = 0; i < weapon.size(); i++){
 		if (weapon.at(i) != NULL){
 			min += weapon.at(i)->getValue();
 			max += weapon.at(i)->getValue();
 		}
 	}
-	min_dmg = min;
-	max_dmg = max;
+	
+	min_dmg += min;
+	max_dmg += max;
 }
 
 void player::update_player()
