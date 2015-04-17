@@ -120,10 +120,6 @@ int Combat_System::promptEnemyChoice(vector<Entity*> enemies){
 	}
 }
 
-double Combat_System::calculateAccuracy(){
-	return 0;
-}
-
 int Combat_System::calculateDamage(bool defend){
 	if(defend){
 		return randNumber() / 30;
@@ -151,9 +147,18 @@ void Combat_System::runBattle(Entity* e){
 			cout << enemy->getName() << " has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
 			optionChoice = promptChoices();
 			if (optionChoice == 0){
-				int x = play->calculateDamage(*enemy, eChoice);
-				cout << "You've hit the enemy for " << x << " damage!" << endl;
-				enemy->setHealth(enemy->getHealth() - x);
+				if (play->calculateAccuracy(e)){
+					int x = play->calculateDamage(*enemy, eChoice);
+					if (play->calculateCrit()){
+						x *= 1.4;
+						cout << "You've hit a crit!" << endl;
+					}
+					cout << "You've hit the enemy for " << x << " damage!" << endl;
+					enemy->setHealth(enemy->getHealth() - x);
+				}
+				else{
+					cout << "You missed!" << endl;
+				}
 			}
 			if (optionChoice == 1){
 			    play->setDefending(true);
@@ -187,9 +192,18 @@ void Combat_System::runBattle(Entity* e){
 				cout << "It is now " << allies.at(i)->getname() << "'s turn." << endl;
 				bool decision = calculateAllyChoice(allies.at(i));
 				if (!decision){
-					int damage = allies.at(i)->calculateDamage(*enemy, eChoice);
-					enemy->setHealth(enemy->getHealth() - damage);
-					cout << allies.at(i)->getname() << " has hit the enemy for " << damage << " damage." << endl;
+					if (allies.at(i)->calculateAccuracy(e)){
+						int damage = allies.at(i)->calculateDamage(*enemy, eChoice);
+						if (allies.at(i)->calculateCrit()){
+							damage *= 1.4;
+							cout << allies.at(i)->getname() << " has hit a crit!" << endl;
+						}
+						enemy->setHealth(enemy->getHealth() - damage);
+						cout << allies.at(i)->getname() << " has hit the enemy for " << damage << " damage." << endl;
+					}
+					else{
+						cout << allies.at(i)->getname() << " missed the enemy!" << endl;
+					}
 				}
 				else{
 					cout << allies.at(i)->getname() << " is defending..." << endl;
@@ -205,13 +219,22 @@ void Combat_System::runBattle(Entity* e){
 			if (!eChoice){
 				int x;
 				if (allies.size() == 0){
-					x = enemy->calculateDamage(*play, play->isDefending());
-					play->setHP(play->getHP() - x);
-					if (optionChoice == 1){
-						cout << "You reduced the amount of damage you have taken by defending..." << endl;
+					if (enemy->calculateAccuracy(play)){
+						x = enemy->calculateDamage(*play, play->isDefending());
+						if (enemy->calculateCrit()){
+							x *= 1.4;
+							cout << "The enemy has hit a crit!" << endl;
+						}
+						play->setHP(play->getHP() - x);
+						if (optionChoice == 1){
+							cout << "You reduced the amount of damage you have taken by defending..." << endl;
+							cout << "You've taken " << x << " damage.";
+						}
 						cout << "You've taken " << x << " damage.";
 					}
-					cout << "You've taken " << x << " damage.";
+					else{
+						cout << "The enemy has missed!" << endl;
+					}
 				}
 				else{
 					int eAttack = attackChoice(allies.size());
@@ -225,11 +248,11 @@ void Combat_System::runBattle(Entity* e){
 						cout << "You've taken " << x << " damage.";
 					}
 					else{
-			                        x = enemy->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
-			                        allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - x);
-			                        if(allies.at(eAttack)->isDefending()){
-			                            cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
-			                        }
+						x = enemy->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
+			            allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - x);
+			            if(allies.at(eAttack)->isDefending()){
+							cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
+			            }
 					}
 				}
 			}
@@ -292,17 +315,26 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			optionChoice = promptChoices();
 			if (optionChoice == 0){
 				enemyOptionChoice = promptEnemyChoice(enemy);
-				eChoice = enemy.at(enemyOptionChoice)->isDefending();
-				damage = play->calculateDamage(*enemy.at(enemyOptionChoice), eChoice);
-				cout << "You've hit enemy " << enemyOptionChoice + 1 << " for " << damage << " damage!" << endl;
-				if (damage > enemy.at(enemyOptionChoice)->getHealth()){
-					totalXP += enemy.at(enemyOptionChoice)->getEXP();
-					totalGold += enemy.at(enemyOptionChoice)->getVal();
-					enemy.erase(enemy.begin() + enemyOptionChoice);
-					cout << "You've killed enemy " << eChoice << "!" << endl;
+				if (play->calculateAccuracy(enemy.at(enemyOptionChoice))){
+					eChoice = enemy.at(enemyOptionChoice)->isDefending();
+					damage = play->calculateDamage(*enemy.at(enemyOptionChoice), eChoice);
+					if (play->calculateCrit()){
+						damage *= 1.4;
+						cout << "You hit a crit!" << endl;
+					}
+					cout << "You've hit enemy " << enemyOptionChoice + 1 << " for " << damage << " damage!" << endl;
+					if (damage > enemy.at(enemyOptionChoice)->getHealth()){
+						totalXP += enemy.at(enemyOptionChoice)->getEXP();
+						totalGold += enemy.at(enemyOptionChoice)->getVal();
+						enemy.erase(enemy.begin() + enemyOptionChoice);
+						cout << "You've killed enemy " << eChoice << "!" << endl;
+					}
+					else{
+						enemy.at(enemyOptionChoice)->setHealth(enemy.at(enemyOptionChoice)->getHealth() - damage);
+					}
 				}
 				else{
-					enemy.at(enemyOptionChoice)->setHealth(enemy.at(enemyOptionChoice)->getHealth() - damage);
+					cout << "You missed!" << endl;
 				}
 			}
 			if (optionChoice == 1){
@@ -338,17 +370,26 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				bool decision = calculateAllyChoice(allies.at(i));
 				if (!decision){
 					int attacked = attackChoice(enemy.size());
-					int damage = allies.at(i)->calculateDamage(*enemy.at(attacked), enemy.at(attacked)->isDefending());
-					enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
-					if (damage > enemy.at(attacked)->getHealth()){
-						totalXP += enemy.at(attacked)->getEXP();
-						totalGold += enemy.at(attacked)->getVal();
-						enemy.erase(enemy.begin() + attacked);
-						cout << "Your ally has killed the " << enemy.at(attacked)->getName() << "!" << endl;
+					if (allies.at(i)->calculateAccuracy(enemy.at(attacked))){
+						int damage = allies.at(i)->calculateDamage(*enemy.at(attacked), enemy.at(attacked)->isDefending());
+						if (allies.at(i)->calculateCrit()){
+							damage *= 1.4;
+							cout << allies.at(i)->getname() << " has hit a crit!" << endl;
+						}
+						enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
+						if (damage > enemy.at(attacked)->getHealth()){
+							totalXP += enemy.at(attacked)->getEXP();
+							totalGold += enemy.at(attacked)->getVal();
+							enemy.erase(enemy.begin() + attacked);
+							cout << "Your ally has killed the " << enemy.at(attacked)->getName() << "!" << endl;
+						}
+						else{
+							enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
+							cout << allies.at(i)->getname() << " has hit enemy " << attacked << " for " << damage << " damage." << endl;
+						}
 					}
 					else{
-						enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);
-						cout << allies.at(i)->getname() << " has hit enemy " << attacked << " for " << damage << " damage." << endl;
+						cout << allies.at(i)->getname() << " has missed!" << endl;
 					}
 				}
 				else{
@@ -362,19 +403,37 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			for(unsigned i = 0; i < enemy.size(); i++){
 				int eAttack = attackChoice(allies.size());
 					if (eAttack == allies.size() + 1){
-						int damage = enemy.at(i)->calculateDamage(*play, play->isDefending());
-						play->setHP(play->getHP() - damage);
-						if (play->isDefending()){
-							cout << "You reduced the amount of damage you have taken by defending..." << endl;
+						if (enemy.at(i)->calculateAccuracy(play)){
+							int damage = enemy.at(i)->calculateDamage(*play, play->isDefending());
+							if (enemy.at(i)->calculateCrit()){
+								damage *= 1.4;
+								cout << enemy.at(i)->getName() << "has hit a crit!" << endl;
+							}
+							play->setHP(play->getHP() - damage);
+							if (play->isDefending()){
+								cout << "You reduced the amount of damage you have taken by defending..." << endl;
+							}
+						}
+						else{
+							cout << enemy.at(i)->getName() << "has missed!" << endl;
 						}
 					}
 					else{
-						int damage = enemy.at(i)->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
-						allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - damage);
-						if(allies.at(eAttack)->isDefending()){
-						cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
+						if (enemy.at(i)->calculateAccuracy(allies.at(eAttack))){
+							int damage = enemy.at(i)->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
+							if (enemy.at(i)->calculateCrit()){
+								damage *= 1.4;
+								cout << enemy.at(i)->getName() << "has hit a crit!" << endl;
+							}
+							allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - damage);
+							if (allies.at(eAttack)->isDefending()){
+								cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
+							}
+						}
+						else{
+							cout << enemy.at(i)->getName() << " has missed!" << endl;
+						}
 					}
-				}
 			}
 		}
 	}

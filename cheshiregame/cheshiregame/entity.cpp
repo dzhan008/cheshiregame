@@ -114,6 +114,39 @@ int Entity::calculateDamage(Ally* ally, bool defend){
 	return trueDamage;
 }
 
+bool Entity::calculateCrit(){
+	double temp = 2 + (entityStats.at(4) * .13);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	return false;
+}
+
+bool Entity::calculateAccuracy(player* p){
+	vector<int> pStats = p->getStats();
+	double temp = entityStats.at(1) / pStats.at(3);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool Entity::calculateAccuracy(Ally* a){
+	vector<int> aStats = a->getStats();
+	double temp = entityStats.at(1) / aStats.at(3);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 bool Entity::isDefending(){
 	return defending;
 }

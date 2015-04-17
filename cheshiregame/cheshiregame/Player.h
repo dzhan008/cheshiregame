@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 //Forward declarations for circular dependencies
 class Entity;
 class Item;
@@ -70,6 +72,9 @@ class player
         int getexp();
 		int getInvSize();
 		int getDef();
+		vector<int> getStats();
+		bool calculateCrit();
+		bool calculateAccuracy(Entity* e);
 
 		/*For Inventories*/
 		int getItemSize();

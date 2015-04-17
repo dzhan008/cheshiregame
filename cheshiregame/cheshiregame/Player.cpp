@@ -203,6 +203,31 @@ int player::getDef(){
 	return def;
 }
 
+vector<int> player::getStats(){
+	return playerstats;
+}
+
+bool player::calculateCrit(){
+	double temp = 2 + (playerstats.at(4) * .13);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	return false;
+}
+
+bool player::calculateAccuracy(Entity* e){
+	vector<int> eStats = e->getStats();
+	double temp = playerstats.at(1) / eStats.at(3);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 /*Set Functions*/
 void player::setHP(int health)
 {

@@ -25,7 +25,6 @@ class Combat_System{
 		int randNumber();
 		int promptChoices();
 		int promptEnemyChoice(vector<Entity*> enemy);
-		double calculateAccuracy();
 		int calculateDamage(bool defend);
 		int calculateTurn();
 		int attackChoice(int size);

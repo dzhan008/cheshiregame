@@ -67,6 +67,9 @@ public:
 
 	int calculateDamage(player play, bool defend);
 	int calculateDamage(Ally* ally, bool defend);
+	bool calculateCrit();
+	bool calculateAccuracy(Ally* a);
+	bool calculateAccuracy(player* p);
 
 	bool isDefending();
 	void setDefending(bool b);

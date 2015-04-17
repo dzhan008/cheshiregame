@@ -36,6 +36,9 @@ class Ally{
 		int getlevel();
 		int getexp();
 		int getDef();
+		vector<int> getStats();
+		bool calculateAccuracy(Entity* e);
+		bool calculateCrit();
 		int calculateDamage(Entity enemy, bool defend);
 		bool isDefending();
 

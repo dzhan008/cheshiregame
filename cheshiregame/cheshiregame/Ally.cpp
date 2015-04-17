@@ -60,6 +60,31 @@ int Ally::getDef(){
 	return def;
 }
 
+vector<int> Ally::getStats(){
+	return allystats;
+}
+
+bool Ally::calculateAccuracy(Entity* e){
+	vector<int> eStats = e->getStats();
+	double temp = allystats.at(1) / eStats.at(3);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool Ally::calculateCrit(){
+	double temp = 2 + (allystats.at(4) * .13);
+	int x = randNumber();
+	if (x < temp){
+		return true;
+	}
+	return false;
+}
+
 bool Ally::isDefending(){
 	return defending;
 }
