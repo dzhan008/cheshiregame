@@ -354,4 +354,4 @@ void map::wallBreak()
 int map::pf() { return playerposition.first; }
 int map::ps() { return playerposition.second; }
 int map::gf() { return goal.first; }
-int map::gs() { return goal.first; }
+int map::gs() { return goal.second; }
