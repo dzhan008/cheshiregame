@@ -300,6 +300,7 @@ void Combat_System::runBattle(Entity* e){
 		if (play->add_exp(EXP))
 		{
 			std::cout << "You have leveled up! You are now level " << play->getlevel() << ".\n\n";
+			play->add_stat_pts();
 		}
 
 		if (!e->empty_loot())

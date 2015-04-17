@@ -107,6 +107,7 @@ class player
 		void add_points(int& points);
 		bool input_stats();
 
+		void add_stat_pts();
 		bool add_exp(int x); //returns true if leveled up
 
 		/*Character Creation*/

@@ -451,6 +451,11 @@ void player::add_points(int& points)
 	std::cin.ignore(); //Must fix to juggle around the whole menu?
 }
 
+void player::add_stat_pts()
+{
+	statpoints += 5;
+}
+
 bool player::add_exp(int x) //TO DO: Change exp scaling per 10 levels
 {
 	bool level_up = false;
