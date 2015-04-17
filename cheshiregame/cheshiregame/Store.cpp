@@ -49,7 +49,7 @@ void Store::run(player* p)
         {
             std::cout << "Enter the number of the item to purchase." << std::endl;
             std::cin >> usernum;
-            if (usernum > storeInventory.size())
+            if (usernum > storeInventory.size() || usernum < 1)
             {
                 std::cout << "Item cannot be accessed." << std::endl;
             }
@@ -100,7 +100,7 @@ void Store::run(player* p)
 							if (storeInventory.at(usernum - 1)->getName() == weapInv.at(i)->getName())
 							{
 								p->add_con(potInv.at(i));
-								potInv.erase(potInv.begin() + i - 1);
+								potInv.erase(potInv.begin() + i);
 							}
 						}
 						--numHealthPots;
@@ -120,7 +120,7 @@ void Store::run(player* p)
 							if (storeInventory.at(usernum - 1)->getName() == potInv.at(i)->getName())
 							{
 								p->add_con(potInv.at(i));
-								potInv.erase(potInv.begin() + i - 1);
+								potInv.erase(potInv.begin() + i);
 							}
 						}
 						--numManaPots;
