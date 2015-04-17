@@ -34,6 +34,7 @@ void Scene::basic_menu(player* p)
 		std::cout << "5. View Stats" << std::endl;
 		std::cout << "6. Save" << std::endl;
 		std::cout << "7. Exit" << std::endl;
+		std::cout << "8. Exit Game" << std::endl;
 
 		while (!option_chosen)
 		{
@@ -199,6 +200,7 @@ void Scene::basic_menu(player* p)
 
 				break;
 			case 5:
+				std::cin.ignore(); //Clear buffer for other inputs;
 				p->mod_stats();
 				option_chosen = true;
 				break;
@@ -209,6 +211,20 @@ void Scene::basic_menu(player* p)
 				option_chosen = true;
 				return;
 				break;
+			case 8:
+				option_chosen = true;
+				std::cout << "Are you sure?" << std::endl;
+				std::cout << "1. Yes" << std::endl;
+				std::cout << "2. No" << std::endl;
+				std::cin >> choice;
+				while (choice != 1)
+				{
+					if (choice == 2)
+					{
+						break;
+					}
+					exit(1);
+				}
 			default:
 				std::cout << "Invalid choice. Please input your choice again." << std::endl << std::endl;
 				break;

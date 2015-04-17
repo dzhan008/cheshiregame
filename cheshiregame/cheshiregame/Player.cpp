@@ -338,15 +338,19 @@ void player::mod_stats()
 	{
 		std::cout << "You have " << statpoints << " remaining." << std::endl;
 		std::cout << "Would you like to distribute these points?" << std::endl;
-		std::cin >> choice;
-		while (choice != "No" || "no" || "N" || "n")
+
+		while (choice != "No" || choice != "no" || choice != "N" || choice != "n")
 		{
-			if (choice == "Yes" || "Y" || "y" || "yes")
+			getline(std::cin, choice);
+			if (choice == "No" || choice == "no" || choice == "N" || choice == "n")
+			{
+				return;
+			}
+			else if (choice == "Yes" || choice == "Y" || choice == "y" || choice == "yes")
 			{
 				stat_progression();
+				return;
 			}
-			else if (choice == "No" || "no" || "N" || "n")
-			{ }
 			else
 			{
 				std::cout << "Invalid input. Please enter your choice again." << std::endl;
@@ -369,7 +373,6 @@ void player::stat_progression()
 		display_stats();
 		std::cout << "You have " << statpoints << " remaining." << std::endl;
 		std::cout << "Type in the stat you want to add in or type 'q' to quit." << std::endl;
-		std::cin >> input;
 
 		quit = input_stats();
 
@@ -378,14 +381,20 @@ void player::stat_progression()
 			return;
 		}
 	}
+
+	std::cout << "Here are your final stats." << std::endl;
+	display_stats();
+	std::cout << std::endl;
+
 }
 
 bool player::input_stats()
 {
 	std::string stat;
-	int points;
 
-	std::cin >> stat;
+	int points = 0;
+
+	getline(std::cin, stat);
 
 	if (stat == "Str" || stat == "Strength" || stat == "str" || stat == "strength") //Add points to appropriate stat
 	{
@@ -399,7 +408,7 @@ bool player::input_stats()
 	}
 	else if (stat == "Vit" || stat == "Vitality" || stat == "vit" || stat == "vitality")
 	{
-		add_points(points);;
+		add_points(points);
 		playerstats.at(2) += points;
 	}
 	else if (stat == "Dex" || stat == "Dexterity" || stat == "dex" || stat == "dexterity")
@@ -439,6 +448,7 @@ void player::add_points(int& points)
 		cout << "You can't add in negative points, silly." << endl;
 		add_points(points);
 	}
+	std::cin.ignore(); //Must fix to juggle around the whole menu?
 }
 
 bool player::add_exp(int x) //TO DO: Change exp scaling per 10 levels
@@ -879,4 +889,9 @@ void player::updateStats(){
 	}
 	min_dmg = min;
 	max_dmg = max;
+}
+
+void player::update_player()
+{
+	updateStats();
 }
