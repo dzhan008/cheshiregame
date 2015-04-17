@@ -21,7 +21,7 @@ void Scene::basic_menu(player* p)
 {
 	int choice = 0;
 
-	while (choice != 7)
+	while (choice != 9)
 	{
 		std::string input;
 		bool option_chosen = false;
@@ -29,12 +29,13 @@ void Scene::basic_menu(player* p)
 		std::cout << "What would you like to do?" << std::endl << std::endl;
 		std::cout << "1. View Party" << std::endl;
 		std::cout << "2. View Items" << std::endl;
-		std::cout << "3. Use Item" << std::endl;
-		std::cout << "4. Equip" << std::endl;
-		std::cout << "5. View Stats" << std::endl;
-		std::cout << "6. Save" << std::endl;
-		std::cout << "7. Exit" << std::endl;
-		std::cout << "8. Exit Game" << std::endl;
+		std::cout << "3. View Equipment" << std::endl;
+		std::cout << "4. Use Item" << std::endl;
+		std::cout << "5. Equip" << std::endl;
+		std::cout << "6. View Stats" << std::endl;
+		std::cout << "7. Save" << std::endl;
+		std::cout << "8. Exit" << std::endl;
+		std::cout << "9. Exit Game" << std::endl;
 
 		while (!option_chosen)
 		{
@@ -52,6 +53,10 @@ void Scene::basic_menu(player* p)
 				option_chosen = true;
 				break;
 			case 3:
+				option_chosen = true;
+				p->display_equipment();
+				break;
+			case 4:
 				option_chosen = true;
 				std::cout << "Here are all of the consumables you own." << std::endl;
 				//Search for all consumables
@@ -88,8 +93,10 @@ void Scene::basic_menu(player* p)
 				Note: Needs a better way to do it.
 				4. Check succeeded? Then heal the player.*/
 
+
+
 				break;
-			case 4:
+			case 5:
 				option_chosen = true;
 				/*Demo Method
 				1. Ask the user what item they want to equip
@@ -148,7 +155,7 @@ void Scene::basic_menu(player* p)
 							break;
 						}
 					}
-				}while (input != "back");
+				} while (input != "back");
 				//Current equipped items:
 				//DISPLAY EQUIPMENT HERE
 				//Select the number you would like to equip.
@@ -196,22 +203,20 @@ void Scene::basic_menu(player* p)
 				} while (p->inventory_search(input)->getSlot == slot);
 				}
 				}*/
-
-
-				break;
-			case 5:
-				std::cin.ignore(); //Clear buffer for other inputs;
-				p->mod_stats();
-				option_chosen = true;
 				break;
 			case 6:
 				option_chosen = true;
+				std::cin.ignore(); //Clear buffer for other inputs;
+				p->mod_stats();
 				break;
 			case 7:
 				option_chosen = true;
-				return;
 				break;
 			case 8:
+				option_chosen = true;
+				return;
+				break;
+			case 9:
 				option_chosen = true;
 				std::cout << "Are you sure?" << std::endl;
 				std::cout << "1. Yes" << std::endl;
@@ -286,6 +291,8 @@ void Scene::scene_001(player* p)
 			std::cout << "You pick up a sword that has been aged for quiet a while." << std::endl;
 			std::cout << "There was no trouble holding it. In fact, it seems that you" << std::endl;
 			std::cout << "have wielded one of these before." << std::endl;
+			Weapon* Sword = new Weapon("Sword", "Weapon", 10, 10);
+			p->equip_wep(0, Sword);
 		}
 		else if (job == 2)
 		{
@@ -293,6 +300,8 @@ void Scene::scene_001(player* p)
 			std::cout << "You grab the dagger on the ground, examining every bit of it." << std::endl;
 			std::cout << "While it may not do much, you know that it can land a kill with" << std::endl;
 			std::cout << "the right strike." << std::endl;
+			Weapon* Dagger = new Weapon("Dagger", "Weapon", 5, 8);
+			p->equip_wep(0, Dagger);
 		}
 		else if (job == 3)
 		{
@@ -300,6 +309,8 @@ void Scene::scene_001(player* p)
 			std::cout << "The wooden staff was light when you took it from the ground. It" << std::endl;
 			std::cout << "seems to be at best good for defending, but you can sense a magical" << std::endl;
 			std::cout << "presence within it." << std::endl;
+			Weapon* Staff = new Weapon("Staff", "Weapon", 2, 5);
+			p->equip_wep(0, Staff);
 		}
 		cin.clear();
 		cin.ignore(INT_MAX, '\n');
