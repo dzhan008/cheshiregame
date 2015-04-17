@@ -164,10 +164,16 @@ void Combat_System::runBattle(Entity* e){
 				cout << "This option is not available in the prototype." << endl;
 			}
 			if (optionChoice == 3){
-				//Prompt run away
-				cout << "This option is not available in the prototype." << endl;
+				int temp = randNumber();
+				if(temp > 50){
+					cout << "You've successfully ran away!" << endl;
+				}
+				else{
+					cout << "You've failed to run away..." << endl;
+					turn = 2;
+				}
 			}
-			if (optionChoice == 2 || optionChoice == 3){
+			if (optionChoice == 2){
 				turn = 0;
 				cout << "It is still your turn." << endl;
 			}
@@ -308,8 +314,8 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				cout << "This option is not available in the prototype." << endl;
 			}
 			if (optionChoice == 3){
-				int x = randNumber();
-				if(x > 50){
+				int temp = randNumber();
+				if(temp > 50){
 					cout << "You've successfully ran away!" << endl;
 				}
 				else{
