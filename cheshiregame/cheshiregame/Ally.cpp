@@ -21,6 +21,12 @@ Ally::Ally(){
 
 	allystats.resize(5);
 	equipment.resize(6);
+
+	allystats.at(0) = 1;
+	allystats.at(1) = 1;
+	allystats.at(2) = 1;
+	allystats.at(3) = 1;
+	allystats.at(4) = 1;
 }
 
 Ally::Ally(string aName, string aJob, int health, int lvl, int xp){
@@ -38,6 +44,12 @@ Ally::Ally(string aName, string aJob, int health, int lvl, int xp){
 	
 	allystats.resize(5);
 	equipment.resize(6);
+
+	allystats.at(0) = 1;
+	allystats.at(1) = 1;
+	allystats.at(2) = 1;
+	allystats.at(3) = 1;
+	allystats.at(4) = 1;
 }
 
 int Ally::getMaxHP(){

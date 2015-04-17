@@ -40,6 +40,12 @@ player::player(){
 	{
 		weapon.at(i) = none_wep;
 	}
+
+	playerstats.at(0) = 1;
+	playerstats.at(1) = 1;
+	playerstats.at(2) = 1;
+	playerstats.at(3) = 1;
+	playerstats.at(4) = 1;
 }
 
 player::player(std::string pName, std::string pJob)
@@ -78,6 +84,11 @@ player::player(std::string pName, std::string pJob)
 	{
 		weapon.at(i) = none_wep;
 	}
+	playerstats.at(0) = 1;
+	playerstats.at(1) = 1;
+	playerstats.at(2) = 1;
+	playerstats.at(3) = 1;
+	playerstats.at(4) = 1;
 }
 
 player::player(string pName, string pJob, int health, int lvl, int exp, int statpts, int money)
@@ -116,6 +127,12 @@ player::player(string pName, string pJob, int health, int lvl, int exp, int stat
 	{
 		weapon.at(i) = none_wep;
 	}
+
+	playerstats.at(0) = 1;
+	playerstats.at(1) = 1;
+	playerstats.at(2) = 1;
+	playerstats.at(3) = 1;
+	playerstats.at(4) = 1;
 }
 
 player::~player()

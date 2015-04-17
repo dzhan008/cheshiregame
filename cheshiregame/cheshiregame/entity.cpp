@@ -10,10 +10,24 @@ using namespace std;
 
 Entity::Entity()
 	: name("Enemy"), maxHP(10), currHP(10), level(1), numEXP(1), min_dmg(1), max_dmg(10), def(0), value(0), defending(false)
-{ }
+{
+	entityStats.resize(5);
+	entityStats.at(0) = 1;
+	entityStats.at(1) = 1;
+	entityStats.at(2) = 1;
+	entityStats.at(3) = 1;
+	entityStats.at(4) = 1;
+}
 Entity::Entity(string entityName, int health, int lvl, int amount, int d, int val)
 	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), value(val), defending(false)
-{ }
+{
+	entityStats.resize(5);
+	entityStats.at(0) = 1;
+	entityStats.at(1) = 1;
+	entityStats.at(2) = 1;
+	entityStats.at(3) = 1;
+	entityStats.at(4) = 1;
+}
 
 Entity::Entity(Entity*& x)
 {
@@ -29,8 +43,6 @@ Entity::Entity(Entity*& x)
 	defending = false;
 	entityStats.resize(5);
 	entityStats = x->getStats();
-	
-
 }
 Entity::~Entity()
 {
