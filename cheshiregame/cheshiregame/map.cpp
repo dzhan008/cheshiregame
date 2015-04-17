@@ -376,6 +376,14 @@ void map::moveLeft(int i)
 	}
 	if (wallcheck(playerposition.first, playerposition.second - 1) == false)
 	{
+		for (int k = 1; k < i; k++)
+		{
+			if (wallcheck(playerposition.first, playerposition.second - k) == true)
+			{
+				cout << "There's a wall in your way\n";
+				return;
+			}
+		}
 		playerposition.second - i;
 		updateplayer();
 	}
@@ -399,6 +407,14 @@ void map::moveRight(int i)
 		//cout << "There is no wall. " << endl;
 		//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
 		//cout << "Edge: " << mapitems.at(0).size() - 1 << endl;
+		for (int k = 1; k < i; k++)
+		{
+			if (wallcheck(playerposition.first, playerposition.second + k) == true)
+			{
+				cout << "There's a wall in your way\n";
+				return;
+			}
+		}
 		playerposition.second + i;
 		updateplayer();
 
@@ -419,6 +435,14 @@ void map::moveUp(int i)
 	}
 	if (wallcheck(playerposition.first - 1, playerposition.second) == false)
 	{
+		for (int k = 1; k < i; k++)
+		{
+			if (wallcheck(playerposition.first - k, playerposition.second) == true)
+			{
+				cout << "There's a wall in your way\n";
+				return;
+			}
+		}
 		playerposition.first - i;
 		updateplayer();
 	}
@@ -438,6 +462,14 @@ void map::moveDown(int i)
 	}
 	if (wallcheck(playerposition.first + 1, playerposition.second) == false)
 	{
+		for (int k = 1; k < i; k++)
+		{
+			if (wallcheck(playerposition.first + k, playerposition.second) == true)
+			{
+				cout << "There's a wall in your way\n";
+				return;
+			}
+		}
 		//cout << "Moving down:" << endl;
 		playerposition.first + i;
 		updateplayer();
