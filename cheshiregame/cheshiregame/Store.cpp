@@ -15,18 +15,18 @@ Store::Store()
 {}
 
 Store::~Store() {
-    for (int i = 0; i < storeInventory.size(); ++i) {
-        delete storeInventory.at(i);
-    }
-	for (int i = 0; i < gearInv.size(); ++i) {
-		delete gearInv.at(i);
-	}
-	for (int i = 0; i < weapInv.size(); ++i) {
-		delete weapInv.at(i);
-	}
-	for (int i = 0; i < potInv.size(); ++i) {
-		delete potInv.at(i);
-	}
+    //for (int i = 0; i < storeInventory.size(); ++i) {
+        //delete storeInventory.at(i);
+    //}
+	//for (int i = 0; i < gearInv.size(); ++i) {
+		//delete gearInv.at(i);
+	//}
+	//for (int i = 0; i < weapInv.size(); ++i) {
+		//delete weapInv.at(i);
+	//}
+	//for (int i = 0; i < potInv.size(); ++i) {
+		//delete potInv.at(i);
+	//}
 }
 
 void Store::run(player* p)
@@ -73,7 +73,7 @@ void Store::run(player* p)
 					spentGold += storeInventory.at(usernum - 1)->getValue();
 					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 					p->setmoney(playerMoney);
-					storeInventory.erase(storeInventory.begin() + usernum - 2);
+					storeInventory.erase(storeInventory.begin() + usernum - 1);
 				}
 				else if (storeInventory.at(usernum - 1)->getType() == "Gear")
 				{
@@ -89,7 +89,7 @@ void Store::run(player* p)
 					spentGold += storeInventory.at(usernum)->getValue();
 					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 					p->setmoney(playerMoney);
-					storeInventory.erase(storeInventory.begin() + usernum - 2);
+					storeInventory.erase(storeInventory.begin() + usernum - 1);
 				}
 				else if (storeInventory.at(usernum - 1)->getType() == "Consumable")
 				{
@@ -97,7 +97,7 @@ void Store::run(player* p)
 					{
 						for (int i = 0; i < potInv.size(); ++i)
 						{
-							if (storeInventory.at(usernum - 1)->getName() == weapInv.at(i)->getName())
+							if (storeInventory.at(usernum - 1)->getName() == potInv.at(i)->getName())
 							{
 								p->add_con(potInv.at(i));
 								potInv.erase(potInv.begin() + i);
@@ -110,7 +110,7 @@ void Store::run(player* p)
 						p->setmoney(playerMoney);
 						if (numHealthPots == 0)
 						{
-							storeInventory.erase(storeInventory.begin() + usernum - 2);
+							storeInventory.erase(storeInventory.begin() + usernum - 1);
 						}
 					}
 					else //Mana pot
@@ -130,7 +130,7 @@ void Store::run(player* p)
 						p->setmoney(playerMoney);
 						if (numManaPots == 0)
 						{
-							storeInventory.erase(storeInventory.begin() + usernum - 2);
+							storeInventory.erase(storeInventory.begin() + usernum - 1);
 						}
 					}
 				}

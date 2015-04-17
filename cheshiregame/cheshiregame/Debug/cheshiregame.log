@@ -1,20 +1,37 @@
-﻿Build started 4/17/2015 1:11:46 PM.
+﻿Build started 4/17/2015 1:29:46 PM.
      1>Project "C:\Users\Michaella\Documents\cheshiregame\cheshiregame\cheshiregame\cheshiregame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Player.cpp Scene.cpp Town.cpp
-         Town.cpp
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\town.cpp(263): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\town.cpp(284): error C2664: 'Dungeon::Dungeon(const Dungeon &)' : cannot convert argument 1 from 'const char [15]' to 'const Dungeon &'
-                 Reason: cannot convert from 'const char [15]' to 'const Dungeon'
-                 No constructor could take the source type, or constructor overload resolution was ambiguous
-         Scene.cpp
-         Player.cpp
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\player.cpp(490): warning C4101: 'jobnum' : unreferenced local variable
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\player.cpp(877): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\player.cpp(885): warning C4018: '<' : signed/unsigned mismatch
-         Generating Code...
-     1>Done Building Project "C:\Users\Michaella\Documents\cheshiregame\cheshiregame\cheshiregame\cheshiregame.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\cheshiregame.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Store.cpp
+         Store.cpp
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(52): warning C4018: '>' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(64): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(80): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(98): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(118): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(153): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(243): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\michaella\documents\cheshiregame\cheshiregame\cheshiregame\store.cpp(254): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.lib" /MACHINE:X86 Debug\Ally.obj
+         Debug\Cheshire_Game.obj
+         Debug\Combat_System.obj
+         Debug\Consumable.obj
+         Debug\Dungeon.obj
+         Debug\Entity.obj
+         Debug\Game.obj
+         Debug\Gear.obj
+         Debug\Item.obj
+         Debug\Map.obj
+         Debug\Player.obj
+         Debug\Scene.obj
+         Debug\Stats.obj
+         Debug\stdafx.obj
+         Debug\Store.obj
+         Debug\Town.obj
+         Debug\Weapon.obj
+         cheshiregame.vcxproj -> C:\Users\Michaella\Documents\cheshiregame\cheshiregame\Debug\cheshiregame.exe
+     1>Done Building Project "C:\Users\Michaella\Documents\cheshiregame\cheshiregame\cheshiregame\cheshiregame.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.90
+Time Elapsed 00:00:01.28
