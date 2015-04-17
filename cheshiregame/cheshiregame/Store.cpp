@@ -74,6 +74,7 @@ void Store::run(player* p)
 					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 					p->setmoney(playerMoney);
 					storeInventory.erase(storeInventory.begin() + usernum - 1);
+					std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
 				}
 				else if (storeInventory.at(usernum - 1)->getType() == "Gear")
 				{
@@ -90,6 +91,7 @@ void Store::run(player* p)
 					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 					p->setmoney(playerMoney);
 					storeInventory.erase(storeInventory.begin() + usernum - 1);
+					std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
 				}
 				else if (storeInventory.at(usernum - 1)->getType() == "Consumable")
 				{
@@ -108,6 +110,7 @@ void Store::run(player* p)
 						spentGold += storeInventory.at(usernum - 1)->getValue();
 						int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 						p->setmoney(playerMoney);
+						std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
 						if (numHealthPots == 0)
 						{
 							storeInventory.erase(storeInventory.begin() + usernum - 1);
@@ -128,6 +131,7 @@ void Store::run(player* p)
 						spentGold += storeInventory.at(usernum - 1)->getValue();
 						int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
 						p->setmoney(playerMoney);
+						std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
 						if (numManaPots == 0)
 						{
 							storeInventory.erase(storeInventory.begin() + usernum - 1);
