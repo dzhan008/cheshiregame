@@ -16,9 +16,9 @@ class Store
         void menu() const;
         void printStore(); 
         void fillStore(const string &);
+		void purchaseItem(const int, player*);
+		void sellItem(const int, player*);
 		void storeUpdate();
-		bool healthPotExists(const vector<Item*>&);
-		bool manaPotExists(const vector<Item*>&);
     private:
         vector<Item*> storeInventory; //For printing out all contents of store
 		vector<Gear*> gearInv; //Stores all gear
@@ -26,6 +26,9 @@ class Store
 		vector<Consumable*> potInv; //Stores all consumables
 		int numHealthPots;
 		int numManaPots;
+
+		bool healthPotExists(const vector<Item*>&);
+		bool manaPotExists(const vector<Item*>&);
 };
 
 #endif

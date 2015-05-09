@@ -539,6 +539,10 @@ bool player::isDefending(){
 }
 
 /*Inventory Functions*/
+int player::getInvSize()
+{
+	return inv_size;
+}
 bool player::add_inventory(Item* i) 
 {
 	if (inv_max_size > inv_size)
@@ -546,7 +550,7 @@ bool player::add_inventory(Item* i)
 		if (i->getName() != "None")
 		{
 			inventory.push_back(i);
-			inv_size++;
+			++inv_size;
 			return true;
 		}
 	}
@@ -591,6 +595,7 @@ bool player::add_con(Consumable* i)
 			inv_size++;
 			return true;
 		}
+		add_inventory(i);
 	}
 	return false;
 }
@@ -634,6 +639,7 @@ bool player::add_gear(Gear* i)
 			inv_size++;
 			return true;
 		}
+		add_inventory(i);
 	}
 	return false;
 }
@@ -676,6 +682,7 @@ bool player::add_wep(Weapon* i)
 			inv_size++;
 			return true;
 		}
+		add_inventory(i);
 	}
 	return false;
 }
