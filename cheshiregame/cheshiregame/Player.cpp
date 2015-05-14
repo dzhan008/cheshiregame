@@ -18,6 +18,7 @@ player::player(){
 	statpoints = 0;
 	min_dmg = 1;
 	max_dmg = 10;
+	def = 0;
 	defending = false;
 
 	inv_size = 0;
@@ -59,6 +60,7 @@ player::player(std::string pName, std::string pJob)
 	statpoints = 0;
 	min_dmg = 1;
 	max_dmg = 10;
+	def = 0;
 	defending = false;
 
 	pmoney = 0;
@@ -99,6 +101,7 @@ player::player(string pName, string pJob, int health, int lvl, int exp, int stat
     plevel  = lvl;
     pexp = exp;
 	maxexp = exp;
+	def = 0;
 	statpoints = statpts;
 	min_dmg = 1 * lvl; //Change later
 	max_dmg = 10 * lvl;
