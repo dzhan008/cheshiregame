@@ -18,8 +18,8 @@ Entity::Entity()
 	entityStats.at(3) = 1;
 	entityStats.at(4) = 1;
 }
-Entity::Entity(string entityName, int health, int lvl, int amount, int d, int val)
-	: name(entityName), maxHP(health), currHP(health), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), value(val), defending(false)
+Entity::Entity(string entityName, int health, int mana, int lvl, int amount, int d, int val)
+	: name(entityName), maxHP(health), currHP(health), maxMP(mana), currMP(mana), level(lvl), numEXP(amount), min_dmg(1), max_dmg(10), def(d), value(val), defending(false)
 {
 	entityStats.resize(5);
 	entityStats.at(0) = 1;
@@ -35,6 +35,8 @@ Entity::Entity(Entity*& x)
 	name = x->getName();
 	maxHP = x->getMaxHealth();
 	currHP = x->getMaxHealth();
+	maxMP = x->getMaxMana();
+	currMP = x->getMaxMana();
 	numEXP = x->getEXP();
 	level = x->getLevel();
 	value = x->getVal();
@@ -70,6 +72,20 @@ int Entity::getHealth()
 }
 int Entity::getMaxHealth(){
 	return maxHP;
+}
+
+/*Mana*/
+int Entity::getMaxMana()
+{
+	return maxMP;
+}
+void Entity::setMana(int m)
+{
+	currMP = m;
+}
+int Entity::getMana()
+{
+	return currMP;
 }
 /*Level*/
 int Entity::getLevel()
@@ -189,6 +205,11 @@ bool Entity::empty_loot()
 		return false;
 	}
 }
+
+void Entity::add_spells(Spells* s)
+{
+	entity_spells.push_back(s);
+}
 /*Stats*/
 //Sets the stats of the entity
 void Entity::setEntityStats(int str, int agi, int vit, int dex, int luk)
@@ -213,10 +234,9 @@ void Entity::DisplayStats()
 
 void Entity::updateStats()
 {
-	min_dmg += entityStats.at(0)/2;
-	max_dmg += entityStats.at(0)/2;
+	min_dmg += entityStats.at(0) / 2;
+	max_dmg += entityStats.at(0) / 2;
 }
-
 /*Print*/
 //Prints all information about entity
 void Entity::Print()
@@ -231,6 +251,8 @@ void Entity::Print()
 	cout << "Vitality:  " << entityStats.at(2) << endl;
 	cout << "Dexterity: " << entityStats.at(3) << endl;
 	cout << "Luck:      " << entityStats.at(4) << endl;
+	print_loot();
+	print_spells();
 
 }
 
@@ -257,5 +279,12 @@ void Entity::print_loot()
 	for (int i = 0; i < loot.size(); i++)
 	{
 		loot.at(i)->printItem();
+	}
+}
+void Entity::print_spells()
+{
+	for (int i = 0; i < entity_spells.size(); i++)
+	{
+		entity_spells.at(i)->printSpell();
 	}
 }

@@ -52,13 +52,13 @@ class player
 		std::vector<Gear*> gear_inv;
 		std::vector<Weapon*> wep_inv;
 		void updateStats();
-		
+
 		Gear* none;
 		Weapon* none_wep;
 		int randNumber();
 
     public:
-    
+
         //Constructor
         player();
 		player(std::string pName, std::string pJob);
@@ -71,7 +71,6 @@ class player
         int getlevel();
         int getmoney();
         int getexp();
-		int getInvSize();
 		int getDef();
         int getStatPoints();
 		vector<int> getStats();
@@ -82,13 +81,13 @@ class player
 		int getItemSize();
 		int getGearSize();
 		int getWepSize();
-		//int getInvSize();
+		int getInvSize();
 
 		bool isDefending();
 
         std::string getname();
         std::string getjob();
-    
+
         /*Set Functions: Sets every value into a certain number.*/
         void setHP(int health); //Changes currHP to the updated hp value after a certain instance.
         void setlevel(int&level);

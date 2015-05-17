@@ -11,6 +11,7 @@ class Scene {
 private:
     std::string location;
     std::vector<std::string> options;
+	std::string line = "------------------------------------------------------------";
 
 public:
     void output_options();
@@ -19,6 +20,8 @@ public:
 
 	bool check_val(std::string);
 	bool check_val(int);
+
+	void next_input();
 
 	int user_input();
 

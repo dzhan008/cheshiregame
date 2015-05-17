@@ -22,6 +22,7 @@
 #include "Dungeon.h"
 #include "Map.h"
 #include "SaveSystem.h"
+#include "Dun_Map.h"
 
 
 #include <stdio.h>

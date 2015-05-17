@@ -6,16 +6,16 @@
 
 
 using namespace std;
-class map
+class dun_map
 {
 public:
 	//default constructor
-	map();
+	dun_map();
 	//file input constructor
-	map(int sz, const string& file);
+	dun_map(int sz, const string& file);
 	//random constructor
 	//area = size *size ex: size 10 = 10 * 10 map 
-	map(int size);
+	dun_map(int size);
 	void moveLeft();
 	void moveRight();
 	void moveUp();
@@ -28,16 +28,12 @@ public:
 	void wallBreak();
 	//void updateplayer(playerposition.first, playerposition.second);
 	void runStage();
-	map *next;
+	dun_map *next;
 	//Get functions so it can be used in Dungeon
 	int pf(); //returns player's first position (x)
 	int ps(); //returns player's second position
 	int gf(); //returns goal's first position
 	int gs(); //returns goal's second position
-	void moveLeft(int k);
-	void moveRight(int k);
-	void moveUp(int k);
-	void moveDown(int k);
 private:
 	//player player1;
 	//coordinates x,y of a players position

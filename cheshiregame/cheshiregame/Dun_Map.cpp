@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
-#include "Map.h"
+#include "Dun_Map.h"
 #include "player.h"
 #include <fstream>
 using namespace std;
 //constructs blank map of 10*10 zeros 
 //aka open space
-map::map()
+dun_map::dun_map()
 {
 	for (int i = 0; i < 10; ++i) {
 		mapitems.push_back(vector<char>('_'));
@@ -23,10 +23,11 @@ map::map()
 
 }
 //constructs map based on premade txt file
-map::map(int sz, const string& file)
+dun_map::dun_map(int sz, const string& file)
 {
 	ifstream mapfile;
-	mapfile.open(file.c_str());
+	std::string inFile = "Assets/Dungeons/" + file;
+	mapfile.open(inFile.c_str());
 	//change the open function later to be more versatile
 	if (!mapfile.is_open())
 	{
@@ -76,7 +77,7 @@ map::map(int sz, const string& file)
 		}
 	}
 }
-map::map(int size)
+dun_map::dun_map(int size)
 {
 	vector<char> ran{ '1', ' ' };
 	for (int i = 0; i < size; ++i) {
@@ -128,10 +129,16 @@ map::map(int size)
 		mapitems.at(goal.first + 1).at(goal.second) = ' ';
 	}
 	goalmap = mapitems;
+
+
+
+
+	goalmap = mapitems;
+
 }
 
 //updates player position after moving
-void map::updateplayer()
+void dun_map::updateplayer()
 {
 	for (int i = 0; i < mapitems.size(); i++)
 	{
@@ -151,7 +158,7 @@ void map::updateplayer()
 
 	}
 }
-void map::moveLeft()
+void dun_map::moveLeft()
 {
 	if (playerposition.second == 0)
 	{
@@ -165,12 +172,12 @@ void map::moveLeft()
 	else
 	{
 		cout << "There is  a wall. " << endl;
-		//wallBreak();
+		wallBreak();
 	}
 	return;
 
 }
-void map::moveRight()
+void dun_map::moveRight()
 {
 	if (playerposition.second == mapitems.at(0).size() - 1)
 	{
@@ -188,11 +195,11 @@ void map::moveRight()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		//wallBreak();
+		wallBreak();
 	}
 	return;
 }
-void map::moveUp()
+void dun_map::moveUp()
 {
 	if (playerposition.first == 0)
 	{
@@ -206,11 +213,11 @@ void map::moveUp()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		//wallBreak();
+		wallBreak();
 	}
 	return;
 }
-void map::moveDown()
+void dun_map::moveDown()
 {
 	if (playerposition.first == mapitems.at(mapitems.size() - 1).size() - 1)
 	{
@@ -225,13 +232,13 @@ void map::moveDown()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		//wallBreak();
+		wallBreak();
 	}
 
 	return;
 }
 
-bool map::wallcheck(int i, int j)
+bool dun_map::wallcheck(int i, int j)
 {
 	//1 = walls
 	//0= emptyspace
@@ -244,7 +251,7 @@ bool map::wallcheck(int i, int j)
 
 	return false;
 }
-void map::display()
+void dun_map::display()
 {
 	for (int i = 0; i < mapitems.size(); i++)
 	{
@@ -255,10 +262,10 @@ void map::display()
 		cout << endl;
 	}
 }
-bool map::run()
+bool dun_map::run()
 {
 	string input;
-	int numSpace;
+
 	while (true)
 	{
 		bool menu = false;
@@ -269,26 +276,22 @@ bool map::run()
 		cin >> input;
 		if (input == "up" || input == "u")
 		{
-			cin >> numSpace;
-			moveUp(numSpace);
+			moveUp();
 			display();
 		}
 		else if (input == "down" || input == "d")
 		{
-			cin >> numSpace;
-			moveDown(numSpace);
+			moveDown();
 			display();
 		}
 		else if (input == "left" || input == "l")
 		{
-			cin >> numSpace;
-			moveLeft(numSpace);
+			moveLeft();
 			display();
 		}
 		else if (input == "right" || input == "r")
 		{
-			cin >> numSpace;
-			moveRight(numSpace);
+			moveRight();
 			display();
 		}
 		//else if (input == "menu")
@@ -316,7 +319,7 @@ bool map::run()
 	}
 	return false;
 }
-void map::wallBreak()
+void dun_map::wallBreak()
 {
 	//changes all spaces next to the player into 0
 	//do not use next to the goal
@@ -349,35 +352,7 @@ void map::wallBreak()
 		return;
 	}
 }
-void map::moveLeft(int k)
-{
-	for (int i = 0; i < k; i++)
-	{
-		moveLeft();
-	}
-}
-void map::moveRight(int k)
-{
-	for (int i = 0; i < k; i++)
-	{
-		moveRight();
-	}
-}
-void map::moveUp(int k)
-{
-	for (int i = 0; i < k; i++)
-	{
-		moveUp();
-	}
-}
-void map::moveDown(int k)
-{
-	for (int i = 0; i < k; i++)
-	{
-		moveDown();
-	}
-}
-int map::pf() { return playerposition.first; }
-int map::ps() { return playerposition.second; }
-int map::gf() { return goal.first; }
-int map::gs() { return goal.second; }
+int dun_map::pf() { return playerposition.first; }
+int dun_map::ps() { return playerposition.second; }
+int dun_map::gf() { return goal.first; }
+int dun_map::gs() { return goal.second; }

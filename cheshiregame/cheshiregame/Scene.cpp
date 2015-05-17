@@ -1,8 +1,8 @@
 #include "stdafx.h"
-
+#include <stdlib.h>
 #include <iostream>
 #include <vector>
-
+#include <conio.h>
 
 // Output choices given from place
 // Starts from 1 to sz - 1;
@@ -15,6 +15,12 @@ void Scene::output_options() {
 // Sets options to scene
 void Scene::set_options(Town &t) {
     //options = t.get_options();
+}
+
+void Scene::next_input()
+{
+	std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+	_getch();
 }
 
 void Scene::basic_menu(player* p)
@@ -214,6 +220,7 @@ void Scene::basic_menu(player* p)
 				break;
 			case 8:
 				option_chosen = true;
+				system("cls");
 				return;
 				break;
 			case 9:
@@ -318,13 +325,14 @@ void Scene::scene_001(player* p)
 
 	std::cout << "As you stand up, you hear a rustling in a bush just nearby you. " << std::endl;
 	std::cout << " You look to your right and realize that a fox is pouncing at you!" << std::endl;
+	std::cout << line << std::endl;
 	//Initiate battle with fox
 }
 
 void Scene::scene_003(player* p)
 {
 	int input = 0;
-
+	system("cls");
 	std::cout << "You slay the fox whether by sheer luck or skill. There seems to be nothing " << std::endl;
 	std::cout << "else around the area, so you decide to leave the forest and look for a nearby town. " << std::endl;
 
@@ -346,16 +354,19 @@ void Scene::scene_003(player* p)
 		std::cin >> input;
 		if (input == 1)
 		{
+			system("cls");
 			scene_003_1(p);
 			return;
 		}
 		else if (input == 2)
 		{
+			system("cls");
 			scene_003_2(p);
 			return;
 		}
 		else if (input == 3)
 		{
+			system("cls");
 			scene_003_3(p);
 			return;
 		}
@@ -413,16 +424,19 @@ void Scene::scene_003_4(player* p)
 		std::cin >> input;
 		if (input == 1)
 		{
+			system("cls");
 			scene_003_4_1(p);
 			return;
 		}
 		else if (input == 2)
 		{
+			system("cls");
 			scene_003_4_2();
 			return;
 		}
 		else if (input == 3)
 		{
+			system("cls");
 			scene_003_4_3();
 			return;
 		}
@@ -435,9 +449,10 @@ void Scene::scene_003_4_1(player* p)
 {
 	std::cout << "You take your weapon and hit him with sheer force. The man " << std::endl;
 	std::cout << " shocked, but was not able to recover from your flurry of hits." << std::endl;
-	std::cout << "Ater your tenth strike, the man is dead.You take his mask off because why not ? \n\n";
+	std::cout << "After your tenth strike, the man is dead.You take his mask off because why not? \n\n";
 	Gear* mask = new Gear("Jester Mask", 50, "Helmet", 20);
 	p->add_gear(mask);
+	next_input();
 	scene_004(true);
 }
 
@@ -458,6 +473,7 @@ void Scene::scene_003_4_3()
 void Scene::scene_004(bool dead)
 {
 	int input = 0;
+	system("cls");
 
 	if (dead)
 	{
@@ -497,11 +513,13 @@ void Scene::scene_004(bool dead)
 			std::cin >> input;
 			if (input == 1)
 			{
+				system("cls");
 				scene_004_1();
 				return;
 			}
 			if (input == 2)
 			{
+				system("cls");
 				scene_004_2();
 				return;
 			}
@@ -515,7 +533,7 @@ void Scene::scene_004_1()
 {
 	int input = 0;
 
-	std::cout << "Astuce stares intently at you. With his mask on, you can’t tell what he is thinking. He quickly turns his head away. \"There is a certain...incident that happened. You probably won't believe me if I told you this.\" \n\n ";
+	std::cout << "Astuce stares intently at you. With his mask on, you can't tell what he is thinking. He quickly turns his head away. \"There is a certain...incident that happened. You probably won't believe me if I told you this.\" \n\n ";
 	std::cout << "He looks at you again. \"Aliens!\" \n\n";
 
 	std::cout << "1. \"Alie- what?\"" << std::endl;
@@ -528,12 +546,16 @@ void Scene::scene_004_1()
 		if (input == 1)
 		{
 			std::cout << "\"Aliens. They came over and abducted the people of our town. Every one of them. I wasn’t there when this happened, but I know I saw the spaceship flying towards the city while I was heading back. SI was planning on creating a device that can teleport me to the ship, but I am missing something.\"\n\n";
+			next_input();
+			system("cls");
 			scene_004_3();
 			return;
 		}
 		else if (input == 2)
 		{
 			std::cout << "\"YES!\" Astuce sighs. \"They abducted everyone in this town. I wasn't there at the time, but I saw a spaceship flying towards the city when I was heading back. I wanted to create a device that can teleport me to their ship, but I am missing something.\"\n\n";
+			next_input();
+			system("cls");
 			scene_004_3();
 			return;
 		}
@@ -557,12 +579,16 @@ void Scene::scene_004_2()
 		if (input == 1)
 		{
 			std::cout << "\"That was easier than I thought,\" mumbled the jester. Astuce suddenly looks at you and laughs. \"Ah, sorry about that. I just remembered a joke I heard earlier today.\"\n\n";
+			next_input();
+			system("cls");
 			scene_004_3();
 			return;
 		}
 		else if (input == 2)
 		{
 			std::cout << "\"Lost your memory right? Not to worry, but I believe you can help us both out if you listen to my request.\" You look puzzled. How did he know that you lost your memory? Instead of bringing this up to Astuce, you continue to hear what he has to say. \n\n";
+			next_input();
+			system("cls");
 			scene_004_3();
 			return;
 		}
@@ -579,6 +605,7 @@ void Scene::scene_004_3()
 
 void Scene::scene_005()
 {
+	system("cls");
 	std::cout << "At the end dungeon you come across a huge room. A podium stands in the middle of it. Before you walk up to grab it, something comes out from the sky! A big scaly figure drops in front of the podium and glares at you with its red eyes." << std::endl;
 	std::cout << "Its screech fills the room, causing you to stagger. While you recover, the Rica pounces after you!" << std::endl;
 }
@@ -600,12 +627,9 @@ void Scene::scene_006()
 		std::cout << "He turns to you and stares at the gem. \"So you return safely! Congratulations!\" You hand the jester the gem, and he pockets it into his pouch.\n\n";
 		std::cout << "\"You've done a good job my friend. You might be wondering what will happen next. Can you guess?\"\n\n";
 		std::cout << "1. What?" << std::endl;
-		while (choice != -1)
-		{
 			std::cin >> choice;
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-		}
 		std::cout << "\"Well...\" Astuce begins to say some words, but you cannot hear him at all. You try to say something, but you can't hear your own words at all. Then, everything turns black. \n\n"
 			<< "Something pops up on your screen. It reads:" << std::endl
 			<< "'Your time has run out. Thank you for playing the demo!' \n\n"

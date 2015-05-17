@@ -17,9 +17,9 @@ string y = "Rica";
 string map_t = "mapsample.txt";
 string dun = "demo_dun_1.txt";
 string line = "--------------------------------------------------------------------------------";
-player* play = new player(x, "Game Master", 300, 1, 5, 100, 100);
+player* play = new player(x, "Game Master", 300, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 1, 0, 0, 100);
-map* map1 = new map(10, "mapsample.txt");
+dun_map* map1 = new dun_map(10, "mapsample.txt");
 Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 1, 0, 5, 20);
 Entity* enemy2 = new Entity("Fox", 10, 1, 0, 2, 10);
@@ -58,7 +58,7 @@ int main()
 {
 
 	srand(time(0));
-	string inputName = "title2.txt";
+	string inputName = "Assets/Title/title2.txt";
 	cout << endl;
 	ifstream file;
 	file.open(inputName.c_str());
@@ -85,8 +85,12 @@ int main()
 			vector<int> stats(5);
 			for (int i = 0; i < 5; ++i)
 			{
-				stats.at(i) = 10;
+				stats.at(i) = 5;
 			}
+			stats.at(3) = 50;
+			play->setstats(stats);
+			play->set_min_dmg(30);
+			play->set_max_dmg(80);
 			play->update_player();
 			std::cout << "\n\n\n";
 			Consumable* potion = new Consumable("Potion", "Potion", 20, 10);
@@ -94,38 +98,38 @@ int main()
 			play->setmoney(500);
 			play->add_con(potion);
 
+			system("cls");
+
 			scene.scene_001(play);
 			battle_demo.runBattle(enemy2);
 			scene.scene_003(play);
 			town1.run(play);
 			return 0;
-			//menu();
 		}
 		else if (input == 2)
 		{
 
-			Weapon* crap = new Weapon("Sword of Lords", "Weapon", 50, 10);
-			/*std::cout << crap->getValue();
+			/*Weapon* crap = new Weapon("Sword of Lords", "Weapon", 50, 10);
+			std::cout << crap->getValue();
 			play->add_wep(crap);
 			play->setmoney(500);
 			town1.run(play);
-			std::cout << crap->getValue();*/
-			WORK->run_dungeon(play, battle_demo);
+			std::cout << crap->getValue();
+			//WORK->run_dungeon(play, battle_demo);
 			//map1->run();
 			Store s;
 			string file = "all_items.txt";
 			s.fillStore(file);
 			s.run(play);
-			scene.basic_menu(play);
-			return 0;
+			scene.basic_menu(play);*/
 		}
 		else if (input == 3)
 		{
-			return 0;
+		
 		}
 		else if (input == 4)
 		{
-			std::cout << "Cheshire's Game Version 1.2" << std::endl;
+			std::cout << "Cheshire's Game Version 2.0" << std::endl;
 			std::cout << "Danny Diep - That Programmer" << std::endl;
 			std::cout << "Quynh Nguyen - No-Sleep Programmer" << std::endl;
 			std::cout << "Michaella Sheng - Vice Blargh Programmer" << std::endl;

@@ -1,0 +1,40 @@
+<Start>
+Wooden Staff
+5 10
+Rusty Sword
+5 10
+Dull Dagger
+5 10
+Rusty Shiv
+8 15
+Dirk
+10 20
+Kunai
+20 35
+Stiletto
+40 65
+Kukri
+55 80
+Katar
+60 120
+Diamond Dagger
+50 80
+Short Sword
+10 15
+Steel Longsword
+15 25
+Cinquedea
+20 30
+Scimitar
+25 40
+Rapier
+40 50
+Two-Handed Sword
+90 130
+Katana
+70 150
+<End>
+Template:
+Name of Item
+Job?
+Damage Value

@@ -76,7 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="all_items.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -84,11 +83,11 @@
     <ClInclude Include="Combat_System.h" />
     <ClInclude Include="Consumable.h" />
     <ClInclude Include="Dungeon.h" />
+    <ClInclude Include="Dun_Map.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gear.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Stats.h" />
@@ -104,11 +103,11 @@
     <ClCompile Include="Combat_System.cpp" />
     <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="Dungeon.cpp" />
+    <ClCompile Include="Dun_Map.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gear.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Stats.cpp" />

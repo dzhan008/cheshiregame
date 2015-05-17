@@ -1,0 +1,12 @@
+Bones
+5
+Ash
+1
+Gem
+10
+Golden Gold
+500
+<End>
+Template:
+Itemname
+Value

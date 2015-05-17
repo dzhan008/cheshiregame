@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <conio.h>
 
 
 using namespace std;
@@ -146,6 +147,7 @@ void Combat_System::runBattle(Entity* e){
 			cout << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP." << endl;
 			cout << enemy->getName() << " has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
 			optionChoice = promptChoices();
+			system("cls");
 			if (optionChoice == 0){
 				if (play->calculateAccuracy(e)){
 					int x = play->calculateDamage(*enemy, eChoice);
@@ -307,6 +309,10 @@ void Combat_System::runBattle(Entity* e){
 			cout << "Drops: " << endl << endl;
 			e->print_loot();
 		}
+		//Prompt user to see reward screens and stuff.
+		std::cout << "Press any key to continue..." << std::endl << flush;
+		std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+		_getch();
 	}
 	else{
 		cout << "Game Over." << endl;
