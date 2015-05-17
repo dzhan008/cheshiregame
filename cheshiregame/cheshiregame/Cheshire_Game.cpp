@@ -26,7 +26,7 @@ Entity* enemy2 = new Entity("Fox", 10, 1, 0, 2, 10);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* WORK = new Dungeon(dun, map_t);
 Scene scene;
-
+SaveSystem savesystem;
 
 using namespace std;
 
@@ -73,9 +73,10 @@ int main()
 	while (1)
 	{
 		cout << "                                1. New Game \n";
-		cout << "                                2. Load Game \n";
+		cout << "                                2. Map Test \n";
 		cout << "                                3. Options \n";
 		cout << "                                4. Credits \n";
+        cout << "                                5. Load Game \n";
 
 		int input = 0;
 		cin >> input;
@@ -133,6 +134,14 @@ int main()
 			std::cout << "1 Rica was harmed in the making of this game." << std::endl;
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}
+        else if (input == 5) {
+            savesystem.loadSave();
+            *play = savesystem.p;
+            //town1 = savesystem.s.t;
+            town1.run(play);
+
+
+        }
 	}
 	return 0;
 }

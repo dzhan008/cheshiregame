@@ -82,7 +82,9 @@ void Town::run(player* p) {
             << "3. Go to the blacksmith" << std::endl
             << "4. Go to the tavern" << std::endl
             << "5. Go talk to the townspeople" << std::endl
-            << "6. Leave the town" << std::endl;
+            << "6. Go to a dungeon" << std::endl
+            << "7. Quit" << std::endl
+            << "0. Save Game" << std::endl;
 
         std::cout << "> ";
         cin >> choice;
@@ -108,6 +110,10 @@ void Town::run(player* p) {
             }
             else if (choice == 7) {
                 return;
+            }
+            else if (choice == 0) {
+                savesystem.p = *p;
+                savesystem.saveSave();
             }
             else {
                 cout << "bad input, try again" << std::endl;
@@ -281,7 +287,8 @@ void Town::dungeon_select(player* p)
 	//{
 		std::string map_name = "demo_map.txt";
 		map test_map(5, map_name);
-		Dungeon* d = new Dungeon("demo_dun_1.txt");
+        std::string dungeon_name = "demo_dun_1.txt";
+		Dungeon* d = new Dungeon(dungeon_name, map_name);
 		Combat_System cs(p);
 		//test_map.run(p, d, cs);
 		Scene s;

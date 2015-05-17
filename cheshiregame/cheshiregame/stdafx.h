@@ -21,6 +21,7 @@
 #include "Ally.h"
 #include "Dungeon.h"
 #include "Map.h"
+#include "SaveSystem.h"
 
 
 #include <stdio.h>

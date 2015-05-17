@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "SaveSystem.h"
+#include "Player.h"
+#include "Town.h"
 
 
 SaveSystem::SaveSystem()
@@ -11,9 +13,8 @@ SaveSystem::~SaveSystem()
 {
 }
 
-void SaveSystem::Save(player player, Town town) {
-    s.p = player;
-    s.t = town;
+void SaveSystem::Save(player player) {
+    p = player;
 }
 
 bool SaveSystem::WriteToDisk(std::string str) {
@@ -26,18 +27,19 @@ bool SaveSystem::WriteToDisk(std::string str) {
     // Write player data to save file
     f << "save" << ' ';
     try {
-        f << s.p.getname() << ' ' <<
-            s.p.getjob() << ' ' <<
-            s.p.getMaxHP() << ' ' <<
-            s.p.getHP() << ' ' <<
-            s.p.getlevel() << ' ' <<
-            s.p.getmoney() << ' ' <<
-            s.p.getexp() << ' ' <<
-            s.p.getDef() << ' ' <<
-            s.p.getStatPoints() << ' ';
-        for (unsigned i = 0; i < s.p.getStats().size(); ++i) {
-            f << s.p.getStats().at(i) << ' ';
+        f << p.getname() << ' ' <<
+            p.getjob() << ' ' <<
+            p.getMaxHP() << ' ' <<
+            p.getHP() << ' ' <<
+            p.getlevel() << ' ' <<
+            p.getmoney() << ' ' <<
+            p.getexp() << ' ' <<
+            p.getDef() << ' ' <<
+            p.getStatPoints() << ' ';
+        for (unsigned i = 0; i < p.getStats().size(); ++i) {
+            f << p.getStats().at(i) << ' ';
         }
+        f.flush();
         f.close();
     }
     catch (...) {
@@ -80,7 +82,7 @@ bool SaveSystem::LoadFromDisk(std::string str) {
     loadedplayer.setHP(hp);
     loadedplayer.setstats(stats);
     loadedplayer.set_def(def);
-    s.p = loadedplayer;
+    p = loadedplayer;
 
     return true;
 }
@@ -100,7 +102,8 @@ void SaveSystem::saveSave() {
     std::string savename;
     std::cin >> savename;
     if (savename == "exit" | savename == "back") return;
-        if (WriteToDisk(savename)) {
-            std::cout << "save successful!" << std::endl;
-        }
+    std::cout << "Writing " << savename << "to disk" << std::endl;
+    if (WriteToDisk(savename)) {
+        std::cout << "save successful!" << std::endl;
+    }
 }

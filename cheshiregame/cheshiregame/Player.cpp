@@ -219,8 +219,17 @@ string player::getname()
     return playername;
 }
 
+string player::getjob()
+{
+    return playerjob;
+}
+
 int player::getDef(){
 	return def;
+}
+
+int player::getStatPoints() {
+    return statpoints;
 }
 
 vector<int> player::getStats(){
@@ -542,10 +551,6 @@ bool player::isDefending(){
 }
 
 /*Inventory Functions*/
-int player::getInvSize()
-{
-	return inv_size;
-}
 bool player::add_inventory(Item* i) 
 {
 	if (inv_max_size > inv_size)

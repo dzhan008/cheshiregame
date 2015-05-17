@@ -1,5 +1,7 @@
-#pragma once
-#include "SaveData.h"
+#ifndef SAVE_SYSTEM_H
+#define SAVE_SYSTEM_H
+//#include "Town.h"
+//class Town;
 class SaveSystem
 {
 private:
@@ -8,10 +10,12 @@ private:
 public:
     SaveSystem();
     ~SaveSystem();
-    void Save(player, Town);
+
+    void Save(player p);
     void loadSave();
     void saveSave();
-
-private:
-    SaveData s;
+    //Town* t;
+    player p;
 };
+
+#endif

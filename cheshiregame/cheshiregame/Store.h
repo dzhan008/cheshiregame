@@ -16,8 +16,8 @@ class Store
         void menu() const;
         void printStore(); 
         void fillStore(const string &);
-		void purchaseItem(const int, player*);
-		void sellItem(const int, player*);
+		void purchaseItem(const unsigned, player*);
+		void sellItem(const unsigned, player*);
 		void storeUpdate();
     private:
         vector<Item*> storeInventory; //For printing out all contents of store

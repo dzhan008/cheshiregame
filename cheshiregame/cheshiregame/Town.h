@@ -7,8 +7,10 @@
 
 #include "Player.h"
 #include "Dungeon.h"
+#include "SaveSystem.h"
 
 class Dungeon;
+class SaveSystem;
 
 class Town {
 private:
@@ -38,6 +40,7 @@ public:
     void store(player* p);
     void talk();
 	void dungeon_select(player* p);
+    SaveSystem savesystem;
 
 };
 

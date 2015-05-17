@@ -53,7 +53,7 @@ void Store::menu() const
 	std::cout << "Press s to sell an item." << std::endl;
     std::cout << "Press q to leave the store." << std::endl;
 }
-void Store::purchaseItem(const int invPos, player* p) {
+void Store::purchaseItem(const unsigned invPos, player* p) {
 	int goldSpent = 0;
 	if (invPos > storeInventory.size() || invPos < 1)
 	{
@@ -162,16 +162,16 @@ void Store::purchaseItem(const int invPos, player* p) {
 	std::cin.clear();
 	std::cin.ignore(INT_MAX, '\n');
 }
-void Store::sellItem(const int invPos, player* p) 
+void Store::sellItem(const unsigned invPos, player* p) 
 {
 	int goldGained = 0;
 	if (invPos > p->getInvSize()) {
 		std::cout << "Error: Item does not exist.\n";
-		run(p);
+		//run(p);
 	}
 	if(invPos < 1) {
 		std::cout << "Error: Invalid inventory position.\n";
-		run(p);
+		//run(p);
 	}
 	//Add item to the store's display inventory
 	//Add item to the proper Wep/Gear/Con inventory
