@@ -20,7 +20,7 @@
 #include "Town.h"
 #include "Ally.h"
 #include "Dungeon.h"
-#include "Map.h"
+#include "Dun_Map.h"
 
 
 #include <stdio.h>
