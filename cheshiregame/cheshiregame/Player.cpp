@@ -542,10 +542,6 @@ bool player::isDefending(){
 }
 
 /*Inventory Functions*/
-int player::getInvSize()
-{
-	return inv_size;
-}
 bool player::add_inventory(Item* i) 
 {
 	if (inv_max_size > inv_size)

@@ -81,7 +81,6 @@ class player
 		int getItemSize();
 		int getGearSize();
 		int getWepSize();
-		int getInvSize();
 
 		bool isDefending();
 

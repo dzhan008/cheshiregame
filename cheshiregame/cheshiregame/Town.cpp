@@ -280,8 +280,8 @@ void Town::dungeon_select(player* p)
 	//if (input == 1)
 	//{
 		std::string map_name = "demo_map.txt";
-		map test_map(5, map_name);
-		Dungeon* d = new Dungeon("demo_dun_1.txt");
+		dun_map test_map(5, map_name);
+		Dungeon* d = new Dungeon("demo_dun_1.txt","demo_map.txt");
 		Combat_System cs(p);
 		//test_map.run(p, d, cs);
 		Scene s;

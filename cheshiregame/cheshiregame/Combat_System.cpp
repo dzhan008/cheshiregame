@@ -392,6 +392,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 				int temp = randNumber();
 				if(temp > 50){
 					cout << "You've successfully ran away!" << endl;
+					return;
 				}
 				else{
 					cout << "You've failed to run away..." << endl;
