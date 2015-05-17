@@ -1,0 +1,47 @@
+Summoner's Rift
+Hard
+Baron 100 5 400 11 700 8 7 6 5 4
+:loot:
+Baron's tooth
+100
+Venomous Fangs
+80
+<end>
+Gromp 100 2 100 12 300 2 7 4 10 6
+<end>
+Wolf 100 3 150 13 230 3 7 5 15 7
+:loot:
+Silver Fangs
+50
+<end>
+Wraith 100 1 50 12 100 1 8 3 2 1
+<end>
+Dragon 170 4 300 15 600 20 6 9 28 3
+:loot:
+Ruby Crystal
+80
+<end>
+David 90 1 5 1 90 1 4 2 2 3
+<end>
+Harpy 150 1 10 3 40 2 3 2 10 1
+:loot:
+Harpy's feather
+50
+<end>
+Siren 120 2 70 6 10 5 4 6 13 3
+:loot:
+Amethyst Gem
+600
+<end>
+Ghoul 60 2 50 7 40 1 4 2 8 5 
+<end>
+Witch 50 3 200 4 20 4 3 2 10 1
+<end>
+RICA 200 5 1000 1 18 5 16 15 18
+:loot:
+Tyrant's Scepter
+200
+Golden Crown
+100
+<end>
+end

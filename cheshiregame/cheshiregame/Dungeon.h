@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "Map.h"
+#include "Dun_Map.h"
 #include "Entity.h"
 #include "Item.h"
 
@@ -15,7 +15,7 @@ class Dungeon
 {
 	//data fields
 private:
-	map* dun_map;
+	dun_map* dungeon_map;
 	vector<Entity*> entity_group;
 	string dungeon_name;
 	string dungeon_difficulty;

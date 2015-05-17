@@ -1,0 +1,17 @@
+<Start>
+Small Health Potion
+10 5
+Big Health Potion
+25 15
+Small Mana Potion
+10 5
+Big Mana Potion
+25 15
+Giant Health Potion
+50 35
+Giant Mana Potion
+50 35
+<End>
+Template:
+Item Name
+Boost_Value Gold_Value

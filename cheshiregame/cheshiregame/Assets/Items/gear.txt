@@ -1,0 +1,23 @@
+<Start>
+Helmet
+Wooden Helmet
+8 12
+Legs
+Fur Boots
+5 10
+Arms
+Leather Gloves
+5 10
+Chest
+Leather Coat
+10 10
+Chest
+Heavy Iron Chestplate
+25 40
+
+
+<End>
+Template:
+Type
+Item_Name
+Boost_Value Gold_Value
