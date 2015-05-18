@@ -14,17 +14,17 @@
 //Shop demo_shop;
 string x = "Player 1";
 string y = "Rica";
+string dun_ent = "demo_dun_1_enemies.txt";
 string map_t = "mapsample.txt";
 string dun = "demo_dun_1.txt";
 string line = "--------------------------------------------------------------------------------";
 player* play = new player(x, "Game Master", 300, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 1, 0, 0, 100);
-dun_map* map1 = new dun_map(10, "mapsample.txt");
 Town town1 = Town();
-Entity* enemy = new Entity(y, 10, 1, 0, 5, 20);
-Entity* enemy2 = new Entity("Fox", 10, 1, 0, 2, 10);
+Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
+Entity* enemy2 = new Entity("Fox", 10, 10, 1, 0, 2, 10);
 Combat_System battle_demo = Combat_System(play);
-Dungeon* WORK = new Dungeon(dun, map_t);
+Dungeon* Master_Dun = new Dungeon(dun);
 Scene scene;
 SaveSystem savesystem;
 
@@ -56,7 +56,7 @@ string getFileContents(std::ifstream& File)
 
 int main()
 {
-
+	Master_Dun->fill_dungeon(dun_ent, map_t);
 	srand(time(0));
 	string inputName = "Assets/Title/title2.txt";
 	cout << endl;
@@ -73,7 +73,7 @@ int main()
 	while (1)
 	{
 		cout << "                                1. New Game \n";
-		cout << "                                2. Map Test \n";
+		cout << "                                2. Load Game \n";
 		cout << "                                3. Options \n";
 		cout << "                                4. Credits \n";
         cout << "                                5. Load Game \n";
@@ -108,20 +108,10 @@ int main()
 		}
 		else if (input == 2)
 		{
-
-			/*Weapon* crap = new Weapon("Sword of Lords", "Weapon", 50, 10);
-			std::cout << crap->getValue();
-			play->add_wep(crap);
-			play->setmoney(500);
+			savesystem.loadSave();
+			*play = savesystem.p;
+			//town1 = savesystem.s.t;
 			town1.run(play);
-			std::cout << crap->getValue();
-			//WORK->run_dungeon(play, battle_demo);
-			//map1->run();
-			Store s;
-			string file = "all_items.txt";
-			s.fillStore(file);
-			s.run(play);
-			scene.basic_menu(play);*/
 		}
 		else if (input == 3)
 		{
@@ -139,10 +129,7 @@ int main()
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}
         else if (input == 5) {
-            savesystem.loadSave();
-            *play = savesystem.p;
-            //town1 = savesystem.s.t;
-            town1.run(play);
+
 
 
         }

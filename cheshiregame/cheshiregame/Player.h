@@ -13,7 +13,7 @@ class Gear;
 class Weapon;
 class Entity;
 class Consumable;
-
+class Ally;
 
 class player
 {
@@ -43,7 +43,7 @@ class player
 		std::string playername; //The player's name.
 		std::string playerjob; //The player's job.
 		std::vector<int> playerstats; //Current stats for the player.
-		std::vector<Entity> party; //The player's party.
+		std::vector<Ally*> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
 		void updateStats();
 
@@ -150,6 +150,8 @@ class player
 		void update_player();
 
 		/*Party Functions*/
+		void add_member(Ally* member);
+		std::vector<Ally*> get_party();
 		int calculateDamage(Entity enemy, bool defend);
 };
 

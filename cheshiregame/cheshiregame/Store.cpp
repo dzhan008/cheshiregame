@@ -223,14 +223,14 @@ void Store::printStore(player* p)
 void Store::fillStore(const string &input_file)
 {
     ifstream fin; 
-
+	string store_file = "Assets/Items/" + input_file;
     string itemName;
     int val;
     string type;
 	unsigned boost = 4;
 	int num_potions = 0;
 
-    fin.open(input_file.c_str());
+    fin.open(store_file.c_str());
 	if (!fin)
 	{
 		std::cout << "Error opening file." << std::endl;

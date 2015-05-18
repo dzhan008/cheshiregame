@@ -21,6 +21,7 @@ public:
 	bool check_val(std::string);
 	bool check_val(int);
 
+	void output_file(std::string file_name);
 	void next_input();
 
 	int user_input();

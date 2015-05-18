@@ -282,7 +282,7 @@ void Combat_System::runBattle(Entity* e){
 				}
 				else{
 					int eAttack = attackChoice(allies.size());
-					if (eAttack == allies.size() + 1){
+					if (eAttack == allies.size()){
 						x = enemy->calculateDamage(*play, play->isDefending());
 						play->setHP(play->getHP() - x);
 						if (play->isDefending()){
@@ -469,7 +469,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 		else if(turn == 2){
 			for(unsigned i = 0; i < enemy.size(); i++){
 				int eAttack = attackChoice(allies.size());
-					if (eAttack == allies.size() + 1){
+					if (eAttack == allies.size()){
 						if (enemy.at(i)->calculateAccuracy(play)){
 							int damage = enemy.at(i)->calculateDamage(*play, play->isDefending());
 							if (enemy.at(i)->calculateCrit()){

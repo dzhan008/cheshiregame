@@ -285,17 +285,20 @@ void Town::dungeon_select(player* p)
 	std::cin >> input;
 	//if (input == 1)
 	//{
-		std::string map_name = "demo_map.txt";
-		map test_map(5, map_name);
-        std::string dungeon_name = "demo_dun_1.txt";
-		Dungeon* d = new Dungeon(dungeon_name, map_name);
-		Combat_System cs(p);
-		//test_map.run(p, d, cs);
-		Scene s;
-		s.scene_005();
-		cs.runBattle(d->get_boss());
-		s.scene_006();
+	string dun_ent = "/Assets/Dungeons/demo_dun_1_enemies.txt";
+	string map_t = "/Assets/Dungeons/mapsample.txt";
+	string dun = "/Assets/Dungeons/demo_dun_1.txt";
+	Dungeon* d = new Dungeon(dun_ent);
+	d->fill_dungeon(dun, map_t);
+	Combat_System cs(p);
+	d->run_dungeon(p, cs);
+	//test_map.run(p, d, cs);
+	Scene s;
+	s.scene_005();
+	cs.runBattle(d->get_boss());
+	s.scene_006();
 	//}
 	/*FOR DEMO ONLY*/
-		
+
 }
+

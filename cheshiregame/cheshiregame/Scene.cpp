@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <conio.h>
+#include <fstream>
+#include <map>
 
 // Output choices given from place
 // Starts from 1 to sz - 1;
@@ -17,11 +19,75 @@ void Scene::set_options(Town &t) {
     //options = t.get_options();
 }
 
+
+/*Relevant Output Functions*/
 void Scene::next_input()
 {
 	std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
 	_getch();
 }
+
+void Scene::output_file(std::string file_name)
+{
+	std::map<int, std::string> choices;
+	std::string output_string;
+	std::string choice_file;
+	std::string output_f = "Assets/Scenes/" + file_name;
+	int ID;
+	int input = -1;
+
+	fstream inFile;
+	inFile.open(output_f.c_str());
+	if (!inFile.is_open())
+	{
+		std::cout << "Error: File cannot be opened." << std::endl;
+		return;
+	}
+	while (output_string != "<choices>" && inFile.good())
+	{
+		std::getline(inFile, output_string);
+		if (output_string != "<choices>")
+		{
+			std::cout << output_string << std::endl;
+		}
+	}
+	if (!inFile.good()) //If we reached the end of the file, just return.
+	{
+		return;
+	}
+	std::cin.ignore();
+	while (inFile.good())
+	{
+		inFile >> ID >> choice_file;
+		choices[ID] = choice_file;
+	}
+	if (choices.find(2) == choices.end()) //In the instance of only having one choice, we know that the 2nd ID is non-existent.
+	{
+		system("cls");
+		output_file(choices[1]);
+		return;
+	}
+	while (choices.find(input) == choices.end())
+	{
+		std::cin >> input;
+		if (choices.find(input) != choices.end())
+		{
+			system("cls");
+			output_file(choices[input]);
+			return;
+		}
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+	}
+	
+	//Push choices into maps
+	//Prompt user for choice
+	//Run function again based on ID
+	return;
+}
+
+
+/*END RELEVEANT OUTPUT FUNCTIONS*/
 
 void Scene::basic_menu(player* p)
 {
