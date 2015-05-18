@@ -45,12 +45,6 @@ class player
 		std::vector<int> playerstats; //Current stats for the player.
 		std::vector<Entity> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
-		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Arms 3 = Legs
-		std::vector<Weapon*> weapon; //0 = Right Hand 1 = Off/Left Hand HUEHUE
-		std::vector<Item*> inventory; //For displaying items in Store
-		std::vector<Consumable*> con_inv;
-		std::vector<Gear*> gear_inv;
-		std::vector<Weapon*> wep_inv;
 		void updateStats();
 
 		Gear* none;
@@ -58,6 +52,14 @@ class player
 		int randNumber();
 
     public:
+
+		//Inventories changed from private to public to accomodate store for now.
+		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Arms 3 = Legs
+		std::vector<Weapon*> weapon; //0 = Right Hand 1 = Off/Left Hand HUEHUE
+		std::vector<Item*> inventory; //For displaying items in Store
+		std::vector<Consumable*> con_inv;
+		std::vector<Gear*> gear_inv;
+		std::vector<Weapon*> wep_inv;
 
         //Constructor
         player();

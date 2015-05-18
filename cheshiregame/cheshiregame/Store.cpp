@@ -27,7 +27,7 @@ void Store::run(player* p)
         std::cin >> choice;
         if (choice == "v")
         {
-            printStore();
+            printStore(p);
         }
 		else if (choice == "s")
 		{
@@ -74,7 +74,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				if (storeInventory.at(invPos - 1)->getName() == weapInv.at(i)->getName())
 				{
 					p->add_wep(weapInv.at(i));
-					weapInv.erase(weapInv.begin() + i);
+					// weapInv.erase(weapInv.begin() + i);
 				}
 			}
 			std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
@@ -86,6 +86,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 			storeInventory.erase(storeInventory.begin() + invPos - 1);
 
 			std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
+			run(p);
 		}
 		else if (storeInventory.at(invPos - 1)->getType() == "Gear")
 		{
@@ -94,7 +95,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				if (storeInventory.at(invPos - 1)->getName() == gearInv.at(i)->getName())
 				{
 					p->add_gear(gearInv.at(i));
-					gearInv.erase(gearInv.begin() + i);
+					// gearInv.erase(gearInv.begin() + i);
 				}
 			}
 			std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
@@ -106,6 +107,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 			storeInventory.erase(storeInventory.begin() + invPos - 1);
 
 			std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
+			run(p);
 		}
 		else if (storeInventory.at(invPos - 1)->getType() == "Consumable")
 		{
@@ -132,6 +134,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				{
 					storeInventory.erase(storeInventory.begin() + invPos - 1);
 				}
+				run(p);
 			}
 			else //Mana pot
 			{
@@ -156,6 +159,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				{
 					storeInventory.erase(storeInventory.begin() + invPos - 1);
 				}
+				run(p);
 			}
 		}
 	}
@@ -167,18 +171,38 @@ void Store::sellItem(const unsigned invPos, player* p)
 	int goldGained = 0;
 	if (invPos > p->getInvSize()) {
 		std::cout << "Error: Item does not exist.\n";
-		//run(p);
+		run(p);
 	}
 	if(invPos < 1) {
 		std::cout << "Error: Invalid inventory position.\n";
-		//run(p);
+		run(p);
 	}
-	//Add item to the store's display inventory
-	//Add item to the proper Wep/Gear/Con inventory
-	//Add value of item to the player's gold
+
+	//Adds item back into the store's display inventory
+	storeInventory.push_back(p->inventory.at(invPos));
+
+	//Adds item back into its corresponding type inventory
+	//This may not be necessary. Will test further.
+	//if (p->inventory.at(invPos)->getType() == "Weapon")
+	//{}
+	//else if (p->inventory.at(invPos)->getType() == "Gear")
+	//{}
+	//else if (p->inventory.at(invPos)->getType() == "Consumable")
+	//{
+		//if (p->inventory.at(invPos)->getName() == "Health Potion")
+		//{}
+		//else //Mana Potion
+		//{}
+	//}
+
+	//Adds value of item to the player's gold
+	goldGained = p->inventory.at(invPos)->getValue();
+	p->setmoney(goldGained);
 	//Remove item from player's inventory
+	p->inventory.erase(p->inventory.begin() + invPos);
+	run(p);
 }
-void Store::printStore()
+void Store::printStore(player* p)
 {
     for(int i = 0; i < storeInventory.size(); ++i) 
     {
@@ -194,6 +218,7 @@ void Store::printStore()
 			std::cout << "Amount: " << numManaPots << std::endl;
 		}
     }
+	run(p);
 }
 void Store::fillStore(const string &input_file)
 {

@@ -134,7 +134,7 @@ int main()
 			std::cout << "Quynh Nguyen - No-Sleep Programmer" << std::endl;
 			std::cout << "Michaella Sheng - Vice Blargh Programmer" << std::endl;
 			std::cout << "Alex Tran - Elusive Programmer" << std::endl;
-			std::cout << "David Zhang - CEP (Chief Executive Programmer)" << std::endl;
+			std::cout << "David Zhang - Some random guy who thinks he's a slavedriver." << std::endl;
 			std::cout << "1 Rica was harmed in the making of this game." << std::endl;
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}

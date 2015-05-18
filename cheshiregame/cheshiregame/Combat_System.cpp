@@ -88,20 +88,24 @@ int Combat_System::promptChoices(){
 		cout << "2: Defend" << endl;
 		cout << "3: Use an item" << endl;
 		cout << "4: Run" << endl;
+		cout << "5. Use an ability" << endl;
 		cin >> prompt;
 		if(prompt == "1"){
-		return 0;
+			return 0;
 		}
 		if(prompt == "2"){
-		return 1;
+			return 1;
 		}
 		if(prompt == "3"){
-		return 2;
+			return 2;
 		}
 		if(prompt == "4"){
-		return 3;
+			return 3;
 		}
-		cout << "You have not selected one of the four options." << endl;
+		if (prompt == "5"){
+			return 4;
+		}
+		cout << "You have not selected one of the five options." << endl;
 	}
 }
 
@@ -197,6 +201,25 @@ void Combat_System::runBattle(Entity* e){
 				else{
 					cout << "You've failed to run away..." << endl;
 					turn = 2;
+				}
+			}
+			//Abilites for each class
+			if (optionChoice == 4)
+			{
+				if (play->getjob() == "Swordsman")
+				{
+					cout << "1. Mighty Charge-n-Stab(30 mana)" << endl;
+					cout << "2. Flanking Gut-Slasher(50 mana)" << endl;
+				}
+				else if (play->getjob() == "Magician")
+				{
+					cout << "1. Triple Gusts of Flame(25 mana)" << endl;
+					cout << "2. Implosion(50 mana)" << endl;
+				}
+				else // Thief
+				{
+					cout << "1. Flying Knives(15 mana)" << endl;
+					cout << "2. Hurricane Bladeina(50 mana)" << endl;
 				}
 			}
 			if (optionChoice == 2){

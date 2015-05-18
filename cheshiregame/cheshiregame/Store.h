@@ -14,7 +14,7 @@ class Store
         ~Store();
         void run(player* p);
         void menu() const;
-        void printStore(); 
+        void printStore(player*); 
         void fillStore(const string &);
 		void purchaseItem(const unsigned, player*);
 		void sellItem(const unsigned, player*);
