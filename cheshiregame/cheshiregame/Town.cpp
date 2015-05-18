@@ -83,8 +83,8 @@ void Town::run(player* p) {
             << "4. Go to the tavern" << std::endl
             << "5. Go talk to the townspeople" << std::endl
             << "6. Go to a dungeon" << std::endl
-            << "7. Quit" << std::endl
-            << "0. Save Game" << std::endl;
+            << "7. Save Game" << std::endl
+            << "0. Quit" << std::endl;
 
         std::cout << "> ";
         cin >> choice;
@@ -109,11 +109,11 @@ void Town::run(player* p) {
                 dungeon_select(p);
             }
             else if (choice == 7) {
-                return;
-            }
-            else if (choice == 0) {
                 savesystem.p = *p;
                 savesystem.saveSave();
+            }
+            else if (choice == 0) {
+                return;
             }
             else {
                 cout << "bad input, try again" << std::endl;

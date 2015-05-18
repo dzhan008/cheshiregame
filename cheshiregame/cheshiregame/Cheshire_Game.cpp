@@ -76,7 +76,7 @@ int main()
 		cout << "                                2. Load Game \n";
 		cout << "                                3. Options \n";
 		cout << "                                4. Credits \n";
-        cout << "                                5. Load Game \n";
+        cout << "                                5. Exit Game \n";
 
 		int input = 0;
 		cin >> input;
@@ -129,9 +129,7 @@ int main()
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}
         else if (input == 5) {
-
-
-
+            return 0;
         }
 	}
 	return 0;

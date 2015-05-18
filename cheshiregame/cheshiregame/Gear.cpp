@@ -46,6 +46,7 @@ int Gear::getStats(){
 	return statBoost;
 }
 
+
 Gear::Gear(std::string nam,std::string type, int val)
 {
 	name = nam;
