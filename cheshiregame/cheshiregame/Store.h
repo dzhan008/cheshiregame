@@ -1,8 +1,11 @@
 #ifndef STORE_H
 #define STORE_H
 
-#include "stdafx.h"
 #include "Player.h"
+#include "Item.h"
+#include "Gear.h"
+#include "Weapon.h"
+#include "Consumable.h"
 
 #include <string>
 #include <vector>
