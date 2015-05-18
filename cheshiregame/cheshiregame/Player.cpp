@@ -900,3 +900,13 @@ void player::update_player()
 {
 	updateStats();
 }
+
+void player::add_member(Ally* member)
+{
+	party.push_back(member);
+}
+
+std::vector<Ally*> player::get_party()
+{
+	return party;
+}
