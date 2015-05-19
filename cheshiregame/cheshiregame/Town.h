@@ -35,7 +35,7 @@ public:
     Town(std::string filename);
     void run(player* p);
 	void inn(player* p);
-    void tavern();
+    void tavern(player* p);
     void blacksmith(player* p);
     void store(player* p);
     void talk();

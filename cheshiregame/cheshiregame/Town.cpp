@@ -120,7 +120,7 @@ void Town::run(player* p) {
             }
             else if (choice == 4) {
 				system("cls");
-                tavern();
+                tavern(p);
 				system("cls");
 				display_options();
             }
@@ -280,9 +280,91 @@ void Town::blacksmith(player* p) {
     return;
 }
 
-void Town::tavern() {
-    // TODO: Implement tavern
-    std::cout << "Unimplemented." << std::endl;
+void Town::tavern(player* p) {
+    std::cout << "Welcome to the newly built tavern! I'm the innkeeper, how can I help you?\n";
+	std::cout << "1. Get me some drinks!\n";
+	std::cout << "2. I need to recruit allies.\n";
+	std::cout << "3. Exit.\n";
+	int input = 0;
+	cin >> input; 
+	while (input != 2)
+	{
+		while (cin.fail())
+		{
+			std::cout << "You're drunk aren't you. Try a different input.";
+			cin >> input;
+		}
+		if (input == 1)
+		{
+			std::cout << "Hey wait I know you...you're that deadbeat who doesn't pay up.\n";
+			std::cout << "I'm not giving you any drinks anytime soon.\n";
+			cin >> input;
+		}
+		if (input == 3)
+		{
+			std::cout << "Goodbye!\n";
+			return;
+		}
+	}
+	std::cout << "There are several people here waiting for you, friend! Choose who you want!\n";
+	std::cout << "1. Angry Toddler: 10 gold, +5 damage to enemy, -1 strength to player, requires periodic burping.\n";
+	std::cout << "2. Overly Eager Recruit: 50 gold, +15 damage to enemy, may accidentally hit you with sword.\n";
+	std::cout << "3. Horsey: 75 gold, +10 damage to enemy, +1 agility to player, may nibble ears.\n";
+	std::cout << "4. Soceror's Apprentice: 100 gold, +15 damage to enemy, +10 max mana.\n";
+	std::cout << "5. Exit.\n";
+	cin >> input;
+	while (input != 5)
+	{
+		while (cin.fail())
+		{
+			std::cout << "You're drunk aren't you. Try a different input.\n";
+		}
+		if (input < 1 || input > 4)
+		{
+			std::cout << "Ally does not exist. Try another number.\n";
+			cin >> input;
+		}
+		if (input == 1)
+		{
+			if (p->getmoney() < 10)
+			{
+				std::cout << "You can't afford the toddler. Why don't you try having your own baby?\n";
+				cin >> input;
+			}
+			Ally* temp = new Ally("Angry Toddler", "Theif", 10, 1, 0);
+			p->add_member(temp);
+		}
+		if (input == 2)
+		{
+			if (p->getmoney() < 50)
+			{
+				std::cout << "You don't have enough money.\n";
+				cin >> input;
+			}
+			Ally* temp = new Ally("Overly Eager Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
+			p->add_member(temp);
+		}
+		if (input == 3)
+		{
+			if (p->getmoney() < 75)
+			{
+				std::cout << "You don't have enough money. *sad neigh* \n";
+				cin >> input;
+			}
+			Ally* temp = new Ally("Horsey", "Theif", 100, p->getlevel(), p->getexp());
+			p->add_member(temp);
+		}
+		if (input == 4)
+		{
+			if (p->getmoney() < 100)
+			{
+				std::cout << "You don't have enough money.\n";
+				cin >> input;
+			}
+			Ally* temp = new Ally("Sorceror's Apprentice", "Sorceror", p->getMaxHP, p->getlevel(), p->getexp());
+			p->add_member(temp);
+		}
+	}
     return;
 }
 
