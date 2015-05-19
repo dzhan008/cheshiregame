@@ -15,6 +15,7 @@ Dungeon::Dungeon(const string &text_file)
 	//open entity file
 	string dunFile = "Assets/Dungeons/" + text_file;
 	inFS.open(dunFile.c_str());
+
 	if (!inFS.is_open())
 	{
 		cout << "Error: cannot open all entity txt file." << endl;
@@ -56,11 +57,20 @@ Dungeon::Dungeon(const string &text_file)
 				getline(inFS, item_name);
 				while (item_name != "<end_item>")
 				{
-					inFS >> item_val;
-					Item* temp_item = new Item(item_name, item_val);
-					temp_entity->add_loot(temp_item);
-					inFS.ignore();
-					getline(inFS, item_name);
+					if (item_name == "Potion")
+					{
+						Consumable* potion = new Consumable("Potion", "Potion", 20, 10);
+						temp_entity->add_pots(potion);
+						getline(inFS, item_name);
+					}
+					else
+					{
+						inFS >> item_val;
+						Item* temp_item = new Item(item_name, item_val);
+						temp_entity->add_loot(temp_item);
+						inFS.ignore();
+						getline(inFS, item_name);
+					}
 				}
 				inFS >> input;
 				inFS.ignore();
@@ -84,6 +94,7 @@ Dungeon::Dungeon(const string &text_file)
 		}
 	}
 }
+
 void Dungeon::fill_dungeon(const string &text_file, const string &map_file)
 {
 	ifstream inFS;
@@ -153,7 +164,7 @@ const void Dungeon::display_dungeon()
 	cout << "Dungeon name: " << dungeon_name << endl;
 	cout << "Dungeon difficulty: " << dungeon_difficulty << endl;
 	cout << "Monsters: " << endl;
-	for (int i = 0; i < entity_group.size(); i++)
+	for (unsigned i = 0; i < entity_group.size(); i++)
 	{
 		entity_group.at(i)->Print();
 		//entity_group.at(i)->print_loot();
