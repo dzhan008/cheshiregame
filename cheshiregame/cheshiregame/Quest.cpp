@@ -1,38 +1,69 @@
 #include "stdafx.h"
 #include "Quest.h"
-
-Quest::Quest() {
+using namespace std;
+Quest::Quest() 
+{
+	questname = "Let's start an adventure";
+	questtype = "Basic";
+	monstername = " ";
+	monstercount = 0;
+	curr_monster_count = 0;
+	questdescription = "Let's do a quest.";
+	reward = "Friendship";
+	completed = false;
 }
 
 // Constructor for SLAY quest
-Quest::Quest(std::string quest_name, std::string quest_type,
-    std::string monster_name, unsigned monster_count,
-    std::string quest_description) : quest_name(quest_name), 
-    quest_type(quest_type), monster_name(monster_name), 
-    monster_count(monster_count), 
-    quest_description(quest_description)
-{}
 
+Quest::Quest(const string name, string type, string target, unsigned amount, unsigned current, string goals, string prize)
+{
+	questname = name;
+	questtype = type;
+	monstername = target;
+	monstercount = amount;
+	curr_monster_count = current;
+	questdescription = goals;
+	reward = prize;
+	
+}
 
 Quest::~Quest()
 {
+	if (completed == true)
+	{
+		delete this;
+	}
 }
 
-void Quest::displayQuest() {
-    std::cout << quest_name << std::endl;
-    std::cout << quest_description << std::endl;
-    std::cout << monster_name << " slayed: " << 
-        curr_monster_count << std::endl;
+void Quest::displayQuest() 
+{
+	cout << questname << endl;
+	cout << "Type:  " << questtype << endl;
+	cout << "About: " << questdescription << endl;
+	cout << "Reward: " << reward << endl;
+	cout << "Killed: " << curr_monster_count << endl;
 }
 
-void Quest::setStatus(unsigned s) {
-   st = s;
+void Quest::killQuest(Entity target)
+{
+	if (target.getName() == monstername)
+	{
+		monstercount--;
+		curr_monster_count++;
+	}
 }
 
-bool Quest::isComplete() {
-    return completed;
+bool Quest::KillQuestisComplete() 
+{
+	if (monstercount == 0)
+	{
+		completed = true;
+		return completed;
+	}
+	return false;
 }
 
-void Quest::setComplete(bool b) {
-    completed = b;
+string Quest::getname()
+{
+	return questname;
 }
