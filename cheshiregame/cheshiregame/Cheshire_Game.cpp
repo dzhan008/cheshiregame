@@ -22,7 +22,7 @@ player* play = new player(x, "Game Master", 300, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 1, 0, 0, 100);
 Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
-Entity* enemy2 = new Entity("Fox", 100, 10, 1, 0, 2, 10);
+Entity* enemy2 = new Entity("Fox", 1000, 10, 5, 5, 2, 10);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* Master_Dun = new Dungeon(dun);
 Scene scene;
@@ -85,16 +85,14 @@ int main()
 			vector<int> stats(5);
 			for (int i = 0; i < 5; ++i)
 			{
-				stats.at(i) = 5;
+				stats.at(i) = 100;
 			}
-			stats.at(3) = 50;
+			//stats.at(3) = 50;
 			play->setstats(stats);
-			play->set_min_dmg(30);
-			play->set_max_dmg(80);
-			play->update_player();
+			/*play->set_min_dmg(30);
+			play->set_max_dmg(80);*/
 			std::cout << "\n\n\n";
 			Consumable* potion = new Consumable("Potion", "Potion", 20, 10);
-
 			play->setmoney(500);
 			play->add_con(potion);
 
@@ -123,20 +121,20 @@ int main()
 			std::cout << "Danny Diep - That Programmer" << std::endl;
 			std::cout << "Kenta Kitada - Busy Programmer" << std::endl;
 			std::cout << "Quynh Nguyen - No-Sleep Programmer" << std::endl;
-			std::cout << "Michaella Sheng - Vice Hater" << std::endl;
+			std::cout << "Michaella Sheng - Vice Mrgghgh Programmer" << std::endl;
 			std::cout << "Alex Tran - Elusive Programmer" << std::endl;
-			std::cout << "David Zhang - :D" << std::endl;
+			std::cout << "David Zhang - Programmer" << std::endl;
 			std::cout << "1 Rica was harmed in the making of this game." << std::endl;
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}
         else if (input == 5) {
-			exit(1);
+			//exit(1);
 			/*Ally* dummy = new Ally;
 			play->add_member(dummy);
 			Combat_System combat_test(play, play->get_party());
 			combat_test.runBattle(enemy2);*/
 			//scene.basic_menu(play);
-			//town1.run(play);
+			town1.run(play);
 			/*std::string scene_file = "test_scene.txt";
 			scene.output_file(scene_file);*/
 			Store s;
