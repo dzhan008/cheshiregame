@@ -27,6 +27,9 @@ bool Weapon::equipWeapon(Weapon* wep, player* p)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
 =======
 >>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
 =======
@@ -38,6 +41,7 @@ string Weapon::getType() const
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 int Weapon::getValue(){
 	return damageBoost;
 }
@@ -47,11 +51,16 @@ int Weapon::getValue(){
 =======
 =======
 >>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
+=======
+>>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
 int Weapon::getDmg(){
 	return damageBoost;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
+=======
 >>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
 =======
 >>>>>>> parent of beb3c92... Weapon Class Bug Fixes and Reorganization
