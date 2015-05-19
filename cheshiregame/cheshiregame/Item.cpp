@@ -37,7 +37,6 @@ void Item::printItem() const
     cout << "Name: " << name << endl;
     cout << "Value: " << value << endl;
 }
-
 string Item::getName() const
 {
 	return name;
