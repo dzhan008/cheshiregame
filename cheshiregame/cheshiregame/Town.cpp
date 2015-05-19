@@ -24,7 +24,7 @@ Town fileformat will be as follows:
 
 void Town::fill_town(const std::string &text_file) {
     std::string townname;
-    std::string store_filename;
+	std::string store_filename = "all_items.txt";
     int people_count;
 
     std::ifstream inFS;
@@ -38,7 +38,6 @@ void Town::fill_town(const std::string &text_file) {
     std::getline(inFS, store_filename);
     Store s;
     // TODO: Make a sample store?
-    s.fillStore(store_filename);
     this->s = s;
     string p;
     std::getline(inFS, p);
@@ -63,6 +62,8 @@ Town::Town() {
 	//dungeon1 = new Dungeon("demo_dun_1.txt");
 	//dungeon2 = new Dungeon("demo_dun_2.txt");
    // fill_town("sample_town.txt");
+	std::string store_filename = "all_items.txt";
+	s.fillStore(store_filename); //Change later to work for ANY STORE
 }
 
 Town::Town(std::string filename) {
@@ -73,50 +74,64 @@ void Town::run(player* p) {
     // Main function? I guess.
     //std::cout << "Welcome to " << townname << std::endl;
 	int choice = -1;
-
-    while (choice != 0) //Fix for exit
+	system("cls");
+	std::cout << "You are currently in an unknown city!" << std::endl;
+    while (choice != -2) //Fix for exit
     {
         std::cout << "What would you like to do?" << std::endl;
-        std::cout << "1. Visit Inn" << std::endl
-            << "2. Go shopping" << std::endl
-            << "3. Go to the blacksmith" << std::endl
-            << "4. Go to the tavern" << std::endl
-            << "5. Go talk to the townspeople" << std::endl
-            << "6. Go to a dungeon" << std::endl
-            << "7. Save Game" << std::endl
-            << "0. Quit" << std::endl;
+		std::cout << "1. Visit Inn" << std::endl
+			<< "2. Go shopping" << std::endl
+			<< "3. Go to the blacksmith" << std::endl
+			<< "4. Go to the tavern" << std::endl
+			<< "5. Go talk to the townspeople" << std::endl
+			<< "6. Go to a dungeon" << std::endl
+			<< "7. Quit" << std::endl;
+            //<< "0. Save Game" << std::endl;
 
         std::cout << "> ";
         cin >> choice;
         if (cin.good()) {
 
             if (choice == 1) {
+				system("cls");
                 inn(p);
+				system("cls");
             }
             else if (choice == 2) {
+				system("cls");
                 store(p);
+				system("cls");
             }
             else if (choice == 3) {
+				system("cls");
                 blacksmith(p);
+				system("cls");
             }
             else if (choice == 4) {
+				system("cls");
                 tavern();
+				system("cls");
             }
             else if (choice == 5) {
+				system("cls");
                 talk();
+				system("cls");
             }
             else if (choice == 6) {
+				system("cls");
                 dungeon_select(p);
+				system("cls");
             }
             else if (choice == 7) {
-                savesystem.p = *p;
-                savesystem.saveSave();
-            }
-            else if (choice == 0) {
                 return;
             }
+            else if (choice == 0) {
+				break;
+                //savesystem.p = *p;
+                //savesystem.saveSave();
+            }
             else {
-                cout << "bad input, try again" << std::endl;
+                cout << "Invalid input." << std::endl;
             }
         }
         cin.clear();
@@ -130,13 +145,14 @@ void Town::inn(player* p) {
 	int choice = -1;
 	std::string input;
     
-    std::cout << ">";
+
 	while (choice != 3)
 	{
 		std::cout << "Welcome to the inn." << std::endl;
 		std::cout << "1. Rest" << std::endl;
 		std::cout << "2. Recruit" << std::endl;
 		std::cout << "3. Exit" << std::endl;
+		std::cout << ">";
 		std::cin >> choice;
         if (cin.good()) {
             if (choice == 1) {
@@ -257,9 +273,7 @@ void Town::tavern() {
 }
 
 void Town::store(player* p) {
-	std::cout << "Unimplemented." << std::endl;
-	return;
-    //s.run(p);
+    s.run(p);
     return;
 }
 
@@ -285,11 +299,11 @@ void Town::dungeon_select(player* p)
 	std::cin >> input;
 	//if (input == 1)
 	//{
-	string dun_ent = "/Assets/Dungeons/demo_dun_1_enemies.txt";
-	string map_t = "/Assets/Dungeons/mapsample.txt";
-	string dun = "/Assets/Dungeons/demo_dun_1.txt";
-	Dungeon* d = new Dungeon(dun_ent);
-	d->fill_dungeon(dun, map_t);
+	string dun_ent = "demo_dun_1_enemies.txt";
+	string map_t = "mapsample.txt";
+	string dun = "demo_dun_1.txt";
+	Dungeon* d = new Dungeon(dun);
+	d->fill_dungeon(dun_ent, map_t);
 	Combat_System cs(p);
 	d->run_dungeon(p, cs);
 	//test_map.run(p, d, cs);

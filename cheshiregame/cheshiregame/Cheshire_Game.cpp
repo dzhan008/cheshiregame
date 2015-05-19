@@ -22,7 +22,7 @@ player* play = new player(x, "Game Master", 300, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 1, 0, 0, 100);
 Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
-Entity* enemy2 = new Entity("Fox", 10, 10, 1, 0, 2, 10);
+Entity* enemy2 = new Entity("Fox", 100, 10, 1, 0, 2, 10);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* Master_Dun = new Dungeon(dun);
 Scene scene;
@@ -76,7 +76,7 @@ int main()
 		cout << "                                2. Load Game \n";
 		cout << "                                3. Options \n";
 		cout << "                                4. Credits \n";
-        cout << "                                5. Exit Game \n";
+        cout << "                                5. Exit \n";
 
 		int input = 0;
 		cin >> input;
@@ -119,17 +119,31 @@ int main()
 		}
 		else if (input == 4)
 		{
-			std::cout << "Cheshire's Game Version 2.0" << std::endl;
+			std::cout << "Cheshire's Game Version 3.0" << std::endl;
 			std::cout << "Danny Diep - That Programmer" << std::endl;
+			std::cout << "Kenta Kitada - Busy Programmer" << std::endl;
 			std::cout << "Quynh Nguyen - No-Sleep Programmer" << std::endl;
-			std::cout << "Michaella Sheng - Vice Blargh Programmer" << std::endl;
+			std::cout << "Michaella Sheng - Vice Hater" << std::endl;
 			std::cout << "Alex Tran - Elusive Programmer" << std::endl;
-			std::cout << "David Zhang - Some random douchebag." << std::endl;
+			std::cout << "David Zhang - :D" << std::endl;
 			std::cout << "1 Rica was harmed in the making of this game." << std::endl;
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}
         else if (input == 5) {
-            return 0;
+			exit(1);
+			/*Ally* dummy = new Ally;
+			play->add_member(dummy);
+			Combat_System combat_test(play, play->get_party());
+			combat_test.runBattle(enemy2);*/
+			//scene.basic_menu(play);
+			//town1.run(play);
+			/*std::string scene_file = "test_scene.txt";
+			scene.output_file(scene_file);*/
+			Store s;
+			s.fillStore("all_items.txt");
+			s.run(play);
+
+
         }
 	}
 	return 0;

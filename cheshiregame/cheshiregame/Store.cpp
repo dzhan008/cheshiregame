@@ -4,6 +4,7 @@
 #include "Item.h"
 
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -27,10 +28,12 @@ void Store::run(player* p)
         std::cin >> choice;
         if (choice == "v")
         {
+			system("cls");
             printStore(p);
         }
 		else if (choice == "s")
 		{
+			system("cls");
 			p->display_inventory();
 			std::cout << "Enter the number of the item you would like to sell.";
 			std::cin >> usernum;
@@ -38,6 +41,7 @@ void Store::run(player* p)
 		}
 		else if (choice == "p")
 		{
+			system("cls");
 			std::cout << "Enter the number of the item to purchase." << std::endl;
 			std::cin >> usernum;
 			purchaseItem(usernum, p);

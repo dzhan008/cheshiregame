@@ -6,6 +6,8 @@
 #include <fstream>
 #include <map>
 
+using namespace std;
+
 // Output choices given from place
 // Starts from 1 to sz - 1;
 void Scene::output_options() {
@@ -97,8 +99,7 @@ void Scene::basic_menu(player* p)
 	{
 		std::string input;
 		bool option_chosen = false;
-
-		std::cout << "What would you like to do?" << std::endl << std::endl;
+		std::cout << "\nWhat would you like to do?" << std::endl << std::endl;
 		std::cout << "1. View Party" << std::endl;
 		std::cout << "2. View Items" << std::endl;
 		std::cout << "3. View Equipment" << std::endl;
@@ -113,7 +114,7 @@ void Scene::basic_menu(player* p)
 		{
 			std::cin >> choice;
 			bool gear = true;
-
+			system("cls");
 			switch (choice)
 			{
 			case 1:
@@ -133,13 +134,17 @@ void Scene::basic_menu(player* p)
 				std::cout << "Here are all of the consumables you own." << std::endl;
 				//Search for all consumables
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
+				std::cin.ignore();
 				while (input != "back")
 				{
-					std::cin.ignore();
-					getline(cin, input);
+					std::getline(cin, input);
+					if (input == "back" || input == "b")
+					{
+						break;
+					}
 					if (p->con_search(input) == NULL)
 					{
-						std::cout << "Invalid input. Please type it again." << std::endl;
+							std::cout << "Invalid input. Please type it again." << std::endl;
 					}
 					else
 					{
@@ -200,7 +205,7 @@ void Scene::basic_menu(player* p)
 				std::cin.ignore();
 				do
 				{
-					getline(std::cin, input);
+					std::getline(std::cin, input);
 					if (gear)
 					{
 						if (p->gear_search(input) == NULL)
@@ -294,15 +299,24 @@ void Scene::basic_menu(player* p)
 				std::cout << "Are you sure?" << std::endl;
 				std::cout << "1. Yes" << std::endl;
 				std::cout << "2. No" << std::endl;
-				std::cin >> choice;
+
 				while (choice != 1)
 				{
+					std::cin >> choice;
+					if (choice == 1)
+					{
+						exit(1);
+					}
 					if (choice == 2)
 					{
+						cin.clear();
+						cin.ignore(INT_MAX, '\n');
 						break;
 					}
-					exit(1);
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
 				}
+
 			default:
 				std::cout << "Invalid choice. Please input your choice again." << std::endl << std::endl;
 				break;
@@ -355,7 +369,7 @@ void Scene::scene_001(player* p)
 	std::cout << "1. A rusted sword." << std::endl;
 	std::cout << "2. A dull dagger." << std::endl;
 	std::cout << "3. A wooden staff." << std::endl;
-	while (job == -1)
+	while (job != 1 && job != 2 && job != 3)
 	{
 		std::cin >> job;
 		if (job == 1)
@@ -444,22 +458,25 @@ void Scene::scene_003(player* p)
 void Scene::scene_003_1(player* p)
 {
 
-	std::cout << "Having no moral bounds, you walk into the house. You" << std::endl;
-	std::cout << " search every nook and cranny of the place, but to your dismay" << std::endl;
-	std::cout << " did not find anything of interest.You did find some gold though.\n\n";
+	std::cout << "Having no moral bounds, you walk into the house. You" <<
+		" search every nook and cranny of the place, but ";
+	std::cout << "to your dismay did not find anything of interest.You did find some gold though.\n";
+	std::cout << "You gained 100 gold!\n\n";
 	p->setmoney(p->getmoney() + 100);
 	std::cout << "As you loot the house, a voice beckons to you." << std::endl;
 	std::cout << "\"Hello!\"" << std::endl;
 
 	scene_003_4(p);
+	return;
 	
 }
 
 void Scene::scene_003_2(player* p)
 {
-	std::cout << "You yell into the house, but there is no response. You decide to" << std::endl;
-	std::cout << " holler once more, in hopes that a person may come out. \"Try again, maybe you might find someone in there.\"\n\n";
+	std::cout << "You yell into the house, but there is no response. You decide to holler once more, in hopes that a" << std::endl;
+	std::cout << "person may come out.  \"Try again, maybe you might find someone in there.\"\n\n";
 	scene_003_4(p);
+	return;
 }
 
 void Scene::scene_003_3(player* p)
@@ -470,15 +487,16 @@ void Scene::scene_003_3(player* p)
 	std::cout << " flowed water onto its base.Before you walk up to the fountain, a voice beckons you." << std::endl;
 	std::cout << "\"Hello!\"" << std::endl;
 	scene_003_4(p);
+	return;
 }
 
 void Scene::scene_003_4(player* p)
 {
 	int input = 0;
 
-	std::cout << "You turn around to find a man standing right behind you. He doesn’t seem" << std::endl;
-	std::cout << " dangerous, but is strangely close to you.The man sports a jester mask that " << std::endl;
-	std::cout << " covers his face.The smiling engraving on the mask complements his cheerful tone. Startled, you:\n\n";
+	std::cout << "You turn around to find a man standing right behind you. He doesn't seem ";
+	std::cout << " dangerous, but is" << std::endl << "strangely close to you.The man sports a jester mask that " 
+		<< " covers his face. The smiling engraving " << std::endl << "on the mask complements his cheerful tone. Startled, you:\n\n";
 
 	std::cout << "1. Attack the man with your weapon!" << std::endl;
 	std::cout << "2. Ask, \"Who are you?\"" << std::endl;
@@ -520,20 +538,25 @@ void Scene::scene_003_4_1(player* p)
 	p->add_gear(mask);
 	next_input();
 	scene_004(true);
+	return;
 }
 
 void Scene::scene_003_4_2()
 {
 	std::cout << "\"The town guide!\" the man says cheerfully. \"The name's Astuce.\" " << std::endl;
 	std::cout << " holds out his hand. \"Nice to meet you.\"\n\n";
+	next_input();
 	scene_004(false);
+	return;
 }
 
 void Scene::scene_003_4_3()
 {
 	std::cout << "\"I may be able to give you one if you do me a favor.\" " << std::endl;
 	std::cout << "He holds out his hand. \"I'm Astuce. Nice to meet you.\"\n\n";
+	next_input();
 	scene_004(false);
+	return;
 }
 
 void Scene::scene_004(bool dead)
@@ -545,26 +568,28 @@ void Scene::scene_004(bool dead)
 	{
 		astuce_alive = false;
 
-		std::cout << "Upon taking the man's mask, you search for his belongings. You come across a note. It reads:" << std::endl;
+		std::cout << "Upon taking the man's mask, you search for his belongings. You come across a note. It reads: \n" << std::endl;
 
-		std::cout << "\" Okay, I'm going to level with you. I did not expect you to actually" << std::endl;
-		std::cout << "KILL Astuce, the town guide, this fast. I mean, he probably has" << std::endl;
-		std::cout << "some significant role in the game, but now you'll never know because he’s dead.\n\n" << std::endl;
+		std::cout << "\"Okay, I'm going to level with you. I did not expect you to actually" << std::endl;
+		std::cout << "KILL Astuce, the town guide, this fast. I mean, he probably has some" << std::endl;
+		std::cout << "significant role in the game, but now you'll never know because he's dead.\n" << std::endl;
 		std::cout << "Did you know how much time I spent to actually create this character? " << std::endl;
-		std::cout << "3 hours.All the time that was spent in making one person that was " << std::endl;
-		std::cout << "supposed to make you feel like you're not alone was wasted upon his death. Thanks. Really.\n\n";
-		std::cout << "So now that he's dead, you have to read through all the crap I have to " << std::endl;
-		std::cout << "tell you right now.You're in a town (bet you figured that out when you " << std::endl;
-		std::cout << "walked in right ? ), and there's going to be some menu that pops up where" << std::endl;
-		std::cout << "you can interact with certain things here. \n\n";
+		std::cout << "3 hours. All the time that was spent in making one person that was " << std::endl;
+		std::cout << "supposed to make you feel like you're not alone was wasted upon his\n\n";
+		std::cout << "death. Thanks. Really. So now that he's dead, you have to read through " << std::endl;
+		std::cout << "all the crap I have to tell you right now.You're in a town (bet you " << std::endl;
+		std::cout << "figured that out when you walked in right?), and there's going to be" << std::endl;
+		std::cout << " some menu that pops up where you can interact with certain things here. \n\n";
 		std::cout << "You can go through a dungeon, visit the shop, go to some inn, I don't know. " << std::endl;
 		std::cout << " do what you want, because there's not much you could do without a damn" << std::endl;
 		std::cout << "guide to tell you what you can or can't do. \n\n" << std::endl;
 		std::cout << "-Game Creator\"\n\n";
 
-		std::cout << "Game Creator? You ponder as you wonder whether or not some god or an angry programmer sent you this. What's a programmer anyway? You shrug off this thought, and decide to see what you could do in town.\n\n";
-
-
+		std::cout << "Game Creator? You ponder as you wonder whether or not some god or an angry programmer sent you this." 
+			<< "What's a programmer anyway? You shrug off this thought, and decide to see what you could do in town.\n\n";
+		
+		next_input();
+		return;
 		//Open town options 
 	}
 	else
@@ -599,7 +624,7 @@ void Scene::scene_004_1()
 {
 	int input = 0;
 
-	std::cout << "Astuce stares intently at you. With his mask on, you can't tell what he is thinking. He quickly turns his head away. \"There is a certain...incident that happened. You probably won't believe me if I told you this.\" \n\n ";
+	std::cout << "Astuce stares intently at you. With his mask on, you can't tell what he is thinking. He quickly \nturns his head away. \"There is a certain...incident that happened. You probably won't believe me if I told you this.\" \n\n ";
 	std::cout << "He looks at you again. \"Aliens!\" \n\n";
 
 	std::cout << "1. \"Alie- what?\"" << std::endl;
@@ -611,7 +636,7 @@ void Scene::scene_004_1()
 		std::cin >> input;
 		if (input == 1)
 		{
-			std::cout << "\"Aliens. They came over and abducted the people of our town. Every one of them. I wasn’t there when this happened, but I know I saw the spaceship flying towards the city while I was heading back. SI was planning on creating a device that can teleport me to the ship, but I am missing something.\"\n\n";
+			std::cout << "\"Aliens. They came over and abducted the people of our town. Every one of them. I wasn't there when this happened, but I know I saw the spaceship flying towards the city while I was heading back. I \n was planning on creating a device that can teleport me to the ship, but I am missing something.\"\n\n";
 			next_input();
 			system("cls");
 			scene_004_3();
@@ -619,7 +644,7 @@ void Scene::scene_004_1()
 		}
 		else if (input == 2)
 		{
-			std::cout << "\"YES!\" Astuce sighs. \"They abducted everyone in this town. I wasn't there at the time, but I saw a spaceship flying towards the city when I was heading back. I wanted to create a device that can teleport me to their ship, but I am missing something.\"\n\n";
+			std::cout << "\"YES!\" Astuce sighs. \"They abducted everyone in this town. I wasn't there at the time, but I saw a \n spaceship flying towards the city when I was heading back. I wanted to create a device that can \n teleport me to their ship, but I am missing something.\"\n\n";
 			next_input();
 			system("cls");
 			scene_004_3();
@@ -633,10 +658,10 @@ void Scene::scene_004_2()
 {
 	int input = 0;
 
-	std::cout << "\"I know right? If only there were some people who thought the same way.\" He looks at you. \"Hey, do you think you can help me out with something?\"\n\n";
+	std::cout << "\"I know right? If only there were some people who thought the same way.\" He looks at you. \"Hey, do \n you think you can help me out with something?\"\n\n";
 
 	std::cout << "1.\"Sure, what is it?\"" << std::endl;
-	std::cout << "2. \" Actually, I'm in a bit of bind right now.\"" << std::endl;
+	std::cout << "2. \"Actually, I'm in a bit of bind right now.\"" << std::endl;
 
 
 	while (input != 1 || input != 2)
@@ -652,7 +677,7 @@ void Scene::scene_004_2()
 		}
 		else if (input == 2)
 		{
-			std::cout << "\"Lost your memory right? Not to worry, but I believe you can help us both out if you listen to my request.\" You look puzzled. How did he know that you lost your memory? Instead of bringing this up to Astuce, you continue to hear what he has to say. \n\n";
+			std::cout << "\"Lost your memory right? Not to worry, but I believe you can help us both out if you listen to my \n request.\" You look puzzled. How did he know that you lost your memory? Instead of bringing this up to Astuce, you continue to hear what he has to say. \n\n";
 			next_input();
 			system("cls");
 			scene_004_3();
@@ -665,14 +690,16 @@ void Scene::scene_004_2()
 
 void Scene::scene_004_3()
 {
-	std::cout << "\"I need you to get me a red gem inside of a dungeon. The dungeon is not too far away, but it is guarded by a giant monster, the Rica. I would love to go myself, but I must stay in case other people come into the town.\"\n\n";
-	std::cout << "\"You can utilize the town itself to purchase items or sleep at the inn to heal yourself. If you feel like the golem is too tough of a boss for you, try training in the fields outside of this city. I wish you luck!\"\n\n";
+	std::cout << "\"I need you to get me a red gem inside of a dungeon. The dungeon is not too far away, but it is \n guarded by a giant monster, the Rica. I would love to go myself, but I must stay in case other \n people come into the town.\"\n\n";
+	std::cout << "\"You can utilize the town itself to purchase items or sleep at the inn to heal yourself. If you feel like the Rica is too tough of a boss for you, try training in the fields outside of this city. I \n wish you luck!\"\n\n";
+	next_input();
+	return;
 }
 
 void Scene::scene_005()
 {
 	system("cls");
-	std::cout << "At the end dungeon you come across a huge room. A podium stands in the middle of it. Before you walk up to grab it, something comes out from the sky! A big scaly figure drops in front of the podium and glares at you with its red eyes." << std::endl;
+	std::cout << "At the end dungeon you come across a huge room. A podium stands in the middle of it. Before you walk up to grab it, something comes out from the sky! A big scaly figure drops in front of the podium \n and glares at you with its red eyes." << std::endl;
 	std::cout << "Its screech fills the room, causing you to stagger. While you recover, the Rica pounces after you!" << std::endl;
 }
 
@@ -680,7 +707,7 @@ void Scene::scene_006()
 {
 	int choice = 0;
 
-	std::cout << "At the final blow, the Rica falls. It tries to stand back up, but tumbles back down at its failed attempt. The Rica's red eyes turn dull, and it stops breathing. With a sigh of relief, you move up the podium to take the gem. \n\n";
+	std::cout << "At the final blow, the Rica falls. It tries to stand back up, but tumbles back down at its failed \n attempt. The Rica's red eyes turn dull, and it stops breathing. With a sigh of relief, you move up the podium to take the gem. \n\n";
 	if (!astuce_alive)
 	{
 		std::cout << "You head back to town and find a note posted on one of the houses. You take it and give it a read:" << std::endl;
@@ -689,7 +716,7 @@ void Scene::scene_006()
 	}
 	else
 	{
-		std::cout << "You head back to town and find Astuce near the entrance. He crouches over a patch of flowers and plucks one off of its stem. \"Ah, look at you! You just may be the right one for what I've got in store for you.\"\n\n";
+		std::cout << "You head back to town and find Astuce near the entrance. He crouches over a patch of flowers and \n plucks one off of its stem. \"Ah, look at you! You just may be the right one for what I've got in \n store for you.\"\n\n";
 		std::cout << "He turns to you and stares at the gem. \"So you return safely! Congratulations!\" You hand the jester the gem, and he pockets it into his pouch.\n\n";
 		std::cout << "\"You've done a good job my friend. You might be wondering what will happen next. Can you guess?\"\n\n";
 		std::cout << "1. What?" << std::endl;
@@ -701,5 +728,6 @@ void Scene::scene_006()
 			<< "'Your time has run out. Thank you for playing the demo!' \n\n"
 			<< "You look in dismay as you realize the demo is finished. \n You then stare the presenters asking, 'What now?'";
 		std::cin >> choice;
+		exit(1);
 	}
 }
