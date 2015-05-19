@@ -11,17 +11,14 @@ class Weapon : public Item
 		int damageBoost;
 		string type;
 	public:
-		//Constructors
 		Weapon(std::string name, std::string type, int dmg, int val);
 		Weapon(const Weapon&);
 		Weapon(const Weapon*&);
 
-		//Accessor Functions
-		int getDmg() const;
-		string getType() const;
-
-		//Mutator Functions
+		int getValue();
 		bool equipWeapon(Weapon* wep, player* p);
+		string getType() const;
+		void printItem() const;
 		void add_dmg(int dmg);
 };
 
