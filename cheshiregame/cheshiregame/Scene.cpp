@@ -371,7 +371,6 @@ void Scene::scene_001(player* p)
 	std::cout << "3. A wooden staff." << std::endl;
 	while (job != 1 && job != 2 && job != 3)
 	{
-		std::cout << p->getMaxDmg();
 		std::cin >> job;
 		if (job == 1)
 		{
@@ -381,7 +380,6 @@ void Scene::scene_001(player* p)
 			std::cout << "have wielded one of these before." << std::endl;
 			Weapon* Sword = new Weapon("Sword", "Weapon", 10, 10);
 			p->equip_wep(0, Sword);
-			std::cout << p->getMaxDmg();
 		}
 		else if (job == 2)
 		{
@@ -401,8 +399,12 @@ void Scene::scene_001(player* p)
 			Weapon* Staff = new Weapon("Staff", "Weapon", 2, 5);
 			p->equip_wep(0, Staff);
 		}
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
+		else if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
+
 	}
 
 	std::cout << "As you stand up, you hear a rustling in a bush just nearby you. " << std::endl;
@@ -431,7 +433,7 @@ void Scene::scene_003(player* p)
 
 
 
-	while (input != 1 || input != 2 || input != 3)
+	while (cin.fail())
 	{
 		std::cin >> input;
 		if (input == 1)
@@ -452,8 +454,11 @@ void Scene::scene_003(player* p)
 			scene_003_3(p);
 			return;
 		}
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
+		else if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
 	}
 }
 

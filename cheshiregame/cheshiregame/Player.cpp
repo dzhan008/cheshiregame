@@ -381,11 +381,30 @@ void player::update_player(){
 	int str_val = playerstats.at(0) / 5; //For every 5 str stat add 1 more damage to the player
 	int def_val = playerstats.at(2) / 10; //For every 10 vit add 1 more def
 	int hp_val = playerstats.at(2) / 3; //For every 3 vit add 1 more hp	
+	int wep_val = 0;
+	int gear_val = 0;
+	for (int i = 0; i < weapon.size(); ++i)
+	{
+		wep_val += weapon.at(i)->getValue();
+	}
+	for (int i = 0; i < equipment.size(); ++i)
+	{
+		gear_val += equipment.at(i)->getValue();
+	}
 
 	min_dmg = base_min_dmg + str_val;
-	max_dmg = base_max_dmg + str_val;
-	maxHP = baseHP + hp_val;
+	max_dmg = base_max_dmg + str_val + wep_val;
 	def = base_def + def_val;
+
+	if (currHP == maxHP) //In case HP is 
+	{
+		maxHP = baseHP + hp_val;
+		currHP = maxHP;
+	}
+	else
+	{
+		maxHP = baseHP + hp_val;
+	}
 	
 }
 
@@ -528,36 +547,6 @@ bool player::add_exp(int x) //TO DO: Change exp scaling per 10 levels
 	}
 
 	return level_up;
-}
-
-void player::characterCreation() //TO DO: Move the text part into scene.
-{
-	string input;
-	int jobnum;
-
-	std::cout << "Welcome to Cheshire's Game!" << std::endl;
-	std::cout << "Before we start, let us create your character." << std::endl;
-	std::cout << "What is your name?" << std::endl;
-	std::cin >> input;
-	setname(input);
-	std::cout << "Please select the number that corresponds to your job." << std::endl;
-	std::cout << "1. Swordsman" << std::endl;
-	std::cout << "2. Magician" << std::endl;
-	std::cout << "3. Thief" << std::endl;
-	//OUTPUT JOBS HERE
-
-	while (playerjob == "")
-	{
-		std::cin >> input;
-		declare_job(input);
-		if (playerjob == "")
-		{
-			std::cout << "Invalid Job. Please pick again." << std::endl;
-		}
-	}
-
-	std::cout << "Okay! Let's "; //PUT PLAYER TO TOWN IDUNNO
-
 }
 
 void player::declare_job(string input)
@@ -837,7 +826,6 @@ void player::equip_gear(int i, const Gear* x)
 
 	remove_gear(x->getName());
 	equipment.at(i) = slot;
-	def += slot->getValue(); //Adds defense
 	if (temp->getName() != "None")
 		add_gear(temp);
 	else
@@ -845,6 +833,7 @@ void player::equip_gear(int i, const Gear* x)
 		gear_size -= 1;
 		inv_size -= 1;
 	}
+	update_player();
 }
 
 void player::remove_gear(int i)
@@ -855,10 +844,10 @@ void player::remove_gear(int i)
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
 	}
-	def -= equipment.at(i)->getValue(); //Decreased when unequipping
 	equipment.at(i) = none;
 	gear_size += 1;
 	inv_size += 1;
+	update_player();
 }
 
 void player::equip_wep(int i, const Weapon* x)
@@ -871,13 +860,13 @@ void player::equip_wep(int i, const Weapon* x)
 	if (temp->getName() != "None")
 	{
 		add_wep(temp);
-		max_dmg += temp->getValue(); //FIX
 	}
 	else
 	{
 		wep_size -= 1;
 		inv_size -= 1;
 	}
+	update_player();
 }
 
 void player::remove_wep(int i)
@@ -891,6 +880,7 @@ void player::remove_wep(int i)
 	weapon.at(i) = none_wep;
 	wep_size += 1;
 	inv_size += 1;
+	update_player();
 }
 
 int player::find_slot(std::string gear)

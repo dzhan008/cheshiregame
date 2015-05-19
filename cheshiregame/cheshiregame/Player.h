@@ -119,7 +119,6 @@ class player
 		bool add_exp(int x); //returns true if leveled up
 
 		/*Character Creation*/
-		void characterCreation();
 		void declare_job(std::string input);
 
 		/*Inventory Functions*/ //TO DO: Templatize the inventory into a new class.
