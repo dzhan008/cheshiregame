@@ -29,7 +29,7 @@ string Weapon::getType() const
 	return "Weapon";
 }
 
-int Weapon::getDmg(){
+int Weapon::getValue(){
 	return damageBoost;
 }
 
