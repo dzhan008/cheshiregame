@@ -7,19 +7,22 @@
 
 class Weapon : public Item
 {
-	private:
-		int damageBoost;
-		string type;
-	public:
-		Weapon(std::string name, std::string type, int dmg, int val);
-		Weapon(const Weapon&);
-		Weapon(const Weapon*&);
+private:
+	int damageBoost;
+	string type;
+public:
+	//Constructors
+	Weapon(std::string name, std::string type, int dmg, int val);
+	Weapon(const Weapon&);
+	Weapon(const Weapon*&);
 
-		int getValue();
-		bool equipWeapon(Weapon* wep, player* p);
-		string getType() const;
-		void printItem() const;
-		void add_dmg(int dmg);
+	//Accessor Functions
+	int getDmg() const;
+	string getType() const;
+
+	//Mutator Functions
+	bool equipWeapon(Weapon* wep, player* p);
+	void add_dmg(int dmg);
 };
 
 #endif
