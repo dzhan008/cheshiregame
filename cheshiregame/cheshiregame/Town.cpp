@@ -70,24 +70,32 @@ Town::Town(std::string filename) {
     //fill_town(filename);
 }
 
+void Town::display_options()
+{
+	std::cout << "What would you like to do?" << std::endl;
+	std::cout << "1. Visit Inn" << std::endl
+		<< "2. Go shopping" << std::endl
+		<< "3. Go to the blacksmith" << std::endl
+		<< "4. Go to the tavern" << std::endl
+		<< "5. Go talk to the townspeople" << std::endl
+		<< "6. Go to a dungeon" << std::endl
+		<< "7. Quit" << std::endl;
+		//<< "0. Save Game" << std::endl;
+}
+
 void Town::run(player* p) {
     // Main function? I guess.
     //std::cout << "Welcome to " << townname << std::endl;
+	if (p->getHP() < 0)
+	{
+		return;
+	}
 	int choice = -1;
 	system("cls");
 	std::cout << "You are currently in an unknown city!" << std::endl;
+	display_options();
     while (choice != -2) //Fix for exit
     {
-        std::cout << "What would you like to do?" << std::endl;
-		std::cout << "1. Visit Inn" << std::endl
-			<< "2. Go shopping" << std::endl
-			<< "3. Go to the blacksmith" << std::endl
-			<< "4. Go to the tavern" << std::endl
-			<< "5. Go talk to the townspeople" << std::endl
-			<< "6. Go to a dungeon" << std::endl
-			<< "7. Quit" << std::endl;
-            //<< "0. Save Game" << std::endl;
-
         std::cout << "> ";
         cin >> choice;
         if (cin.good()) {
@@ -96,31 +104,37 @@ void Town::run(player* p) {
 				system("cls");
                 inn(p);
 				system("cls");
+				display_options();
             }
             else if (choice == 2) {
 				system("cls");
                 store(p);
 				system("cls");
+				display_options();
             }
             else if (choice == 3) {
 				system("cls");
                 blacksmith(p);
 				system("cls");
+				display_options();
             }
             else if (choice == 4) {
 				system("cls");
                 tavern();
 				system("cls");
+				display_options();
             }
             else if (choice == 5) {
 				system("cls");
                 talk();
 				system("cls");
+				display_options();
             }
             else if (choice == 6) {
 				system("cls");
                 dungeon_select(p);
 				system("cls");
+				display_options();
             }
             else if (choice == 7) {
                 return;
@@ -278,40 +292,71 @@ void Town::store(player* p) {
 }
 
 void Town::talk() {
-	std::cout << "Unimplemented." << std::endl;
+	int input;
+	std::cout << "Who would you like to talk to?." << std::endl;
+	std::cout << "1. Astuce" << std::endl;
 	return;
-    srand(time(NULL));
+    /*srand(time(NULL));
     int random = rand() % this->people.size();
     std::cout << people.at(random).first << " says: " <<
-    people.at(random).second << std::endl;
-    return;
+    people.at(random).second << std::endl;*/
 }
 
 void Town::dungeon_select(player* p)
 {
-	int input;
+
+	string input;
+	string dun_ent;
+	string map_t;
+	string dun;
 
 	std::cout << "Which dungeon would you like to go to?" << std::endl;
-	std::cout << "1. Ben's Dungeon" << std::endl;
-	std::cout << "2. Devil's Lair" << std::endl;
-	std::cout << "3. The Lonely Dungeon :'(" << std::endl;
-	//Output dungeons														// Tony's super cool lazy fix!
-	std::cin >> input;
-	//if (input == 1)
-	//{
-	string dun_ent = "demo_dun_1_enemies.txt";
-	string map_t = "mapsample.txt";
-	string dun = "demo_dun_1.txt";
-	Dungeon* d = new Dungeon(dun);
-	d->fill_dungeon(dun_ent, map_t);
-	Combat_System cs(p);
-	d->run_dungeon(p, cs);
-	//test_map.run(p, d, cs);
-	Scene s;
-	s.scene_005();
-	cs.runBattle(d->get_boss());
-	s.scene_006();
-	//}
+	std::cout << "1. Mild Fields" << std::endl;
+	std::cout << "2. Kind of Mild Dungeon" << std::endl;
+	std::cout << "3. Devil's Lair" << std::endl;
+	//Output dungeons
+	while (input != "back" && input != "b")
+			{
+			std::cin >> input;
+			if (input == "back" && "b")
+			{
+				return;
+			}
+			else if (input == "1")
+			{	
+				return;
+			}
+			else if (input == "2")
+			{
+				return;
+			}
+			else if (input == "3")
+			{
+				dun_ent = "demo_dun_1_enemies.txt";
+				map_t = "mapsample.txt";
+				dun = "demo_dun_1.txt";
+				Dungeon* d = new Dungeon(dun);
+				d->fill_dungeon(dun_ent, map_t);
+				Combat_System cs(p);
+				d->run_dungeon(p, cs);
+				Scene s;
+				s.scene_005();
+				cs.runBattle(d->get_boss());
+				if (p->getHP() < 0)
+				{
+					s.scene_006();
+					return;
+				}
+				return;
+			}
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+	}
+
+
+
+
+
 	/*FOR DEMO ONLY*/
 
 }

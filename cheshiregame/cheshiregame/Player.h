@@ -21,15 +21,19 @@ class player
 
 		int maxHP; //The maximum health points of the player.
 		int currHP; //The current health the player has at the moment.
+		int baseHP;
 		int plevel; //The player's current level.
 		int pmoney; //The amount of money the player has.
 		int pexp; //The amount of exp the player has.
 		int statpoints; //The amount of stats points a player has. It will be added as the player levels up.
 		int inv_size; //The current inventory size.
 		int inv_max_size; //The maximum inventory size.
+		int base_min_dmg;
+		int base_max_dmg;
 		int min_dmg; //The minimum damage the player can do to an enemy.
 		int max_dmg; //The maximum damage the player can do to an enemy.
 		int def; //The defense of the player.
+		int base_def;
 		int tRand();
 		bool defending;
 
@@ -45,7 +49,6 @@ class player
 		std::vector<int> playerstats; //Current stats for the player.
 		std::vector<Ally*> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
-		void updateStats();
 
 		Gear* none;
 		Weapon* none_wep;

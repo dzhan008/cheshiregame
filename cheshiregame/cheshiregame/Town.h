@@ -40,6 +40,7 @@ public:
     void store(player* p);
     void talk();
 	void dungeon_select(player* p);
+	void display_options();
     SaveSystem savesystem;
 
 };

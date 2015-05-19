@@ -10,16 +10,22 @@ using namespace std;
 
 player::player(){
     playername = "Player";
+	baseHP = 20;
     maxHP = 20;
     currHP = 20;
     plevel = 1;
     pexp = 0;
 	maxexp = 50;
 	statpoints = 0;
-	min_dmg = 1;
-	max_dmg = 10;
-	def = 0;
 	defending = false;
+
+	base_min_dmg = 1;
+	base_max_dmg = 10;
+	base_def = 0;
+
+	def = 0;
+	min_dmg = 1; //Change later
+	max_dmg = 10;
 
 	inv_size = 0;
 	inv_max_size = 20;
@@ -47,21 +53,29 @@ player::player(){
 	playerstats.at(2) = 1;
 	playerstats.at(3) = 1;
 	playerstats.at(4) = 1;
+
+	update_player();
 }
 
 player::player(std::string pName, std::string pJob)
 	:playername(pName), playerjob(pJob)
 {
+	baseHP = 20;
 	maxHP = 20;
 	currHP = 20;
 	plevel = 1;
 	pexp = 0;
 	maxexp = 50;
 	statpoints = 0;
-	min_dmg = 1;
-	max_dmg = 10;
-	def = 0;
 	defending = false;
+
+	base_min_dmg = 1;
+	base_max_dmg = 10;
+	base_def = 0;
+
+	def = 0;
+	min_dmg = 1; //Change later
+	max_dmg = 10;
 
 	pmoney = 0;
 
@@ -91,21 +105,30 @@ player::player(std::string pName, std::string pJob)
 	playerstats.at(2) = 1;
 	playerstats.at(3) = 1;
 	playerstats.at(4) = 1;
+
+	update_player();
 }
 
 player::player(string pName, string pJob, int health, int lvl, int exp, int statpts, int money)
 {
     playername = pName;
-    maxHP = health;
+    baseHP = health;
+	maxHP = health;
     currHP = health;
     plevel  = lvl;
     pexp = exp;
 	maxexp = exp;
-	def = 0;
 	statpoints = statpts;
-	min_dmg = 1 * lvl; //Change later
-	max_dmg = 10 * lvl;
+
 	defending = false;
+
+	base_min_dmg = 1;
+	base_max_dmg = 10;
+	base_def = 0;
+
+	def = 0;
+	min_dmg = 1; //Change later
+	max_dmg = 10;
 
 	pmoney = money;
 
@@ -136,6 +159,8 @@ player::player(string pName, string pJob, int health, int lvl, int exp, int stat
 	playerstats.at(2) = 1;
 	playerstats.at(3) = 1;
 	playerstats.at(4) = 1;
+
+	update_player();
 }
 
 player::~player()
@@ -247,7 +272,7 @@ bool player::calculateCrit(){
 
 bool player::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
-	double temp = playerstats.at(1) / eStats.at(3) * 100;
+	double temp = (playerstats.at(3) / eStats.at(1)) * 100;
 	int x = tRand();
 	if (temp < 10){
 		temp = 10;
@@ -288,6 +313,8 @@ void player::setstats(vector<int>& stats)
     playerstats.at(2) += stats.at(2);
     playerstats.at(3) += stats.at(3);
     playerstats.at(4) += stats.at(4);
+
+	update_player();
 }
 
 void player::setname(string name)
@@ -340,6 +367,18 @@ void player::display_stats()
 	cout << "Luck:      " << playerstats.at(4) << endl;
 }
 
+void player::update_player(){
+	int str_val = playerstats.at(0) / 5; //For every 5 str stat add 1 more damage to the player
+	int def_val = playerstats.at(2) / 10; //For every 10 vit add 1 more def
+	int hp_val = playerstats.at(2) / 3; //For every 3 vit add 1 more hp	
+
+	min_dmg = base_min_dmg + str_val;
+	max_dmg = base_max_dmg + str_val;
+	maxHP = baseHP + hp_val;
+	def = base_def + def_val;
+	
+}
+
 void player::mod_stats()
 {
 	std::string choice;
@@ -361,6 +400,7 @@ void player::mod_stats()
 			else if (choice == "Yes" || choice == "Y" || choice == "y" || choice == "yes")
 			{
 				stat_progression();
+				update_player();
 				return;
 			}
 			else
@@ -772,6 +812,7 @@ void player::equip_gear(int i, const Gear* x)
 
 	remove_gear(x->getName());
 	equipment.at(i) = slot;
+	def += slot->getValue(); //Adds defense
 	if (temp->getName() != "None")
 		add_gear(temp);
 	else
@@ -779,7 +820,6 @@ void player::equip_gear(int i, const Gear* x)
 		gear_size -= 1;
 		inv_size -= 1;
 	}
-	update_player();
 }
 
 void player::remove_gear(int i)
@@ -790,10 +830,10 @@ void player::remove_gear(int i)
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
 	}
+	def -= equipment.at(i)->getValue(); //Decreased when unequipping
 	equipment.at(i) = none;
 	gear_size += 1;
 	inv_size += 1;
-	update_player();
 }
 
 void player::equip_wep(int i, const Weapon* x)
@@ -806,13 +846,13 @@ void player::equip_wep(int i, const Weapon* x)
 	if (temp->getName() != "None")
 	{
 		add_wep(temp);
+		max_dmg += temp->getValue();
 	}
 	else
 	{
 		wep_size -= 1;
 		inv_size -= 1;
 	}
-	update_player();
 }
 
 void player::remove_wep(int i)
@@ -826,7 +866,6 @@ void player::remove_wep(int i)
 	weapon.at(i) = none_wep;
 	wep_size += 1;
 	inv_size += 1;
-	update_player();
 }
 
 int player::find_slot(std::string gear)
@@ -875,31 +914,7 @@ void player::display_equipment() //TO DO: What if an equipment points to null?
 	std::cout << "Off Hand: " << weapon.at(1)->getName() << std::endl;
 }
 
-void player::updateStats(){
-	int currentDefense = 0;
-	for (int i = 0; i < equipment.size(); i++){
-		if (equipment.at(i) != NULL){
-			currentDefense += equipment.at(i)->getStats();
-		}
-	}
-	def = currentDefense;
-	int min = 0;
-	int max = 0;
-	for (int i = 0; i < weapon.size(); i++){
-		if (weapon.at(i) != NULL){
-			min += weapon.at(i)->getValue();
-			max += weapon.at(i)->getValue();
-		}
-	}
-	
-	min_dmg += min;
-	max_dmg += max;
-}
-
-void player::update_player()
-{
-	updateStats();
-}
+/*Party Functions*/
 
 void player::add_member(Ally* member)
 {
