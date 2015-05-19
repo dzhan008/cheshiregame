@@ -156,9 +156,9 @@ bool Entity::calculateCrit(){
 	return false;
 }
 
-bool Entity::calculateAccuracy(player* p){
+bool Entity::calculateAccuracy(player* p){ //FIX
 	vector<int> pStats = p->getStats();
-	double temp = entityStats.at(1) / pStats.at(3) * 100;
+	double temp = entityStats.at(3) / pStats.at(1) * 100;
 	if (temp < 10){
 		temp = 10;
 	}
