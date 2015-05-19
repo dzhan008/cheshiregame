@@ -1,0 +1,103 @@
+Elka the Spider Queen
+60 100 5 300 8 700 14 1 14 15 14
+:loot:
+Potion
+Ruby Eyes
+100
+Venomous Fangs
+80
+<end_item>
+:spells:
+Poison Spit
+15 50 AOE
+<end>
+Infernal Phoenix
+80 100 5 300 8 666 10 1 14 14 14
+:loot:
+Phoenix Egg
+200
+<end_item>
+:spells:
+Inferno Rain
+10 50 AOE
+Burning Flare
+15 60 Single
+<end>
+Frost Lord
+100 100 5 400 9 400 13 1 14 14 14
+:loot:
+Frozen Heart
+300
+Crystal Crown
+130
+<end_item>
+:spells:
+Glacier Shield
+20 30 Heal
+Frozen Shard
+30 60 Single
+Hailstorm
+11 50 AOE
+<end>
+Mutated Wolf
+60 30 3 30 4 50 5 1 11 10 10
+:loot:
+Potion
+Silver Fangs
+50
+<end_item>
+:spells:
+Chomp
+10 10 Single
+<end>
+Gromp
+40 30 3 30 6 50 3 1 11 10 10
+:loot:
+Potion
+<end_item>
+:spells:
+<end>
+Wraith
+40 30 3 30 6 50 3 1 11 10 10
+:loot:
+Potion
+<end_item>
+:spells:
+<end>
+Dragon
+170 100 4 300 15 600 7 6 5 6 3
+:loot:
+Ruby Crystal
+80
+<end_item>
+:spells:
+<end>
+Harpy
+150 100 1 10 3 40 2 3 2 4 1
+:loot:
+Harpy's feather
+50
+<end_item>
+:spells:
+<end>
+Siren
+120 100 2 70 6 10 5 4 6 7 3
+:loot:
+Amethyst Gem
+600
+<end_item>
+:spells:
+<end>
+Ghoul
+60 100 2 50 7 40 1 4 2 3 5
+:loot:
+<end_item>
+:spells:
+<end>
+Witch
+50 100 3 200 4 20 4 3 2 0 1
+:loot:
+<end_item>
+:spells:
+<end>
+end

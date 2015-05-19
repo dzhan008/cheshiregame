@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Ally.h"
 #include "Item.h"
+#include "Consumable.h"
 
 /*Dependencies*/
 class Ally;
@@ -85,8 +86,12 @@ public:
 	void setDefending(bool b);
 
 	bool empty_loot(); //returns true if loot is empty
+	bool empty_pots(); //returns true if pots is empty
 
 	void add_spells(Spells* s);
+	void add_pots(Consumable* p);
+	void give_pots(player* &p);
+	void print_pots();
 
 private:
 	string name;
@@ -105,7 +110,7 @@ private:
 	//int components;
 	vector<Spells*> entity_spells;
 	vector<Item*> loot;
-
+	vector<Consumable*> pots;
 	int randNumber();
 };
 

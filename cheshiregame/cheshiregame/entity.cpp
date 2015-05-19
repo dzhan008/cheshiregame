@@ -27,7 +27,9 @@ Entity::Entity(string entityName, int health, int mana, int lvl, int amount, int
 	entityStats.at(2) = 1;
 	entityStats.at(3) = 1;
 	entityStats.at(4) = 1;
-	updateStats();
+	min_dmg = 5;
+	max_dmg = 6;
+	//updateStats();
 }
 
 Entity::Entity(Entity*& x)
@@ -49,7 +51,7 @@ Entity::Entity(Entity*& x)
 }
 Entity::~Entity()
 {
-	for (int i = 0; i < loot.size(); i++)
+	for (unsigned i = 0; i < loot.size(); i++)
 	{
 		loot.at(i) = 0;
 	}
@@ -156,7 +158,7 @@ bool Entity::calculateCrit(){
 	return false;
 }
 
-bool Entity::calculateAccuracy(player* p){ //FIX
+bool Entity::calculateAccuracy(player* p){
 	vector<int> pStats = p->getStats();
 	double temp = entityStats.at(3) / pStats.at(1) * 100;
 	if (temp < 10){
@@ -220,6 +222,7 @@ void Entity::setEntityStats(int str, int agi, int vit, int dex, int luk)
 	entityStats.at(2) = vit;
 	entityStats.at(3) = dex;
 	entityStats.at(4) = luk;
+	updateStats();
 }
 
 //Just displays the stats
@@ -263,7 +266,7 @@ void Entity::add_loot(Item* i)
 
 void Entity::give_loot(player*& p)
 {
-	for (int i = 0; i < loot.size(); i++)
+	for (unsigned i = 0; i < loot.size(); i++)
 	{
 		p->add_inventory(loot.at(i));
 	}
@@ -276,15 +279,39 @@ void Entity::give_gold(player* &p)
 
 void Entity::print_loot()
 {
-	for (int i = 0; i < loot.size(); i++)
+	for (unsigned i = 0; i < loot.size(); i++)
 	{
 		loot.at(i)->printItem();
 	}
 }
 void Entity::print_spells()
 {
-	for (int i = 0; i < entity_spells.size(); i++)
+	for (unsigned i = 0; i < entity_spells.size(); i++)
 	{
 		entity_spells.at(i)->printSpell();
 	}
+}
+
+bool Entity::empty_pots()
+{
+	if (pots.empty()) return true;
+	return false;
+}
+void Entity::add_pots(Consumable* p)
+{
+	pots.push_back(p);
+}
+
+void Entity::give_pots(player* &p)
+{
+	for (unsigned i = 0; i < pots.size(); i++)
+	{
+		p->add_con(pots.at(i));
+	}
+}
+
+void Entity::print_pots()
+{
+	cout << "Name: Potions" << endl;
+	cout << "Quantity: " << pots.size() << endl;
 }
