@@ -219,6 +219,16 @@ int player::getexp()
     return pexp;
 }
 
+int player::getMaxDmg()
+{
+	return max_dmg;
+}
+
+int player::getMinDmg()
+{
+	return min_dmg;
+}
+
 int player::getItemSize()
 {
 	return item_size;
@@ -803,6 +813,21 @@ void player::display_inventory()
 	std::cout << std::endl << line << std::endl;
 }
 
+void player::display_con_inventory()
+{
+	std::string line = "-----------------------------------------------------";
+	std::cout << line << std::endl;
+	for (unsigned i = 0; i < con_inv.size(); ++i)
+	{
+		std::cout << con_inv.at(i)->getName() << "  ";
+		if (i % 3 == 0 && i != 0)
+		{
+			std::cout << std::endl;
+		}
+	}
+	std::cout << std::endl << line << std::endl;
+}
+
 /*Equipment Functions*/
 
 void player::equip_gear(int i, const Gear* x)
@@ -846,7 +871,7 @@ void player::equip_wep(int i, const Weapon* x)
 	if (temp->getName() != "None")
 	{
 		add_wep(temp);
-		max_dmg += temp->getValue();
+		max_dmg += temp->getValue(); //FIX
 	}
 	else
 	{

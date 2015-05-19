@@ -371,7 +371,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			if (optionChoice == 2){
 				string input;
 				std::cout << "Here are all of the consumables you own." << std::endl;
-				//Search for all consumables
+				play->display_con_inventory();
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
 				while (input != "back")
 				{

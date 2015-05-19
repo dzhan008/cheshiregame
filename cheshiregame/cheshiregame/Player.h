@@ -78,6 +78,8 @@ class player
         int getexp();
 		int getDef();
         int getStatPoints();
+		int getMinDmg();
+		int getMaxDmg();
 		vector<int> getStats();
 		bool calculateCrit();
 		bool calculateAccuracy(Entity* e);
@@ -138,6 +140,7 @@ class player
 		Weapon* wep_search(std::string itemName);
 
 		void display_inventory();
+		void display_con_inventory();
 
 		/*Equipment Functions*/
 		void equip_gear(int i, const Gear* x);

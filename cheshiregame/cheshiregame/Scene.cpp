@@ -132,7 +132,7 @@ void Scene::basic_menu(player* p)
 			case 4:
 				option_chosen = true;
 				std::cout << "Here are all of the consumables you own." << std::endl;
-				//Search for all consumables
+				p->display_con_inventory();
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
 				std::cin.ignore();
 				while (input != "back")
@@ -371,6 +371,7 @@ void Scene::scene_001(player* p)
 	std::cout << "3. A wooden staff." << std::endl;
 	while (job != 1 && job != 2 && job != 3)
 	{
+		std::cout << p->getMaxDmg();
 		std::cin >> job;
 		if (job == 1)
 		{
@@ -380,6 +381,7 @@ void Scene::scene_001(player* p)
 			std::cout << "have wielded one of these before." << std::endl;
 			Weapon* Sword = new Weapon("Sword", "Weapon", 10, 10);
 			p->equip_wep(0, Sword);
+			std::cout << p->getMaxDmg();
 		}
 		else if (job == 2)
 		{
