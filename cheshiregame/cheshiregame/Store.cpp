@@ -255,6 +255,12 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 }
 void Store::sellItem(const int invPos, player* p) 
 {
+	std::cout << p->getInvSize << std::endl;
+	if (p->getInvSize() == 0)
+	{
+		std::cout << "Inventory empty.\n";
+		run(p);
+	}
 	if (invPos >= p->getInvSize()) {
 		std::cout << "Error: Item does not exist.\n";
 		run(p);
