@@ -10,9 +10,9 @@
 #include <sstream>
 
 Store::Store()
-	: numHealthPots(0), numManaPots(0) 
+	: numHealthPots(0), numManaPots(0)
 {}
-Store::~Store() 
+Store::~Store()
 {}
 void Store::fillStore(const string &input_file)
 {
@@ -84,24 +84,24 @@ void Store::menu() const
 }
 void Store::run(player* p)
 {
-    int choice = 0;
-    int usernum;
+	int choice = 0;
+	int usernum;
 
-    std::cout << "Gold remaining: " << p->getmoney() << std::endl;
-    while (choice != 4) 
+	std::cout << "Gold remaining: " << p->getmoney() << std::endl;
+	while (choice != 4)
 	{
-        menu();
+		menu();
 		std::cin >> choice;
 		while (cin.fail())
 		{
 			std::cout << "Invalid input.\n";
 			cin >> choice;
 		}
-        if (choice == 1)
-        {
+		if (choice == 1)
+		{
 			system("cls");
-            printStore(p);
-        }
+			printStore(p);
+		}
 		else if (choice == 2)
 		{
 			system("cls");
@@ -252,14 +252,13 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 	std::cin.clear();
 	std::cin.ignore(INT_MAX, '\n');
 }
-void Store::sellItem(const unsigned invPos, player* p) 
+void Store::sellItem(const int invPos, player* p) 
 {
-	int goldGained = 0;
-	if (invPos > p->getInvSize()) {
+	if (invPos >= p->getInvSize()) {
 		std::cout << "Error: Item does not exist.\n";
 		run(p);
 	}
-	if(invPos < 1) {
+	if(invPos < 0) {
 		std::cout << "Error: Invalid inventory position.\n";
 		run(p);
 	}
@@ -281,7 +280,7 @@ void Store::sellItem(const unsigned invPos, player* p)
 	//}
 
 	//Adds value of item to the player's gold
-	goldGained = p->inventory.at(invPos)->getValue();
+	int goldGained = p->inventory.at(invPos)->getValue();
 	p->setmoney(goldGained);
 	//Remove item from player's inventory
 	p->inventory.erase(p->inventory.begin() + invPos);

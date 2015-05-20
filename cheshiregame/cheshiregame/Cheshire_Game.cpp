@@ -22,7 +22,7 @@ player* play = new player(x, "Game Master", 100, 10, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 10, 1, 0, 0, 100);
 Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
-Entity* enemy2 = new Entity("Fox", 1000, 10, 5, 5, 2, 10);
+Entity* enemy2 = new Entity("Fox", 1, 10, 5, 5, 2, 10);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* Master_Dun = new Dungeon(dun);
 Scene scene;

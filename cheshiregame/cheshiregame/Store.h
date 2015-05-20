@@ -22,7 +22,7 @@ class Store
         void run(player* p);
         void printStore(player*); 
 		void purchaseItem(const unsigned, player*);
-		void sellItem(const unsigned, player*);
+		void sellItem(const int, player*);
 		void storeUpdate();
     private:
 		//Inventories
