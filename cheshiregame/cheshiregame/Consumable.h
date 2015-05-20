@@ -14,6 +14,7 @@ class Consumable : public Item
 		~Consumable();
 		void usePotion(player* p);
 		string getType() const;
+		void printItem() const;
 };
 
 #endif

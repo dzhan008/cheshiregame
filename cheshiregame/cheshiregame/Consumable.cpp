@@ -31,3 +31,8 @@ string Consumable::getType() const
 {
 	return "Consumable";
 }
+void Consumable::printItem() const
+{
+	Item::printItem();
+	std::cout << boost << std::endl;
+}
