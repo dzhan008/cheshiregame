@@ -50,15 +50,16 @@ class player
 		std::string playername; //The player's name.
 		std::string playerjob; //The player's job.
 		std::vector<int> playerstats; //Current stats for the player.
+		//std::vector<Skill> skills; //The list of player's skills
 		std::vector<Ally*> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
 
 		Gear* none;
 		Weapon* none_wep;
-		int randNumber();
+
 
     public:
-
+		int randNumber();
 		//Inventories changed from private to public to accomodate store for now.
 		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Arms 3 = Legs
 		std::vector<Weapon*> weapon; //0 = Right Hand 1 = Off/Left Hand HUEHUE
@@ -99,6 +100,9 @@ class player
 
         /*Set Functions: Sets every value into a certain number.*/
         void setHP(int health); //Changes currHP to the updated hp value after a certain instance.
+		void setMaxHP(int health);
+		void setMaxMP(int mana);
+		void setMP(int mana);
         void setlevel(int&level);
         void setmoney(int money);
         void setexp(int expx1);
@@ -113,7 +117,6 @@ class player
         /*Stat Functions*/
         void displayInfo();
 		void display_stats();
-		void display_con();
 		void mod_stats();
 		void stat_progression();
 		void add_points(int& points);

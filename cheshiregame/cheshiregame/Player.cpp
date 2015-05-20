@@ -311,6 +311,21 @@ void player::setHP(int health)
     currHP = health;
 }
 
+void player::setMaxHP(int health)
+{
+	maxHP = health;
+}
+
+void player::setMaxMP(int mana)
+{
+	maxMP = mana;
+}
+
+void player::setMP(int mana)
+{
+	currMP = mana;
+}
+
 void player::setlevel(int& level)
 {
     plevel = level;
@@ -385,23 +400,6 @@ void player::display_stats()
 	cout << "Vitality:  " << playerstats.at(2) << endl;
 	cout << "Dexterity: " << playerstats.at(3) << endl;
 	cout << "Luck:      " << playerstats.at(4) << endl;
-}
-
-void player::display_con()
-{
-	for (int i = 0; i < inventory.size(); )
-	{
-		if (inventory.at(i)->getName() == "Health Potion")
-		{
-			std::cout << "Health Potion" << std::endl;
-			++i;
-		}
-		if (inventory.at(i)->getName() == "Mana Potion")
-		{
-			std::cout << "Mana Potion" << std::endl;
-			++i;
-		}
-	}
 }
 
 void player::update_player(){
