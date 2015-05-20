@@ -69,7 +69,13 @@
     <ClInclude Include="Dun_Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SaveSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SaveData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skills.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -126,6 +132,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SaveSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skills.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
