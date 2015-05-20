@@ -266,18 +266,18 @@ void Store::sellItem(const int invPos, player* p)
 		std::cout << "Error: Invalid inventory position.\n";
 		run(p);
 	}
-	//Adds item back into the store's display inventory
+
 	storeInventory.push_back(p->inventory.at(invPos));
-	//Adds value of item to the player's gold
+
 	int totalGold = p->getmoney() + p->inventory.at(invPos)->getValue();
 	p->setmoney(totalGold);
-	//Remove item from player's inventory
+
 	p->inventory.erase(p->inventory.begin() + invPos);
 	run(p);
 }
 void Store::storeUpdate()
 {
-	std::cout << "Our shipments are still on their way! The items you see are what you get." << std::endl;
+	std::cout << "Our shipments are still on their way!" << std::endl;
 	return;
 }
 bool Store::healthPotExists(const vector<Item*>& v)

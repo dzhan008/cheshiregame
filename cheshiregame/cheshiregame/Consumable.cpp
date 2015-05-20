@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Consumable::Consumable(std::string name, std:: string type, unsigned boost, int val)
+Consumable::Consumable(std::string name, std:: string type, int boost, int val)
 {
 	this->name = name;
 	this->value = val;
@@ -14,6 +14,8 @@ Consumable::Consumable(std::string name, std:: string type, unsigned boost, int 
 	this->rarity = 0;
 	this->boost = boost;
 }
+Consumable::~Consumable()
+{}
 void Consumable::usePotion(player* p) //I don't think we need a bool function
 {
 	if (p->getHP() + boost > p->getMaxHP()) //100 assumed to be max health for now
@@ -25,10 +27,6 @@ void Consumable::usePotion(player* p) //I don't think we need a bool function
 		p->setHP(p->getHP() + boost);
 	}
 }
-/*Consumable::~Consumable()
-{
-	delete this;
-}*/
 string Consumable::getType() const
 {
 	return "Consumable";

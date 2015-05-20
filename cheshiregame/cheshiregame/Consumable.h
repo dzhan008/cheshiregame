@@ -8,10 +8,10 @@ class Player;
 class Consumable : public Item
 {
 	private:
-		unsigned boost;
+		int boost;
 	public:
-		Consumable(std::string, std::string, unsigned, int);
-		//~Consumable();
+		Consumable(std::string, std::string, int, int);
+		~Consumable();
 		void usePotion(player* p);
 		string getType() const;
 };

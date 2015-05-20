@@ -226,7 +226,7 @@ void Town::blacksmith(player* p) {
 			{
 				std::string wep;
 
-				std::cout << "I can refine your weapon for a price. However, I may fail." << std::endl;
+				std::cout << "I can refine your weapon for a price. However, there is a chance I may break it." << std::endl;
 				std::cout << "The price to refine your weapon is 100 gold." << std::endl;
 				if (p->getmoney() < 100)
 				{
@@ -252,14 +252,14 @@ void Town::blacksmith(player* p) {
 				std::cout << "Alright, here goes!" << std::endl;
 				if ((rand() % 3 + 1) == 1)
 				{
-					std::cout << "The blacksmiths hammers down your weapon, tempering it with fine skill." << std::endl;
-					std::cout << "\"Here you go.\" The blacksmith hands you your weapon, looking better than ever." << std::endl;
+					std::cout << "The blacksmith hammers down your weapon, tempering it skillfully." << std::endl;
+					std::cout << "\"Here you go.\" The blacksmith hands you your weapon, which looks better than ever." << std::endl;
 					dynamic_cast<Weapon*>(p->inventory_search(wep))->add_dmg((rand() % 10 + 1));
 					return;
 				}
 				else
 				{
-					std::cout << "The blacksmith clanks your weapon with his hammer, but breaks with his next strike." << std::endl;
+					std::cout << "The blacksmith clanks your weapon with his hammer, but breaks it with his next strike." << std::endl;
 					std::cout << "\"Curses! My hand slipped.\" He frowns, and apologetically hands you your broken weapon." << std::endl;
 					p->remove_inventory(wep);
 					return;
@@ -282,8 +282,7 @@ void Town::displayAllies()
 {
 	for (int i = 0; i < allies.size(); ++i)
 	{
-		std::cout << i << ". " << allies.at(i)->getname() << " , Cost: " << allies.at(i)->getMaxHP()
-		<< " , Defense: " << allies.at(i)->getDef() << std::endl;
+		std::cout << i << ". " << allies.at(i)->getname() << " , Cost: " << allies.at(i)->getMaxHP() << std::endl;
 	}
 	std::cout << "4.Exit\n";
 }
