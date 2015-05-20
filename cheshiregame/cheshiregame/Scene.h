@@ -14,6 +14,8 @@ private:
 	std::string line = "------------------------------------------------------------";
 
 public:
+	Scene();
+
     void output_options();
     void set_options(Town &);
 	void basic_menu(player* p);

@@ -306,7 +306,7 @@ void Entity::give_pots(player* &p)
 {
 	for (unsigned i = 0; i < pots.size(); i++)
 	{
-		p->add_con(pots.at(i));
+		p->add_inventory(pots.at(i));
 	}
 }
 

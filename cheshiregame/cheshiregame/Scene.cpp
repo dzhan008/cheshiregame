@@ -9,6 +9,9 @@
 
 using namespace std;
 
+Scene::Scene()
+{}
+
 // Output choices given from place
 // Starts from 1 to sz - 1;
 void Scene::output_options() {

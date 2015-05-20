@@ -62,6 +62,7 @@ Town::Town() {
 	//dungeon1 = new Dungeon("demo_dun_1.txt");
 	//dungeon2 = new Dungeon("demo_dun_2.txt");
    // fill_town("sample_town.txt");
+	Scene sc;
 	std::string store_filename = "all_items.txt";
 	s.fillStore(store_filename); //Change later to work for ANY STORE
 }
@@ -79,8 +80,8 @@ void Town::display_options()
 		<< "4. Go to the tavern" << std::endl
 		<< "5. Go talk to the townspeople" << std::endl
 		<< "6. Go to a dungeon" << std::endl
-		<< "7. Quit" << std::endl;
-		//<< "0. Save Game" << std::endl;
+		<< "7. Menu" << std::endl;
+		//<< "8. Save Game" << std::endl;
 }
 
 void Town::run(player* p) {
@@ -137,7 +138,8 @@ void Town::run(player* p) {
 				display_options();
             }
             else if (choice == 7) {
-                return;
+				Scene sc;
+				sc.basic_menu(p);
             }
             else if (choice == 0) {
 				break;
@@ -164,8 +166,7 @@ void Town::inn(player* p) {
 	{
 		std::cout << "Welcome to the inn." << std::endl;
 		std::cout << "1. Rest" << std::endl;
-		std::cout << "2. Recruit" << std::endl;
-		std::cout << "3. Exit" << std::endl;
+		std::cout << "2. Exit" << std::endl;
 		std::cout << ">";
 		std::cin >> choice;
         if (cin.good()) {
@@ -196,12 +197,7 @@ void Town::inn(player* p) {
                 }
             }
             else if (choice == 2) {
-                // Recruit party members
-                std::cout << "Recruiting not implemented." << std::endl;
                 return;
-            }
-            else if (choice == 3) {
-                return; 
             }
         }
         cin.clear();
@@ -469,12 +465,12 @@ void Town::dungeon_select(player* p)
 				d->fill_dungeon(dun_ent, map_t);
 				Combat_System cs(p, p->get_party());
 				d->run_dungeon(p, cs);
-				Scene s;
-				s.scene_005();
+				Scene sc;
+				sc.scene_005();
 				cs.runBattle(d->get_boss());
 				if (p->getHP() < 0)
 				{
-					s.scene_006();
+					sc.scene_006();
 					return;
 				}
 				return;
