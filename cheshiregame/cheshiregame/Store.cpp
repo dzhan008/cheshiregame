@@ -255,7 +255,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 }
 void Store::sellItem(const int invPos, player* p) 
 {
-	std::cout << p->getInvSize << std::endl;
+	std::cout << p->getInvSize() << std::endl;
 	if (p->getInvSize() == 0)
 	{
 		std::cout << "Inventory empty.\n";
