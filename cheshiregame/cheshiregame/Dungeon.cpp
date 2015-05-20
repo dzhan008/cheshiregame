@@ -32,8 +32,9 @@ Dungeon::Dungeon(const string &text_file)
 
 	string spell_name;
 	string spell_type;
-	int spell_damage;
+	double spell_damage;
 	int spell_cost;
+	double spell_ac;
 
 
 	//Inserts entity into map until reaches end of file
@@ -82,9 +83,10 @@ Dungeon::Dungeon(const string &text_file)
 				{
 					inFS >> spell_damage;
 					inFS >> spell_cost;
+					inFS >> spell_ac;
 					inFS >> spell_type;
-					Spells* temp_s = new Spells(spell_name, spell_type, spell_damage, spell_cost);
-					temp_entity->add_spells(temp_s);
+					Skill temp_s(spell_name, spell_type, spell_damage, spell_ac, spell_cost);
+					temp_entity->add_skills(temp_s);
 					inFS.ignore();
 					getline(inFS, spell_name);
 				}
