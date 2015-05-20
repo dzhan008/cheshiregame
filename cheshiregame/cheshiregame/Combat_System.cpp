@@ -174,14 +174,14 @@ void Combat_System::runBattle(Entity* e){
 				{
 					std::cin.ignore();
 					getline(cin, input);
-					if (play->con_search(input) == NULL)
+					if (play->inventory_search(input) == NULL)
 					{
 						std::cout << "Invalid input. Please type it again." << std::endl;
 					}
 					else
 					{
-						play->con_search(input)->usePotion(play);
-						play->remove_con(play->con_search(input)->getName());
+						dynamic_cast<Consumable*>(play->inventory_search(input))->usePotion(play);
+						play->remove_inventory(play->inventory_search(input)->getName());
 						std::cout << "Item used!" << std::endl;
 						break;
 					}
@@ -378,20 +378,20 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			if (optionChoice == 2){
 				string input;
 				std::cout << "Here are all of the consumables you own." << std::endl;
-				play->display_con_inventory();
+				//DISPLAY CONSUMABLES LOL
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
 				while (input != "back")
 				{
 					std::cin.ignore();
 					getline(cin, input);
-					if (play->con_search(input) == NULL)
+					if (play->inventory_search(input) == NULL)
 					{
 						std::cout << "Invalid input. Please type it again." << std::endl;
 					}
 					else
 					{
-						play->con_search(input)->usePotion(play);
-						play->remove_con(play->con_search(input)->getName());
+						dynamic_cast<Consumable*>(play->inventory_search(input))->usePotion(play);
+						play->remove_inventory(play->inventory_search(input)->getName());
 						std::cout << "Item used!" << std::endl;
 						break;
 					}

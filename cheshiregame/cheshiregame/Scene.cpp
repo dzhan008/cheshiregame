@@ -193,7 +193,7 @@ void Scene::menu_use_item(player* p)
 {
 	std::string input;
 	std::cout << "Here are all of the consumables you own." << std::endl;
-	p->display_con_inventory();
+	//DISPLAY CONSUMABLES LOL
 	std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
 	cin.ignore();
 	while (input != "back")
@@ -203,14 +203,14 @@ void Scene::menu_use_item(player* p)
 		{
 			return;
 		}
-		if (p->con_search(input) == NULL)
+		if (p->inventory_search(input) == NULL)
 		{
 			std::cout << "Invalid input. Please type it again." << std::endl;
 		}
 		else
 		{
-			p->con_search(input)->usePotion(p);
-			p->remove_con(p->con_search(input)->getName());
+			dynamic_cast<Consumable*>(p->inventory_search(input))->usePotion(p);
+			p->remove_inventory(p->inventory_search(input)->getName());
 			std::cout << "Item used!" << std::endl;
 			return;
 		}
@@ -623,7 +623,7 @@ void Scene::scene_003_4_1(player* p)
 	std::cout << " shocked, but was not able to recover from your flurry of hits." << std::endl;
 	std::cout << "After your tenth strike, the man is dead.You take his mask off because why not? \n\n";
 	Gear* mask = new Gear("Jester Mask", 50, "Helmet", 20);
-	p->add_gear(mask);
+	p->add_inventory(mask);
 	next_input();
 	scene_004(true);
 	return;

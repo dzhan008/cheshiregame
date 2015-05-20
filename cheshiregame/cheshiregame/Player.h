@@ -123,25 +123,11 @@ class player
 		/*Character Creation*/
 		void declare_job(std::string input);
 
-		/*Inventory Functions*/ //TO DO: Templatize the inventory into a new class.
+		Item* inventory_search(string itemName);
+
 		bool add_inventory(Item* i);
-		void remove_inventory(std::string item);
-		Item* inventory_search(std::string itemName);
-
-		bool add_con(Consumable* i);
-		void remove_con(std::string item);
-		Consumable* con_search(std::string itemName);
-
-		bool add_gear(Gear* i);
-		void remove_gear(std::string item);
-		Gear* gear_search(std::string itemName);
-
-		bool add_wep(Weapon* i);
-		void remove_wep(std::string item);
-		Weapon* wep_search(std::string itemName);
-
+		void remove_inventory(string item);
 		void display_inventory();
-		void display_con_inventory();
 
 		/*Equipment Functions*/
 		void equip_gear(int i, const Gear* x);

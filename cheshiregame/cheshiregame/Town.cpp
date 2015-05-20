@@ -241,7 +241,7 @@ void Town::blacksmith(player* p) {
 				{
 					return;
 				}
-				while (p->wep_search(wep) == NULL)
+				while (p->inventory_search(wep) == NULL)
 				{
 					std::cout << "You do not have this weapon. Please enter it again." << std::endl;
 					getline(std::cin, wep);
@@ -255,14 +255,14 @@ void Town::blacksmith(player* p) {
 				{
 					std::cout << "The blacksmiths hammers down your weapon, tempering it with fine skill." << std::endl;
 					std::cout << "\"Here you go.\" The blacksmith hands you your weapon, looking better than ever." << std::endl;
-					p->wep_search(wep)->add_dmg((rand() % 10 + 1));
+					dynamic_cast<Weapon*>(p->inventory_search(wep))->add_dmg((rand() % 10 + 1));
 					return;
 				}
 				else
 				{
 					std::cout << "The blacksmith clanks your weapon with his hammer, but breaks with his next strike." << std::endl;
 					std::cout << "\"Curses! My hand slipped.\" He frowns, and apologetically hands you your broken weapon." << std::endl;
-					p->remove_wep(wep);
+					p->remove_inventory(wep);
 					return;
 				}
 

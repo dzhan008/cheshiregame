@@ -707,7 +707,7 @@ void player::equip_wep(int i, const Weapon* x)
 void player::remove_wep(int i)
 {
 
-	if (!add_wep(weapon.at(i)))
+	if (!add_inventory(weapon.at(i)))
 	{
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
