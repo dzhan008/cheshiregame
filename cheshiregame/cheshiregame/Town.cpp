@@ -370,12 +370,12 @@ void Town::tavern(player* p) {
 				cin >> input;
 			}
 			p->add_member(allies.at(input));
-<<<<<<< HEAD
+
 			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
 			p->setmoney(totalGold);
-=======
+
 			system("cls");
->>>>>>> origin/master
+
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin()+input);
 			displayAllies();
