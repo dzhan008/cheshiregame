@@ -330,7 +330,6 @@ void Town::tavern(player* p) {
 		if (input == 3)
 		{
 			std::cout << "Goodbye!\n";
-			std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
 			_getch();
 			return;
 		}
@@ -345,7 +344,6 @@ void Town::tavern(player* p) {
 		{
 			system("cls");
 			std::cout << "You've got all the allies here! See you later you cheap ass drunk!";
-			std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
 			_getch();
 			return;
 		}
