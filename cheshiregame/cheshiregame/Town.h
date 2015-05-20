@@ -31,7 +31,7 @@ private:
     void fill_town(const std::string &text_file);
 
 public:
-    Town();
+    Town(player* p);
     Town(std::string filename);
     void run(player* p);
 	void inn(player* p);
