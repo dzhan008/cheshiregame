@@ -790,7 +790,7 @@ void player::display_inventory()
 	std::cout << line << std::endl;
 	for (unsigned i = 0; i < inventory.size(); ++i)
 	{
-		std::cout << inventory.at(i)->getName() << "  ";
+		std::cout << i << ". " << inventory.at(i)->getName() << "  ";
 		if (i % 3 == 0 && i != 0)
 		{
 			std::cout << std::endl;
@@ -798,7 +798,7 @@ void player::display_inventory()
 	}
 	for (unsigned i = 0; i < gear_inv.size(); ++i)
 	{
-		std::cout << gear_inv.at(i)->getName() << "  ";
+		std::cout << i << ". " << gear_inv.at(i)->getName() << "  ";
 		if (i % 3 == 0 && i != 0)
 		{
 			std::cout << std::endl;
@@ -806,7 +806,7 @@ void player::display_inventory()
 	}
 	for (unsigned i = 0; i < wep_inv.size(); ++i)
 	{
-		std::cout << wep_inv.at(i)->getName() << "  ";
+		std::cout << i << ". " << wep_inv.at(i)->getName() << "  ";
 		if (i % 3 == 0 && i != 0)
 		{
 			std::cout << std::endl;
@@ -814,7 +814,7 @@ void player::display_inventory()
 	}
 	for (unsigned i = 0; i < con_inv.size(); ++i)
 	{
-		std::cout << con_inv.at(i)->getName() << "  ";
+		std::cout << i << ". " << con_inv.at(i)->getName() << "  ";
 		if (i % 3 == 0 && i != 0)
 		{
 			std::cout << std::endl;

@@ -91,12 +91,12 @@ void Store::run(player* p)
     while (choice != 4) 
 	{
         menu();
+		std::cin >> choice;
 		while (cin.fail())
 		{
 			std::cout << "Invalid input.\n";
 			cin >> choice;
 		}
-        std::cin >> choice;
         if (choice == 1)
         {
 			system("cls");
