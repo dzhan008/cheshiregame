@@ -768,13 +768,16 @@ void player::display_equipment() //TO DO: What if an equipment points to null?
 
 void player::display_party()
 {
+	std::string line = "----------------------------------------------------------------";
 	std::cout << "Name: " << this->getname() << std::endl;
 	std::cout << "Health: " << this->currHP << "/" << this->maxHP << std::endl;
 	std::cout << "Mana: " << this->currMP << "/" << this->maxMP << std::endl;
+	std::cout << line << std::endl;
 	for (int i = 0; i < party.size(); ++i)
 	{
 		std::cout << "Name: " << party.at(i)->getname() << std::endl;
 		std::cout << "Health: " << party.at(i)->getMaxHP() << "/" << party.at(i)->getHP() << std::endl;
+		std::cout << line << std::endl;
 	}
 	std::cout << std::endl;
 }
