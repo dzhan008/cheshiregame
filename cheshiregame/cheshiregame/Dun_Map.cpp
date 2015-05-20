@@ -319,6 +319,38 @@ bool dun_map::run()
 	}
 	return false;
 }
+
+void dun_map::moveLeft(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveLeft();
+	}
+}
+void dun_map::moveRight(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveRight();
+	}
+}
+void dun_map::moveUp(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveUp();
+	}
+}
+void dun_map::moveDown(int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		moveDown();
+	}
+}
+
+
+
 void dun_map::wallBreak()
 {
 	//changes all spaces next to the player into 0

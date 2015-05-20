@@ -20,6 +20,10 @@ public:
 	void moveRight();
 	void moveUp();
 	void moveDown();
+	void moveLeft(int k);
+	void moveRight(int k);
+	void moveUp(int k);
+	void moveDown(int k);
 	bool wallcheck(int i, int j);
 	void display();
 	//bool run(player*& p, Dungeon* d, Combat_System c);
