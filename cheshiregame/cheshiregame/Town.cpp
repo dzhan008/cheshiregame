@@ -335,6 +335,7 @@ void Town::tavern(player* p) {
 			return;
 		}
 	}
+
 	std::cout << "There are several people here waiting for you, friend! Choose who you want!\n";
 	displayAllies();
 	cin >> input;
