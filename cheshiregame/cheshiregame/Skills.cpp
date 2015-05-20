@@ -52,7 +52,7 @@ int Skill::calc_dmg(player* p)
 bool Skill::isHit()
 {
 	int ch = rand() % 100 + 1;
-	if (acc < ch)
+	if (acc <= ch)
 	{
 		return true;
 	}
@@ -64,6 +64,7 @@ void Skill::use_skill(player* p, Entity* e)
 	if (!isHit())
 	{
 		std::cout << "The skill missed!" << std::endl;
+		return;
 	}
 	int dmg_output = calc_dmg(p);
 	std::cout << "The skill hit for " << dmg_output << " damage!" << std::endl;

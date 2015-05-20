@@ -667,6 +667,24 @@ void player::display_inventory()
 	}
 }
 
+void player::display_con()
+{
+	for (int i = 0; i < inventory.size();)
+	{
+		if (inventory.at(i)->getName() == "Health Potion")
+		{
+			std::cout << "Health Potion" << std::endl;
+			++i;
+		}
+		if (inventory.at(i)->getName() == "Mana Potion")
+		{
+			std::cout << "Mana Potion" << std::endl;
+			++i;
+		}
+	}
+}
+
+
 /*Equipment Functions*/
 
 void player::equip_gear(int i, const Gear* x)
@@ -814,6 +832,10 @@ void player::add_skill(Skill s)
 
 Skill player::get_skill(int index)
 {
+	if (index >= skills.size())
+	{
+		std::cout << "Invalid choice." << std::endl;
+	}
 	return skills.at(index);
 }
 
@@ -823,4 +845,9 @@ void player::display_skills()
 	{
 		std::cout << skills.at(i).getName() << std::endl;
 	}
+}
+
+int player::skill_list_sz()
+{
+	return skills.size();
 }

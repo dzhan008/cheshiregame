@@ -187,10 +187,13 @@ void Combat_System::runBattle(Entity* e){
 
 					}
 					else
-					{
+					{ 
+						if (input >= play->skill_list_sz())
+						{
+							std::cout << "Invalid choice.";
+						}
 						play->get_skill(input - 1).use_skill(play, enemy);
-						input = 0;
-						turn = 2;
+						break;
 					}
 				}
 			}
@@ -203,7 +206,11 @@ void Combat_System::runBattle(Entity* e){
 				{
 					std::cin.ignore();
 					getline(cin, input);
-					if (play->inventory_search(input) == NULL)
+					if (input == "back")
+					{
+
+					}
+					else if (play->inventory_search(input) == NULL)
 					{
 						std::cout << "Invalid input. Please type it again." << std::endl;
 					}
@@ -230,7 +237,7 @@ void Combat_System::runBattle(Entity* e){
 					turn = 2;
 				}
 			}
-			if (optionChoice == 2){
+			if (optionChoice == 3){
 				turn = 0;
 				cout << "It is still your turn." << endl;
 			}

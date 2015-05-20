@@ -118,6 +118,7 @@ class player
         /*Stat Functions*/
         void displayInfo();
 		void display_stats();
+		void display_con();
 		void mod_stats();
 		void stat_progression();
 		void add_points(int& points);
@@ -157,6 +158,7 @@ class player
 		void add_skill(Skill);
 		Skill get_skill(int index);
 		void display_skills();
+		int skill_list_sz();
 };
 
 #endif
