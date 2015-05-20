@@ -845,10 +845,10 @@ void player::equip_gear(int i, const Gear* x)
 	Gear* temp = equipment.at(i);
 	Gear* slot = new Gear(x);
 
-	remove_gear(x->getName());
+	remove_inventory(x->getName());
 	equipment.at(i) = slot;
 	if (temp->getName() != "None")
-		add_gear(temp);
+		add_inventory(temp);
 	else
 	{
 		gear_size -= 1;
@@ -860,7 +860,7 @@ void player::equip_gear(int i, const Gear* x)
 void player::remove_gear(int i)
 {
 
-	if (!add_gear(equipment.at(i)))
+	if (!add_inventory(equipment.at(i)))
 	{
 		std::cout << "Your inventory is too full." << std::endl;
 		return;
@@ -876,11 +876,11 @@ void player::equip_wep(int i, const Weapon* x)
 	Weapon* temp = weapon.at(i);
 	Weapon* slot = new Weapon(x);
 
-	remove_wep(x->getName());
+	remove_inventory(x->getName());
 	weapon.at(i) = slot;
 	if (temp->getName() != "None")
 	{
-		add_wep(temp);
+		add_inventory(temp);
 	}
 	else
 	{
@@ -945,7 +945,7 @@ void player::display_equipment() //TO DO: What if an equipment points to null?
 	std::cout << "Head: " << equipment.at(0)->getName() << std::endl;
 	std::cout << "Torso: " << equipment.at(1)->getName() << std::endl;
 	std::cout << "Gloves: " << equipment.at(2)->getName() << std::endl;
-	std::cout << "Pants: " << equipment.at(3)->getName() << std::endl;
+	std::cout << "Feet: " << equipment.at(3)->getName() << std::endl;
 	std::cout << "Main Hand: " << weapon.at(0)->getName() << std::endl;
 	std::cout << "Off Hand: " << weapon.at(1)->getName() << std::endl;
 }

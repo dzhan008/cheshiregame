@@ -6,6 +6,7 @@
 #include <fstream>
 #include <map>
 
+
 using namespace std;
 
 // Output choices given from place
@@ -99,6 +100,7 @@ void Scene::basic_menu(player* p)
 	{
 		std::string input;
 		bool option_chosen = false;
+
 		std::cout << "\nWhat would you like to do?" << std::endl << std::endl;
 		std::cout << "1. View Party" << std::endl;
 		std::cout << "2. View Items" << std::endl;
@@ -109,222 +111,301 @@ void Scene::basic_menu(player* p)
 		std::cout << "7. Save" << std::endl;
 		std::cout << "8. Exit" << std::endl;
 		std::cout << "9. Exit Game" << std::endl;
-
-		while (!option_chosen)
-		{
 			std::cin >> choice;
-			bool gear = true;
-			system("cls");
-			switch (choice)
+
+			if (choice == 1)
 			{
-			case 1:
-				p->display_party();
-				option_chosen = true;
-				break;
-			case 2:
-				p->display_inventory();
-				option_chosen = true;
-				break;
-			case 3:
-				option_chosen = true;
-				p->display_equipment();
-				break;
-			case 4:
-				option_chosen = true;
-				std::cout << "Here are all of the consumables you own." << std::endl;
-				p->display_con_inventory();
-				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
-				std::cin.ignore();
-				while (input != "back")
-				{
-					std::getline(cin, input);
-					if (input == "back" || input == "b")
-					{
-						break;
-					}
-					if (p->con_search(input) == NULL)
-					{
-							std::cout << "Invalid input. Please type it again." << std::endl;
-					}
-					else
-					{
-						p->con_search(input)->usePotion(p);
-						p->remove_con(p->con_search(input)->getName());
-						std::cout << "Item used!" << std::endl;
-						break;
-					}
-				}
-
-				//std::cout << "Who would you like to use this on?" << std::endl;
-				//if(you wanna heal yourself)
-				//heal yourself
-				//else if(you wanna heal your party members)
-				//heal them
-				//Prompt if you're sure if you want to use it?
-				//USE IT (call respective functions for usage)
-
-				/*Demo Method
-				1. Prompt the user to type out the name of consumable
-				2. Search for it using inventory_search. If it returns a value,
-				3. Do a check to see if its a consumable. How? Maybe a bool for item.
-				Note: Needs a better way to do it.
-				4. Check succeeded? Then heal the player.*/
-
-
-
-				break;
-			case 5:
-				option_chosen = true;
-				/*Demo Method
-				1. Ask the user what item they want to equip
-				2. Search for item using inventory_search
-				3. If it returns a value, use equip_slot, where slot is the slot no. of your gear.
-				4. EQUIP SUCCESSFUL SIMPLICITY FTW*/
-				std::cout << "Would you like to equip a gear or weapon? (Type back to return)" << std::endl;
-
-				while (input != "back")
-				{
-					std::cin >> input;
-					if (input == "Weapon" || input == "weapon")
-					{
-						gear = false;
-						input = "back";
-					}
-					else if (input == "Gear" || input == "gear")
-					{
-						gear = true;
-						input = "back";
-					}
-					else
-					{
-						std::cout << "Invalid input. Please type it again." << std::endl;
-					}
-
-				}
-				std::cout << "Which item would you like to equip? (Type back to return)" << std::endl;
-				std::cin.ignore();
-				do
-				{
-					std::getline(std::cin, input);
-					if (gear)
-					{
-						if (p->gear_search(input) == NULL)
-						{
-							std::cout << "Invalid input. Please type it again." << std::endl;
-						}
-						else
-						{
-							p->gear_search(input)->equipGear(p->gear_search(input), p);
-							std::cout << "Gear equipped!" << std::endl;
-							break;
-						}
-					}
-					else
-					{
-						if (p->wep_search(input) == NULL)
-						{
-							std::cout << "Invalid input. Please type it again." << std::endl;
-						}
-						else
-						{
-							p->wep_search(input)->equipWeapon(p->wep_search(input), p);
-							std::cout << "Weapon equipped!" << std::endl;
-							break;
-						}
-					}
-				} while (input != "back");
-				//Current equipped items:
-				//DISPLAY EQUIPMENT HERE
-				//Select the number you would like to equip.
-				//Display the type of gear that is in your inventory
-				//Prompt what to wear
-				//Wear item/replace item that took the slot
-				//Profit
-
-				/*p->display_equipment();
-				std::cout << "Which type of gear would you like to equip? (Type back to return.)" << std::endl;
-				while (input != "back")
-				{
-				int slot = -1;
-				std::cin.ignore();
-				getline(cin, input);
-
-				if (input == "back")
-				{
-				break;
-				}
-				else if (p->find_slot(input) == -1)
-				{
-				std::cout << "Invalid input. Please type it in again." << std::endl;
-				}
-				else
-				{
-				slot = p->find_slot(input);
-				std::cout << std::endl;
-				//When implemented, add in the function to search for all the equipment of said type and cout it
-				//I think we need a type ID for equipment.
-				std::cout << "Which item would you like to equip?" << std::endl;
-				//options: 1.store each name of type of gear in player's inventory into a vector
-				//		   2.somehow find a way to check if the item's type ID is the same as slot
-				do
-				{
-				std::cin >> input;
-				if (p->inventory_search(input)->getSlot() == slot) //This should pass in slot_type
-				{
-				p->equip_slot(slot, p->inventory_search(input));
-				}
-				else
-				{
-				std::cout << "Invalid input." << std::endl;
-				}
-				} while (p->inventory_search(input)->getSlot == slot);
-				}
-				}*/
-				break;
-			case 6:
-				option_chosen = true;
-				std::cin.ignore(); //Clear buffer for other inputs;
-				p->mod_stats();
-				break;
-			case 7:
-				option_chosen = true;
-				break;
-			case 8:
-				option_chosen = true;
 				system("cls");
-				return;
-				break;
-			case 9:
-				option_chosen = true;
-				std::cout << "Are you sure?" << std::endl;
-				std::cout << "1. Yes" << std::endl;
-				std::cout << "2. No" << std::endl;
+				p->display_party();
 
-				while (choice != 1)
+			}
+			else if (choice == 2)
+			{
+				system("cls");
+				p->display_inventory();
+			}
+			else if (choice == 3)
+			{
+				system("cls");
+				p->display_equipment();
+			}
+			else if (choice == 4)
+			{
+				system("cls");
+				menu_use_item(p);
+				system("cls");
+			}
+			else if (choice == 5)
+			{
+				system("cls");
+				menu_equip(p);
+				system("cls");
+			}
+			else if (choice == 6)
+			{
+				system("cls");
+				p->mod_stats();
+				system("cls");
+			}
+			else if (choice == 7)
+			{
+
+			}
+			else if (choice == 8)
+			{
+				return;
+			}
+			else if (choice == 9)
+			{
+				int prompt = 0;
+				std::cout << "Are you sure?\n";
+				std::cout << "1. Yes\n";
+				std::cout << "2. No\n";
+				while (prompt != 1)
 				{
-					std::cin >> choice;
-					if (choice == 1)
+					std::cin >> prompt;
+					if (prompt == 1)
 					{
 						exit(1);
 					}
-					if (choice == 2)
+					else if (prompt == 2)
+					{
+						return;
+					}
+					else
 					{
 						cin.clear();
 						cin.ignore(INT_MAX, '\n');
-						break;
 					}
-					cin.clear();
-					cin.ignore(INT_MAX, '\n');
-				}
 
-			default:
-				std::cout << "Invalid choice. Please input your choice again." << std::endl << std::endl;
-				break;
+				}
 			}
+			else if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+			}
+
+	}
+}
+
+void Scene::menu_use_item(player* p)
+{
+	std::string input;
+	std::cout << "Here are all of the consumables you own." << std::endl;
+	p->display_con_inventory();
+	std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
+	cin.ignore();
+	while (input != "back")
+	{
+		std::getline(cin, input);
+		if (input == "back" || input == "b")
+		{
+			return;
+		}
+		if (p->con_search(input) == NULL)
+		{
+			std::cout << "Invalid input. Please type it again." << std::endl;
+		}
+		else
+		{
+			p->con_search(input)->usePotion(p);
+			p->remove_con(p->con_search(input)->getName());
+			std::cout << "Item used!" << std::endl;
+			return;
 		}
 	}
 }
 
+
+void Scene::menu_equip(player* p)
+{
+	std::string input;
+	std::cout << "Which item would you like to equip? (Type back to return)" << std::endl;
+	cin.ignore();
+	while (input != "back")
+	{
+		std::getline(std::cin, input);
+		if (input == "back")
+		{
+			return;
+		}
+		if (p->inventory_search(input) == NULL)
+		{
+			std::cout << "Invalid input. Please type it again." << std::endl;
+		}
+		else if (p->inventory_search(input)->getType() == "Gear")
+		{
+			dynamic_cast<Gear*>(p->inventory_search(input))->equipGear(dynamic_cast<Gear*>(p->inventory_search(input)), p);
+			std::cout << "Gear equipped!" << std::endl;
+			return;
+		}
+		else if (p->inventory_search(input)->getType() == "Weapon")
+		{
+			dynamic_cast<Weapon*>(p->inventory_search(input))->equipWeapon(dynamic_cast<Weapon*>(p->inventory_search(input)), p);
+			std::cout << "Weapon equipped!" << std::endl;
+			return;
+		}
+
+	}
+}
+
+/*-------------------------------------------------------------------------------------------------*/
+
+/*switch (choice)
+{
+case 1:
+
+option_chosen = true;
+break;
+case 2:
+
+option_chosen = true;
+break;
+case 3:
+option_chosen = true;
+
+break;
+case 4:
+option_chosen = true;
+
+//std::cout << "Who would you like to use this on?" << std::endl;
+//if(you wanna heal yourself)
+//heal yourself
+//else if(you wanna heal your party members)
+//heal them
+//Prompt if you're sure if you want to use it?
+//USE IT (call respective functions for usage)
+
+/*Demo Method
+1. Prompt the user to type out the name of consumable
+2. Search for it using inventory_search. If it returns a value,
+3. Do a check to see if its a consumable. How? Maybe a bool for item.
+Note: Needs a better way to do it.
+4. Check succeeded? Then heal the player.
+
+
+
+break;
+case 5:
+option_chosen = true;
+/*Demo Method
+1. Ask the user what item they want to equip
+2. Search for item using inventory_search
+3. If it returns a value, use equip_slot, where slot is the slot no. of your gear.
+4. EQUIP SUCCESSFUL SIMPLICITY FTW*/
+/*std::cout << "Would you like to equip a gear or weapon? (Type back to return)" << std::endl;
+
+while (input != "back")
+{
+std::cin >> input;
+if (input == "Weapon" || input == "weapon")
+{
+gear = false;
+input = "back";
+}
+else if (input == "Gear" || input == "gear")
+{
+gear = true;
+input = "back";
+}
+else
+{
+std::cout << "Invalid input. Please type it again." << std::endl;
+}
+
+}*/
+//Current equipped items:
+//DISPLAY EQUIPMENT HERE
+//Select the number you would like to equip.
+//Display the type of gear that is in your inventory
+//Prompt what to wear
+//Wear item/replace item that took the slot
+//Profit
+
+/*p->display_equipment();
+std::cout << "Which type of gear would you like to equip? (Type back to return.)" << std::endl;
+while (input != "back")
+{
+int slot = -1;
+std::cin.ignore();
+getline(cin, input);
+
+if (input == "back")
+{
+break;
+}
+else if (p->find_slot(input) == -1)
+{
+std::cout << "Invalid input. Please type it in again." << std::endl;
+}
+else
+{
+slot = p->find_slot(input);
+std::cout << std::endl;
+//When implemented, add in the function to search for all the equipment of said type and cout it
+//I think we need a type ID for equipment.
+std::cout << "Which item would you like to equip?" << std::endl;
+//options: 1.store each name of type of gear in player's inventory into a vector
+//		   2.somehow find a way to check if the item's type ID is the same as slot
+do
+{
+std::cin >> input;
+if (p->inventory_search(input)->getSlot() == slot) //This should pass in slot_type
+{
+p->equip_slot(slot, p->inventory_search(input));
+}
+else
+{
+std::cout << "Invalid input." << std::endl;
+}
+} while (p->inventory_search(input)->getSlot == slot);
+}
+}
+case 6:
+option_chosen = true;
+std::cin.ignore(); //Clear buffer for other inputs;
+p->mod_stats();
+break;
+case 7:
+option_chosen = true;
+break;
+case 8:
+option_chosen = true;
+system("cls");
+return;
+break;
+case 9:
+option_chosen = true;
+std::cout << "Are you sure?" << std::endl;
+std::cout << "1. Yes" << std::endl;
+std::cout << "2. No" << std::endl;
+
+while (choice != 1)
+{
+std::cin >> choice;
+if (choice == 1)
+{
+exit(1);
+}
+if (choice == 2)
+{
+cin.clear();
+cin.ignore(INT_MAX, '\n');
+break;
+}
+cin.clear();
+cin.ignore(INT_MAX, '\n');
+}
+
+default:
+std::cout << "Invalid choice. Please input your choice again." << std::endl << std::endl;
+break;
+}
+}
+}*/
+
+/*--------------------------------------------------------------------------------------------------*/
 
 // Gets user input, may be unnecessary
 int user_input() {

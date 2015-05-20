@@ -18,6 +18,11 @@ public:
     void set_options(Town &);
 	void basic_menu(player* p);
 
+	/*Menu Functions*/
+	void menu_use_item(player* p);
+	void menu_equip(player* p);
+	void menu_quit();
+
 	bool check_val(std::string);
 	bool check_val(int);
 

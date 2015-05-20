@@ -113,6 +113,7 @@ void Store::run(player* p)
 		{
 			system("cls");
 			p->display_inventory();
+			std::cout << p->getInvSize();
 			std::cout << "Enter the number of the item you would like to sell.";
 			std::cin >> usernum;
 			sellItem(usernum, p);
@@ -159,7 +160,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 			{
 				if (storeInventory.at(invPos - 1)->getName() == weapInv.at(i)->getName())
 				{
-					p->add_wep(weapInv.at(i));
+					p->add_inventory(weapInv.at(i));
 					// weapInv.erase(weapInv.begin() + i);
 				}
 			}
@@ -180,7 +181,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 			{
 				if (storeInventory.at(invPos - 1)->getName() == gearInv.at(i)->getName())
 				{
-					p->add_gear(gearInv.at(i));
+					p->add_inventory(gearInv.at(i));
 					// gearInv.erase(gearInv.begin() + i);
 				}
 			}
@@ -254,12 +255,6 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 }
 void Store::sellItem(const int invPos, player* p) 
 {
-	std::cout << p->getInvSize << std::endl;
-	if (p->getInvSize() == 0)
-	{
-		std::cout << "Inventory empty.\n";
-		run(p);
-	}
 	if (invPos >= p->getInvSize()) {
 		std::cout << "Error: Item does not exist.\n";
 		run(p);
