@@ -140,6 +140,8 @@ void Town::run(player* p) {
             else if (choice == 7) {
 				Scene sc;
 				sc.basic_menu(p);
+				system("cls");
+				display_options();
             }
             else if (choice == 0) {
 				break;
