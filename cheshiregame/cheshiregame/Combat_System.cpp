@@ -296,6 +296,7 @@ void Combat_System::runBattle(Entity* e){
 		}
 		play->setmoney(play->getmoney() + enemy->getVal());
 		e->give_loot(play);
+		e->give_pots(play);
 
 		cout << "You've won the battle!" << endl;
 		cout << "You've gained " << enemy->getEXP() << " EXP and ";
@@ -306,9 +307,15 @@ void Combat_System::runBattle(Entity* e){
 			std::cout << "You have leveled up! You are now level " << play->getlevel() << ".\n\n";
 		}
 
+
+		cout << "Drops: " << endl << endl;
+		if (e->empty_loot() && e->empty_pots())
+		{
+			cout << "None" << endl;
+		}
+
 		if (!e->empty_loot())
 		{
-			cout << "Drops: " << endl << endl;
 			e->print_loot();
 		}
 		//Prompt user to see reward screens and stuff.
