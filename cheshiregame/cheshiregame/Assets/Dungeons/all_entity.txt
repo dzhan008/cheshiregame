@@ -1,5 +1,5 @@
 Elka the Spider Queen
-50 100 4 300 8 700 14 15 14 16 14
+60 100 5 300 8 700 14 1 14 15 14
 :loot:
 Potion
 Ruby Eyes
@@ -12,7 +12,7 @@ Poison Spit
 15 50 .8 AOE
 <end>
 Infernal Phoenix
-80 100 10 300 8 666 18 15 14 16 14
+80 100 10 300 8 666 18 1 14 14 14
 :loot:
 Phoenix Egg
 200
@@ -26,7 +26,7 @@ Regeneration
 20 20 .9 Heal
 <end>
 Acquilo the Frost Lord
-150 100 15 400 9 400 22 15 14 16 14
+150 100 15 400 9 400 22 1 14 14 14
 :loot:
 Frozen Heart
 300
@@ -42,7 +42,7 @@ Hailstorm
 11 50 .8 AOE
 <end>
 Mutated Wolf
-40 30 3 30 4 50 2 15 11 16 10
+60 30 3 30 4 50 5 1 11 10 10
 :loot:
 Potion
 Silver Fangs
@@ -53,28 +53,28 @@ Chomp
 10 10 .6 Single
 <end>
 Gromp
-30 30 2 30 6 50 1 15 11 16 10
+40 30 2 30 6 50 3 1 11 10 10
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 Wraith
-20 30 2 30 6 50 1 15 1 16 10
+40 30 2 30 6 50 3 1 11 10 10
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 Ghoul
-30 30 3 30 4 50 1 15 1 16 10
+60 30 3 30 4 50 5 1 11 10 10
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 Red Serpent
-35 30 4 90 4 80 1 15 11 16 10
+60 30 4 90 4 80 6 1 11 10 10
 :loot:
 Serpent's rattle
 34
@@ -85,7 +85,7 @@ Bite
 5 20 .5 Single
 <end>
 Magma Guards
-70 30 7 90 5 90 5 15 11 16 7
+70 30 7 90 5 90 5 1 11 10 7
 :loot:
 Potion
 Magma Shards
@@ -94,7 +94,7 @@ Magma Shards
 :spells:
 <end>
 Dragon
-80 30 8 100 6 100 4 15 11 16 5
+80 30 8 100 6 100 4 1 11 10 5
 :loot:
 Ruby Crystal
 80
@@ -104,7 +104,7 @@ Fire Ball
 10 30 100 Single
 <end>
 Fire Harpy
-70 30 6 100 6 100 3 15 11 16 12
+70 30 6 100 6 100 3 1 11 10 12
 :loot:
 Potion
 Harpy's feather
@@ -115,14 +115,14 @@ Heal
 20 15 .7 Heal
 <end>
 Black Salamander
-100 30 7 100 6 100 2 15 11 16 1
+100 30 7 100 6 100 2 1 11 10 1
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 Ragin Boar
-50 30 5 120 10 100 2 15 11 16 4
+50 30 5 120 10 100 2 1 11 10 4
 :loot:
 Boar Hide
 40
@@ -132,7 +132,7 @@ Charge
 10 10 .5 Single
 <end>
 Ice Witch
-70 100 11 300 11 250 2 15 11 16 10
+70 100 11 300 11 250 2 1 11 10 10
 :loot:
 Potion
 <end_item>
@@ -145,13 +145,13 @@ Storm
 11 20 .8 AOE
 <end>
 Frost Knight
-100 100 12 300 4 250 14 15 11 16 10
+100 100 12 300 4 250 14 1 11 10 10
 :loot:
 <end_item>
 :spells:
 <end>
 Arctic Sentinel
-150 100 12 300 14 350 7 15 11 16 10
+150 100 12 300 14 350 7 1 11 10 10
 :loot:
 Potion
 Potion
@@ -159,7 +159,7 @@ Potion
 :spells:
 <end>
 Frost Giants
-120 20 10 260 10 250 5 15 11 16 10
+120 20 10 260 10 250 5 1 11 10 10
 :loot:
 Potion
 <end_item>
@@ -168,7 +168,7 @@ Rock Smash
 25 20 .8 Single
 <end>
 Yeti
-60 50 9 270 2 200 10 15 11 16 8
+60 50 9 270 2 200 10 1 11 10 8
 :loot:
 Yeti's fur
 100
@@ -179,14 +179,14 @@ Ice Ball
 15 25 .9 Single
 <end>
 Winter Fox
-60 100 9 230 2 210 10 15 11 16 7
+60 100 9 230 2 210 10 1 11 10 7
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 Azure Wyvern
-100 100 14 350 7 350 14 15 11 16 13
+100 100 14 350 7 350 14 1 11 10 13
 :loot:
 Potion
 Frost Scales
@@ -195,20 +195,20 @@ Frost Scales
 :spells:
 <end>
 Wood Fairies
-10 1 1 10 0 10 2 15 1 16 1
+10 1 1 10 0 10 2 1 1 10 1
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 White Deer
-20 1 1 15 0 15 3 15 1 16 1
+20 1 1 15 0 15 3 1 1 10 1
 :loot:
 <end_item>
 :spells:
 <end>
 Bandit
-15 1 1 20 3 100 2 15 1 16 1
+15 1 1 20 3 100 2 1 1 10 1
 :loot:
 Potion
 <end_item>
