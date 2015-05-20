@@ -387,6 +387,23 @@ void player::display_stats()
 	cout << "Luck:      " << playerstats.at(4) << endl;
 }
 
+void player::display_con()
+{
+	for (int i = 0; i < inventory.size(); )
+	{
+		if (inventory.at(i)->getName() == "Health Potion")
+		{
+			std::cout << "Health Potion" << std::endl;
+			++i;
+		}
+		if (inventory.at(i)->getName() == "Mana Potion")
+		{
+			std::cout << "Mana Potion" << std::endl;
+			++i;
+		}
+	}
+}
+
 void player::update_player(){
 	int str_val = playerstats.at(0) / 5; //For every 5 str stat add 1 more damage to the player
 	int def_val = playerstats.at(2) / 10; //For every 10 vit add 1 more def

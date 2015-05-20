@@ -113,6 +113,7 @@ class player
         /*Stat Functions*/
         void displayInfo();
 		void display_stats();
+		void display_con();
 		void mod_stats();
 		void stat_progression();
 		void add_points(int& points);
