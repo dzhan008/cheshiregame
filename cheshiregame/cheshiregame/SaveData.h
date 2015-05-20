@@ -5,7 +5,6 @@ struct SaveData
 {
     SaveData();
     ~SaveData();
-    Town t;
     player p;
 };
 
