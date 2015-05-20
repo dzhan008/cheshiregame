@@ -6,7 +6,6 @@
 class Player;
 class Entity;
 
-
 class Skill
 {
 private:
@@ -16,11 +15,12 @@ private:
 	int max_dmg;
 	double ex_dmg; //Extra damage output!
 	double acc; //Accuracy
+	int mana_cost;
 
 
 public:
-	Skill(string nam, string typ, double ex, double ac);
-	Skill(string nam, string typ, int min, int max, double ac);
+	Skill(string nam, string typ, double ex, double ac, int mp);
+	Skill(string nam, string typ, int min, int max, double ac, int mp);
 	Skill(std::string file_name);
 
 	int randNumber();
