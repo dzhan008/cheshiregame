@@ -23,6 +23,7 @@ player* invtest = new player(x, "Game Master", 10, 10, 1, 0, 0, 100);
 Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
 Entity* enemy2 = new Entity("Fox", 1, 10, 5, 5, 2, 10);
+Entity* enemy3 = new Entity("Ngobody", 5, 15, 5, 5, 3, 15);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* Master_Dun = new Dungeon(dun);
 Scene scene;
@@ -94,7 +95,7 @@ int main()
 			std::cout << "\n\n\n";
 			Consumable* potion = new Consumable("Potion", "Potion", 20, 10);
 			play->setmoney(500);
-			play->add_con(potion);
+			play->add_inventory(potion);
 
 			system("cls");
 

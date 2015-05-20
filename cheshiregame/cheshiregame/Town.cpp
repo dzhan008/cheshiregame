@@ -362,6 +362,8 @@ void Town::tavern(player* p) {
 				cin >> input;
 			}
 			p->add_member(allies.at(input));
+			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
+			p->setmoney(totalGold);
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin()+input);
 			displayAllies();
@@ -376,6 +378,8 @@ void Town::tavern(player* p) {
 				cin >> input;
 			}
 			p->add_member(allies.at(input));
+			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
+			p->setmoney(totalGold);
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin() + input);
 			displayAllies();
@@ -389,6 +393,8 @@ void Town::tavern(player* p) {
 				cin >> input;
 			}
 			p->add_member(allies.at(input));
+			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
+			p->setmoney(totalGold);
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin() + input);
 			displayAllies();
@@ -403,6 +409,8 @@ void Town::tavern(player* p) {
 				cin >> input;
 			}
 			p->add_member(allies.at(input));
+			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
+			p->setmoney(totalGold);
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin() + input);
 			displayAllies();

@@ -161,7 +161,6 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				if (storeInventory.at(invPos - 1)->getName() == weapInv.at(i)->getName())
 				{
 					p->add_inventory(weapInv.at(i));
-					// weapInv.erase(weapInv.begin() + i);
 				}
 			}
 			std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
@@ -182,7 +181,6 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				if (storeInventory.at(invPos - 1)->getName() == gearInv.at(i)->getName())
 				{
 					p->add_inventory(gearInv.at(i));
-					// gearInv.erase(gearInv.begin() + i);
 				}
 			}
 			std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
@@ -255,7 +253,6 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 }
 void Store::sellItem(const int invPos, player* p) 
 {
-	std::cout << p->getInvSize() << std::endl;
 	if (p->getInvSize() == 0)
 	{
 		std::cout << "Inventory empty.\n";
@@ -271,24 +268,9 @@ void Store::sellItem(const int invPos, player* p)
 	}
 	//Adds item back into the store's display inventory
 	storeInventory.push_back(p->inventory.at(invPos));
-
-	//Adds item back into its corresponding type inventory
-	//This may not be necessary. Will test further.
-	//if (p->inventory.at(invPos)->getType() == "Weapon")
-	//{}
-	//else if (p->inventory.at(invPos)->getType() == "Gear")
-	//{}
-	//else if (p->inventory.at(invPos)->getType() == "Consumable")
-	//{
-		//if (p->inventory.at(invPos)->getName() == "Health Potion")
-		//{}
-		//else //Mana Potion
-		//{}
-	//}
-
 	//Adds value of item to the player's gold
-	int goldGained = p->inventory.at(invPos)->getValue();
-	p->setmoney(goldGained);
+	int totalGold = p->getmoney() + p->inventory.at(invPos)->getValue();
+	p->setmoney(totalGold);
 	//Remove item from player's inventory
 	p->inventory.erase(p->inventory.begin() + invPos);
 	run(p);
