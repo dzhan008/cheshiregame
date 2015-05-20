@@ -43,6 +43,11 @@ public:
 	void display_options();
     SaveSystem savesystem;
 
+private:
+	std::vector<Ally*> allies;
+	void createAllies(player*);
+	void displayAllies();
+	void displayTavernMenu();
 };
 
 #endif
