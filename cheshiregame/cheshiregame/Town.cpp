@@ -340,6 +340,11 @@ void Town::tavern(player* p) {
 	cin >> input;
 	while (input != 4)
 	{
+		if (allies.empty())
+		{
+			std::cout << "You've got all the allies here! See you later you cheap ass drunk!";
+			return;
+		}
 		while (cin.fail())
 		{
 			std::cout << "You're drunk aren't you. Try a different input.\n";
