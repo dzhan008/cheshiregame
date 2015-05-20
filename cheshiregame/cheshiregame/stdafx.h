@@ -22,8 +22,8 @@
 #include "Dungeon.h"
 #include "Dun_Map.h"
 #include "SaveSystem.h"
-#include "Dun_Map.h"
-
+#include "SaveData.h"
+#include "Skills.h"
 
 #include <stdio.h>
 #include <tchar.h>

@@ -85,8 +85,9 @@ int Combat_System::promptChoices(){
 		cout << endl << "Enter the number of the move you want to make: "<< endl;
 		cout << "1: Attack" << endl;
 		cout << "2: Defend" << endl;
-		cout << "3: Use an item" << endl;
-		cout << "4: Run" << endl;
+		cout << "3. Use a skill" << endl;
+		cout << "4: Use an item" << endl;
+		cout << "5: Run" << endl;
 		cin >> prompt;
 		if(prompt == "1"){
 		return 0;
@@ -99,6 +100,9 @@ int Combat_System::promptChoices(){
 		}
 		if(prompt == "4"){
 		return 3;
+		}
+		if (prompt == "5"){
+			return 4;
 		}
 		cout << "You have not selected one of the four options." << endl;
 	}
@@ -166,6 +170,31 @@ void Combat_System::runBattle(Entity* e){
 				cout << "You are now defending." << endl;
 			}
 			if (optionChoice == 2){
+				int input = -1;
+				std::cout << "List of Skills" << std::endl;
+				play->display_skills();
+				std::cout << "Which skill do you want to use? (Type 0 to return)";
+				while (input != 0)
+				{
+					std::cin >> input;
+					if (cin.fail())
+					{
+						cin.clear();
+						cin.ignore();
+					}
+					else if (input == 0)
+					{
+
+					}
+					else
+					{
+						play->get_skill(input - 1).use_skill(play, enemy);
+						input = 0;
+						turn = 2;
+					}
+				}
+			}
+			if (optionChoice == 3){
 				string input;
 				std::cout << "Here are all of the consumables you own." << std::endl;
 				//Search for all consumables
@@ -187,7 +216,7 @@ void Combat_System::runBattle(Entity* e){
 					}
 				}
 			}
-			if (optionChoice == 3){
+			if (optionChoice == 4){
 				int temp = randNumber();
 				if(temp > 50){
 					cout << "You've successfully ran away!" << endl;

@@ -22,7 +22,7 @@ player* play = new player(x, "Game Master", 100, 10, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 10, 1, 0, 0, 100);
 Town town1 = Town(play);
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
-Entity* enemy2 = new Entity("Fox", 1, 10, 5, 5, 2, 10);
+Entity* enemy2 = new Entity("Fox", 9999, 10, 5, 5, 2, 10);
 Entity* enemy3 = new Entity("Ngobody", 5, 15, 5, 5, 3, 15);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* Master_Dun = new Dungeon(dun);
@@ -114,7 +114,14 @@ int main()
 		}
 		else if (input == 3)
 		{
-		
+			Skill s1("Rend", "P_Damage", 100, 0.90);
+			Skill s2("God's Blow", "D_Damage", 999, 2000, 100);
+			
+			play->add_skill(s1);
+			play->add_skill(s2);
+
+			battle_demo.runBattle(enemy2);
+
 		}
 		else if (input == 4)
 		{

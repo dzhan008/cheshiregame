@@ -806,3 +806,21 @@ std::vector<Ally*> player::get_party()
 {
 	return party;
 }
+
+void player::add_skill(Skill s)
+{
+	skills.push_back(s);
+}
+
+Skill player::get_skill(int index)
+{
+	return skills.at(index);
+}
+
+void player::display_skills()
+{
+	for (int i = 0; i < skills.size(); ++i)
+	{
+		std::cout << skills.at(i).getName() << std::endl;
+	}
+}

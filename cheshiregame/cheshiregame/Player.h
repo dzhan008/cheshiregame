@@ -14,6 +14,7 @@ class Weapon;
 class Entity;
 class Consumable;
 class Ally;
+class Skill;
 
 class player
 {
@@ -50,7 +51,7 @@ class player
 		std::string playername; //The player's name.
 		std::string playerjob; //The player's job.
 		std::vector<int> playerstats; //Current stats for the player.
-		//std::vector<Skill> skills; //The list of player's skills
+		std::vector<Skill> skills; //The list of player's skills
 		std::vector<Ally*> party; //The player's party.
 		//vector<Quest> quest_list; //We might need this to display quests
 
@@ -151,6 +152,11 @@ class player
 		void add_member(Ally* member);
 		std::vector<Ally*> get_party();
 		int calculateDamage(Entity enemy, bool defend);
+
+		/*Skill Functions*/
+		void add_skill(Skill);
+		Skill get_skill(int index);
+		void display_skills();
 };
 
 #endif
