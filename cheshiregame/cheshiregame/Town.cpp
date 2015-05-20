@@ -331,8 +331,10 @@ void Town::tavern(player* p) {
 				std::cout << "You can't afford the toddler. Why don't you try having your own baby?\n";
 				cin >> input;
 			}
-			Ally* temp = new Ally("Angry Toddler", "Theif", 10, 1, 0);
+			Ally* temp = new Ally("Angry Toddler", "Thief", 10, 1, 0);
 			p->add_member(temp);
+			display_options();
+			run(p);
 		}
 		if (input == 2)
 		{
@@ -343,6 +345,8 @@ void Town::tavern(player* p) {
 			}
 			Ally* temp = new Ally("Overly Eager Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
 			p->add_member(temp);
+			display_options();
+			run(p);
 		}
 		if (input == 3)
 		{
@@ -351,8 +355,10 @@ void Town::tavern(player* p) {
 				std::cout << "You don't have enough money. *sad neigh* \n";
 				cin >> input;
 			}
-			Ally* temp = new Ally("Horsey", "Theif", 100, p->getlevel(), p->getexp());
+			Ally* temp = new Ally("Horsey", "Thief", 100, p->getlevel(), p->getexp());
 			p->add_member(temp);
+			display_options();
+			run(p);
 		}
 		if (input == 4)
 		{
@@ -361,8 +367,10 @@ void Town::tavern(player* p) {
 				std::cout << "You don't have enough money.\n";
 				cin >> input;
 			}
-			Ally* temp = new Ally("Sorceror's Apprentice", "Sorceror", p->getMaxHP, p->getlevel(), p->getexp());
+			Ally* temp = new Ally("Sorceror's Apprentice", "Sorceror", p->getMaxHP(), p->getlevel(), p->getexp());
 			p->add_member(temp);
+			display_options();
+			run(p);
 		}
 	}
     return;

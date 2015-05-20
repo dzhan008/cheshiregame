@@ -9,29 +9,107 @@
 #include <fstream>
 #include <sstream>
 
-using namespace std;
-
 Store::Store()
-	: numHealthPots(0), numManaPots(0) {}
+	: numHealthPots(0), numManaPots(0) 
+{}
+Store::~Store() 
+{}
+void Store::fillStore(const string &input_file)
+{
+	ifstream fin;
+	string store_file = "Assets/Items/" + input_file;
+	string itemName;
+	int val;
+	string type;
+	unsigned boost = 4;
+	int num_potions = 0;
 
-Store::~Store() {}
+	fin.open(store_file.c_str());
+	if (!fin)
+	{
+		std::cout << "Error opening file." << std::endl;
+		return;
+	}
 
+	while (fin >> type)
+	{
+		if (type == "Weapon")
+		{
+			fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost;
+			Weapon* temp = new Weapon(itemName, type, boost, val);
+			storeInventory.push_back(temp);
+			weapInv.push_back(temp);
+		}
+		else if (type == "Gear")
+		{
+			fin >> type; fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost;
+			Gear* temp = new Gear(itemName, val, type, boost);
+			storeInventory.push_back(temp);
+			gearInv.push_back(temp);
+		}
+		else if (type == "Consumable")
+		{
+			fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost; fin >> num_potions;
+			for (int i = 0; i < num_potions; ++i)
+			{
+				Consumable* temp = new Consumable(itemName, type, boost, val);
+				if (!healthPotExists(storeInventory) && itemName == "Health Potion")
+				{
+					storeInventory.push_back(temp);
+				}
+				else if (!manaPotExists(storeInventory) && itemName == "Mana Potion")
+				{
+					storeInventory.push_back(temp);
+				}
+				if (itemName == "Health Potion")
+				{
+					++numHealthPots;
+				}
+				else if (itemName == "Mana Potion")
+				{
+					++numManaPots;
+				}
+				potInv.push_back(temp);
+			}
+		}
+	}
+	fin.close();
+}
+void Store::menu() const
+{
+	std::cout << "1. View inventory." << std::endl;
+	std::cout << "2. Purchase item." << std::endl;
+	std::cout << "3. Sell item." << std::endl;
+	std::cout << "4. Exit." << std::endl;
+}
 void Store::run(player* p)
 {
-    string choice = "a";
+    int choice = 0;
     int usernum;
 
     std::cout << "Gold remaining: " << p->getmoney() << std::endl;
-    while (choice != "q") 
+    while (choice != 4) 
 	{
         menu();
+		while (cin.fail())
+		{
+			std::cout << "Invalid input.\n";
+			cin >> choice;
+		}
         std::cin >> choice;
-        if (choice == "v")
+        if (choice == 1)
         {
 			system("cls");
             printStore(p);
         }
-		else if (choice == "s")
+		else if (choice == 2)
+		{
+			system("cls");
+			std::cout << "Enter the number of the item to purchase." << std::endl;
+			std::cin >> usernum;
+			purchaseItem(usernum, p);
+		}
+		else if (choice == 3)
 		{
 			system("cls");
 			p->display_inventory();
@@ -39,23 +117,27 @@ void Store::run(player* p)
 			std::cin >> usernum;
 			sellItem(usernum, p);
 		}
-		else if (choice == "p")
-		{
-			system("cls");
-			std::cout << "Enter the number of the item to purchase." << std::endl;
-			std::cin >> usernum;
-			purchaseItem(usernum, p);
-		}
     }
     std::cout << "Gold remaining: " << p->getmoney() << std::endl;
     return;
 }
-void Store::menu() const
+void Store::printStore(player* p)
 {
-    std::cout << "Press v to view the store inventory." << std::endl;
-    std::cout << "Press p to purchase an item." << std::endl;
-	std::cout << "Press s to sell an item." << std::endl;
-    std::cout << "Press q to leave the store." << std::endl;
+	for (int i = 0; i < storeInventory.size(); ++i)
+	{
+		std::cout << i + 1 << ": " << storeInventory.at(i)->getName() << std::endl;
+		std::cout << storeInventory.at(i)->getValue() << " gold" << std::endl;
+
+		if (storeInventory.at(i)->getName() == "Health Potion")
+		{
+			std::cout << "Amount: " << numHealthPots << std::endl;
+		}
+		else if (storeInventory.at(i)->getName() == "Mana Potion")
+		{
+			std::cout << "Amount: " << numManaPots << std::endl;
+		}
+	}
+	run(p);
 }
 void Store::purchaseItem(const unsigned invPos, player* p) {
 	int goldSpent = 0;
@@ -181,7 +263,6 @@ void Store::sellItem(const unsigned invPos, player* p)
 		std::cout << "Error: Invalid inventory position.\n";
 		run(p);
 	}
-
 	//Adds item back into the store's display inventory
 	storeInventory.push_back(p->inventory.at(invPos));
 
@@ -205,85 +286,6 @@ void Store::sellItem(const unsigned invPos, player* p)
 	//Remove item from player's inventory
 	p->inventory.erase(p->inventory.begin() + invPos);
 	run(p);
-}
-void Store::printStore(player* p)
-{
-    for(int i = 0; i < storeInventory.size(); ++i) 
-    {
-		std::cout << i + 1 << ": " << storeInventory.at(i)->getName() << std::endl;
-		std::cout << storeInventory.at(i)->getValue() << " gold" << std::endl;
-
-		if (storeInventory.at(i)->getName() == "Health Potion")
-		{
-			std::cout << "Amount: " << numHealthPots << std::endl;
-		}
-		else if (storeInventory.at(i)->getName() == "Mana Potion")
-		{
-			std::cout << "Amount: " << numManaPots << std::endl;
-		}
-    }
-	run(p);
-}
-void Store::fillStore(const string &input_file)
-{
-    ifstream fin; 
-	string store_file = "Assets/Items/" + input_file;
-    string itemName;
-    int val;
-    string type;
-	unsigned boost = 4;
-	int num_potions = 0;
-
-    fin.open(store_file.c_str());
-	if (!fin)
-	{
-		std::cout << "Error opening file." << std::endl;
-		return;
-	}
-
-    while(fin >> type)
-    {
-		if (type == "Weapon")
-		{
-			fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost;
-			Weapon* temp = new Weapon(itemName, type, boost, val);
-			storeInventory.push_back(temp);
-			weapInv.push_back(temp);
-		}
-		else if (type == "Gear")
-		{
-			fin >> type; fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost;
-			Gear* temp = new Gear(itemName, val, type, boost);
-			storeInventory.push_back(temp);
-			gearInv.push_back(temp);
-		}
-		else if (type == "Consumable")
-		{
-			fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost; fin >> num_potions;
-			for (int i = 0; i < num_potions; ++i)
-			{
-				Consumable* temp = new Consumable(itemName, type, boost, val);
-				if (!healthPotExists(storeInventory) && itemName == "Health Potion")
-				{
-					storeInventory.push_back(temp);
-				}
-				else if (!manaPotExists(storeInventory) && itemName == "Mana Potion")
-				{
-					storeInventory.push_back(temp);
-				}
-				if (itemName == "Health Potion")
-				{
-					++numHealthPots;
-				}
-				else if (itemName == "Mana Potion")
-				{
-					++numManaPots;
-				}
-				potInv.push_back(temp);
-			}
-		}
-    }
-    fin.close();
 }
 void Store::storeUpdate()
 {

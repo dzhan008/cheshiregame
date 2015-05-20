@@ -13,20 +13,24 @@
 class Store
 {
     public:
+		//Constructors
         Store();
         ~Store();
+		void fillStore(const string &);
+		//Store mutator functions
+		void menu() const;
         void run(player* p);
-        void menu() const;
         void printStore(player*); 
-        void fillStore(const string &);
 		void purchaseItem(const unsigned, player*);
 		void sellItem(const unsigned, player*);
 		void storeUpdate();
     private:
-        vector<Item*> storeInventory; //For printing out all contents of store
-		vector<Gear*> gearInv; //Stores all gear
-		vector<Weapon*> weapInv; //Stores all weapons
-		vector<Consumable*> potInv; //Stores all consumables
+		//Inventories
+        vector<Item*> storeInventory; 
+		vector<Gear*> gearInv; 
+		vector<Weapon*> weapInv; 
+		vector<Consumable*> potInv; 
+
 		int numHealthPots;
 		int numManaPots;
 
