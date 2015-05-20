@@ -63,9 +63,6 @@ class player
 		std::vector<Gear*> equipment; //0 = Head 1 = Torso 2 = Arms 3 = Legs
 		std::vector<Weapon*> weapon; //0 = Right Hand 1 = Off/Left Hand HUEHUE
 		std::vector<Item*> inventory; //For displaying items in Store
-		std::vector<Consumable*> con_inv;
-		std::vector<Gear*> gear_inv;
-		std::vector<Weapon*> wep_inv;
 
         //Constructor
         player();

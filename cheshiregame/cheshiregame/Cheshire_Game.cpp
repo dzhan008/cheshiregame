@@ -121,9 +121,9 @@ int main()
 			std::cout << "Danny Diep - That Programmer" << std::endl;
 			std::cout << "Kenta Kitada - Busy Programmer" << std::endl;
 			std::cout << "Quynh Nguyen - No-Sleep Programmer" << std::endl;
-			std::cout << "Michaella Sheng - Vice Mrgghgh Programmer" << std::endl;
+			std::cout << "Michaella Sheng - Vice Raging Programmer" << std::endl;
 			std::cout << "Alex Tran - Elusive Programmer" << std::endl;
-			std::cout << "David Zhang - Programmer" << std::endl;
+			std::cout << "David Zhang - Chief Slave-driving Programmer" << std::endl;
 			std::cout << "1 Rica was harmed in the making of this game." << std::endl;
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}

@@ -178,17 +178,6 @@ player::~player()
 	{
 		inventory.at(i) = NULL;
 	}
-
-	for (unsigned i = 0; i < gear_inv.size(); ++i)
-	{
-		gear_inv.at(i) = NULL;
-	}
-
-	for (unsigned i = 0; i < wep_inv.size(); ++i)
-	{
-		wep_inv.at(i) = NULL;
-	}
-
 	for (unsigned i = 0; i < equipment.size(); ++i)
 	{
 		equipment.at(i) = NULL;
@@ -651,137 +640,6 @@ Item* player::inventory_search(string itemName)
 	return NULL; //Or false.
 }
 
-/*Consumable Functions*/
-
-bool player::add_con(Consumable* i)
-{
-	if (inv_max_size > inv_size)
-	{
-		if (i->getName() != "None")
-		{
-			con_inv.push_back(i);
-			inv_size++;
-			return true;
-		}
-		add_inventory(i);
-	}
-	return false;
-}
-
-void player::remove_con(string item)
-{
-	for (unsigned i = 0; i < con_inv.size(); ++i)
-	{
-		if (con_inv.at(i)->getName() == item)
-		{
-			delete con_inv.at(i); 
-			con_inv.erase(con_inv.begin() + i);
-			inv_size--;
-		}
-	}
-
-}
-
-Consumable* player::con_search(string itemName)
-{
-	for (unsigned i = 0; i < con_inv.size(); ++i)
-	{
-		if (con_inv.at(i)->getName() == itemName)
-		{
-			return con_inv.at(i); //Or true.
-		}
-	}
-	return NULL; //Or false.
-}
-
-
-/*Gear Functions*/
-
-bool player::add_gear(Gear* i)
-{
-	if (inv_max_size > inv_size)
-	{
-		if (i->getName() != "None")
-		{
-			gear_inv.push_back(i);
-			inv_size++;
-			return true;
-		}
-		add_inventory(i);
-	}
-	return false;
-}
-
-void player::remove_gear(string item)
-{
-	for (unsigned i = 0; i < gear_inv.size(); ++i)
-	{
-		if (gear_inv.at(i)->getName() == item)
-		{
-			delete gear_inv.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
-			gear_inv.erase(gear_inv.begin() + i);
-			inv_size--;
-		}
-	}
-
-}
-
-Gear* player::gear_search(string itemName)
-{
-	for (unsigned i = 0; i < gear_inv.size(); ++i)
-	{
-		if (gear_inv.at(i)->getName() == itemName)
-		{
-			return gear_inv.at(i); //Or true.
-		}
-	}
-	return NULL; //Or false.
-}
-
-/*Weapon Functions*/
-
-bool player::add_wep(Weapon* i)
-{
-	if (inv_max_size > inv_size)
-	{
-		if (i->getName() != "None")
-		{
-			wep_inv.push_back(i);
-			inv_size++;
-			return true;
-		}
-		add_inventory(i);
-	}
-	return false;
-}
-
-void player::remove_wep(string item)
-{
-	for (unsigned i = 0; i < wep_inv.size(); ++i)
-	{
-		if (wep_inv.at(i)->getName() == item)
-		{
-			delete wep_inv.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
-			wep_inv.erase(wep_inv.begin() + i);
-			inv_size--;
-		}
-	}
-
-}
-
-Weapon* player::wep_search(string itemName)
-{
-	for (unsigned i = 0; i < wep_inv.size(); ++i)
-	{
-		if (wep_inv.at(i)->getName() == itemName)
-		{
-			return wep_inv.at(i); //Or true.
-		}
-	}
-	return NULL; //Or false.
-}
-
-
 //void player::inventory_display_type(std::string type, 
 
 void player::display_inventory()
@@ -791,51 +649,7 @@ void player::display_inventory()
 	for (unsigned i = 0; i < inventory.size(); ++i)
 	{
 		std::cout << i << ". " << inventory.at(i)->getName() << std::endl;
-		//if (i % 3 == 0 && i != 0)
-		//{
-			//std::cout << std::endl;
-		//}
 	}
-	//for (unsigned i = 0; i < gear_inv.size(); ++i)
-	//{
-		//std::cout << i << ". " << gear_inv.at(i)->getName() << std::endl;
-		//if (i % 3 == 0 && i != 0)
-		//{
-			//std::cout << std::endl;
-		//}
-	//}
-	//for (unsigned i = 0; i < wep_inv.size(); ++i)
-	//{
-		//std::cout << i << ". " << wep_inv.at(i)->getName() << std::endl;
-		//if (i % 3 == 0 && i != 0)
-		//{
-			//std::cout << std::endl;
-		//}
-	//}
-	//for (unsigned i = 0; i < con_inv.size(); ++i)
-	//{
-		//std::cout << i << ". " << con_inv.at(i)->getName() << std::endl;
-		//if (i % 3 == 0 && i != 0)
-		//{
-			//std::cout << std::endl;
-		//}
-	//}
-	//std::cout << std::endl << line << std::endl;
-}
-
-void player::display_con_inventory()
-{
-	std::string line = "-----------------------------------------------------";
-	std::cout << line << std::endl;
-	for (unsigned i = 0; i < con_inv.size(); ++i)
-	{
-		std::cout << con_inv.at(i)->getName() << "  ";
-		if (i % 3 == 0 && i != 0)
-		{
-			std::cout << std::endl;
-		}
-	}
-	std::cout << std::endl << line << std::endl;
 }
 
 /*Equipment Functions*/
