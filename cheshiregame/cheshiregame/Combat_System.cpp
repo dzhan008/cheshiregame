@@ -274,7 +274,7 @@ void Combat_System::runBattle(Entity* e){
 						x = enemy->calculateDamage(allies.at(eAttack), allies.at(eAttack)->isDefending());
 			            allies.at(eAttack)->setHP(allies.at(eAttack)->getHP() - x);
 			            if(allies.at(eAttack)->isDefending()){
-							cout << allies.at(eAttack) << " has reduced the amount of damage by defending..." << endl;
+							cout << allies.at(eAttack)->getname() << " has reduced the amount of damage by defending..." << endl;
 			            }
 					}
 				}
@@ -296,7 +296,7 @@ void Combat_System::runBattle(Entity* e){
 		}
 		play->setmoney(play->getmoney() + enemy->getVal());
 		e->give_loot(play);
-		e->give_pots(play);
+
 		cout << "You've won the battle!" << endl;
 		cout << "You've gained " << enemy->getEXP() << " EXP and ";
 		cout << enemy->getVal() << " gold!\n\n";
@@ -306,18 +306,10 @@ void Combat_System::runBattle(Entity* e){
 			std::cout << "You have leveled up! You are now level " << play->getlevel() << ".\n\n";
 		}
 
-		cout << "Drops: " << endl << endl;
-		if (e->empty_loot() && e->empty_pots())
-		{
-			cout << "None" << endl;
-		}
 		if (!e->empty_loot())
 		{
+			cout << "Drops: " << endl << endl;
 			e->print_loot();
-		}
-		if (!e->empty_pots())
-		{
-			e->print_pots();
 		}
 		//Prompt user to see reward screens and stuff.
 		std::cout << "Press any key to continue..." << std::endl << flush;
@@ -435,7 +427,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 							totalXP += enemy.at(attacked)->getEXP();
 							totalGold += enemy.at(attacked)->getVal();
 							enemy.erase(enemy.begin() + attacked);
-							cout << "Your ally has killed the " << enemy.at(attacked)->getName() << "!" << endl;
+							cout << allies.at(i)->getname() <<" has killed the " << enemy.at(attacked)->getName() << "!" << endl;
 						}
 						else{
 							enemy.at(attacked)->setHealth(enemy.at(attacked)->getHealth() - damage);

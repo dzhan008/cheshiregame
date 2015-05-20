@@ -82,9 +82,13 @@ int Ally::tRand(){
 
 bool Ally::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
-	double temp = allystats.at(1) / eStats.at(3) * 100;
-	if (temp < 10){
-		temp = 10;
+	double temp = allystats.at(3) / eStats.at(1) * 100;
+	if (temp > 100)
+	{
+		temp = 80;
+	}
+	if (temp < 30){
+		temp = 30;
 	}
 	int x = tRand();
 	if (x < temp){

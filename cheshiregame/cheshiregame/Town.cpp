@@ -345,8 +345,6 @@ void Town::tavern(player* p) {
 			}
 			Ally* temp = new Ally("Overly Eager Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
 			p->add_member(temp);
-			display_options();
-			run(p);
 		}
 		if (input == 3)
 		{
@@ -357,8 +355,6 @@ void Town::tavern(player* p) {
 			}
 			Ally* temp = new Ally("Horsey", "Thief", 100, p->getlevel(), p->getexp());
 			p->add_member(temp);
-			display_options();
-			run(p);
 		}
 		if (input == 4)
 		{
@@ -369,8 +365,6 @@ void Town::tavern(player* p) {
 			}
 			Ally* temp = new Ally("Sorceror's Apprentice", "Sorceror", p->getMaxHP(), p->getlevel(), p->getexp());
 			p->add_member(temp);
-			display_options();
-			run(p);
 		}
 	}
     return;
@@ -427,7 +421,7 @@ void Town::dungeon_select(player* p)
 				dun = "demo_dun_1.txt";
 				Dungeon* d = new Dungeon(dun);
 				d->fill_dungeon(dun_ent, map_t);
-				Combat_System cs(p);
+				Combat_System cs(p, p->get_party());
 				d->run_dungeon(p, cs);
 				Scene s;
 				s.scene_005();
