@@ -2,20 +2,22 @@
 #include <iostream>
 #include <fstream>
 
-Skill::Skill(string nam, string typ, double ex, double ac)
+Skill::Skill(string nam, string typ, double ex, double ac, int mp)
 { 
 	name = nam;
 	type = typ;
 	ex_dmg = ex;
 	acc = ac;
+	mana_cost = mp;
 }
-Skill::Skill(string nam, string typ, int min, int max, double ac)
+Skill::Skill(string nam, string typ, int min, int max, double ac, int mp)
 {
 	name = nam;
 	type = typ;
 	min_dmg = min;
 	max_dmg = max;
 	acc = ac;
+	mana_cost = mp;
 }
 
 Skill::Skill(std::string file_name)
@@ -68,7 +70,7 @@ void Skill::use_skill(player* p, Entity* e)
 	}
 	int dmg_output = calc_dmg(p);
 	std::cout << "The skill hit for " << dmg_output << " damage!" << std::endl;
-
+	p->setMP(e->getMP() - mana_cost);
  	e->setHealth(e->getHealth() - dmg_output);
 }
 
