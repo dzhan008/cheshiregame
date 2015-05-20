@@ -161,8 +161,12 @@ bool Entity::calculateCrit(){
 bool Entity::calculateAccuracy(player* p){
 	vector<int> pStats = p->getStats();
 	double temp = entityStats.at(3) / pStats.at(1) * 100;
-	if (temp < 10){
-		temp = 10;
+	if (temp > 100)
+	{
+		temp = 80;
+	}
+	if (temp < 30){
+		temp = 30;
 	}
 	int x = tRand();
 	if (x < temp){

@@ -843,7 +843,7 @@ void player::display_skills()
 {
 	for (int i = 0; i < skills.size(); ++i)
 	{
-		std::cout << skills.at(i).getName() << std::endl;
+		std::cout << i + 1 << "." << skills.at(i).getName() << std::endl;
 	}
 }
 

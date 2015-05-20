@@ -16,7 +16,7 @@ string x = "Player 1";
 string y = "Rica";
 string dun_ent = "demo_dun_1_enemies.txt";
 string map_t = "mapsample.txt";
-string dun = "demo_dun_1.txt";
+string dun = "all_entity.txt";
 string line = "--------------------------------------------------------------------------------";
 player* play = new player(x, "Game Master", 100, 10, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 10, 1, 0, 0, 100);
@@ -57,7 +57,7 @@ string getFileContents(std::ifstream& File)
 
 int main()
 {
-	Master_Dun->fill_dungeon(dun_ent, map_t);
+
 	srand(time(0));
 	string inputName = "Assets/Title/title2.txt";
 	cout << endl;
@@ -114,11 +114,13 @@ int main()
 		}
 		else if (input == 3)
 		{
-			Skill s1("Rend", "P_Damage", 100, 0.90);
-			Skill s2("God's Blow", "D_Damage", 999, 2000, 100);
+			Skill s1("Rend", "P_Damage", 1.5, 0.40, 10);
+			Skill s2("God's Blow", "D_Damage", 999, 2000, 100, 0);
+			Skill s3("Epic Heal", "Heal", 50, 100, 0.80, 999999);
 			
 			play->add_skill(s1);
 			play->add_skill(s2);
+			play->add_skill(s3);
 
 			battle_demo.runBattle(enemy2);
 

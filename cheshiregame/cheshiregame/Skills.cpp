@@ -32,6 +32,11 @@ string Skill::getName()
 	return name;
 }
 
+int Skill::getMP()
+{
+	return mana_cost;
+}
+
 int Skill::calc_dmg(player* p)
 {
 	if (type == "Heal")
@@ -69,9 +74,28 @@ void Skill::use_skill(player* p, Entity* e)
 		return;
 	}
 	int dmg_output = calc_dmg(p);
-	std::cout << "The skill hit for " << dmg_output << " damage!" << std::endl;
-	p->setMP(p->getMP() - mana_cost);
- 	e->setHealth(e->getHealth() - dmg_output);
+
+	if (type == "Heal")
+	{
+		std::cout << "The skill healed for " << dmg_output << " health!" << std::endl;
+		if (p->getHP() + dmg_output > p->getMaxHP())
+		{
+			p->setHP(p->getMaxHP());
+			p->setMP(p->getMP() - mana_cost);
+		}
+		else
+		{
+			p->setHP(p->getHP() + dmg_output);
+			p->setMP(p->getMP() - mana_cost);
+		}
+
+	}
+	else
+	{
+		std::cout << "The skill hit for " << dmg_output << " damage!" << std::endl;
+		p->setMP(p->getMP() - mana_cost);
+		e->setHealth(e->getHealth() - dmg_output);
+	}
 }
 
 int Skill::randNumber(){

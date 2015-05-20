@@ -190,6 +190,10 @@ void Combat_System::runBattle(Entity* e){
 					{
 						std::cout << "Invalid choice.\n";
 					}
+					else if (play->getMP() < play->get_skill(input - 1).getMP())
+					{
+						std::cout << "You do not have enough MP!" << std::endl;
+					}
 					else
 					{ 
 						std::cout << "You used " << play->get_skill(input - 1).getName() << "! ";
@@ -203,9 +207,10 @@ void Combat_System::runBattle(Entity* e){
 				std::cout << "Here are all of the consumables you own." << std::endl;
 				//Search for all consumables
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
+				std::cin.ignore();
 				while (input != "back")
 				{
-					std::cin.ignore();
+
 					getline(cin, input);
 					if (input == "back")
 					{

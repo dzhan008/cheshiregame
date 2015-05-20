@@ -27,6 +27,7 @@ public:
 	int calc_dmg(player* p);
 
 	string getName();
+	int getMP();
 
 	bool isHit();
 	void use_skill(player* p, Entity* e);
