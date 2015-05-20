@@ -70,7 +70,7 @@ void Skill::use_skill(player* p, Entity* e)
 	}
 	int dmg_output = calc_dmg(p);
 	std::cout << "The skill hit for " << dmg_output << " damage!" << std::endl;
-	p->setMP(e->getMP() - mana_cost);
+	p->setMP(p->getMP() - mana_cost);
  	e->setHealth(e->getHealth() - dmg_output);
 }
 
