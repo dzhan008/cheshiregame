@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <conio.h>
 #include "Town.h"
 #include "Store.h"
 /*
@@ -144,7 +145,6 @@ void Town::run(player* p) {
 				display_options();
             }
             else if (choice == 0) {
-				break;
                 //savesystem.p = *p;
                 //savesystem.saveSave();
             }
@@ -330,6 +330,8 @@ void Town::tavern(player* p) {
 		if (input == 3)
 		{
 			std::cout << "Goodbye!\n";
+			std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+			_getch();
 			return;
 		}
 	}
@@ -341,16 +343,21 @@ void Town::tavern(player* p) {
 	{
 		if (allies.empty())
 		{
+			system("cls");
 			std::cout << "You've got all the allies here! See you later you cheap ass drunk!";
+			std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+			_getch();
 			return;
 		}
 		while (cin.fail())
 		{
+			system("cls");
 			std::cout << "You're drunk aren't you. Try a different input.\n";
 			displayAllies();
 		}
 		if (input < 0 || input > 4)
 		{
+			system("cls");
 			std::cout << "Ally does not exist. Try another number.\n";
 			displayAllies();
 			cin >> input;
@@ -359,11 +366,13 @@ void Town::tavern(player* p) {
 		{
 			if (p->getmoney() < allies.at(input)->getMaxHP())
 			{
+				system("cls");
 				std::cout << "You can't afford the toddler. Why don't you try having your own baby?\n";
 				displayAllies();
 				cin >> input;
 			}
 			p->add_member(allies.at(input));
+			system("cls");
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin()+input);
 			displayAllies();
@@ -373,10 +382,12 @@ void Town::tavern(player* p) {
 		{
 			if (p->getmoney() < allies.at(input)->getMaxHP())
 			{
+				system("cls");
 				std::cout << "You don't have enough money.\n";
 				displayAllies();
 				cin >> input;
 			}
+			system("cls");
 			p->add_member(allies.at(input));
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin() + input);
@@ -387,9 +398,11 @@ void Town::tavern(player* p) {
 		{
 			if (p->getmoney() < allies.at(input)->getMaxHP())
 			{
+				system("cls");
 				std::cout << "You don't have enough money. *sad neigh* \n";
 				cin >> input;
 			}
+			system("cls");
 			p->add_member(allies.at(input));
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin() + input);
@@ -400,10 +413,12 @@ void Town::tavern(player* p) {
 		{
 			if (p->getmoney() < allies.at(input)->getMaxHP())
 			{
+				system("cls");
 				std::cout << "You don't have enough money.\n";
 				displayAllies();
 				cin >> input;
 			}
+			system("cls");
 			p->add_member(allies.at(input));
 			std::cout << "You have a new ally! This should help you in battle now.\n";
 			allies.erase(allies.begin() + input);
