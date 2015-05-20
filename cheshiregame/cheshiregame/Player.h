@@ -22,6 +22,9 @@ class player
 		int maxHP; //The maximum health points of the player.
 		int currHP; //The current health the player has at the moment.
 		int baseHP;
+		int maxMP;
+		int currMP;
+		int baseMP;
 		int plevel; //The player's current level.
 		int pmoney; //The amount of money the player has.
 		int pexp; //The amount of exp the player has.
@@ -67,12 +70,14 @@ class player
         //Constructor
         player();
 		player(std::string pName, std::string pJob);
-        player(std::string pName, std::string pJob, int health, int lvl, int exp, int statpts, int money);
+        player(std::string pName, std::string pJob, int health, int mana, int lvl, int exp, int statpts, int money);
 		~player();
 
         /*Get Functions: Returns the respective value.*/
         int getMaxHP();
         int getHP();
+		int getMaxMP();
+		int getMP();
         int getlevel();
         int getmoney();
         int getexp();
@@ -155,6 +160,7 @@ class player
 		void update_player();
 
 		/*Party Functions*/
+		void display_party();
 		void add_member(Ally* member);
 		std::vector<Ally*> get_party();
 		int calculateDamage(Entity enemy, bool defend);

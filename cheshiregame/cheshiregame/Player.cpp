@@ -13,6 +13,9 @@ player::player(){
 	baseHP = 20;
     maxHP = 20;
     currHP = 20;
+	baseMP = 10;
+	maxMP = 10;
+	currMP = 10;
     plevel = 1;
     pexp = 0;
 	maxexp = 50;
@@ -63,6 +66,9 @@ player::player(std::string pName, std::string pJob)
 	baseHP = 20;
 	maxHP = 20;
 	currHP = 20;
+	baseMP = 10;
+	maxMP = 10;
+	currMP = 10;
 	plevel = 1;
 	pexp = 0;
 	maxexp = 50;
@@ -109,12 +115,15 @@ player::player(std::string pName, std::string pJob)
 	update_player();
 }
 
-player::player(string pName, string pJob, int health, int lvl, int exp, int statpts, int money)
+player::player(string pName, string pJob, int health, int mana, int lvl, int exp, int statpts, int money)
 {
     playername = pName;
     baseHP = health;
 	maxHP = health;
     currHP = health;
+	baseMP = mana;
+	maxMP = mana;
+	currMP = mana;
     plevel  = lvl;
     pexp = exp;
 	maxexp = exp;
@@ -203,6 +212,14 @@ int player::getHP()
 {
     return currHP;
 }
+int player::getMaxMP()
+{
+	return maxMP;
+}
+int player::getMP()
+{
+	return currMP;
+}
 
 int player::getlevel()
 {
@@ -284,8 +301,12 @@ bool player::calculateAccuracy(Entity* e){
 	vector<int> eStats = e->getStats();
 	double temp = (playerstats.at(3) / eStats.at(1)) * 100;
 	int x = tRand();
-	if (temp < 10){
-		temp = 10;
+	if (temp > 100)
+	{
+		temp = 80;
+	}
+	if (temp < 30){
+		temp = 30;
 	}
 	if (x < temp){
 		return true;
@@ -930,6 +951,19 @@ void player::display_equipment() //TO DO: What if an equipment points to null?
 }
 
 /*Party Functions*/
+
+void player::display_party()
+{
+	std::cout << "Name: " << this->getname() << std::endl;
+	std::cout << "Health: " << this->currHP << "/" << this->maxHP << std::endl;
+	std::cout << "Mana: " << this->currMP << "/" << this->maxMP << std::endl;
+	for (int i = 0; i < party.size(); ++i)
+	{
+		std::cout << "Name: " << party.at(i)->getname() << std::endl;
+		std::cout << "Health: " << party.at(i)->getMaxHP() << "/" << party.at(i)->getHP() << std::endl;
+	}
+	std::cout << std::endl;
+}
 
 void player::add_member(Ally* member)
 {

@@ -13,6 +13,7 @@
 /*Dependencies*/
 class Ally;
 
+
 using namespace std;
 
 struct Spells

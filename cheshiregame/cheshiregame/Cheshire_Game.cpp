@@ -18,8 +18,8 @@ string dun_ent = "demo_dun_1_enemies.txt";
 string map_t = "mapsample.txt";
 string dun = "demo_dun_1.txt";
 string line = "--------------------------------------------------------------------------------";
-player* play = new player(x, "Game Master", 300, 1, 5, 0, 100);
-player* invtest = new player(x, "Game Master", 10, 1, 0, 0, 100);
+player* play = new player(x, "Game Master", 100, 10, 1, 5, 0, 100);
+player* invtest = new player(x, "Game Master", 10, 10, 1, 0, 0, 100);
 Town town1 = Town();
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
 Entity* enemy2 = new Entity("Fox", 1000, 10, 5, 5, 2, 10);
@@ -85,7 +85,7 @@ int main()
 			vector<int> stats(5);
 			for (int i = 0; i < 5; ++i)
 			{
-				stats.at(i) = 100;
+				stats.at(i) = 4;
 			}
 			//stats.at(3) = 50;
 			play->setstats(stats);

@@ -118,7 +118,7 @@ void Scene::basic_menu(player* p)
 			switch (choice)
 			{
 			case 1:
-				p->displayInfo();
+				p->display_party();
 				option_chosen = true;
 				break;
 			case 2:
@@ -433,7 +433,7 @@ void Scene::scene_003(player* p)
 
 
 
-	while (cin.fail())
+	while (input != 1 && input != 2 && input != 3)
 	{
 		std::cin >> input;
 		if (input == 1)
