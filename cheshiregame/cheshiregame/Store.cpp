@@ -204,7 +204,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				{
 					if (storeInventory.at(invPos - 1)->getName() == potInv.at(i)->getName())
 					{
-						p->add_con(potInv.at(i));
+						p->add_inventory(potInv.at(i));
 						potInv.erase(potInv.begin() + i);
 					}
 				}
@@ -229,7 +229,7 @@ void Store::purchaseItem(const unsigned invPos, player* p) {
 				{
 					if (storeInventory.at(invPos - 1)->getName() == potInv.at(i)->getName())
 					{
-						p->add_con(potInv.at(i));
+						p->add_inventory(potInv.at(i));
 						potInv.erase(potInv.begin() + i);
 					}
 				}
