@@ -173,7 +173,7 @@ void Combat_System::runBattle(Entity* e){
 				int input = -1;
 				std::cout << "List of Skills" << std::endl;
 				play->display_skills();
-				std::cout << "Which skill do you want to use? (Type 0 to return)";
+				std::cout << "Which skill do you want to use? (Type 0 to return)\n";
 				while (input != 0)
 				{
 					std::cin >> input;
@@ -184,14 +184,15 @@ void Combat_System::runBattle(Entity* e){
 					}
 					else if (input == 0)
 					{
-
+						//Fix instance where player turn  ends when they go back.
+					}
+					else if (input > play->skill_list_sz())
+					{
+						std::cout << "Invalid choice.\n";
 					}
 					else
 					{ 
-						if (input >= play->skill_list_sz())
-						{
-							std::cout << "Invalid choice.";
-						}
+						std::cout << "You used " << play->get_skill(input - 1).getName() << "! ";
 						play->get_skill(input - 1).use_skill(play, enemy);
 						break;
 					}

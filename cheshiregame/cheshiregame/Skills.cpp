@@ -53,8 +53,8 @@ int Skill::calc_dmg(player* p)
 
 bool Skill::isHit()
 {
-	int ch = rand() % 100 + 1;
-	if (acc <= ch)
+	int chance = rand() % 100 + 1;
+	if (acc * 100 >= chance)
 	{
 		return true;
 	}
