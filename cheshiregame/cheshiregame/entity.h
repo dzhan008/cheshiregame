@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Ally.h"
 #include "Item.h"
+#include "Skills.h"
 #include "Consumable.h"
 
 /*Dependencies*/
@@ -16,6 +17,7 @@ class Ally;
 
 using namespace std;
 
+/*
 struct Spells
 {
 	string spell_name;
@@ -36,7 +38,7 @@ struct Spells
 	int get_spelldmg() { return spell_dmg; }
 	int get_spellcost() { return spell_cost; }
 };
-
+*/
 class Entity
 {
 public:
@@ -74,7 +76,7 @@ public:
 	/*Print*/
 	void Print(); //prints all information about entity
 	void print_loot(); //prints all the loot 
-	void print_spells(); //prints all the spells
+	//void print_spells(); //prints all the spells
 
 
 	int calculateDamage(player play, bool defend);
@@ -89,10 +91,13 @@ public:
 	bool empty_loot(); //returns true if loot is empty
 	bool empty_pots(); //returns true if pots is empty
 
-	void add_spells(Spells* s);
+	void add_skills(Skill s);
+	
+	//void add_spells(Spells* s);
 	void add_pots(Consumable* p);
 	void give_pots(player* &p);
 	void print_pots();
+	
 
 private:
 	string name;
@@ -109,7 +114,8 @@ private:
 	vector<int> entityStats;
 	int numEXP;
 	//int components;
-	vector<Spells*> entity_spells;
+	//vector<Spells*> entity_spells;
+	vector<Skill> entity_skills;
 	vector<Item*> loot;
 	vector<Consumable*> pots;
 	int randNumber();

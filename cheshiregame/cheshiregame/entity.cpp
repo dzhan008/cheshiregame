@@ -207,10 +207,15 @@ bool Entity::empty_loot()
 		return false;
 	}
 }
-
+/*
 void Entity::add_spells(Spells* s)
 {
 	entity_spells.push_back(s);
+}
+*/
+void Entity::add_skills(Skill s)
+{
+	entity_skills.push_back(s);
 }
 /*Stats*/
 //Sets the stats of the entity
@@ -255,7 +260,7 @@ void Entity::Print()
 	cout << "Dexterity: " << entityStats.at(3) << endl;
 	cout << "Luck:      " << entityStats.at(4) << endl;
 	print_loot();
-	print_spells();
+	//print_spells();
 
 }
 
@@ -284,6 +289,7 @@ void Entity::print_loot()
 		loot.at(i)->printItem();
 	}
 }
+/*
 void Entity::print_spells()
 {
 	for (unsigned i = 0; i < entity_spells.size(); i++)
@@ -291,7 +297,7 @@ void Entity::print_spells()
 		entity_spells.at(i)->printSpell();
 	}
 }
-
+*/
 bool Entity::empty_pots()
 {
 	if (pots.empty()) return true;
