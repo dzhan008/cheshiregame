@@ -66,32 +66,6 @@ bool SaveSystem::WriteToDisk(std::string str) {
 				<< p.inventory.at(i)->getType() << ' '
 				<< p.inventory.at(i)->getValue() << ' ';
 		}
-		f << '\n';
-		f << p.con_inv.size() << ' ';
-		for (unsigned i = 0; i < p.con_inv.size(); ++i) {
-			f << p.con_inv.at(i)->getName() << ' '
-				<< p.con_inv.at(i)->getType() << ' '
-				<< p.con_inv.at(i)->getValue() << ' ';
-		}
-
-		f << '\n';
-		f << p.gear_inv.size() << ' ';
-		for (unsigned i = 0; i < p.con_inv.size(); ++i) {
-			f << p.gear_inv.at(i)->getName() << ' '
-				<< p.gear_inv.at(i)->getType() << ' '
-				<< p.gear_inv.at(i)->getValue() << ' '
-				<< p.gear_inv.at(i)->getStats() << ' ';
-		}
-		f << '\n';
-		f << p.wep_inv.size() << ' ';
-		for (unsigned i = 0; i < p.wep_inv.size(); ++i) {
-			for (unsigned i = 0; i < p.wep_inv.size(); ++i) {
-				f << p.wep_inv.at(i)->getName() << ' '
-					<< p.wep_inv.at(i)->getType() << ' '
-					<< p.wep_inv.at(i)->getValue() << ' '
-					<< p.wep_inv.at(i)->getDmg() << ' ';
-			}
-		}
         f.flush();
         f.close();
     }
@@ -194,10 +168,6 @@ bool SaveSystem::LoadFromDisk(std::string str) {
 	loadedplayer.equipment = equipment;
 	loadedplayer.weapon = weapon;
 	loadedplayer.inventory = inventory;
-	loadedplayer.con_inv = con_inv;
-	loadedplayer.gear_inv = gear_inv;
-	loadedplayer.wep_inv = wep_inv;
-
     return true;
 }
 
