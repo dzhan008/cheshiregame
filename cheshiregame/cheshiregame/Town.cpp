@@ -59,13 +59,14 @@ void Town::fill_town(const std::string &text_file) {
     inFS.close();
 }
 
-Town::Town() {
+Town::Town(player* p) {
 	//dungeon1 = new Dungeon("demo_dun_1.txt");
 	//dungeon2 = new Dungeon("demo_dun_2.txt");
    // fill_town("sample_town.txt");
 	Scene sc;
 	std::string store_filename = "all_items.txt";
 	s.fillStore(store_filename); //Change later to work for ANY STORE
+	createAllies(p);
 }
 
 Town::Town(std::string filename) {
@@ -306,8 +307,6 @@ void Town::createAllies(player* p)
 
 }
 void Town::tavern(player* p) {
-	createAllies(p);
-
 	int input = 0;
     std::cout << "Welcome to the newly built tavern! I'm the innkeeper, how can I help you?\n";
 	displayTavernMenu();
