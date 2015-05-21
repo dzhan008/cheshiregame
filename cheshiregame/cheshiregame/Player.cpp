@@ -687,7 +687,7 @@ void player::display_con()
 	{
 		if (inventory.at(i)->getType() == "Consumable")
 		{
-			std::cout << inventory.at(i)->getName() << " ";
+			std::cout << inventory.at(i)->getName() << "|";
 		}
 	}
 	std::cout << std::endl;
@@ -854,7 +854,7 @@ void player::display_skills()
 {
 	for (int i = 0; i < skills.size(); ++i)
 	{
-		std::cout << i + 1 << "." << skills.at(i).getName() << std::endl;
+		std::cout << i + 1 << "." << skills.at(i).getName() << "| Cost: "<< skills.at(i).getMP() << std::endl;
 	}
 }
 

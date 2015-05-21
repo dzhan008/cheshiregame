@@ -633,6 +633,7 @@ void Scene::scene_006(player* p)
 		std::cout << "You head back to town and find a note posted on one of the houses. You take it and give it a read:" << std::endl;
 		std::cout << "\"I assume you got the gems, otherwise you wouldn't be seeing this. Good job, I guess. The demo is pretty much done from here so I hope you enjoyed every bit of it." << std::endl;
 		std::cout << "-Game Creator\"" << std::endl;
+		std::cin >> choice;
 		exit(1);
 	}
 	else
