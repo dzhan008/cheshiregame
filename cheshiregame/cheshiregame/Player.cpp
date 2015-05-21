@@ -817,6 +817,13 @@ std::vector<Ally*> player::get_party()
 
 void player::add_skill(Skill s)
 {
+	for (int i = 0; i < skills.size(); ++i)
+	{
+		if (s.getName() == skills.at(i).getName())
+		{
+			return;
+		}
+	}
 	skills.push_back(s);
 }
 

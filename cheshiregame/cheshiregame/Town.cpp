@@ -22,6 +22,7 @@ Town fileformat will be as follows:
    <person 2's dialog>
    <continued>
 */
+using namespace std;
 
 void Town::fill_town(const std::string &text_file) {
     std::string townname;
@@ -67,6 +68,7 @@ Town::Town(player* p) {
 	std::string store_filename = "all_items.txt";
 	s.fillStore(store_filename); //Change later to work for ANY STORE
 	createAllies(p);
+	skills.fill_skills("skills.txt");
 }
 
 Town::Town(std::string filename) {
@@ -80,9 +82,10 @@ void Town::display_options()
 		<< "2. Go shopping" << std::endl
 		<< "3. Go to the blacksmith" << std::endl
 		<< "4. Go to the tavern" << std::endl
-		<< "5. Go talk to the townspeople" << std::endl
-		<< "6. Go to a dungeon" << std::endl
-		<< "7. Menu" << std::endl;
+		<< "5. Go to mystic" << std::endl
+		<< "6. Go talk to the townspeople" << std::endl
+		<< "7. Go to a dungeon" << std::endl
+		<< "8. Menu" << std::endl;
 		//<< "8. Save Game" << std::endl;
 }
 
@@ -127,19 +130,26 @@ void Town::run(player* p) {
 				system("cls");
 				display_options();
             }
-            else if (choice == 5) {
+			else if (choice == 5)
+			{
+				system("cls");
+				mystic(p);
+				system("cls");
+				display_options();
+			}
+            else if (choice == 6) {
 				system("cls");
                 talk();
 				system("cls");
 				display_options();
             }
-            else if (choice == 6) {
+            else if (choice == 7) {
 				system("cls");
                 dungeon_select(p);
 				system("cls");
 				display_options();
             }
-            else if (choice == 7) {
+            else if (choice == 8) {
 				Scene sc;
 				sc.basic_menu(p);
 				system("cls");
@@ -451,6 +461,14 @@ void Town::store(player* p) {
     return;
 }
 
+void Town::mystic(player* p)
+{
+	std::cout << "Let me provide you with a set of skills...They will help you on your journey." << std::endl;
+	p->add_skill(skills.get_skill(0));
+	p->add_skill(skills.get_skill(3));
+	_getch();
+}
+
 void Town::talk() {
 	int input;
 	std::cout << "Who would you like to talk to?." << std::endl;
@@ -471,9 +489,10 @@ void Town::dungeon_select(player* p)
 	string dun;
 
 	std::cout << "Which dungeon would you like to go to?" << std::endl;
-	std::cout << "1. Mild Fields" << std::endl;
-	std::cout << "2. Kind of Mild Dungeon" << std::endl;
+	std::cout << "1. Elka's Hatchery" << std::endl;
+	std::cout << "2. Frostfang Cavern" << std::endl;
 	std::cout << "3. Devil's Lair" << std::endl;
+	std::cout << "4. Calescent Chamber" << std::endl;
 	//Output dungeons
 	while (input != "back" && input != "b")
 			{
@@ -492,9 +511,9 @@ void Town::dungeon_select(player* p)
 			}
 			else if (input == "3")
 			{
-				dun_ent = "demo_dun_1_enemies.txt";
-				map_t = "mapsample.txt";
-				dun = "demo_dun_1.txt";
+				dun_ent = "dungeon_easy.txt";
+				map_t = "map_1.txt";
+				dun = "all_entity.txt";
 				Dungeon* d = new Dungeon(dun);
 				d->fill_dungeon(dun_ent, map_t);
 				Combat_System cs(p, p->get_party());

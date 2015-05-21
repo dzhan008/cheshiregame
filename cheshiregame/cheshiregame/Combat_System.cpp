@@ -147,7 +147,7 @@ void Combat_System::runBattle(Entity* e){
 		if (turn == 0){
 		    play->setDefending(false);
 			cout << "It is currently your turn." << endl;
-			cout << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP." << endl;
+			cout << "You have " << play->getHP() << "/" << play->getMaxHP() << " HP and " << play->getMP() << "/" << play->getMaxMP() << " MP." << endl;
 			cout << enemy->getName() << " has " << enemy->getHealth() << "/" << enemy->getMaxHealth() << " HP." << endl;
 			optionChoice = promptChoices();
 			system("cls");

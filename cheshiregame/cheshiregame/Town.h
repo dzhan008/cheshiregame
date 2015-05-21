@@ -11,6 +11,7 @@
 
 class Dungeon;
 class SaveSystem;
+class Game;
 
 class Town {
 private:
@@ -19,6 +20,8 @@ private:
     Store s;
 	Dungeon* dungeon1;
 	Dungeon* dungeon2;
+	Game skills;
+
     /* Blacksmith goes here */
     // BlackSmith bs;
     /* Tavern goes here */
@@ -37,6 +40,7 @@ public:
 	void inn(player* p);
     void tavern(player* p);
     void blacksmith(player* p);
+	void mystic(player* p);
     void store(player* p);
     void talk();
 	void dungeon_select(player* p);
