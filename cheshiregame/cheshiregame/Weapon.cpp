@@ -10,8 +10,8 @@ Weapon::Weapon(std::string name, std::string type, int dmg, int val)
 	this->name = name;
 	Item::type = "Weapon";
 	this->type = type;
-	value = val;
 	damageBoost = dmg;
+	value = val;
 }
 Weapon::Weapon(const Weapon& origWeapon)
 {

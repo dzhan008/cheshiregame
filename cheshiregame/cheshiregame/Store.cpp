@@ -18,10 +18,11 @@ void Store::fillStore(const string &input_file)
 {
 	ifstream fin;
 	string store_file = "Assets/Items/" + input_file;
+
 	string itemName;
 	int val;
 	string type;
-	unsigned boost = 4;
+	int boost;
 	int num_potions = 0;
 
 	fin.open(store_file.c_str());
@@ -35,7 +36,8 @@ void Store::fillStore(const string &input_file)
 	{
 		if (type == "Weapon")
 		{
-			fin.ignore(); getline(fin, itemName); fin >> val; fin >> boost;
+			fin.ignore(); getline(fin, itemName); fin >> boost; fin >> val;
+			std::cout << "Name: " << itemName << " Boost: " << boost << " Value: " << val << std::endl;
 			Weapon* temp = new Weapon(itemName, type, boost, val);
 			storeInventory.push_back(temp);
 			weapInv.push_back(temp);
@@ -88,10 +90,11 @@ void Store::run(player* p)
 	int usernum;
 
 	std::cout << "Gold remaining: " << p->getmoney() << std::endl;
+	menu();
+	cin >> choice;
+
 	while (choice != 4)
 	{
-		menu();
-		std::cin >> choice;
 		while (cin.fail())
 		{
 			std::cout << "Invalid input.\n";

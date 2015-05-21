@@ -4,16 +4,16 @@ Rusty Shiv
 5
 Weapon
 Steel Longsword
-15
 10
+15
 Weapon
 Silver Longsword
-25
 20
+30
 Weapon
 Diamond Dagger
+30
 50
-25
 Gear
 Chest
 Leather Coat

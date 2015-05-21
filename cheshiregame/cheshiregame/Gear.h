@@ -20,7 +20,6 @@ class Gear : public Item
 
 		Gear(const Gear*&);
 		bool equipGear(Gear* gear, player* p);
-		int getStats();
 };
 
 #endif
