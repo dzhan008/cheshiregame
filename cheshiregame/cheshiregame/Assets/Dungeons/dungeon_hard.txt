@@ -2,8 +2,8 @@ Frostfang Lair
 Hard
 Frost Knight
 Ice Witch
-Arctic Sentinels 
-Frost Giants
+Arctic Sentinel
+Frost Giant
 Yeti
 Azure Wyvern
 Winter Fox
