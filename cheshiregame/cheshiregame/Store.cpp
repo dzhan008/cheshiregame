@@ -37,7 +37,6 @@ void Store::fillStore(const string &input_file)
 		if (type == "Weapon")
 		{
 			fin.ignore(); getline(fin, itemName); fin >> boost; fin >> val;
-			std::cout << "Name: " << itemName << " Boost: " << boost << " Value: " << val << std::endl;
 			Weapon* temp = new Weapon(itemName, type, boost, val);
 			storeInventory.push_back(temp);
 			weapInv.push_back(temp);
@@ -79,7 +78,7 @@ void Store::fillStore(const string &input_file)
 }
 void Store::menu() const
 {
-	std::cout << "1. View inventory." << std::endl;
+	std::cout << "1. View store inventory." << std::endl;
 	std::cout << "2. Purchase item." << std::endl;
 	std::cout << "3. Sell item." << std::endl;
 	std::cout << "4. Exit." << std::endl;

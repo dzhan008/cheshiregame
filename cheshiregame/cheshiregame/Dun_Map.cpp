@@ -409,7 +409,7 @@ void dun_map::wallBreak()
 	}
 }
 
-void returnToTown()
+void dun_map::returnToTown()
 {
 	if ((playerposition.first == town.first) && (playerposition.second == town.second))
 	{

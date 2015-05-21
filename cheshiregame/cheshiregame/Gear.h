@@ -8,7 +8,7 @@ class Gear : public Item
 {
 	private:
 		string type;
-		unsigned statBoost;
+		int statBoost;
 	public:
 		Gear(std::string name, std::string type, int val);
 		Gear(std::string name, int val, std::string type, int stat);
