@@ -12,7 +12,7 @@ class Gear : public Item
 	public:
 		Gear(std::string name, std::string type, int val);
 		Gear(std::string name, int val, std::string type, int stat);
-		~Gear();
+		//~Gear();
 
 		string getType() const;
 		int getStats();
