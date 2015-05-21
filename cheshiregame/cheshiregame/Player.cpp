@@ -410,11 +410,11 @@ void player::update_player(){
 	int gear_val = 0;
 	for (int i = 0; i < weapon.size(); ++i)
 	{
-		wep_val += weapon.at(i)->getValue();
+		wep_val += weapon.at(i)->getDmg();
 	}
 	for (int i = 0; i < equipment.size(); ++i)
 	{
-		gear_val += equipment.at(i)->getValue();
+		gear_val += equipment.at(i)->getStats();
 	}
 
 	min_dmg = base_min_dmg + str_val;
