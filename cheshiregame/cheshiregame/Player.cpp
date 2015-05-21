@@ -669,19 +669,14 @@ void player::display_inventory()
 
 void player::display_con()
 {
-	for (int i = 0; i < inventory.size();)
+	for (int i = 0; i < inventory.size(); ++i)
 	{
-		if (inventory.at(i)->getName() == "Health Potion")
+		if (inventory.at(i)->getType() == "Consumable")
 		{
-			std::cout << "Health Potion" << std::endl;
-			++i;
-		}
-		if (inventory.at(i)->getName() == "Mana Potion")
-		{
-			std::cout << "Mana Potion" << std::endl;
-			++i;
+			std::cout << inventory.at(i)->getName() << " ";
 		}
 	}
+	std::cout << std::endl;
 }
 
 

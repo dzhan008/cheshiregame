@@ -184,7 +184,7 @@ void Combat_System::runBattle(Entity* e){
 					}
 					else if (input == 0)
 					{
-						//Fix instance where player turn  ends when they go back.
+						system("cls");
 					}
 					else if (input > play->skill_list_sz())
 					{
@@ -198,6 +198,7 @@ void Combat_System::runBattle(Entity* e){
 					{ 
 						std::cout << "You used " << play->get_skill(input - 1).getName() << "! ";
 						play->get_skill(input - 1).use_skill(play, enemy);
+						turn = 1;
 						break;
 					}
 				}
@@ -205,7 +206,7 @@ void Combat_System::runBattle(Entity* e){
 			if (optionChoice == 3){
 				string input;
 				std::cout << "Here are all of the consumables you own." << std::endl;
-				//Search for all consumables
+				play->display_con();
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
 				std::cin.ignore();
 				while (input != "back")
@@ -214,7 +215,7 @@ void Combat_System::runBattle(Entity* e){
 					getline(cin, input);
 					if (input == "back")
 					{
-
+						system("cls");
 					}
 					else if (play->inventory_search(input) == NULL)
 					{
@@ -225,6 +226,7 @@ void Combat_System::runBattle(Entity* e){
 						dynamic_cast<Consumable*>(play->inventory_search(input))->usePotion(play);
 						play->remove_inventory(play->inventory_search(input)->getName());
 						std::cout << "Item used!" << std::endl;
+						turn = 1;
 						break;
 					}
 				}
@@ -243,7 +245,7 @@ void Combat_System::runBattle(Entity* e){
 					turn = 2;
 				}
 			}
-			if (optionChoice == 3){
+			if (optionChoice == 3 && turn == 0 || optionChoice == 2 && turn == 0){
 				turn = 0;
 				cout << "It is still your turn." << endl;
 			}
@@ -420,7 +422,7 @@ void Combat_System::runBattle(vector<Entity*> enemy){
 			if (optionChoice == 2){
 				string input;
 				std::cout << "Here are all of the consumables you own." << std::endl;
-				//DISPLAY CONSUMABLES LOL
+				play->display_con();
 				std::cout << "Which item would you like to use? (Type back to return)" << std::endl;
 				while (input != "back")
 				{
