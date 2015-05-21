@@ -19,6 +19,7 @@ class Gear : public Item
 		void printItem() const;
 
 		Gear(const Gear*&);
+		Gear(Gear*);
 		bool equipGear(Gear* gear, player* p);
 };
 
