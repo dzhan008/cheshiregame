@@ -1,0 +1,10 @@
+"I need you to get me three gems. One is green, one is red, and one is blue. They all lie in
+different dungeons, all of which are not too far away. However, you must watch out for the 
+guardians that lie in each of them."
+
+"Elka, the spider queen, holds the green gem in her hatchery. Rica, the giant monster, guards
+the red gem in the Calescent Chamber. And Acquilo, the frostlord, houses the blue gem in the
+Frostfang Cavern."
+
+"I suggest you go into the dungeons in the order the guardians I named for you. You can use
+the town to purchase items or sleep at the inn to heal yourself. I wish you luck!"

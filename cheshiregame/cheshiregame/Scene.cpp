@@ -59,6 +59,7 @@ void Scene::output_file(std::string file_name)
 	}
 	if (!inFile.good()) //If we reached the end of the file, just return.
 	{
+		next_input();
 		return;
 	}
 	std::cin.ignore();
@@ -226,6 +227,7 @@ void Scene::menu_equip(player* p)
 	std::string input;
 	std::cout << "Which item would you like to equip? (Type back to return)" << std::endl;
 	cin.ignore();
+	std::cout << p->getMaxDmg();
 	while (input != "back")
 	{
 		std::getline(std::cin, input);
@@ -253,163 +255,6 @@ void Scene::menu_equip(player* p)
 	}
 }
 
-/*-------------------------------------------------------------------------------------------------*/
-
-/*switch (choice)
-{
-case 1:
-
-option_chosen = true;
-break;
-case 2:
-
-option_chosen = true;
-break;
-case 3:
-option_chosen = true;
-
-break;
-case 4:
-option_chosen = true;
-
-//std::cout << "Who would you like to use this on?" << std::endl;
-//if(you wanna heal yourself)
-//heal yourself
-//else if(you wanna heal your party members)
-//heal them
-//Prompt if you're sure if you want to use it?
-//USE IT (call respective functions for usage)
-
-/*Demo Method
-1. Prompt the user to type out the name of consumable
-2. Search for it using inventory_search. If it returns a value,
-3. Do a check to see if its a consumable. How? Maybe a bool for item.
-Note: Needs a better way to do it.
-4. Check succeeded? Then heal the player.
-
-
-
-break;
-case 5:
-option_chosen = true;
-/*Demo Method
-1. Ask the user what item they want to equip
-2. Search for item using inventory_search
-3. If it returns a value, use equip_slot, where slot is the slot no. of your gear.
-4. EQUIP SUCCESSFUL SIMPLICITY FTW*/
-/*std::cout << "Would you like to equip a gear or weapon? (Type back to return)" << std::endl;
-
-while (input != "back")
-{
-std::cin >> input;
-if (input == "Weapon" || input == "weapon")
-{
-gear = false;
-input = "back";
-}
-else if (input == "Gear" || input == "gear")
-{
-gear = true;
-input = "back";
-}
-else
-{
-std::cout << "Invalid input. Please type it again." << std::endl;
-}
-
-}*/
-//Current equipped items:
-//DISPLAY EQUIPMENT HERE
-//Select the number you would like to equip.
-//Display the type of gear that is in your inventory
-//Prompt what to wear
-//Wear item/replace item that took the slot
-//Profit
-
-/*p->display_equipment();
-std::cout << "Which type of gear would you like to equip? (Type back to return.)" << std::endl;
-while (input != "back")
-{
-int slot = -1;
-std::cin.ignore();
-getline(cin, input);
-
-if (input == "back")
-{
-break;
-}
-else if (p->find_slot(input) == -1)
-{
-std::cout << "Invalid input. Please type it in again." << std::endl;
-}
-else
-{
-slot = p->find_slot(input);
-std::cout << std::endl;
-//When implemented, add in the function to search for all the equipment of said type and cout it
-//I think we need a type ID for equipment.
-std::cout << "Which item would you like to equip?" << std::endl;
-//options: 1.store each name of type of gear in player's inventory into a vector
-//		   2.somehow find a way to check if the item's type ID is the same as slot
-do
-{
-std::cin >> input;
-if (p->inventory_search(input)->getSlot() == slot) //This should pass in slot_type
-{
-p->equip_slot(slot, p->inventory_search(input));
-}
-else
-{
-std::cout << "Invalid input." << std::endl;
-}
-} while (p->inventory_search(input)->getSlot == slot);
-}
-}
-case 6:
-option_chosen = true;
-std::cin.ignore(); //Clear buffer for other inputs;
-p->mod_stats();
-break;
-case 7:
-option_chosen = true;
-break;
-case 8:
-option_chosen = true;
-system("cls");
-return;
-break;
-case 9:
-option_chosen = true;
-std::cout << "Are you sure?" << std::endl;
-std::cout << "1. Yes" << std::endl;
-std::cout << "2. No" << std::endl;
-
-while (choice != 1)
-{
-std::cin >> choice;
-if (choice == 1)
-{
-exit(1);
-}
-if (choice == 2)
-{
-cin.clear();
-cin.ignore(INT_MAX, '\n');
-break;
-}
-cin.clear();
-cin.ignore(INT_MAX, '\n');
-}
-
-default:
-std::cout << "Invalid choice. Please input your choice again." << std::endl << std::endl;
-break;
-}
-}
-}*/
-
-/*--------------------------------------------------------------------------------------------------*/
-
 // Gets user input, may be unnecessary
 int user_input() {
     int i;
@@ -417,22 +262,6 @@ int user_input() {
     std::cin >> i;
     return i;
 }
-
-/*Scenario to replace instead of this:
-You wake up dazed, seeing only blurriness around you.
-Your head is throbbing, and your mind is fogged.
-You sit up slowly, trying to recollect yourself.
-You can't seem to remember much. It is as if your mind
-become a blank slate. You try to remember your name:
-(after player enters name)
-Well at least you did not forget who you were. You turn
-around to look at your surroundings. Beside you lies:
-1. A rusted sword.
-2. A dull dagger.
-3. A wooden staff.
-(depending on the choice, there will be something said about the player's job)
--You pick up the item and realize you're in the middle of the forest. You then
-try to find your way to town.*/
 
 void Scene::scene_001(player* p)
 {
@@ -763,7 +592,7 @@ void Scene::scene_004_2()
 			std::cout << "\"That was easier than I thought,\" mumbled the jester. Astuce suddenly looks at you and laughs. \"Ah, sorry about that. I just remembered a joke I heard earlier today.\"\n\n";
 			next_input();
 			system("cls");
-			scene_004_3();
+			output_file("scene_003.txt");
 			return;
 		}
 		else if (input == 2)
@@ -771,7 +600,7 @@ void Scene::scene_004_2()
 			std::cout << "\"Lost your memory right? Not to worry, but I believe you can help us both out if you listen to my \n request.\" You look puzzled. How did he know that you lost your memory? Instead of bringing this up to Astuce, you continue to hear what he has to say. \n\n";
 			next_input();
 			system("cls");
-			scene_004_3();
+			output_file("scene_003.txt");
 			return;
 		}
 		cin.clear();

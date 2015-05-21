@@ -1,0 +1,6 @@
+"Well..." Astuce begins to say some words, but you cannot hear him at all. You try to say 
+something, but you can't hear your own words at all. Then, everything turns black.
+
+Something pops up on your screen. It reads:
+'Your time has run out. Thank you for playing the demo!'
+You look in dismay as you realize the demo is finished. \n You then stare the presenters asking, 'What now?'

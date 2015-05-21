@@ -1,0 +1,16 @@
+You head back to town and find Astuce near the entrance. He crouches over a patch of flowers
+and plucks one off of its stem. "Ah, look at you! You just may be the right one for what I've 
+got in store for you." He turns to you and stares at the gem. "So you return safely!
+Congratulations!" You hand the jester the gems, and he pockets them into his pouch.
+
+"You've done a good job my friend. You might be wondering what will happen next. Can you guess?"
+
+1. "You'll help restore my memories back?"
+2. "You'll invade the mothership?"
+3. "You'll sell the gem for gold?"
+4. Attack Astuce.
+<choices>
+1 scene_004_1.txt
+2 scene_004_2.txt
+3 scene_004_3.txt
+4 scene_004_4.txt

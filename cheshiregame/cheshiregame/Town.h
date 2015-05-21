@@ -12,12 +12,14 @@
 class Dungeon;
 class SaveSystem;
 class Game;
+class Scene;
 
 class Town {
 private:
     std::string townname;
     /* Store goes here */
     Store s;
+	Scene* sc;
 	Dungeon* d;
 	Dungeon* dungeon2;
 	Game skills;

@@ -74,7 +74,7 @@ Town::Town(player* p) {
 	d = new Dungeon(dun);
 	d->fill_dungeon(dun_ent, map_t);
 
-	Scene sc;
+
 	std::string store_filename = "all_items.txt";
 	s.fillStore(store_filename); //Change later to work for ANY STORE
 	createAllies(p);
@@ -158,11 +158,14 @@ void Town::run(player* p) {
 				system("cls");
                 dungeon_select(p, dun_counter);
 				system("cls");
+				if (dun_counter == 4)
+				{
+					sc->output_file("scene_004_0.txt");
+				}
 				display_options();
             }
             else if (choice == 8) {
-				Scene sc;
-				sc.basic_menu(p);
+				sc->basic_menu(p);
 				system("cls");
 				display_options();
             }
@@ -430,11 +433,10 @@ void Town::dungeon_select(player* p, int & dun_counter)
 	string map_t;
 	string dun;
 	Combat_System cs(p, p->get_party());
-	Scene sc;
 	std::cout << "Which dungeon would you like to go to?" << std::endl;
 	std::cout << "1. Elka's Hatchery" << std::endl;
-	std::cout << "2. Frostfang Cavern" << std::endl;
-	std::cout << "3. Calescent Chamber" << std::endl;
+	std::cout << "2. Calescent Chamber " << std::endl;
+	std::cout << "3. Frostfang Cavern" << std::endl;
 	//Output dungeons
 	while (input != "back" && input != "b")
 			{
@@ -456,7 +458,9 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				sc->output_file("boss_001.txt");
 				cs.runBattle(d->get_boss());
+				sc->output_file("boss_001_1.txt");
 				if (p->getHP() <= 0)
 				{
 					std::cout << "You have died... returning to town..." << std::endl;
@@ -481,8 +485,10 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				sc->output_file("boss_002.txt");
 				cs.runBattle(d->get_boss());
-				if (p->getHP() < 0)
+				sc->output_file("boss_002_1.txt");
+				if (p->getHP() <= 0)
 				{
 					std::cout << "You have died... returning to town..." << std::endl;
 					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
@@ -508,9 +514,10 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
-				sc.scene_005(); //Rica Start Scene
+				sc->output_file("boss_003_1.txt");
 				cs.runBattle(d->get_boss());
-				if (p->getHP() < 0)
+				sc->output_file("boss_003_1.txt");
+				if (p->getHP() <= 0)
 				{
 					std::cout << "You have died... returning to town..." << std::endl;
 					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');

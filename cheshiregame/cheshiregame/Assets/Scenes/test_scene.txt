@@ -1,0 +1,12 @@
+blah
+blah
+blah
+
+1. Hi
+2. Hello
+3. Herro!
+<choices>
+1 scene001.txt
+2 scene002.txt
+3 scene003.txt
+

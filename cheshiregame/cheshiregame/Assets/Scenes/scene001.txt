@@ -1,0 +1,14 @@
+You exit the forest and see an open trail. Since the road is the only lead to what may be 
+civilization, you follow the trail all the way to the end. There stood a city that was like 
+your typical first-level RPG town. There was a problem though. The town was quiet. Too quiet. 
+You walk through the entrance, but there was no one within your view. The town seemed to be 
+devoid of life itself. You approach a house and find that its door is open. What do you do?
+
+1.Go inside and loot the house.
+2.Yell at the house. There has to be someone in there.
+3.Leave the house and head to the town square.
+<choices>
+1 scene001_1.txt
+2 scene001_2.txt
+3 scene001_3.txt
+
