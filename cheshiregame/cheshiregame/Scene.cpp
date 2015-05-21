@@ -227,7 +227,6 @@ void Scene::menu_equip(player* p)
 	std::string input;
 	std::cout << "Which item would you like to equip? (Type back to return)" << std::endl;
 	cin.ignore();
-	std::cout << p->getMaxDmg();
 	while (input != "back")
 	{
 		std::getline(std::cin, input);
