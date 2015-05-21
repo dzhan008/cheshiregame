@@ -32,6 +32,7 @@ public:
 	void wallBreak();
 	//void updateplayer(playerposition.first, playerposition.second);
 	void runStage();
+	void returnToTown();
 	dun_map *next;
 	//Get functions so it can be used in Dungeon
 	int pf(); //returns player's first position (x)
@@ -48,6 +49,7 @@ private:
 	void updateplayer();
 	// xy of the goal location
 	pair <int, int> goal;
+	pair <int, int> town;
 	vector <vector<char> > goalmap;
 
 

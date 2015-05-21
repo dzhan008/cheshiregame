@@ -24,6 +24,13 @@ Weapon::Weapon(const Weapon*& origWeapon)
 	this->value = origWeapon->value;
 	this->damageBoost = origWeapon->damageBoost;
 }
+Weapon::Weapon(Weapon* origWeapon)
+{
+	Item::type = "Weapon";
+	this->name = origWeapon->name;
+	this->value = origWeapon->value;
+	this->damageBoost = origWeapon->damageBoost;
+}
 int Weapon::getDmg() const
 {
 	return damageBoost;

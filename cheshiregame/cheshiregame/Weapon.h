@@ -13,6 +13,7 @@ private:
 public:
 	//Constructors
 	Weapon(std::string name, std::string type, int dmg, int val);
+	Weapon(Weapon*);
 	Weapon(const Weapon&);
 	Weapon(const Weapon*&);
 

@@ -17,8 +17,11 @@ dun_map::dun_map()
 	playerposition.second = 0;// column
 	goal.first = 9;
 	goal.second = 9;
+	town.first = 1;
+	town.first = 1;
 	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 	mapitems.at(goal.first).at(goal.second) = 'G';
+	mapitems.at(town.first).at(town.second) = 'T';
 	goalmap = mapitems;
 
 }
@@ -76,6 +79,21 @@ dun_map::dun_map(int sz, const string& file)
 			}
 		}
 	}
+	for (int i = 0; i < mapitems.size(); i++)
+	{
+		for (int j = 0; j < mapitems.size(); j++)
+		{
+			if (mapitems.at(i).at(j) == 'T')
+			{
+				playerposition.first = i;
+				playerposition.second = j;
+				//cout << "Player coordinates: " << playerposition.first << " " << playerposition.second << endl;
+				mapitems.at(town.first).at(town.second) = 'T';
+
+				return;
+			}
+		}
+	}
 }
 dun_map::dun_map(int size)
 {
@@ -94,10 +112,17 @@ dun_map::dun_map(int size)
 	playerposition.second = rand() % size;
 	goal.first = rand() % size;
 	goal.second = rand() % size;
+	town.first = rand() % size;
+	town.second = rand() % size;
 	while ((goal.first == playerposition.first) && (goal.second == playerposition.second))
 	{
 		goal.first = rand() % size;
 		goal.second = rand() % size;
+		while ((goal.first == town.first) && (goal.second == town.second))
+		{
+			goal.first = rand() % size;
+			goal.second = rand() % size;
+		}
 	}
 	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 	mapitems.at(goal.first).at(goal.second) = 'G';
@@ -380,6 +405,15 @@ void dun_map::wallBreak()
 	}
 	else if (input == "no")
 	{
+		return;
+	}
+}
+
+void returnToTown()
+{
+	if ((playerposition.first == town.first) && (playerposition.second == town.second))
+	{
+		cout << "Returning to town.\n";
 		return;
 	}
 }
