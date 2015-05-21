@@ -368,7 +368,10 @@ void Combat_System::runBattle(Entity* e){
 		_getch();
 	}
 	else{
-		cout << "Game Over." << endl;
+		cout << "You are dead." << endl;
+		std::cout << "Press any key to continue..." << std::endl << flush;
+		std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+		_getch();
 		return;
 	}
 }

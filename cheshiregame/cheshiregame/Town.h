@@ -18,7 +18,7 @@ private:
     std::string townname;
     /* Store goes here */
     Store s;
-	Dungeon* dungeon1;
+	Dungeon* d;
 	Dungeon* dungeon2;
 	Game skills;
 
@@ -43,7 +43,7 @@ public:
 	void mystic(player* p);
     void store(player* p);
     void talk();
-	void dungeon_select(player* p);
+	void dungeon_select(player* p, int& dun_counter);
 	void display_options();
     SaveSystem savesystem;
 

@@ -64,6 +64,16 @@ Town::Town(player* p) {
 	//dungeon1 = new Dungeon("demo_dun_1.txt");
 	//dungeon2 = new Dungeon("demo_dun_2.txt");
    // fill_town("sample_town.txt");
+	string dun_ent;
+	string map_t;
+	string dun;
+
+	dun_ent = "dungeon_easy.txt";
+	map_t = "map_1.txt";
+	dun = "all_entity.txt";
+	d = new Dungeon(dun);
+	d->fill_dungeon(dun_ent, map_t);
+
 	Scene sc;
 	std::string store_filename = "all_items.txt";
 	s.fillStore(store_filename); //Change later to work for ANY STORE
@@ -97,6 +107,7 @@ void Town::run(player* p) {
 		return;
 	}
 	int choice = -1;
+	int dun_counter = 0;
 	system("cls");
 	std::cout << "You are currently in an unknown city!" << std::endl;
 	display_options();
@@ -145,7 +156,7 @@ void Town::run(player* p) {
             }
             else if (choice == 7) {
 				system("cls");
-                dungeon_select(p);
+                dungeon_select(p, dun_counter);
 				system("cls");
 				display_options();
             }
@@ -480,19 +491,19 @@ void Town::talk() {
     people.at(random).second << std::endl;*/
 }
 
-void Town::dungeon_select(player* p)
+void Town::dungeon_select(player* p, int & dun_counter)
 {
 
 	string input;
 	string dun_ent;
 	string map_t;
 	string dun;
-
+	Combat_System cs(p, p->get_party());
+	Scene sc;
 	std::cout << "Which dungeon would you like to go to?" << std::endl;
 	std::cout << "1. Elka's Hatchery" << std::endl;
 	std::cout << "2. Frostfang Cavern" << std::endl;
-	std::cout << "3. Devil's Lair" << std::endl;
-	std::cout << "4. Calescent Chamber" << std::endl;
+	std::cout << "3. Calescent Chamber" << std::endl;
 	//Output dungeons
 	while (input != "back" && input != "b")
 			{
@@ -503,27 +514,86 @@ void Town::dungeon_select(player* p)
 			}
 			else if (input == "1")
 			{	
+				dun_ent = "dungeon_easy.txt";
+				map_t = "map_1.txt";
+
+				d->change_dungeon(dun_ent, map_t);
+				if (!d->run_dungeon(p, cs))
+				{
+					std::cout << "You have died... returning to town..." << std::endl;
+					_getch();
+					p->setHP(10);
+					return;
+				}
+				cs.runBattle(d->get_boss());
+				if (p->getHP() <= 0)
+				{
+					std::cout << "You have died... returning to town..." << std::endl;
+					_getch();
+					p->setHP(10);
+					return;
+				}
+				dun_counter++;
 				return;
 			}
 			else if (input == "2")
 			{
+				dun_ent = "dungeon_medium.txt";
+				map_t = "map_2.txt";
+
+				d->change_dungeon(dun_ent, map_t);
+				if (!d->run_dungeon(p, cs))
+				{
+					std::cout << "You have died... returning to town..." << std::endl;
+					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+					_getch();
+					p->setHP(10);
+					return;
+				}
+				cs.runBattle(d->get_boss());
+				if (p->getHP() < 0)
+				{
+					std::cout << "You have died... returning to town..." << std::endl;
+					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+					_getch();
+					p->setHP(10);
+					return;
+				}
+				dun_counter++;
 				return;
 			}
 			else if (input == "3")
 			{
-				dun_ent = "dungeon_easy.txt";
-				map_t = "map_1.txt";
-				dun = "all_entity.txt";
-				Dungeon* d = new Dungeon(dun);
-				d->fill_dungeon(dun_ent, map_t);
-				Combat_System cs(p, p->get_party());
-				d->run_dungeon(p, cs);
-				Scene sc;
-				sc.scene_005();
+
+				dun_ent = "dungeon_hard.txt";
+				map_t = "map_3.txt";
+
+				d->change_dungeon(dun_ent, map_t);
+				if (!d->run_dungeon(p, cs))
+				{
+					std::cout << "You have died... returning to town..." << std::endl;
+					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+					_getch();
+					p->setHP(10);
+					return;
+				}
+				sc.scene_005(); //Rica Start Scene
 				cs.runBattle(d->get_boss());
 				if (p->getHP() < 0)
 				{
-					sc.scene_006();
+					std::cout << "You have died... returning to town..." << std::endl;
+					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+					_getch();
+					p->setHP(10);
+					return;
+				}
+				dun_counter++;
+
+
+				cs.runBattle(d->get_boss()); //FIGHT.
+				if (p->getHP() < 0)
+				{
+					sc.scene_006(); //Rica Death Scene
 					return;
 				}
 				return;
