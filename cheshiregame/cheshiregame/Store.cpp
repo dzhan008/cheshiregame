@@ -28,7 +28,7 @@ void Store::fillStore(const string &input_file)
 	fin.open(store_file.c_str());
 	if (!fin)
 	{
-		std::cout << "Error opening file." << std::endl;
+		std::cout << "Error opening " << store_file << std::endl;
 		return;
 	}
 
@@ -244,8 +244,7 @@ void Store::run(player* p)
 		{
 			system("cls");
 			p->display_inventory();
-			std::cout << p->getInvSize();
-			std::cout << "Enter the number of the item you would like to sell.";
+			std::cout << "Enter the number of the item you would like to sell.\n";
 			std::cin >> usernum;
 			if (p->getInvSize() == 0)
 			{
@@ -270,6 +269,9 @@ void Store::run(player* p)
 			p->setmoney(totalGold);
 
 			p->inventory.erase(p->inventory.begin() + usernum);
+			std::cout << "Gold remaining: " << p->getmoney() << std::endl;
+			menu();
+			cin >> choice;
 		}
     }
     std::cout << "Gold remaining: " << p->getmoney() << std::endl;
