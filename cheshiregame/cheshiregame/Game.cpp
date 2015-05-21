@@ -20,7 +20,7 @@ Game::Game(std::string file_name)
 	inFile.open(skill_file.c_str());
 	if (!inFile.is_open())
 	{
-		std::cout << "File cannot be opened.";
+		std::cout << "Skill file cannot be opened.";
 	}
 
 	while (inFile.good())
@@ -57,7 +57,7 @@ void Game::fill_skills(std::string file_name)
 	inFile.open(skill_file.c_str());
 	if (!inFile.is_open())
 	{
-		std::cout << "File cannot be opened.";
+		std::cout << "Skill file cannot be opened.";
 	}
 
 	while (inFile.good())
