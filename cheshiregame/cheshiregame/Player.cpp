@@ -684,7 +684,7 @@ void player::display_con()
 
 void player::equip_gear(int i, const Gear* x)
 {
-	Gear* temp = equipment.at(i);
+	Gear* temp = new Gear(equipment.at(i));
 	Gear* slot = new Gear(x);
 
 	remove_inventory(x->getName());
@@ -715,7 +715,7 @@ void player::remove_gear(int i)
 
 void player::equip_wep(int i, const Weapon* x)
 {
-	Weapon* temp = weapon.at(i);
+	Weapon* temp = new Weapon(weapon.at(i));
 	Weapon* slot = new Weapon(x);
 
 	remove_inventory(x->getName());
@@ -723,11 +723,6 @@ void player::equip_wep(int i, const Weapon* x)
 	if (temp->getName() != "None")
 	{
 		add_inventory(temp);
-	}
-	else
-	{
-		wep_size -= 1;
-		inv_size -= 1;
 	}
 	update_player();
 }
