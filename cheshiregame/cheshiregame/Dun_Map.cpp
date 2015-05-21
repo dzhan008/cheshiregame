@@ -79,7 +79,7 @@ dun_map::dun_map(int sz, const string& file)
 }
 dun_map::dun_map(int size)
 {
-	vector<char> ran{ '1', ' ' };
+	vector<char> ran{ '1', '_', '_', '_' };
 	for (int i = 0; i < size; ++i) {
 		mapitems.push_back(vector<char>(size));
 	}
@@ -87,13 +87,18 @@ dun_map::dun_map(int size)
 	{
 		for (int j = 1; j < mapitems.at(i).size(); j++)
 		{
-			mapitems.at(i).at(j) = ran.at(rand() % 2);
+			mapitems.at(i).at(j) = ran.at(rand() % 4);
 		}
 	}
-	playerposition.first = 0;
-	playerposition.second = 0;
+	playerposition.first = rand() % size;
+	playerposition.second = rand() % size;
 	goal.first = rand() % size;
 	goal.second = rand() % size;
+	while ((goal.first == playerposition.first) && (goal.second == playerposition.second))
+	{
+		goal.first = rand() % size;
+		goal.second = rand() % size;
+	}
 	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 	mapitems.at(goal.first).at(goal.second) = 'G';
 	if (playerposition.second != 0)
@@ -129,12 +134,6 @@ dun_map::dun_map(int size)
 		mapitems.at(goal.first + 1).at(goal.second) = ' ';
 	}
 	goalmap = mapitems;
-
-
-
-
-	goalmap = mapitems;
-
 }
 
 //updates player position after moving
