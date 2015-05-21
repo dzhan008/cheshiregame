@@ -11,7 +11,6 @@
 
 
 //Gotta move these later or fix up menu
-//Shop demo_shop;
 string x = "Player 1";
 string y = "Rica";
 string dun_ent = "demo_dun_1_enemies.txt";
@@ -22,12 +21,13 @@ player* play = new player(x, "Game Master", 100, 10, 1, 5, 0, 100);
 player* invtest = new player(x, "Game Master", 10, 10, 1, 0, 0, 100);
 Town town1 = Town(play);
 Entity* enemy = new Entity(y, 10, 10, 1, 0, 5, 20);
-Entity* enemy2 = new Entity("Fox", 1, 10, 5, 5, 2, 10);
+Entity* enemy2 = new Entity("Fox", 10, 10, 5, 5, 2, 10);
 Entity* enemy3 = new Entity("Ngobody", 5, 15, 5, 5, 3, 15);
 Combat_System battle_demo = Combat_System(play);
 Dungeon* Master_Dun = new Dungeon(dun);
 Scene scene;
 SaveSystem savesystem;
+Game skills_list("skills.txt");
 
 using namespace std;
 
@@ -88,13 +88,9 @@ int main()
 			{
 				stats.at(i) = 4;
 			}
-			//stats.at(3) = 50;
 			play->setstats(stats);
-			/*play->set_min_dmg(30);
-			play->set_max_dmg(80);*/
-			std::cout << "\n\n\n";
-			Consumable* potion = new Consumable("Potion", "Potion", 20, 10);
-			play->setmoney(500);
+			Consumable* potion = new Consumable("Potion", "Consumable", 20, 10);
+			play->setmoney(100);
 			play->add_inventory(potion);
 
 			system("cls");
@@ -117,8 +113,8 @@ int main()
 			Skill s1("Rend", "P_Damage", 1.5, 0.40, 10);
 			Skill s2("God's Blow", "D_Damage", 999, 2000, 100, 0);
 			Skill s3("Epic Heal", "Heal", 50, 100, 0.80, 999999);
-			
-			play->add_skill(s1);
+			std::cout << skills_list.get_skill(0).getName();
+			play->add_skill(skills_list.get_skill(3));
 			play->add_skill(s2);
 			play->add_skill(s3);
 
@@ -138,7 +134,7 @@ int main()
 			std::cout << "\n\n\n\n\n" << std::endl;
 		}
         else if (input == 5) {
-			//exit(1);
+			exit(1);
 			/*Ally* dummy = new Ally;
 			play->add_member(dummy);
 			Combat_System combat_test(play, play->get_party());
