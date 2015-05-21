@@ -435,13 +435,13 @@ void Scene::scene_003_4(player* p)
 		else if (input == 2)
 		{
 			system("cls");
-			scene_003_4_2();
+			scene_003_4_2(p);
 			return;
 		}
 		else if (input == 3)
 		{
 			system("cls");
-			scene_003_4_3();
+			scene_003_4_3(p);
 			return;
 		}
 		cin.clear();
@@ -462,21 +462,21 @@ void Scene::scene_003_4_1(player* p)
 	return;
 }
 
-void Scene::scene_003_4_2()
+void Scene::scene_003_4_2(player* p)
 {
 	std::cout << "\"The town guide!\" the man says cheerfully. \"The name's Astuce.\" " << std::endl;
 	std::cout << " holds out his hand. \"Nice to meet you.\"\n\n";
 	next_input();
-	scene_004(false);
+	scene_004(p);
 	return;
 }
 
-void Scene::scene_003_4_3()
+void Scene::scene_003_4_3(player* p)
 {
 	std::cout << "\"I may be able to give you one if you do me a favor.\" " << std::endl;
 	std::cout << "He holds out his hand. \"I'm Astuce. Nice to meet you.\"\n\n";
 	next_input();
-	scene_004(false);
+	scene_004(p);
 	return;
 }
 
@@ -560,7 +560,7 @@ void Scene::scene_004_1()
 			std::cout << "\"Aliens. They came over and abducted the people of our town. Every one of them. I wasn't there when this happened, but I know I saw the spaceship flying towards the city while I was heading back. I \n was planning on creating a device that can teleport me to the ship, but I am missing something.\"\n\n";
 			next_input();
 			system("cls");
-			scene_004_3();
+			output_file("scene_003.txt");
 			return;
 		}
 		else if (input == 2)
@@ -568,7 +568,7 @@ void Scene::scene_004_1()
 			std::cout << "\"YES!\" Astuce sighs. \"They abducted everyone in this town. I wasn't there at the time, but I saw a \n spaceship flying towards the city when I was heading back. I wanted to create a device that can \n teleport me to their ship, but I am missing something.\"\n\n";
 			next_input();
 			system("cls");
-			scene_004_3();
+			output_file("scene_003.txt");
 			return;
 		}
 		cin.clear();
@@ -631,8 +631,9 @@ void Scene::scene_006(player* p)
 	if (p->check_condition("astuce_dead"))
 	{
 		std::cout << "You head back to town and find a note posted on one of the houses. You take it and give it a read:" << std::endl;
-		std::cout << "\"I assume you got the red gem, otherwise you wouldn't be seeing this. Good job, I guess. The demo is pretty much done from here so I hope you enjoyed every bit of it." << std::endl;
+		std::cout << "\"I assume you got the gems, otherwise you wouldn't be seeing this. Good job, I guess. The demo is pretty much done from here so I hope you enjoyed every bit of it." << std::endl;
 		std::cout << "-Game Creator\"" << std::endl;
+		exit(1);
 	}
 	else
 	{

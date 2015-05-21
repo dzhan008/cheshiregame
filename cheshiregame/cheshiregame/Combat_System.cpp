@@ -235,7 +235,7 @@ void Combat_System::runBattle(Entity* e){
 				int temp = randNumber();
 				if(temp > 50){
 					cout << "You've successfully ran away!" << endl;
-					std::cout << "Press any key to continue..." << std::endl << flush;
+					std::cout << "Press any key to continue...\n\n" << flush;
 					std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
 					_getch();
 					return;
@@ -363,13 +363,13 @@ void Combat_System::runBattle(Entity* e){
 			e->print_loot();
 		}
 		//Prompt user to see reward screens and stuff.
-		std::cout << "Press any key to continue..." << std::endl << flush;
+		std::cout << "Press any key to continue...\n\n"  << flush;
 		std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
 		_getch();
 	}
 	else{
 		cout << "You are dead." << endl;
-		std::cout << "Press any key to continue..." << std::endl << flush;
+		std::cout << "Press any key to continue...\n\n" << flush;
 		std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
 		_getch();
 		return;

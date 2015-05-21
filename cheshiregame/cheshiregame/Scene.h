@@ -50,8 +50,8 @@ public:
 	void scene_003_3(player* p);
 	void scene_003_4(player* p);
 	void scene_003_4_1(player* p);
-	void scene_003_4_2();
-	void scene_003_4_3();
+	void scene_003_4_2(player* p);
+	void scene_003_4_3(player* p);
 	void scene_004(player* p);
 	void scene_004_1();
 	void scene_004_2();

@@ -74,6 +74,9 @@ Town::Town(player* p) {
 	d = new Dungeon(dun);
 	d->fill_dungeon(dun_ent, map_t);
 
+	p->set_condition("boss_1", false); //Boss conditions
+	p->set_condition("boss_2", false);
+	p->set_condition("boss_3", false);
 
 	std::string store_filename = "all_items.txt";
 	s.fillStore(store_filename); //Change later to work for ANY STORE
@@ -158,7 +161,7 @@ void Town::run(player* p) {
 				system("cls");
                 dungeon_select(p, dun_counter);
 				system("cls");
-				if (dun_counter == 4)
+				if (dun_counter == 3)
 				{
 					sc->scene_006(p);
 				}
@@ -460,6 +463,7 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				system("cls");
 				sc->output_file("boss_001.txt");
 				cs.runBattle(d->get_boss());
 				sc->output_file("boss_001_1.txt");
@@ -470,12 +474,17 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				if (p->check_condition("boss_1"))
+				{
+					return;
+				}
+				p->set_condition("boss_1", true);
 				dun_counter++;
 				return;
 			}
 			else if (input == "2")
 			{
-				dun_ent = "dungeon_medium.txt";
+				dun_ent = "dungeon_med.txt";
 				map_t = "map_2.txt";
 
 				d->change_dungeon(dun_ent, map_t);
@@ -487,6 +496,7 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				system("cls");
 				sc->output_file("boss_002.txt");
 				cs.runBattle(d->get_boss());
 				sc->output_file("boss_002_1.txt");
@@ -498,6 +508,11 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				if (p->check_condition("boss_2"))
+				{
+					return;
+				}
+				p->set_condition("boss_2", true);
 				dun_counter++;
 				return;
 			}
@@ -516,7 +531,8 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
-				sc->output_file("boss_003_1.txt");
+				system("cls");
+				sc->output_file("boss_003.txt");
 				cs.runBattle(d->get_boss());
 				sc->output_file("boss_003_1.txt");
 				if (p->getHP() <= 0)
@@ -527,7 +543,13 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					p->setHP(10);
 					return;
 				}
+				if (p->check_condition("boss_3"))
+				{
+					return;
+				}
+				p->set_condition("boss_3", true);
 				dun_counter++;
+				return;
 			}
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
