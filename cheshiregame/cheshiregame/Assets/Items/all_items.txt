@@ -1,61 +1,61 @@
 Weapon
 Rusty Shiv
-5
+100
 5
 Weapon
 Steel Longsword
-10
-15
+100
+7
 Weapon
 Silver Longsword
-20
-30
+500
+12
 Weapon
 Diamond Dagger
-30
-50
+1000
+20
 Gear
 Chest
 Leather Coat
-15
+150
 10
 Gear
 Chest
 Heavy Iron Chestplate
-40
+400
 25
 Gear
 Legs
 Fur Boots
-10
+100
 5
 Gear
 Legs
 Enchanted Greaves
-50
+300
 20
 Gear
 Arms
 Leather Gloves
-10
+100
 5
 Gear
 Arms
 Mithril Gloves
-25
+250
 15
 Gear
 Helmet
 Steel Helmet
-15
+150
 10
 Consumable
 Health Potion
-5
+10
 10
 5
 Consumable
 Mana Potion
-5
+10
 10
 5
