@@ -90,13 +90,12 @@ int main()
 			vector<int> stats(5);
 			for (int i = 0; i < 5; ++i)
 			{
-				stats.at(i) = 4;
+				stats.at(i) = 14;
 			}
 			play->setstats(stats);
 			Consumable* potion = new Consumable("Potion", "Consumable", 20, 10);
 			play->setmoney(100);
 			play->add_inventory(potion);
-
 			system("cls");
 
 			scene.scene_001(play);
@@ -128,7 +127,7 @@ int main()
 		}
 		else if (input == 4)
 		{
-			std::cout << "Cheshire's Game Version 3.0" << std::endl;
+			std::cout << "Cheshire's Game Version 4.0" << std::endl;
 			std::cout << "Danny Diep - That Programmer" << std::endl;
 			std::cout << "Kenta Kitada - Busy Programmer" << std::endl;
 			std::cout << "Quynh Nguyen - No-Sleep Programmer" << std::endl;
