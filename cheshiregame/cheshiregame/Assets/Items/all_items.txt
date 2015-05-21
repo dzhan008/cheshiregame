@@ -1,19 +1,19 @@
 Weapon
 Rusty Shiv
 100
-5
+2
 Weapon
 Steel Longsword
-100
-7
+250
+5
 Weapon
 Silver Longsword
 500
-12
+7
 Weapon
 Diamond Dagger
 1000
-20
+15
 Gear
 Chest
 Leather Coat
