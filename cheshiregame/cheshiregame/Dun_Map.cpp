@@ -196,7 +196,7 @@ void dun_map::moveLeft()
 	else
 	{
 		cout << "There is  a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 	return;
 
@@ -219,7 +219,7 @@ void dun_map::moveRight()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 	return;
 }
@@ -237,7 +237,7 @@ void dun_map::moveUp()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 	return;
 }
@@ -256,7 +256,7 @@ void dun_map::moveDown()
 	else
 	{
 		cout << "There is a wall. " << endl;
-		wallBreak();
+		//wallBreak();
 	}
 
 	return;
