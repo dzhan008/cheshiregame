@@ -69,17 +69,21 @@ int main()
 		return 1;
 	}
 	string Art = getFileContents(file);
-	cout << Art << endl;
 
-	while (1)
+
+	int input = 0;
+
+	while (input != 5)
 	{
+		cout << Art << endl;
+
 		cout << "                                1. New Game \n";
 		cout << "                                2. Load Game \n";
 		cout << "                                3. Options \n";
 		cout << "                                4. Credits \n";
         cout << "                                5. Exit \n";
 
-		int input = 0;
+
 		cin >> input;
 		if (input == 1)
 		{
@@ -110,6 +114,7 @@ int main()
 		}
 		else if (input == 3)
 		{
+			scene.output_file("scene_003.txt");
 			Skill s1("Rend", "P_Damage", 1.5, 0.40, 10);
 			Skill s2("God's Blow", "D_Damage", 999, 2000, 100, 0);
 			Skill s3("Epic Heal", "Heal", 50, 100, 0.80, 999999);
@@ -146,9 +151,10 @@ int main()
 			Store s;
 			s.fillStore("all_items.txt");
 			s.run(play);
-
-
         }
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		system("cls");
 	}
 	return 0;
 }
