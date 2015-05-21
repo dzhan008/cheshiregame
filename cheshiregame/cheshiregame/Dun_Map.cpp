@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
+#include <utility>
 #include "Dun_Map.h"
 #include "player.h"
 #include <fstream>
@@ -18,7 +19,7 @@ dun_map::dun_map()
 	goal.first = 9;
 	goal.second = 9;
 	town.first = 1;
-	town.first = 1;
+	town.second = 1;
 	mapitems.at(playerposition.first).at(playerposition.second) = 'P';
 	mapitems.at(goal.first).at(goal.second) = 'G';
 	mapitems.at(town.first).at(town.second) = 'T';
