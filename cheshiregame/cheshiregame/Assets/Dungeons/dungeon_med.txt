@@ -5,5 +5,5 @@ Dragon
 Fire Harpy
 Black Salamander
 Raging Boar
-Infernal Phoenix
+Rica the Infernal Tyrant
 end
