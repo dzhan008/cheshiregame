@@ -20,9 +20,6 @@ class Store
 		//Store mutator functions
 		void menu() const;
         void run(player* p);
-        void printStore(player*); 
-		void purchaseItem(const unsigned, player*);
-		void sellItem(const int, player*);
 		void storeUpdate();
     private:
 		//Inventories

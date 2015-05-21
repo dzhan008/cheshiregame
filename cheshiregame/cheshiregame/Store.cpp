@@ -103,14 +103,143 @@ void Store::run(player* p)
 		if (choice == 1)
 		{
 			system("cls");
-			printStore(p);
+			for (int i = 0; i < storeInventory.size(); ++i)
+			{
+				std::cout << i + 1 << ": " << storeInventory.at(i)->getName() << std::endl;
+				std::cout << storeInventory.at(i)->getValue() << " gold" << std::endl;
+
+				if (storeInventory.at(i)->getName() == "Health Potion")
+				{
+					std::cout << "Amount: " << numHealthPots << std::endl;
+				}
+				else if (storeInventory.at(i)->getName() == "Mana Potion")
+				{
+					std::cout << "Amount: " << numManaPots << std::endl;
+				}
+			}
+			menu();
+			cin >> choice;
 		}
 		else if (choice == 2)
 		{
 			system("cls");
 			std::cout << "Enter the number of the item to purchase." << std::endl;
 			std::cin >> usernum;
-			purchaseItem(usernum, p);
+			int goldSpent = 0;
+			if (usernum > storeInventory.size() || usernum < 1)
+			{
+				std::cout << "Item cannot be accessed." << std::endl;
+				menu();
+				cin >> choice;
+			}
+			else if (p->getmoney() < storeInventory.at(usernum - 1)->getValue())
+			{
+				std::cout << "You are too poor." << std::endl;
+				menu();
+				cin >> choice;
+			}
+			else
+			{
+				if (storeInventory.at(usernum - 1)->getType() == "Weapon")
+				{
+					for (int i = 0; i < weapInv.size(); ++i)
+					{
+						if (storeInventory.at(usernum - 1)->getName() == weapInv.at(i)->getName())
+						{
+							p->add_inventory(weapInv.at(i));
+						}
+					}
+					std::cout << "You bought one " << storeInventory.at(usernum - 1)->getName() << "." << std::endl;
+
+					goldSpent += storeInventory.at(usernum - 1)->getValue();
+					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
+					p->setmoney(playerMoney);
+
+					storeInventory.erase(storeInventory.begin() + usernum - 1);
+
+					std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
+					menu();
+					cin >> choice;
+				}
+				else if (storeInventory.at(usernum - 1)->getType() == "Gear")
+				{
+					for (int i = 0; i < gearInv.size(); ++i)
+					{
+						if (storeInventory.at(usernum - 1)->getName() == gearInv.at(i)->getName())
+						{
+							p->add_inventory(gearInv.at(i));
+						}
+					}
+					std::cout << "You bought one " << storeInventory.at(usernum - 1)->getName() << "." << std::endl;
+
+					goldSpent += storeInventory.at(usernum - 1)->getValue();
+					int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
+					p->setmoney(playerMoney);
+
+					storeInventory.erase(storeInventory.begin() + usernum - 1);
+
+					std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
+					menu();
+					cin >> choice;
+				}
+				else if (storeInventory.at(usernum - 1)->getType() == "Consumable")
+				{
+					if (storeInventory.at(usernum - 1)->getName() == "Health Potion")
+					{
+						for (int i = 0; i < potInv.size(); ++i)
+						{
+							if (storeInventory.at(usernum - 1)->getName() == potInv.at(i)->getName())
+							{
+								p->add_inventory(potInv.at(i));
+								potInv.erase(potInv.begin() + i);
+							}
+						}
+						--numHealthPots;
+						std::cout << "You bought one " << storeInventory.at(usernum - 1)->getName() << "." << std::endl;
+
+						goldSpent += storeInventory.at(usernum - 1)->getValue();
+						int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
+						p->setmoney(playerMoney);
+
+						std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
+
+						if (numHealthPots == 0)
+						{
+							storeInventory.erase(storeInventory.begin() + usernum - 1);
+						}
+						menu();
+						cin >> choice;
+					}
+					else //Mana pot
+					{
+						for (int i = 0; i < potInv.size(); ++i)
+						{
+							if (storeInventory.at(usernum - 1)->getName() == potInv.at(i)->getName())
+							{
+								p->add_inventory(potInv.at(i));
+								potInv.erase(potInv.begin() + i);
+							}
+						}
+						--numManaPots;
+						std::cout << "You bought one " << storeInventory.at(usernum - 1)->getName() << "." << std::endl;
+
+						goldSpent += storeInventory.at(usernum - 1)->getValue();
+						int playerMoney = p->getmoney() - storeInventory.at(usernum - 1)->getValue();
+						p->setmoney(playerMoney);
+
+						std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
+
+						if (numManaPots == 0)
+						{
+							storeInventory.erase(storeInventory.begin() + usernum - 1);
+						}
+						menu();
+						cin >> choice;
+					}
+				}
+			}
+			// std::cin.clear();
+			// std::cin.ignore(INT_MAX, '\n');
 		}
 		else if (choice == 3)
 		{
@@ -119,164 +248,33 @@ void Store::run(player* p)
 			std::cout << p->getInvSize();
 			std::cout << "Enter the number of the item you would like to sell.";
 			std::cin >> usernum;
-			sellItem(usernum, p);
+			if (p->getInvSize() == 0)
+			{
+				std::cout << "Inventory empty.\n";
+				menu();
+				cin >> choice;
+			}
+			if (usernum >= p->getInvSize()) {
+				std::cout << "Error: Item does not exist.\n";
+				menu();
+				cin >> choice;
+			}
+			if (usernum < 0) {
+				std::cout << "Error: Invalid inventory position.\n";
+				menu();
+				cin >> choice;
+			}
+
+			storeInventory.push_back(p->inventory.at(usernum));
+
+			int totalGold = p->getmoney() + p->inventory.at(usernum)->getValue();
+			p->setmoney(totalGold);
+
+			p->inventory.erase(p->inventory.begin() + usernum);
 		}
     }
     std::cout << "Gold remaining: " << p->getmoney() << std::endl;
     return;
-}
-void Store::printStore(player* p)
-{
-	for (int i = 0; i < storeInventory.size(); ++i)
-	{
-		std::cout << i + 1 << ": " << storeInventory.at(i)->getName() << std::endl;
-		std::cout << storeInventory.at(i)->getValue() << " gold" << std::endl;
-
-		if (storeInventory.at(i)->getName() == "Health Potion")
-		{
-			std::cout << "Amount: " << numHealthPots << std::endl;
-		}
-		else if (storeInventory.at(i)->getName() == "Mana Potion")
-		{
-			std::cout << "Amount: " << numManaPots << std::endl;
-		}
-	}
-	run(p);
-}
-void Store::purchaseItem(const unsigned invPos, player* p) {
-	int goldSpent = 0;
-	if (invPos > storeInventory.size() || invPos < 1)
-	{
-		std::cout << "Item cannot be accessed." << std::endl;
-		run(p);
-	}
-	else if (p->getmoney() < storeInventory.at(invPos - 1)->getValue())
-	{
-		std::cout << "You are too poor." << std::endl;
-		run(p);
-	}
-	else
-	{
-		if (storeInventory.at(invPos - 1)->getType() == "Weapon")
-		{
-			for (int i = 0; i < weapInv.size(); ++i)
-			{
-				if (storeInventory.at(invPos - 1)->getName() == weapInv.at(i)->getName())
-				{
-					p->add_inventory(weapInv.at(i));
-				}
-			}
-			std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
-
-			goldSpent += storeInventory.at(invPos - 1)->getValue();
-			int playerMoney = p->getmoney() - storeInventory.at(invPos - 1)->getValue();
-			p->setmoney(playerMoney);
-
-			storeInventory.erase(storeInventory.begin() + invPos - 1);
-
-			std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
-			run(p);
-		}
-		else if (storeInventory.at(invPos - 1)->getType() == "Gear")
-		{
-			for (int i = 0; i < gearInv.size(); ++i)
-			{
-				if (storeInventory.at(invPos - 1)->getName() == gearInv.at(i)->getName())
-				{
-					p->add_inventory(gearInv.at(i));
-				}
-			}
-			std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
-
-			goldSpent += storeInventory.at(invPos - 1)->getValue();
-			int playerMoney = p->getmoney() - storeInventory.at(invPos - 1)->getValue();
-			p->setmoney(playerMoney);
-
-			storeInventory.erase(storeInventory.begin() + invPos - 1);
-
-			std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
-			run(p);
-		}
-		else if (storeInventory.at(invPos - 1)->getType() == "Consumable")
-		{
-			if (storeInventory.at(invPos - 1)->getName() == "Health Potion")
-			{
-				for (int i = 0; i < potInv.size(); ++i)
-				{
-					if (storeInventory.at(invPos - 1)->getName() == potInv.at(i)->getName())
-					{
-						p->add_inventory(potInv.at(i));
-						potInv.erase(potInv.begin() + i);
-					}
-				}
-				--numHealthPots;
-				std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
-
-				goldSpent += storeInventory.at(invPos - 1)->getValue();
-				int playerMoney = p->getmoney() - storeInventory.at(invPos - 1)->getValue();
-				p->setmoney(playerMoney);
-
-				std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
-
-				if (numHealthPots == 0)
-				{
-					storeInventory.erase(storeInventory.begin() + invPos - 1);
-				}
-				run(p);
-			}
-			else //Mana pot
-			{
-				for (int i = 0; i < potInv.size(); ++i)
-				{
-					if (storeInventory.at(invPos - 1)->getName() == potInv.at(i)->getName())
-					{
-						p->add_inventory(potInv.at(i));
-						potInv.erase(potInv.begin() + i);
-					}
-				}
-				--numManaPots;
-				std::cout << "You bought one " << storeInventory.at(invPos - 1)->getName() << "." << std::endl;
-
-				goldSpent += storeInventory.at(invPos - 1)->getValue();
-				int playerMoney = p->getmoney() - storeInventory.at(invPos - 1)->getValue();
-				p->setmoney(playerMoney);
-
-				std::cout << "You have " << p->getmoney() << " gold left." << std::endl;
-
-				if (numManaPots == 0)
-				{
-					storeInventory.erase(storeInventory.begin() + invPos - 1);
-				}
-				run(p);
-			}
-		}
-	}
-	std::cin.clear();
-	std::cin.ignore(INT_MAX, '\n');
-}
-void Store::sellItem(const int invPos, player* p) 
-{
-	if (p->getInvSize() == 0)
-	{
-		std::cout << "Inventory empty.\n";
-		run(p);
-	}
-	if (invPos >= p->getInvSize()) {
-		std::cout << "Error: Item does not exist.\n";
-		run(p);
-	}
-	if(invPos < 0) {
-		std::cout << "Error: Invalid inventory position.\n";
-		run(p);
-	}
-
-	storeInventory.push_back(p->inventory.at(invPos));
-
-	int totalGold = p->getmoney() + p->inventory.at(invPos)->getValue();
-	p->setmoney(totalGold);
-
-	p->inventory.erase(p->inventory.begin() + invPos);
-	run(p);
 }
 void Store::storeUpdate()
 {

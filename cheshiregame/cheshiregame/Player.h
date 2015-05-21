@@ -52,7 +52,7 @@ class player
 		std::string playerjob; //The player's job.
 		std::vector<int> playerstats; //Current stats for the player.
 		std::vector<Skill> skills; //The list of player's skills
-		std::vector<Ally*> party; //The player's party.
+		std::vector<Ally*> party; //The player's slaves.
 		//vector<Quest> quest_list; //We might need this to display quests
 
 		Gear* none;
