@@ -370,9 +370,8 @@ void Town::tavern(player* p)
 				displayAllies();
 				cin >> index;
 			}
-			else if (p->getmoney() < allies.at(index)->getMaxHP())
+			if (p->getmoney() < allies.at(index)->getMaxHP())
 			{
-
 				system("cls");
 				std::cout << "You are too poor.\n";
 				displayAllies();
@@ -384,6 +383,7 @@ void Town::tavern(player* p)
 
 				int totalGold = p->getmoney() - allies.at(index)->getMaxHP();
 				p->setmoney(totalGold);
+				std::cout << "You have " << totalGold << " remaining.\n";
 				p->set_min_dmg(allies.at(index)->getDef());
 
 				system("cls");
