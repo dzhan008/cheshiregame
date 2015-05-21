@@ -168,7 +168,7 @@ Rock Smash
 25 20 .8 Single
 <end>
 Yeti
-60 50 9 270 2 200 10 15 11 16 8
+60 50 9 270 2 200 17 15 11 16 8
 :loot:
 Yeti's fur
 100
@@ -179,14 +179,14 @@ Ice Ball
 15 25 .9 Single
 <end>
 Winter Fox
-60 100 9 230 2 210 10 15 11 16 7
+60 100 9 230 2 210 15 15 11 16 7
 :loot:
 Potion
 <end_item>
 :spells:
 <end>
 Azure Wyvern
-100 100 14 350 7 350 14 15 11 16 13
+100 100 14 350 7 350 20 15 11 16 13
 :loot:
 Potion
 Frost Scales
