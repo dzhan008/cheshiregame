@@ -160,7 +160,7 @@ void Town::run(player* p) {
 				system("cls");
 				if (dun_counter == 4)
 				{
-					sc->output_file("scene_004_0.txt");
+					sc->scene_006(p);
 				}
 				display_options();
             }
@@ -308,6 +308,7 @@ void Town::displayAllies()
 	{
 		std::cout << i << ". " << allies.at(i)->getname() << " , Cost: " << allies.at(i)->getMaxHP() << std::endl;
 	}
+	std::cout << "4.Exit\n";
 }
 void Town::displayTavernMenu()
 {
@@ -320,7 +321,7 @@ void Town::createAllies(player* p)
 	//Will generalize later
 	Ally* baby = new Ally("Angry Toddler", "Thief", 10, 1, 0);
 	allies.push_back(baby);
-	Ally* recruit = new Ally("Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
+	Ally* recruit = new Ally("Overly Eager Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
 	allies.push_back(recruit);
 	Ally* horse = new Ally("Horsey", "Thief", 100, p->getlevel(), p->getexp());
 	allies.push_back(horse);
@@ -328,8 +329,7 @@ void Town::createAllies(player* p)
 	allies.push_back(mage);
 
 }
-void Town::tavern(player* p) 
-{
+void Town::tavern(player* p) {
 	int input = 0;
 	std::cout << "Welcome to the newly built tavern! I'm the innkeeper, how can I help you?\n";
 	displayTavernMenu();
@@ -526,15 +526,6 @@ void Town::dungeon_select(player* p, int & dun_counter)
 					return;
 				}
 				dun_counter++;
-
-
-				cs.runBattle(d->get_boss()); //FIGHT.
-				if (p->getHP() < 0)
-				{
-					sc.scene_006(); //Rica Death Scene
-					return;
-				}
-				return;
 			}
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');

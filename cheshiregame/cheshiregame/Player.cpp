@@ -277,6 +277,20 @@ vector<int> player::getStats(){
 	return playerstats;
 }
 
+/*Conditions*/
+
+void player::set_condition(std::string condition, bool b)
+{
+	conditions[condition] = b;
+}
+
+bool player::check_condition(std::string condition)
+{
+	return conditions[condition];
+}
+
+
+
 bool player::calculateCrit(){
 	double temp = 2 + (playerstats.at(4) * .13);
 	int x = tRand();

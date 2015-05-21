@@ -237,7 +237,7 @@ bool Dungeon::run_dungeon(player*& p, Combat_System c)
 		if ((dungeon_map->pf() == dungeon_map->gf()) && (dungeon_map->ps() == dungeon_map->gs()))
 		{
 			//cout << "GOOOOOAAAAAAAALLLLLLLLLLL!" << endl;
-			return false;
+			return true;
 		}
 		else if (input != "menu" && ((rand() % 4 + 1) == 1)) //Fix instance where the player encounters an enemy even when standing still.
 		{

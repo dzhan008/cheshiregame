@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <vector>
+#include <map>
 #include <string>
 
 using namespace std;
@@ -52,7 +53,8 @@ class player
 		std::string playerjob; //The player's job.
 		std::vector<int> playerstats; //Current stats for the player.
 		std::vector<Skill> skills; //The list of player's skills
-		std::vector<Ally*> party; //The player's slaves.
+		std::vector<Ally*> party; //The player's party.
+		std::map < std::string, bool > conditions;
 		//vector<Quest> quest_list; //We might need this to display quests
 
 		Gear* none;
@@ -87,6 +89,11 @@ class player
 		vector<int> getStats();
 		bool calculateCrit();
 		bool calculateAccuracy(Entity* e);
+
+		/*Conditions*/
+
+		void set_condition(std::string, bool);
+		bool check_condition(std::string);
 
 		/*For Inventories*/
 		int getItemSize();

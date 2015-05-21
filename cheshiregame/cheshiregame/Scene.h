@@ -52,13 +52,13 @@ public:
 	void scene_003_4_1(player* p);
 	void scene_003_4_2();
 	void scene_003_4_3();
-	void scene_004(bool dead);
+	void scene_004(player* p);
 	void scene_004_1();
 	void scene_004_2();
 	void scene_004_3();
 
 	void scene_005(); //Boss fight!
-	void scene_006(); //Ending
+	void scene_006(player* p); //Ending
 };
 
 #endif

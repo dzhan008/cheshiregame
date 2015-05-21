@@ -457,7 +457,8 @@ void Scene::scene_003_4_1(player* p)
 	Gear* mask = new Gear("Jester Mask", 50, "Helmet", 20);
 	p->add_inventory(mask);
 	next_input();
-	scene_004(true);
+	p->set_condition("astuce_dead", true);
+	scene_004(p);
 	return;
 }
 
@@ -479,12 +480,12 @@ void Scene::scene_003_4_3()
 	return;
 }
 
-void Scene::scene_004(bool dead)
+void Scene::scene_004(player* p)
 {
 	int input = 0;
 	system("cls");
 
-	if (dead)
+	if (p->check_condition("astuce_dead"))
 	{
 		astuce_alive = false;
 
@@ -623,12 +624,11 @@ void Scene::scene_005()
 	std::cout << "Its screech fills the room, causing you to stagger. While you recover, the Rica pounces after you!" << std::endl;
 }
 
-void Scene::scene_006()
+void Scene::scene_006(player* p)
 {
 	int choice = 0;
 
-	std::cout << "At the final blow, the Rica falls. It tries to stand back up, but tumbles back down at its failed \n attempt. The Rica's red eyes turn dull, and it stops breathing. With a sigh of relief, you move up the podium to take the gem. \n\n";
-	if (!astuce_alive)
+	if (p->check_condition("astuce_dead"))
 	{
 		std::cout << "You head back to town and find a note posted on one of the houses. You take it and give it a read:" << std::endl;
 		std::cout << "\"I assume you got the red gem, otherwise you wouldn't be seeing this. Good job, I guess. The demo is pretty much done from here so I hope you enjoyed every bit of it." << std::endl;
