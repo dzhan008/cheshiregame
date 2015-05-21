@@ -3,15 +3,20 @@
 
 #include "stdafx.h"
 
+class Skill;
+
 class Game
 {
 	public:
 		Game();
+		Game(std::string file_name);
 		void intialize() const; //Initializes anything needed for the game. This is run first in main.
-
+		Skill get_skill(int index);
+		void fill_skills(std::string file_name);
 
 	private:
-		player current_player;
+		std::vector<Skill> skills;
+
 
 
 
