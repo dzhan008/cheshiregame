@@ -238,8 +238,8 @@ void Store::run(player* p)
 					}
 				}
 			}
-			// std::cin.clear();
-			// std::cin.ignore(INT_MAX, '\n');
+			std::cin.clear();
+			std::cin.ignore(INT_MAX, '\n');
 		}
 		else if (choice == "3")
 		{

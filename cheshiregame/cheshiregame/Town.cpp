@@ -395,6 +395,8 @@ void Town::tavern(player* p) {
 				cin >> input;
 			}
 		}
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
 	}
 	std::cout << "Goodbye!\n";
 	_getch();
