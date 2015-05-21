@@ -83,23 +83,24 @@ void Store::menu() const
 	std::cout << "3. Sell item." << std::endl;
 	std::cout << "4. Exit." << std::endl;
 }
+
 void Store::run(player* p)
 {
-	int choice = 0;
+	string choice = "0";
 	int usernum;
 
 	std::cout << "Gold remaining: " << p->getmoney() << std::endl;
 	menu();
 	cin >> choice;
 
-	while (choice != 4)
+	while (choice != "4")
 	{
 		while (cin.fail())
 		{
 			std::cout << "Invalid input.\n";
 			cin >> choice;
 		}
-		if (choice == 1)
+		if (choice == "1")
 		{
 			system("cls");
 			for (int i = 0; i < storeInventory.size(); ++i)
@@ -119,7 +120,7 @@ void Store::run(player* p)
 			menu();
 			cin >> choice;
 		}
-		else if (choice == 2)
+		else if (choice == "2")
 		{
 			system("cls");
 			std::cout << "Enter the number of the item to purchase." << std::endl;
@@ -240,7 +241,7 @@ void Store::run(player* p)
 			// std::cin.clear();
 			// std::cin.ignore(INT_MAX, '\n');
 		}
-		else if (choice == 3)
+		else if (choice == "3")
 		{
 			system("cls");
 			p->display_inventory();

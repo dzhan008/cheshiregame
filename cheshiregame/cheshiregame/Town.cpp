@@ -305,7 +305,6 @@ void Town::displayAllies()
 	{
 		std::cout << i << ". " << allies.at(i)->getname() << " , Cost: " << allies.at(i)->getMaxHP() << std::endl;
 	}
-	std::cout << "4.Exit\n";
 }
 void Town::displayTavernMenu()
 {
@@ -318,7 +317,7 @@ void Town::createAllies(player* p)
 	//Will generalize later
 	Ally* baby = new Ally("Angry Toddler", "Thief", 10, 1, 0);
 	allies.push_back(baby);
-	Ally* recruit = new Ally("Overly Eager Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
+	Ally* recruit = new Ally("Recruit", "Swordsman", 50, p->getlevel(), p->getexp());
 	allies.push_back(recruit);
 	Ally* horse = new Ally("Horsey", "Thief", 100, p->getlevel(), p->getexp());
 	allies.push_back(horse);
@@ -326,13 +325,14 @@ void Town::createAllies(player* p)
 	allies.push_back(mage);
 
 }
-void Town::tavern(player* p) {
+void Town::tavern(player* p) 
+{
 	int input = 0;
-    std::cout << "Welcome to the newly built tavern! I'm the innkeeper, how can I help you?\n";
+	std::cout << "Welcome to the newly built tavern! I'm the innkeeper, how can I help you?\n";
 	displayTavernMenu();
-	cin >> input; 
+	cin >> input;
 
-	while (input != 2)
+	while (input != 3)
 	{
 		while (cin.fail())
 		{
@@ -343,128 +343,59 @@ void Town::tavern(player* p) {
 		{
 			std::cout << "Hey wait I know you...you're that deadbeat who doesn't pay up.\n";
 			std::cout << "I'm not giving you any drinks anytime soon.\n";
-			displayTavernMenu(); 
+			displayTavernMenu();
 			cin >> input;
 		}
-		if (input == 3)
+		else if (input == 2)
 		{
-			std::cout << "Goodbye!\n";
-			_getch();
-			return;
+			if (allies.empty())
+			{
+				system("cls");
+				std::cout << "You've got all the allies here! See you later you cheap ass drunk!";
+				_getch();
+				return;
+			}
+			int index;
+			std::cout << "There are several people here waiting for you, friend! Choose who you want!\n";
+			displayAllies();
+			std::cout << "You have " << p->getmoney() << " gold remaining.\n";
+			cin >> index;
+			if (index < 0 || index >= allies.size())
+			{
+				system("cls");
+				std::cout << "Ally does not exist. Try another number.\n";
+				displayAllies();
+				cin >> index;
+			}
+			else if (p->getmoney() < allies.at(index)->getMaxHP())
+			{
+
+				system("cls");
+				std::cout << "You are too poor.\n";
+				displayAllies();
+				cin >> input;
+			}
+			else
+			{
+				p->add_member(allies.at(index));
+
+				int totalGold = p->getmoney() - allies.at(index)->getMaxHP();
+				p->setmoney(totalGold);
+				p->set_min_dmg(allies.at(index)->getDef());
+
+				system("cls");
+
+				std::cout << allies.at(index)->getname() << " is now part of your team! This should help in battle.\n";
+				allies.erase(allies.begin() + index);
+
+				displayTavernMenu();
+				cin >> input;
+			}
 		}
 	}
-
-	std::cout << "There are several people here waiting for you, friend! Choose who you want!\n";
-	displayAllies();
-	cin >> input;
-	while (input != 4)
-	{
-		if (allies.empty())
-		{
-			system("cls");
-			std::cout << "You've got all the allies here! See you later you cheap ass drunk!";
-			_getch();
-			return;
-		}
-		while (cin.fail())
-		{
-			system("cls");
-			std::cout << "You're drunk aren't you. Try a different input.\n";
-			displayAllies();
-		}
-		if (input < 0 || input > 4)
-		{
-			system("cls");
-			std::cout << "Ally does not exist. Try another number.\n";
-			displayAllies();
-			cin >> input;
-		}
-		if (input == 0)
-		{
-			if (p->getmoney() < allies.at(input)->getMaxHP())
-			{
-				system("cls");
-				std::cout << "You can't afford the toddler. Why don't you try having your own baby?\n";
-				displayAllies();
-				cin >> input;
-			}
-			p->add_member(allies.at(input));
-
-			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
-			p->setmoney(totalGold);
-			p->set_min_dmg(2);
-
-			system("cls");
-
-			std::cout << "You have a new ally! This should help you in battle now.\n";
-			allies.erase(allies.begin()+input);
-			displayAllies();
-			cin >> input;
-		}
-		if (input == 1)
-		{
-			if (p->getmoney() < allies.at(input)->getMaxHP())
-			{
-				system("cls");
-				std::cout << "You don't have enough money.\n";
-				displayAllies();
-				cin >> input;
-			}
-			system("cls");
-
-			p->add_member(allies.at(input));
-			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
-			p->setmoney(totalGold);
-			p->set_min_dmg(10);
-
-			std::cout << "You have a new ally! This should help you in battle now.\n";
-			allies.erase(allies.begin() + input);
-			displayAllies();
-			cin >> input;
-		}
-		if (input == 2)
-		{
-			if (p->getmoney() < allies.at(input)->getMaxHP())
-			{
-				system("cls");
-				std::cout << "You don't have enough money. *sad neigh* \n";
-				cin >> input;
-			}
-			system("cls");
-
-			p->add_member(allies.at(input));
-			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
-			p->setmoney(totalGold);
-			p->set_min_dmg(20);
-
-			std::cout << "You have a new ally! This should help you in battle now.\n";
-			allies.erase(allies.begin() + input);
-			displayAllies();
-			cin >> input;
-		}
-		if (input == 3)
-		{
-			if (p->getmoney() < allies.at(input)->getMaxHP())
-			{
-				system("cls");
-				std::cout << "You don't have enough money.\n";
-				displayAllies();
-				cin >> input;
-			}
-			system("cls");
-
-			p->add_member(allies.at(input));
-			int totalGold = p->getmoney() - allies.at(input)->getMaxHP();
-			p->setmoney(totalGold);
-			p->set_min_dmg(25);
-			
-			std::cout << "You have a new ally! This should help you in battle now.\n";
-			allies.erase(allies.begin() + input);
-			displayAllies();
-			cin >> input;
-		}
-	}
-    return;
+	std::cout << "Goodbye!\n";
+	_getch();
+	return;
 }
 
 void Town::store(player* p) {
