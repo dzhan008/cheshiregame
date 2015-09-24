@@ -649,7 +649,7 @@ void player::remove_inventory(string item)
 	{
 		if (inventory.at(i)->getName() == item)
 		{
-			delete inventory.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
+			//delete inventory.at(i); //Err, I think we can just point this to NULL if we have a list of pointer items...
 			inventory.erase(inventory.begin() + i);
 		}
 	}
@@ -727,17 +727,18 @@ void player::remove_gear(int i)
 	update_player();
 }
 
-void player::equip_wep(int i, const Weapon* x)
+void player::equip_wep(int i, Weapon* x)
 {
-	Weapon* temp = new Weapon(weapon.at(i));
-	Weapon* slot = new Weapon(x);
+	Weapon* temp = weapon.at(i); //Weapon you are currently holding.
 
-	remove_inventory(x->getName());
-	weapon.at(i) = slot;
 	if (temp->getName() != "None")
-	{
+	{ 
+
 		add_inventory(temp);
 	}
+	remove_inventory(x->getName());
+	weapon.at(i) = x;
+
 	update_player();
 }
 
