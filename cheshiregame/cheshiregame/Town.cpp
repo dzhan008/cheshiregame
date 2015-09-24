@@ -211,6 +211,7 @@ void Town::inn(player* p) {
                     if (p->getmoney() < 50)
                     {
                         std::cout << "What do you think this is, a charity house? Get lost!" << std::endl;
+						_getch();
                         return;
                     }
                     else
@@ -218,6 +219,7 @@ void Town::inn(player* p) {
                         p->setmoney(p->getmoney() - 50);
                         p->setHP(p->getMaxHP());
                         std::cout << "Hope you enjoyed your stay!" << std::endl;
+						_getch();
                         return;
                     }
                 }
@@ -255,9 +257,11 @@ void Town::blacksmith(player* p) {
 
 				std::cout << "I can refine your weapon for a price. However, there is a chance I may break it." << std::endl;
 				std::cout << "The price to refine your weapon is 100 gold." << std::endl;
+				std::cout << "Remember, the item must be in your inventory." << std::endl;
 				if (p->getmoney() < 100)
 				{
 					std::cout << "Sorry pal, you don't have enough gold." << std::endl;
+					_getch();
 					return;
 				}
 				std::cout << "Which weapon would you like me to refine? (Type q to quit)" << std::endl;
@@ -280,8 +284,9 @@ void Town::blacksmith(player* p) {
 				if ((rand() % 3 + 1) == 1)
 				{
 					std::cout << "The blacksmith hammers down your weapon, tempering it skillfully." << std::endl;
-					std::cout << "\"Here you go.\" The blacksmith hands you your weapon, which looks better than ever." << std::endl;
+					std::cout << "\"Here you go.\" The blacksmith hands you your weapon, which looks better than before." << std::endl;
 					dynamic_cast<Weapon*>(p->inventory_search(wep))->add_dmg((rand() % 10 + 1));
+					_getch();
 					return;
 				}
 				else
@@ -289,6 +294,7 @@ void Town::blacksmith(player* p) {
 					std::cout << "The blacksmith clanks your weapon with his hammer, but breaks it with his next strike." << std::endl;
 					std::cout << "\"Curses! My hand slipped.\" He frowns, and apologetically hands you your broken weapon." << std::endl;
 					p->remove_inventory(wep);
+					_getch();
 					return;
 				}
 
@@ -334,17 +340,16 @@ void Town::createAllies(player* p)
 }
 void Town::tavern(player* p) {
 	int input = 0;
+	int usernum;
 	std::cout << "Welcome to the newly built tavern! I'm the innkeeper, how can I help you?\n";
 	displayTavernMenu();
 	cin >> input;
-
+	if (input <= 0 || input >= 4)
+	{
+		return;
+	}
 	while (input != 3)
 	{
-		while (cin.fail())
-		{
-			std::cout << "You're drunk aren't you. Try a different input.";
-			cin >> input;
-		}
 		if (input == 1)
 		{
 			std::cout << "Hey wait I know you...you're that deadbeat who doesn't pay up.\n";
@@ -357,42 +362,43 @@ void Town::tavern(player* p) {
 			if (allies.empty())
 			{
 				system("cls");
-				std::cout << "You've got all the allies here! See you later you cheap ass drunk!";
+				std::cout << "You've got all the allies here! See you later you cheap drunk!";
 				_getch();
 				return;
 			}
-			int index;
 			std::cout << "There are several people here waiting for you, friend! Choose who you want!\n";
 			displayAllies();
 			std::cout << "You have " << p->getmoney() << " gold remaining.\n";
-			cin >> index;
-			if (index < 0 || index >= allies.size())
+			cin >> usernum;
+			if (usernum < 0 || usernum >= allies.size())
 			{
 				system("cls");
-				std::cout << "Ally does not exist. Try another number.\n";
-				displayAllies();
-				cin >> index;
+				std::cout << "Ally does not exist.\n";
+				displayTavernMenu();
+				cin >> input;
 			}
-			if (p->getmoney() < allies.at(index)->getMaxHP())
+			if (p->getmoney() < allies.at(usernum)->getMaxHP())
 			{
 				system("cls");
 				std::cout << "You are too poor.\n";
-				displayAllies();
+				displayTavernMenu();
 				cin >> input;
 			}
 			else
 			{
-				p->add_member(allies.at(index));
+				p->add_member(allies.at(usernum));
 
-				int totalGold = p->getmoney() - allies.at(index)->getMaxHP();
+				int totalGold = p->getmoney() - allies.at(usernum)->getMaxHP();
 				p->setmoney(totalGold);
+
 				std::cout << "You have " << totalGold << " remaining.\n";
-				p->set_min_dmg(allies.at(index)->getDef());
+
+				p->set_min_dmg(allies.at(usernum)->getDef());
 
 				system("cls");
 
-				std::cout << allies.at(index)->getname() << " is now part of your team! This should help in battle.\n";
-				allies.erase(allies.begin() + index);
+				std::cout << allies.at(usernum)->getname() << " is now part of your team! This should help in battle.\n";
+				allies.erase(allies.begin() + usernum);
 
 				displayTavernMenu();
 				cin >> input;
@@ -413,9 +419,18 @@ void Town::store(player* p) {
 
 void Town::mystic(player* p)
 {
+	if (p->check_condition("learned_skills") == true)
+	{
+		std::cout << "I have taught everything I know. There is no more I can teach you." << std::endl;
+		_getch();
+		return;
+	}
 	std::cout << "Let me provide you with a set of skills...They will help you on your journey." << std::endl;
+	std::cout << "You learned Rend!" << std::endl;
+	std::cout << "You learned Mend!" << std::endl;
 	p->add_skill(skills.get_skill(0));
 	p->add_skill(skills.get_skill(3));
+	p->set_condition("learned_skills", true);
 	_getch();
 }
 
