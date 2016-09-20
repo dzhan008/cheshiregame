@@ -19,6 +19,13 @@ Cheshire's Game is a text-based RPG game created by freshmen at UCR. In this gam
 ![Alt text](/Screenshots/CheshiresGame6.PNG?raw=true "Screenshot 6")
 ![Alt text](/Screenshots/CheshiresGame7.PNG?raw=true "Screenshot 7")
 
+#Members
+- David Zhang
+- Michaella Sheng
+- Quynh Nguyen
+- Alex Tran
+- Danny Diep
+- Kenta Kitada
 
 #Steps to Build
 
